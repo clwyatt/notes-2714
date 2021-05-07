@@ -1,9 +1,16 @@
 \documentclass{article}
+\title{Notes for ECE 2714}
+\author{C.L. Wyatt}
+
+% Document Formatting
+\usepackage[letterpaper, margin=1in]{geometry}
+
+% Configure Math
 \usepackage{amsmath}
 \usepackage{amssymb}
 
-\title{Notes for ECE 2714}
-\author{C.L. Wyatt}
+% Configure graphics
+\usepackage{graphicx}
 
 \begin{document}
 \maketitle
@@ -12,45 +19,74 @@
 \tableofcontents
 \newpage
 
-\section{General Notes}
-\label{sec:orga870cf1}
-\begin{itemize}
-\item Break the topics down into smaller pieces (at least sub-section levels below)
-\item each piece gets a reading, theory-lecture, example-lecture, easy and harder problems, followed by a quiz
-\item move to a flipped model, use class time for recitation and quizzes/exams
-\item More prerequisite instruction using microlectures
-\item add DFT/FFT
-\item integrate the project better into the course, hardware and software
-\item get more/faster feedback about thier progress (polls, surveys, quizzes)
-\end{itemize}
+% switch formatting
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
 \section{Course Introduction}
-\label{sec:orge7ac4df}
-\subsection{Welcome video?}
-\label{sec:orgb856200}
-\subsection{Course Introduction}
-\label{sec:org60282c3}
+\label{sec:intro}
 \begin{itemize}
 \item Course Overview
 \item Learning Objectives, reinterpret for them as "big ideas"
 \item Schedule and Course Activities
 \item Grading
 \end{itemize}
+
+\newpage
 \section{Prerequisites}
-\label{sec:orgf9b63e5}
+
+This course uses many concepts from prerequisite courses, particularly those from calculus and circuits. While we assume you know this material, the following sections offer a review of the most pertinent and establish some notation. If you have trouble with any of them seek assistance -- the sooner the better.
+
 \subsection{Complex Numbers}
-\label{sec:org65ee239}
-\subsubsection{Review Number System and motivation: Naturals, Integers, Rationals, Reals, number line}
-\label{sec:orgde38c88}
+
+Complex numbers are used extensively throughout the course. You need to be very adept at manipulating them.
+
+\subsubsection{The Number System}
+
+By way of review and to motivate the discussion of complext numbers, recall the following basic facts.
+
+\begin{itemize}
+\item The \emph{Natural Numbers} $\mathbb{N}$ are the positive integers $1,2,3,4,\cdots$. Given two natual numbers $a$ and $b$ the sum $a+b$ and the product $a\,b$ are also natural numbers, that is the set of natural numbers is \emph{closed} under addition and multiplication.
+
+\item Solving equations of the form $x + a = b$ for any natural numbers $a,b$ requires the introduction of the negative integers $\cdots, -4, -3, -2 -1$ and $0$. These plus the natural numbers give the \emph{integers}  $\mathbb{Z}$. Note $\mathbb{N} \subset \mathbb{Z}$. Zero ($0$) is called the identity element with respect to addition, while $1$ is the identity with respect to multiplication, that is $a+0 = a$ and $ a \cdot 1 = a$. The \emph{inverse} of an integer $a$ is $-a$, such that thier sum gives the identity for addition, i.e. $a + -a = 0$.
+
+\item The \emph{rational numbers} $\mathbb{Q}$ are of the form $\frac{b}{a}$ for integers $a,b$ with $a \neq 0$. They solve problems of the form $ax=b$ and provide the inverse for multiplication since $\frac{1}{a} \cdot a = 1$. Note $\mathbb{Z} \subset \mathbb{Q}$
+
+\item The \emph{irrational numbers} are those that cannot be written as a rational number, for example $\sqrt{2} = 1.414\ldots$ and $\pi = 3.14159\ldots$
+
+\item The union of the rational and irrational numbers give the \emph{real numbers} denoted $\mathbb{R}$.
+\end{itemize}
+
+Graphically the numbers and thier ordering can be expressed using the number line:
+
+\begin{center}
+  \includegraphics[scale=1]{graphics/number-line.pdf}
+\end{center}
+
 \subsubsection{Complex numbers as extension of reals}
-\label{sec:org4fa22cd}
+
+Continuing the pattern of the basic number system we can ask what are solutions of equations of the form $x^2+a = 0$ or $x^2 + 2ax +a^2 + b^2 = 0$ for $a,b \in \mathbb{R}$ ? As above, finding such solutions requires moving to a larger set of numbers, the \emph{complex numbers} denoted $\mathbb{C}$.
+
+A complex variable $z\in\mathbb{C}$ can be written as $z = a + j\, b$ for $a,b\in\mathbb{R}$, where $j$ is the imaginary unit and $j^2 = -1$. Note in mathematics the imaginary unit is denoted $i$; this difference is purely historical. 
+
+\begin{itemize}
+\item the \emph{real part} $\Re(z) = \text{Re}(z) = a$
+\item the \emph{imaginary part} $\Im(z) = \text{Im}(z) = b$
+\item two complex numbers $z_1, z_2\in \mathbb{C}$ are equal if $\text{Re}(z_1) = \text{Re}(z_2)$ and $\text{Im}(z_1) = \text{Im}(z_2)$
+\item $\mathbb{R} \subset \mathbb{C}$, when $b = 0$ and we say that the number is purely real
+\item if $a = 0$ we say the number is purely imaginary
+\item the \emph{complex conjugate} of $z = a + jb$ is $z^* = a - jb$.
+\end{itemize}
+
 \subsubsection{Operations}
-\label{sec:org6bf5f5d}
+
+
 \subsubsection{Absolute Value (Magnitude)}
-\label{sec:orgf38dd19}
+
 \subsubsection{Complex numbers as ordered pair}
-\label{sec:org5fd4f52}
+
 \subsubsection{Basic properties}
-\label{sec:orgdb7f100}
+
 \begin{itemize}
 \item equality
 \item sum
@@ -62,69 +98,81 @@
 \item inverse -z and 1/z
 \end{itemize}
 \subsubsection{Graphical representation of complex numbers}
-\label{sec:org1807cd6}
+
+TODO: Visualization of multiplication by j.
+
 \subsubsection{Polar representation of complex numbers, Magnitude an Phase}
-\label{sec:orgc1db3fd}
+
 \subsubsection{De Moivre's Theorem}
-\label{sec:orgce2cde3}
+
 \subsubsection{Roots and powers of complex numbers}
-\label{sec:org0ab406e}
+
 \subsubsection{Euler's formula}
-\label{sec:org7ce5b37}
+
 \subsubsection{Complex numbers as roots of polynomial equations}
-\label{sec:org1629118}
+
 \subsubsection{The nth roots of unity}
-\label{sec:org8167f39}
+
 \subsubsection{Vector interpretation of complex numbers}
-\label{sec:orgde10624}
+
 \subsection{Calculus}
-\label{sec:org9c415fd}
+
+\subsubsection{Functions}
+
+\begin{itemize}
+\item $f:\mathbb{R}\mapsto\mathbb{R}$
+\item $f:\mathbb{R}\mapsto\mathbb{C}$
+\end{itemize}
+
 \subsubsection{Review derivative}
-\label{sec:orgb99c230}
+
 \subsubsection{Review Reimann integral}
-\label{sec:orgb10ba43}
+
+Complex integrals?
+
 \subsubsection{Numerical approximations?}
-\label{sec:org9b48ed3}
+
 \subsection{Complex valued functions}
-\label{sec:org2b5135d}
+
 \subsubsection{functions from reals to complex}
-\label{sec:org3e123c2}
+
 \subsubsection{derivatives of such functions}
-\label{sec:orgd683c17}
+
 \subsubsection{integrals of such functions}
-\label{sec:orgb886643}
+
 \subsubsection{Magnitude and Phase representation of such functions}
-\label{sec:orgb95111f}
+
 \subsection{Differential Equations}
-\label{sec:org120d93e}
+
 \subsubsection{linear, constant-coefficient differential equations, homogeneous and particular solutions}
-\label{sec:orge383fad}
+
 \subsection{Circuits}
-\label{sec:org31004e2}
+
 \subsubsection{KVL}
-\label{sec:org9564d33}
+
 \subsubsection{KCL}
-\label{sec:org40e88b2}
+
 \subsubsection{Ideal OpAmps}
-\label{sec:org6e9cfb7}
+
 \subsubsection{from circuit to differential equation}
-\label{sec:org524b0c2}
+
 \subsubsection{using LiaB and building/measuring circuits}
-\label{sec:orgcaff05e}
+
 \subsection{Programming}
-\label{sec:org132ba3d}
+
 \subsubsection{plotting and vizualization with Matlab/Python/Julia}
-\label{sec:org4a1daa5}
+
 \subsubsection{Computation with C or C++}
-\label{sec:org851d19c}
+
 \subsection{Digitial Systems}
-\label{sec:orgc69c0d5}
+
 \subsubsection{binary representation of integers vs floating point}
-\label{sec:orge9caa00}
+
 \subsubsection{shift registers}
-\label{sec:org8a34038}
+
 \subsubsection{adders and multipliers}
-\label{sec:orga62b341}
+
+\newpage
 \section{CT and DT Signals}
 \label{sec:org3203c88}
 \subsection{What are signals models and what are they good for}
@@ -137,6 +185,8 @@
 \label{sec:org08f49f3}
 \subsection{Examples}
 \label{sec:orgf29c95e}
+
+\newpage
 \section{Signal Transformations}
 \label{sec:org6555689}
 \subsection{scaling DT and CT signals}
@@ -159,6 +209,8 @@
 \item time scaling
 \item index decimation and interpolation
 \end{itemize}
+
+\newpage
 \section{Signal Characterization}
 \label{sec:org122fb16}
 \subsection{periodic signals}
@@ -169,6 +221,8 @@
 \label{sec:org177586b}
 \subsection{Signal Energy and Power of DT Signals}
 \label{sec:orgc0bedd6}
+
+\newpage
 \section{Exponential and Sinusoidal Signals}
 \label{sec:orge17b3c1}
 \subsection{complex exponential signals in CT and DT}
@@ -182,12 +236,16 @@
 \subsection{interpreting sinusoids from plots/traces}
 \label{sec:org53b2fa0}
 They need to be able to read off the magnitude and phase and convert the phase to a time shift. Many struggle with this basic skill.
+
+\newpage
 \section{The Unit Impulse Functions}
 \label{sec:org33257b0}
 \subsection{DT impulse}
 \label{sec:org1210e0d}
 \subsection{CT impulse}
 \label{sec:org5a0b8cc}
+
+\newpage
 \section{The Unit Step Functions}
 \label{sec:orgcd386ae}
 \subsection{DT step}
@@ -196,6 +254,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org4d099d0}
 \subsection{relationship between impulse and step}
 \label{sec:org055e977}
+
+\newpage
 \section{CT and DT Systems}
 \label{sec:org7f962be}
 \subsection{Models of systems and what they are good for}
@@ -208,6 +268,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org787bf61}
 \subsection{Basic block diagram representation}
 \label{sec:orgb2e3c34}
+
+\newpage
 \section{Basic System Properties}
 \label{sec:org4a5eb76}
 \subsection{Memory}
@@ -224,6 +286,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org07e3ada}
 \subsection{Define LTI system}
 \label{sec:org920390a}
+
+\newpage
 \section{Convolution}
 \label{sec:org9c1558d}
 \subsection{Review LTI systems and superposition property}
@@ -234,12 +298,32 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:orge42c03e}
 \subsection{Properties of convolution}
 \label{sec:orgbed0c56}
-\begin{itemize}
-\item communative
-\item distributive
-\item associative
-\item how they apply to block diagrams
-\end{itemize}
+
+\subsubsection{Convolution is commutative}
+
+In DT: $x_1[n] * x_2[n] = x_2[n] * x_1[n]$
+
+
+In CT: $x_1(t) * x_2(t) = x_2(t) * x_1(t)$
+
+
+Thus the system response can be viewed as the convolution of input with impulse response (e.g. in DT)
+    \[
+      y[n] = \sum\limits_{k=-\infty}^{\infty} x[k]h[n-k] = x[n] * h[n]
+    \]
+    or, convolution of impulse response with the input
+    \[
+      y[n] = \sum\limits_{k=-\infty}^{\infty} h[k]x[n-k] = h[n] * x[n]
+    \]
+
+  One way is sometimes more mathematically convenient than the other.
+  
+  \subsubsection{distributive}
+  
+\subsubsection{associative}
+\subsubsection{how they apply to block diagrams}
+
+\newpage
 \section{Properties of LTI Systems}
 \label{sec:orgdadbbac}
 \subsection{Memory}
@@ -250,6 +334,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:orgdb3dd89}
 \subsection{BIBO stability}
 \label{sec:org59a881d}
+
+\newpage
 \section{Systems as Differential and Difference Equations}
 \label{sec:orgc840576}
 \subsection{LCC differential equations and thier solution}
@@ -260,6 +346,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org17be1e7}
 \subsection{impulse response from LCC difference equation}
 \label{sec:org96b828a}
+
+\newpage
 \section{Block Diagram continued}
 \label{sec:orgcb5c75f}
 \subsection{equivalence of LCCDE's and clock diagrams}
@@ -276,6 +364,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org60f5c97}
 \subsection{second-order differential equation as a feedback motif}
 \label{sec:orgcc26b56}
+
+\newpage
 \section{Unit Impulse Revisited}
 \label{sec:org9c858ee}
 \subsection{Intuition about the impulse response}
@@ -284,6 +374,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org23917a7}
 \subsection{why convoluton gives the response desired}
 \label{sec:org7ad3b62}
+
+\newpage
 \section{The Response of LTI Systems to Complex Exponentials}
 \label{sec:org0d3d3bf}
 \subsection{Response of CT LTI system to a complex exponential -> Transfer Function}
@@ -296,6 +388,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org097310e}
 \subsection{Frequency response, scaling of magnitude and phase}
 \label{sec:org9ebea42}
+
+\newpage
 \section{Fourier Series Representation of CT Periodic Signals}
 \label{sec:org651d66d}
 \subsection{review periodic functions}
@@ -310,6 +404,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:orgea0d486}
 \subsection{examples}
 \label{sec:orgda563b3}
+
+\newpage
 \section{Convergence of the Fourier Series}
 \label{sec:org0a6d2d4}
 \subsection{the synthesis equation is an approximation strictly speaking}
@@ -330,6 +426,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org1f25d25}
 \subsection{visualization of the CTFS as chains of rotating vectors, demo}
 \label{sec:org969c81d}
+
+\newpage
 \section{Properties of CT Fourier Series}
 \label{sec:org1620a4a}
 \subsection{Linearity}
@@ -346,6 +444,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org2c7c125}
 \subsection{Parseval's}
 \label{sec:orgdaf814a}
+
+\newpage
 \section{Fourier Series Representation of DT Periodic Signals}
 \label{sec:org562e005}
 \subsection{review CTFS and decomposition problem soving analysis}
@@ -360,6 +460,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org4f1a797}
 \subsection{examples}
 \label{sec:org95c7e81}
+
+\newpage
 \section{Properties of DT Fourier Series}
 \label{sec:org7340971}
 \subsection{linearity}
@@ -380,6 +482,8 @@ They need to be able to read off the magnitude and phase and convert the phase t
 \label{sec:org836e5ec}
 \subsection{Parsevals}
 \label{sec:org701c799}
+
+\newpage
 \section{Fourier Series and LTI Systems}
 \label{sec:org292ffbc}
 For stable, LTI systems, the frequency response scales and phase shifts each term of the series
@@ -391,6 +495,8 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \label{sec:orgb1ed6ac}
 \subsection{simple examples: RC, CR}
 \label{sec:org0734828}
+
+\newpage
 \section{DT Filters Described by Difference Equations}
 \label{sec:org2b6b730}
 \subsection{IIR filters and recurrence relations}
@@ -402,6 +508,7 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{examples of both}
 \label{sec:orgbb45d7e}
 
+\newpage
 \section{The CT Fourier Transform}
 \label{sec:org76eb4f9}
 
@@ -417,6 +524,7 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{CTFT of the CTFS}
 \label{sec:orga61d23b}
 
+\newpage
 \section{Properties of the CT Fourier Transform}
 \label{sec:org15bd740}
 
@@ -447,12 +555,14 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{Application of the properties in combination}
 \label{sec:orgdb2f8f1}
 
+\newpage
 \section{Frequency Response from LTI Differential Equation}
 \label{sec:org5067cc8}
 
 \subsection{Demonstrate using the derivative property to obtain the freq response}
 \label{sec:org1f03a18}
 
+\newpage
 \section{Bode plots}
 \label{sec:orgb48b8af}
 
@@ -462,6 +572,7 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{Bode Plots in software, e.g. Matlab/Python/Julia}
 \label{sec:org379a762}
 
+\newpage
 \section{The DT Fourier Transform}
 \label{sec:org28dd76b}
 
@@ -474,6 +585,7 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{DTFT of DTFS}
 \label{sec:orgae5f02f}
 
+\newpage
 \section{Properties of the DT Fourier Transform}
 \label{sec:org4b60654}
 
@@ -513,18 +625,21 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{application of the proiperties in combintation}
 \label{sec:orgb8ac360}
 
+\newpage
 \section{Frequency Response from LTI Difference Equation}
 \label{sec:org9ac773f}
 
 \subsection{Demonstrate using the difference property to obtain the freq response}
 \label{sec:org806c699}
 
+\newpage
 \section{Magnitude-Phase Representation of the Frequency Response}
 \label{sec:org24cb5f9}
 
 \subsection{frequency resonse acting on sinusoids}
 \label{sec:org1c9e86b}
 
+\newpage
 \section{Frequency-Selective Filters}
 \label{sec:org81f7538}
 
@@ -540,6 +655,7 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{ideal notch/bandstop}
 \label{sec:org55a34c1}
 
+\newpage
 \section{First and Second Order Systems}
 \label{sec:org9c7c5a8}
 
@@ -552,6 +668,7 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{DT implementations: micro-controllers versus DSP architectures}
 \label{sec:org79ad593}
 
+\newpage
 \section{The Discete Fourier Transform}
 \label{sec:org2209ae0}
 
@@ -567,6 +684,7 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{briefly mention fast algorithms to compute the DFT = FFT}
 \label{sec:org00fe03f}
 
+\newpage
 \section{The Sampling Theorem}
 \label{sec:org86060d9}
 
@@ -579,6 +697,7 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{practical ADC considerations (connect to embedded course)}
 \label{sec:org392e289}
 
+\newpage
 \section{Signal Reconstruction and Aliasing}
 \label{sec:orgd8bc19e}
 
@@ -588,6 +707,7 @@ For stable, LTI systems, the frequency response scales and phase shifts each ter
 \subsection{Practical DACs, e.g. R-2R ladder + LFP}
 \label{sec:org453776d}
 
+\newpage
 \section{Culminating project}
 \label{sec:orgc32fcee}
 
