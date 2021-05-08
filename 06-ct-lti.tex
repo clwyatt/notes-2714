@@ -1,0 +1,364 @@
+\section{Linear time invariant CT systems}
+
+\subsection{System types}
+
+A system is an interconncted set of components or sub-systems. Mathematically a system is a transformation between one or more signals, a rule that maps functions to functions.
+
+\begin{itemize}
+\item single input - single output (SISO) system.
+  \begin{center}
+    \begin{tikzpicture}[auto, node distance=3cm,>=latex']
+      \node [input, name=input] {};
+      \node [block, right of=input] (system) {System $T$};
+      \node [output, right of=system] (output) {};
+      
+      \draw [draw,->] (input) -- node {Input $x$} (system);
+      \draw [->] (system) -- node {Output $y$} (output);
+    \end{tikzpicture}
+  \end{center}
+\item single input - multiple output (SIMO) system
+  \begin{center}
+    \begin{tikzpicture}[auto, node distance=3cm,>=latex']
+      \node [input, name=input] {};
+      \node [block, right of=input] (system) {System $T$};
+      \node [output, right of=system] (output) {};
+      
+      \draw [draw,->] (input) -- node {Input $x$} (system);
+      \draw [->] (system) -- node {Output $\vec y$} (output);
+    \end{tikzpicture}
+  \end{center}
+\item general case, multiple input - multiple output (MIMO)
+  \begin{center}
+    \begin{tikzpicture}[auto, node distance=3cm,>=latex']
+      \node [input, name=input] {};
+      \node [block, right of=input] (system) {System $T$};
+      \node [output, right of=system] (output) {};
+      
+      \draw [draw,->] (input) -- node {Input $\vec x$} (system);
+      \draw [->] (system) -- node {Output $\vec y$} (output);
+    \end{tikzpicture}
+  \end{center}
+\end{itemize}
+
+We will focus on single input - single output, CT and DT systems.
+
+\begin{itemize}
+\item If both input and output are CT signals, it is a CT system.
+  \begin{center}
+    \begin{tikzpicture}[auto, node distance=4cm,>=latex']
+      \node [input, name=input] {};
+      \node [block, right of=input] (system) {System $T$};
+      \node [output, right of=system] (output) {};
+
+      \draw [draw,->] (input) -- node {Input $x(t)$} (system);
+      \draw [->] (system) -- node {Output $y(t)$} (output);
+    \end{tikzpicture}
+  \end{center}
+\item If both input and output are DT signals, it is a DT system.
+  \begin{center}
+    \begin{tikzpicture}[auto, node distance=4cm,>=latex']
+      \node [input, name=input] {};
+      \node [block, right of=input] (system) {System $T$};
+      \node [output, right of=system] (output) {};
+
+      \draw [draw,->] (input) -- node {Input $x[n]$} (system);
+      \draw [->] (system) -- node {Output $y[n]$} (output);
+    \end{tikzpicture}
+  \end{center}
+\item If input and output are not both CT or DT signals, it is a hybrid CT-DT system.
+  \begin{center}
+    \begin{tikzpicture}[auto, node distance=4cm,>=latex']
+      \node [input, name=input] {};
+      \node [block, right of=input] (system) {System $T$};
+      \node [output, right of=system] (output) {};
+
+      \draw [draw,->] (input) -- node {Input $x[n]$} (system);
+      \draw [->] (system) -- node {Output $y(t)$} (output);
+    \end{tikzpicture}
+  \end{center}
+  \begin{center}
+    \begin{tikzpicture}[auto, node distance=4cm,>=latex']
+      \node [input, name=input] {};
+      \node [block, right of=input] (system) {System $T$};
+      \node [output, right of=system] (output) {};
+
+      \draw [draw,->] (input) -- node {Input $x(t)$} (system);
+      \draw [->] (system) -- node {Output $y[n]$} (output);
+    \end{tikzpicture}
+  \end{center}
+\end{itemize}
+
+As a shorthand notation for the graphical description above we can use $x \mapsto y$. A system maps  a function $x$ to a function $y$:
+
+\begin{itemize}
+\item CT system
+  \[
+  x(t) \mapsto y(t)
+  \]
+  
+\item DT system
+  \[
+  x[n] \mapsto y[n]
+  \]
+\item Hybrid CT-DT system
+  \[
+  x[n] \mapsto y(t)
+  \]
+  \begin{center}
+    or
+  \end{center}
+  \[
+  x(t) \mapsto y[n]
+  \]
+\end{itemize}
+
+When a system has no input, the system is {\it autonomous}. An autonomous system just produces output: $\mapsto y$.
+
+\begin{center}
+  \begin{tikzpicture}[auto, node distance=4cm,>=latex']
+    \node [input, name=input] {};
+    \node [block, right of=input] (system) {System $T$};
+    \node [output, right of=system] (output) {};
+
+    \draw [->] (system) -- node {Output $y$} (output);
+  \end{tikzpicture}
+\end{center}
+
+We can think of an autonomous system as a function generator, producing signals for use.
+
+\subsection{CT system representations}
+
+We can mathematically represent, or model, systems multiple ways.
+
+\begin{itemize}
+\item purely mathematically - in time domain we will use
+  \begin{itemize}
+  \item for CT systems: linear, constant coefficient differential equations. e.g.
+    \[
+    y^{\prime\prime} + ay^\prime + by = x
+    \]
+    
+  \item for DT systems: linear, constant coefficient difference equation, e.g.
+    \[
+    y[n] = a y[n-1] + b y[n-2] + x[n]
+    \]
+  \end{itemize}
+  or
+  \begin{itemize}
+  \item for CT systems: CT impulse response
+  \item for DT systems: DT impulse response
+  \end{itemize}
+\item purely mathematically - in frequency domain we will use
+  \begin{itemize}
+  \item frequency response
+  \item transfer function (complex frequency, covered in ECE 3704)
+  \end{itemize}
+\item graphically, using a mixture of math and block diagrams
+\end{itemize}
+
+Mathematical models:
+\begin{itemize}
+\item provide abstraction, removing (often) irrelevant detail.
+\item can be more or less detailed, an {\it internal} v.s. {\it external} (block box) description
+\item are not unique with respect to instantiation (implementation)
+\item are limited to the regime they were designed for
+\end{itemize}
+
+\begin{example}[RC Circuit]
+  Consider the RC circuit. It is a single input - single output system. We will be able to represent it mathematically or graphically and internally or externally.
+
+  \begin{tabular}{ccc}
+    & Graphical & Symbolic\\
+    & & \\
+    External &
+    \begin{tikzpicture}[auto, node distance=3cm,>=latex',, scale=0.6, every node/.style={transform shape}]
+      \node [input, name=input] {};
+      \node [block, right of=input] (system) {$h(t)$};
+      \node [output, right of=system] (output) {};
+
+      \draw [draw,->] (input) -- node {$x(t)$} (system);
+      \draw [->] (system) -- node {$y(t)$} (output);
+    \end{tikzpicture}
+    & $y(t) = h(t)*x(t)$\\
+    Internal &
+    \begin{circuitikz}[american voltages, scale=0.6, every node/.style={transform shape}]
+      \draw
+      (0,2) to[R, l=$R$] (3,2)
+      (3,2) to[C, l=$C$] (3,0)
+      (0,2) to[V, l_=$x(t)$] (0,0)
+      (0,0) to[short] (3,0)
+      (3,2) to[short, -o] (5,2)
+      (3,0) to[short, -o] (5,0)
+      (5,2) to[open, v=$y(t)$] (5,0);
+    \end{circuitikz}
+
+    & $y^\prime + \frac{1}{RC} y = \frac{1}{RC} x(t)$\\
+  \end{tabular}
+\end{example}
+
+It does not matter what the underlying system implementation is. For example, consider a mechanical system, described by a second-order ODE:
+
+\begin{center}
+  \includegraphics[scale=0.6]{figures/mechanical_system.pdf}
+\end{center}
+
+\begin{tabular}{ll}
+  $y$ = position & $M$ = mass\\
+  $y^\prime$ = velocity & $K$ = spring constant\\
+  $y^{\prime\prime}$ = acceleration & $B$ = coefficient of friction\\
+\end{tabular}
+
+\[
+y^{\prime\prime} + \frac{B}{M} y^\prime + \frac{K}{M}y = \frac{1}{M}f(t)
+\]
+
+Compare this to the parallel RLC circuit, described by the second-order ODE:
+
+\begin{center}
+  \begin{circuitikz}[american voltages]
+    \draw
+    (0,0) to[american current source, l=$f(t)$] (0,2)
+    (2,0) to[R, l=$R$] (2,2)
+    (4,0) to[L, l=$L$] (4,2)
+    (6,0) to[C, l=$C$] (6,2)
+    (0,0) to[short, -o] (8,0)
+    (0,2) to[short, -o] (8,2)
+    (8,2) to[open, v=$y(t)$] (8,0);
+  \end{circuitikz}
+\end{center}
+
+\begin{tabular}{ll}
+  $y$ = voltage & $R$ = resistance\\
+  $Cy^\prime$ = capacitor current & $L$ = inductance\\
+  & $C$ = capacitance\\
+\end{tabular}
+
+\[
+y^{\prime\prime} + \frac{1}{RC} y^\prime + \frac{1}{LC}y = \frac{1}{LC}f(t)
+\]
+
+Comparing these systems, if $R = \frac{1}{B}$, $L = \frac{1}{K}$, and $C = M$, they are mathematically identical.
+
+\subsection{System properties and classification}
+
+Choosing the right kind of system model is important. Here are some important properties that allow us to broadly classify systems.
+\begin{itemize}
+\item Memory
+\item Invertability
+\item Causality
+\item Stability
+\item Time-invariance
+\item Linearity
+\end{itemize}
+
+Let's define each it turn.
+
+\subsubsection{Memory}
+The output of a system with memory depends on previous or future inputs and is said to be {\it dynamic}. Otherwise the system is memoryless or {\it instantaneous}, and the output $y(t)$ at time $t$ depends only on $x(t)$.
+For example in CT:
+\[
+y(t) = 2x(t)
+\]
+is a memoryless system, while
+\[
+y(t) = \int\limits_{-\infty}^{t} x(\tau) \; dt
+\]
+has memory.
+
+\subsubsection{Invertability}
+
+A system is invertable if there exists a system that when placed in series with the original recovers the input.
+\[
+x(t) \mapsto{T} y(t) \mapsto{T^{-1}} x(t)
+\]
+where $T^{-1}$ is the inverse system of $T$. For example, consider a system
+\[
+x(t) \mapsto y(t) = \int\limits_{-\infty}^t x(\tau) \; d\tau
+\]
+and a system
+\[
+y(t) \mapsto z(t) = \frac{dy}{dt} 
+\]
+The combination in series $x(t) \mapsto y(t) \mapsto z(t) = x(t)$, i.e. the derivative undoes the integral.
+
+\subsubsection{Causality}
+A CT system is causal if the output at time $t$ depends on the input for time values at or before $t$:
+\[
+y(t) \;\text{depends on}\; x(\tau) \;\text{for} \; \tau \leq t
+\]
+All physical CT systems are causal, even if all continuous systems are not (e.g. continuous 2D images $f(u,v)$, have no "before" and "after").
+
+For example, consider a CT system whose impulse response is $h(t) = e^{-t^2}$. This implies the system produces output \emph{before} (i.e. for $t < 0$) the impulse is applied at $t=0$, somehow anticipating the arrival of the impulse. Barring time-travel, this is physically impossible.
+
+\subsubsection{Stability}
+
+A CT system is (BIBO) stable if applying a bounded-input
+\[
+x(t) < \infty \; \forall \; t
+\]
+results in a bounded-output $x(t) \mapsto y(t)$ and 
+\[
+y(t) < \infty \; \forall \; t
+\]
+Note, bounded in practice is limited by the physical situation, e.g. positive and negative rails in a physical circuit.
+
+For example, a CT system described by the LCCDE
+\[
+\frac{dy}{dt}(t) - 2y(t) = x(t)
+\]
+is unstable because the solution $y(t)$ will have one term of the form $Ce^{2t}$, for most non-zero inputs $x(t)$ or any non-zero initial condition, that grows unbounded as time increases.
+
+\subsubsection{Time-invariance}
+A CT system is time-invariant if, given
+\[
+x(t) \mapsto y(t)
+\]
+then a time-shift of the input leads to the same time-shift in the output
+\[
+x(t-\tau) \mapsto y(t-\tau)
+\]
+
+An important example is a CT system described by a LCCDE, e.g.
+\[
+\frac{dy}{dt}(t) + y(t) = x(t)
+\]
+but non-zero auxillary conditions at some $t_0$, $y(t_0) = y_0$. Such systems will have a term in it's solution that depends on $y_0$. However if I time shift the input, the term that depends on $y_0$ does not shift (since it is achored to $t_0$) and the total output does not shift identically with the input. Thus the system cannot be time-invariant.
+
+\subsubsection{Linearity}
+
+A CT system is linear if the output due to a sum of scaled individual inputs is the same as the scaled sum of the individual outputs with respect to those inputs. In other words given
+\[
+x_1(t) \mapsto y_1(t) \;\text{and}\; x_2(t) \mapsto y_2(t)
+\]
+then
+\[
+a x_1(t) + b x_2(t) \mapsto a y_1(t) + b y_2(t)
+\]
+for constants $a$ and $b$.
+Note this property extends to sums of arbitrary signals, e.g. if
+\[
+x_i(t) \mapsto y_i(t) \; \forall\; i \in [1 \cdots N]
+\]
+then given $N$ constants $a_i$, if the system is linear
+\[
+\sum\limits_{i = 1}^N a_i x_i(t) \mapsto \sum\limits_{i = 1}^N a_i y_i(t) 
+\]
+This is a very important property, called {\it superposition}, and it simplifies the analysis of systems greatly.
+
+Similar to time-invariance an important non-linear system is that is described by a LCCDE with non-zero auxillary conditions at some $t_0$, $y(t_0) = y_0$. Again such systems will have a term in it's solution that depends on $y_0$. Given two inputs, each individual response will have that term in it, so thier sum has double that term. However the response due to the sum of the inputs would again only have one and the sum of the responses would not be the same as the response of the sum. Such a system cannot be linear.
+
+\subsection{Stable LTI Systems}
+
+The remainder of this course is about stable, linear, time-invariant (LTI) systems. As we have seen in CT such systems can be described by a LCCDE with zero auxillary (initial) conditions (the system is \emph{at rest}). 
+
+We have seen previously how to find the impulse response, $h(t)$, of such systems. We now note some relationships between the impulse response and the system properties described above.
+
+\begin{itemize}
+\item If a system is memoryless then $h(t) = C \delta(t)$ for some constant $C$.
+\item If a system is causal then  $h(t) = 0$ for $t < 0$.
+\item If a system is BIBO stable then
+  \[
+  \int\limits_{-\infty}^{\infty} |h(t)| \; dt < \infty
+  \]
+\end{itemize}
+

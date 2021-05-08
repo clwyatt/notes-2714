@@ -1,0 +1,506 @@
+\section{Continuous-time Signals}
+
+A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.
+
+\subsection{Signals as Functions}
+
+In order to reason about signals mathematically we need a representation or {\it model}. Signals are modeled as functions, mappings between sets
+\[
+f: A \rightarrow B
+\]
+where $A$ is a set called the {\it domain} and $B$ is a set called the {\it co-domain}.
+
+The most basic classification of signals depends on the sets that makeup the domain and co-domain. We will be interested in two versions of the domain, the reals denoted $\mathbb{R}$ and the integers denoted $\mathbb{Z}$. We will be interested in two versions of the co-domain, the reals $\mathbb{R}$ and the set of complex numbers $\mathbb{C}$.
+
+\begin{definition}[Analog Signal]
+  If the function $f: \mathbb{R} \rightarrow \mathbb{R}$, we call this an analog or real, continuous-time signal, e.g. a voltage at time $t \in \mathbb{R}$, $v(t)$. We will write these as $x(t)$, $y(t)$, etc. The units of $t$ are seconds. Fig.~\ref{fig:ctplots} shows some graphical representations, i.e. plots.
+\end{definition}
+
+\begin{figure}[ht]
+  \begin{center}
+  \frame{\includegraphics[scale=0.5]{graphics/ctsignals.pdf}}
+  \end{center}
+  \caption{Example plots of analog signals.}
+  \label{fig:ctplots}
+\end{figure}
+
+\begin{definition}[Real, Discrete-time Signal]
+  If the function $f: \mathbb{Z} \rightarrow \mathbb{R}$, we call this a real, discrete-time signal, e.g. the temperature every day at noon. We will write these as $x[n]$, $y[n]$, etc. Note $n$ is dimensionless.
+\end{definition}
+
+\begin{figure}[ht]
+  \begin{center}
+    \frame{\includegraphics[scale=0.5]{graphics/dtsignals.pdf}}
+  \end{center}
+  \caption{Example plots of real discrete-time signals.}
+  \label{fig:dtplots}
+\end{figure}
+
+Some other possibilities:
+  
+\begin{itemize}
+\item $f: \mathbb{R} \rightarrow \mathbb{Z}$, digital, continuous-time signals, e.g. the output of a general purpose pin on a microcontroller
+\item $f: \mathbb{Z} \rightarrow \mathbb{Z}$, digital, discrete-time signals, e.g. the signal on a computer bus
+\end{itemize}
+
+The co-domain can also be complex.
+
+\begin{itemize}
+\item $f: \mathbb{R} \rightarrow \mathbb{C}$, complex-valued, continuous-time signals, e.g.\\
+  \[
+  x(t) = e^{j\omega t} = \cos(\omega t) + j\sin(\omega t)
+  \]
+\item $f: \mathbb{Z} \rightarrow \mathbb{C}$, complex-valued, discrete-time signals, e.g.\\
+  \[
+  x[n] = e^{j\omega n} = \cos(\omega n) + j\sin(\omega n)
+  \]
+\end{itemize}
+  
+Since the domains $\mathbb{R}$ and $\mathbb{Z}$ are usually interpreted as time, we will call these {\it time-domain} signals. In the time-domain, when the co-domain is $\mathbb{R}$ we call these real signals. All physical signals are real. However complex signals will become important when we discuss the frequency domain.
+
+\subsection{Primitive Models}
+
+We mathematically model signals by combining elementary/primitive functions, for example:
+  
+\begin{itemize}
+\item polynomials: $x(t) = t$, $x(t) = t^2$, etc.
+\item transendental functions: $x(t) = e^t$, $x(t) = \sin(t)$, $x(t) = \cos(t)$, etc.
+\item piecewise functions, e.g.
+  \[
+     x(t) = \left\{  \begin{array}{cl}
+       f_1(t) & t < 0\\
+       f_2(t) & t \geq 0\\
+     \end{array}\right.
+     \]
+\end{itemize}
+
+\begin{example}[Modeling a Switch]
+  Consider a mathematical model of a switch, which moves positions at time $t = 0$.
+
+  \begin{center}
+  \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
+    \draw
+    (0,0) to[battery, l=$V$] (0,2.3)
+    (3,2) node[spdt,xscale=-1,yscale=-1,anchor=in] (Sw) {}
+    (0,2.3) to[short] (Sw.out 2)
+    (Sw.out 1) to[short] (1.8,0)
+    (0,0) to[short, -o] (4,0)
+    (3,2) to[short, -o] (4,2)
+    (4,2) to[open, v=$x(t)$] (4,0);;
+  \end{circuitikz}
+\end{center}
+
+We use this model so much we give it it's own name and symbol: Unit Step, $u(t)$
+
+    \[
+     u(t) = \left\{  \begin{array}{cl}
+        0 & t < 0\\
+        1 & t \geq 0\\
+      \end{array}\right.
+  \]
+  so a mathematical model of the switch circuit above would be $x(t) = V u(t)$.
+
+  Note: some texts define the step function at $t=0$ to be $1$ or $\frac{1}{2}$. It is typically plotted like so:
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+  \begin{axis}[ xlabel=$t$, axis x line=center, axis y line = center, 
+    xmin=-2, xmax=2, ymin=0, ymax=1.1, x label style={at={(axis cs:2,0)},anchor=west}]
+    \draw[-,blue,style={ultra thick}] (axis cs:-2,0) -- (axis cs:0,0);
+    \draw[-latex,blue,style={ultra thick}] (axis cs:0,1) -- (axis cs:2,1);
+  \end{axis}
+\end{tikzpicture}
+    \end{center}
+\end{example}
+
+\begin{example}[Pure audio tone at "middle C"]
+  A signal modeling the air pressure of a specific tone might be 
+  \[
+  x(t) = \sin\left(2\pi (261.6) t\right)
+  \]
+\end{example}
+
+\begin{example}[Chord]
+    The chord "G", an additive mixture of tones at G, B, and D and might be modeled as
+    \[
+    x(t) = \sin\left(2\pi (392) t\right) + \sin\left(2\pi (494) t\right) + \sin\left(2\pi (293) t\right) 
+    \]
+    This example shows we can use addition to build-up signals to approximate real signals of interest.
+\end{example}
+
+\subsection{Basic Transformations}
+
+We can also apply transformations to signals to increase their modeling flexibility.
+  
+\begin{itemize}
+\item  magnitude scaling
+  \[
+  x_2(t) = a x_1(t)
+  \]
+  for $a \in \mathbb{R}$.
+\item derivatives
+  \[
+  x_2(t) = x_1^\prime(t)
+  \]
+\item integrals
+  \[
+  x_2(t) = \int\limits_{-\infty}^t x_1(\tau) \; d\tau
+  \]
+\item sums
+  \[
+  y(t) = \sum\limits_{i} x_i(t)
+  \]
+  an important example we will see is the CT Fourier series.  
+\item multiplication (modulation)
+  \[
+  y(t) = x_1(t) x_2(t)
+  \]
+  For example amplitude modulation $y(t) = x(t)\sin(\omega_0 t)$
+\item time shift
+  \[
+  x_2(t) = x_1(t+\tau)
+  \]
+  \begin{itemize}
+  \item if $\tau <0$ it is called a {\it delay}
+  \item if $\tau >0$ it is called an {\it advance}
+  \end{itemize}
+  \item time scaling
+    \[
+    x_2(t) = x_1\left(\frac{t}{\tau}\right)
+    \]
+    \begin{itemize}
+    \item if $\tau >0$ increasing $\tau$ expands in time, slows the signal
+    \item if $\tau <0$ time reverses and decreasing $\tau$ expands in time
+    \end{itemize}
+    Example: time reversal $ x_2(t) = x_1(-t)$
+\end{itemize}
+
+\subsection{Characterization of Signals}
+
+There are a few basic ways of characterizing signals.
+
+\begin{definition}[Causal CT Signal]
+  A CT signal is \emph{causal} if $x(t) = 0$ $\forall t < 0$.
+\end{definition}
+\begin{definition}[Anti-Causal CT Signal]
+  A CT signal is \emph{anti-causal} or acausal if $x(t) = 0$ $\forall t \geq 0$.
+\end{definition}
+
+A signal can be written as the sum of a causal and anti-causal signal.
+
+\begin{definition}[Periodic Signals]
+  A CT signal is \emph{periodic} if $x(t) = x(t + T)$ $\forall t$ for a fixed parameter $T \in \mathbb{R}$ called the \emph{period}.
+\end{definition}
+  
+The simplest periodic signals are those based on the sinusoidal functions.
+  
+\begin{definition}[Even Signal]
+  A CT signal is \emph{even} if $x(t) = x(-t)$ $\forall t$.
+\end{definition}
+
+\begin{definition}[Odd Signal]
+  A CT signal is \emph{odd} if $x(t) = -x(-t)$ $\forall t$. 
+\end{definition}
+
+Any CT signal can be written in terms of an even and odd component
+\[
+x(t) = x_e(t) + x_o(t) 
+\]
+where 
+\[
+\begin{array}{ll}
+  x_e(t) &= \frac{1}{2}\left\{x(t) + x(-t)\right\} \\
+  & \\
+  x_o(t) &= \frac{1}{2}\left\{x(t) - x(-t)\right\}
+\end{array}
+\]
+
+\begin{definition}[Energy of a CT Signal]
+  The \emph{energy} of a CT signal $x(t)$ is defined as a measure of the function
+  \[
+  E_x = \lim_{T\rightarrow\infty} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
+  \]
+\end{definition}
+
+\begin{definition}[Power of a CT Signal]
+  The \emph{power} of a CT signal is the energy averaged over an interval as that interval tends to infinity.
+  \[
+  P_x = \lim_{T\rightarrow\infty} \frac{1}{2T} \int_{-T}^T \lvert x(t)\rvert^2 dt \; .
+  \]
+\end{definition}
+
+Signals can be characterized based on their energy or power:  
+\begin{itemize}
+\item Signals with finite, non-zero energy and zero power are called {\it energy signals}.
+\item Signals with finite, non-zero power (and by implication infinite energy) are called {\it power signals}.
+\end{itemize}
+
+Note, these categories are non-exclusive, some signals are neither energy or power signals.
+
+\subsection{Unit Impulse Function}
+An important CT signal is the unit impulse function, also called the "delta" $\delta$ function for the symbol traditionally used to define it. Applying this signal to a system models a "kick" to that system. For example, consider striking a tuning fork. The reason this signal is so important is that it will turn out that the response of the system to this input tells us all we need to know about a linear, time-invariant system!
+
+\begin{definition}[CT Impulse Function]
+The CT impulse function is not really a function at all, but a mathematical object called a "distribution". Some equivalent definitions:
+
+\[
+\delta(t) = \lim_{\epsilon \rightarrow 0}\left\{
+\begin{array}{ll}
+  \frac{1}{2\epsilon} & |t| < \epsilon\\
+  0 & \text{else}
+\end{array}
+\right.
+\]
+
+\[
+\delta(t) = \lim_{\epsilon \rightarrow 0} \frac{1}{\sqrt{2\pi}\epsilon} e^{-\frac{t^2}{2\epsilon^2}}
+\]
+Note the area under each definition is always one.
+\end{definition}
+
+In practice we can often use the following definition and some properties, without worrying about the distribution functions.
+\[
+\delta(t) = \left\{
+\begin{array}{ll}
+  0 & t \neq 0\\
+  \infty & t = 0
+\end{array}
+\right. 
+\]
+which we draw an vertical arrow in plots:
+\begin{center}
+  \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+    \begin{axis}[ xlabel=$t$, axis x line=center, axis y line = center, 
+        xmin=-2, xmax=2, ymin=0, ymax=1.1, x label style={at={(axis cs:2,0)},anchor=west}]
+      \addplot+[ycomb,mark=triangle,style={ultra thick}] plot coordinates {(0,1)};
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+Note the height of the arrow is arbitrary. Often in the case of a non-unit impulse function the area is written in parenthesis near the arrow tip.
+
+The following properties of the impulse function will be used often.
+
+\begin{itemize}
+\item The energy of the unit impulse is unity since by definition
+  \[
+  \int\limits_{-\infty}^{\infty} \delta(t) \; dt = 1
+  \]
+\item Sampling property: $x(t)\delta(t-t_0) = x(t_0)\delta(t-t_0)$
+\item Sifting Property:
+  \[
+  \int\limits_{a}^{b} x(t)\delta(t-t_0) \; dt = x(t_0)
+  \]
+  for any $a < t_0 < b$.
+\end{itemize}
+
+We previously defined the unit step function. The impulse can be defined in terms of the step:
+\[
+\delta(t) = \frac{du}{dt}
+\]
+and vice-versa
+\[
+u(t) = \int\limits_{-\infty}^{t} \delta(\tau) \; d\tau
+\]
+using the notion of distributions, e.g.
+
+\[
+u(t) = \int\limits_{-\infty}^{t} \delta(\tau) \; d\tau = \lim_{\epsilon \rightarrow 0} \int\limits_{-\infty}^{t} \frac{1}{\sqrt{2\pi}\epsilon} e^{-\frac{\tau^2}{2\epsilon^2}} \; d\tau = \lim_{\epsilon \rightarrow 0} \frac{1}{2}\left(1+\text{erf}\left( \frac{t}{\sqrt{2}\epsilon}\right)\right)
+\]
+
+The step and impulse function are related, but in many cases finding the response of a system to a step input is easier.
+
+We can apply additional transformations to the impulse and step functions to get other useful signals, e.g.
+
+\begin{itemize}
+\item ramp
+  \[
+  r(t) = \int\limits_{-\infty}^{t} u(\tau) \; d\tau = tu(t)
+  \]
+  
+\item causal pulse of width $\epsilon$
+  \[
+  p(t) = u(t) - u(t-\epsilon)
+  \]
+  
+\item non-causal pulse of width $2\epsilon$
+  \[
+      p(t) = u(t+\epsilon) - u(t-\epsilon)
+      \]
+\end{itemize}
+
+\subsection{CT Complex Exponential}
+
+One of the most important signals in systems theory is the complex exponential:
+\[
+x(t) = C\, e^{a t}
+\]
+where the parameters $C, a \in \mathbb{C}$ in general.
+
+When $C$ and $a$ are both real ($\Im(C) = \Im(a) = 0$), we have the familiar exponential. When $a > 0$, $x(t) = C e^{a t}$ looks like:
+
+\begin{center}   
+  \begin{tikzpicture}
+    \begin{axis}[xmin=-2, xmax=2, ymin = 0, ymax=7, samples=50, xlabel=$t$, xticklabels={,,}, yticklabels={,,}]
+      \addplot[blue, thick] (x,e^x);
+      \addplot[mark=none, black] coordinates {(0,0) (0,7)};
+      \addplot[mark=none, black] coordinates {(-2,1) (2,1)};
+      \node at (axis cs:0,2) [anchor=north east] {$C$};
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+When $a < 0$, $x(t) = C e^{a t}$ looks like:
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[xmin=-2, xmax=2, ymin = 0, ymax=7, samples=50, xlabel=$t$, xticklabels={,,}, yticklabels={,,}]
+      \addplot[blue, thick] (x,e^-x);
+      \addplot[mark=none, black] coordinates {(0,0) (0,7)};
+      \addplot[mark=none, black] coordinates {(-2,1) (2,1)};
+      \node at (axis cs:0,2) [anchor=north east] {$C$};
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+To get the pure sinusoidal case, let $C \in \mathbb{R}$ and $a$ be purely imaginary: $a = j\omega_0$:
+\[
+x(t) = Ce^{j\omega_0 t}
+\]
+where $\omega_0$ is the frequency (in radians/sec). This is called the complex sinusoid.
+
+By Euler's identity:
+\[
+e^{j\omega_0 t} = \cos(\omega_0 t) + j\sin(\omega_0 t)
+\]
+and
+\[
+\Re(x(t)) = \cos(\omega_0 t) = \frac{1}{2}\left( e^{j\omega_0 t} + e^{-j\omega_0 t} \right)
+\]
+\[
+\Im(x(t)) = \sin(\omega_0 t) = \frac{1}{2j}\left( e^{j\omega_0 t} - e^{-j\omega_0 t} \right)
+\]
+are both real sinusoids.
+
+Note that the sinusoids are periodic. Recall a signal $x(t)$ is periodic with period $T$ if
+\[
+x(t) = x(t+T) \; \forall t
+\]
+In the case of the complex sinusoid
+\[
+Ce^{j\omega_0 t} = Ce^{j\omega_0 (t+T)}= Ce^{j\omega_0 t}\underbrace{e^{j\omega_0 T}}_{\text{must be 1}}
+\]
+
+\begin{itemize}
+\item if $\omega_0 = 0$ this is true for all $T$
+\item if $\omega_0 \neq 0$, then to be periodic $\omega_0 T = 2\pi m$ for $m = \pm 1, \pm 2, \cdots$. The smallest $T$ for which this is true is the {\it fundamental period} $T_0$
+  \[
+  T_0 = \frac{2\pi}{|\omega_0|}
+  \]
+  or equivalently $\omega_0 = \frac{2\pi}{T_0}$
+\end{itemize}
+
+Some useful properties of sinusoids:
+
+\begin{itemize}
+\item If x(t) is periodic with period $T$ and $g$ is any function then $g(x(t))$ is periodic with period $T$.
+\item If $x_1(t)$ is periodic with period $T_1$ and $x_2(t)$ is periodic with period $T_2$, and if there exists positive integers $a,b$ such that
+  \[
+  aT_1 = b T_2 = P
+  \]
+  then $x_1(t) + x_2(t)$ and $x_1(t)x_2(t)$ are periodic with period $P$
+\end{itemize}
+The last property implies that both $T_1$ and $T_2$ must both be rational in $\pi$ or neither should be. For example
+
+\begin{itemize}
+\item $x(t) = \sin(2\pi t) + \cos(5\pi t)$ is periodic
+\item $x(t) = \sin(2 t) + \cos(5 t)$ is periodic
+\item $x(t) = \sin(2\pi t) + \cos(5 t)$ is {\bf not} periodic
+\end{itemize}
+
+When the parameter $C$ is complex we get a phase shift. Again let $a = j\omega_0$. When $C$ is complex we can write it as $C = Ae^{j\phi}$ where $A = |C|$ and $\phi = \angle C$. Then
+
+\[
+x(t) = Ae^{j\phi} e^{j\omega_0 t} = Ae^{j(\omega_0 t+\phi)} 
+\]
+and
+\[
+\Re(x(t)) = A\cos(\omega_0 t+\phi) 
+\]
+\[
+\Im(x(t)) = A\sin(\omega_0 t+\phi) 
+\]
+
+Since $\sin$ is a special case of $\cos$, i.e. $\cos(\theta) = \sin(\theta + \frac{\pi}{2})$, the general real sinusoid is
+
+\[
+A\cos(\omega_0 t + \phi)
+\]
+  
+\begin{itemize}
+\item $A$ is called the amplitude
+\item $\omega_0$ is again the frequency in radians/sec.
+\item $\phi$ is called the phase shift and is related to a time shift $T_s$ by
+  \[
+  \phi = \omega_0T_s
+  \]
+\end{itemize}
+
+For example the signal graphically represented as follows
+\begin{center}
+  \includegraphics[scale=0.6]{figures/ctsinusoid.pdf}
+\end{center}
+has the functional representation
+\[
+x(t) = 2\cos\left(\frac{\pi}{2} (t+\tfrac{1}{2}) \right) =  2\cos\left(\frac{\pi}{2} t +\frac{\pi}{4} \right)
+\]
+
+\subsubsection{Energy of CT complex sinusoid}
+
+Recall the energy of a CT signal $x(t)$ is    
+\[
+  E_x = \lim_{T\rightarrow\infty} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
+\]
+Substituting $x(t) = e^{j\omega_0 t}$ and letting $T = N T_0$
+  \[
+    E_x = \lim_{N\rightarrow\infty} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} 2NT_0 = \infty
+  \]
+
+\subsubsection{Power of CT complex sinusoid}
+
+Recall the power of a CT signal $x(t)$ is
+\[
+  E_x = \lim_{T\rightarrow\infty} \frac{1}{2T} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
+\]
+Again, substituting $x(t) = e^{j\omega_0 t}$ and letting $T = N T_0$
+\[
+  E_x = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} 2NT_0 = 1
+\]
+  
+\subsubsection{Harmonics}
+
+Two CT complex sinusoids are {\it harmonics} of one another is both are periodic in $T_0$. This occurs when
+
+\[
+    x_k(t) = e^{jk\omega_0 t} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots
+\]
+
+The term comes from music where the vibrations of a string instrument are modeled as a weighted combination of harmonic tones. 
+
+\subsubsection{Geometric interpretation of the Complex Exponential}
+
+In the general case we get a sinusoid signal modulated by an exponential. Let $C = Ae^{j\phi}$ and $a = r + j\omega_0$, then
+\[
+  x(t) = C e^{a t} =  Ae^{j\phi} e^{(r+j\omega_0)t}
+\]
+Expanding the terms and using Euler's identity gives:
+\[
+x(t) = \underbrace{Ae^{rt}\cos(\omega_0 t+\phi)}_{\Re \text{part}} + j \underbrace{Ae^{rt}\sin(\omega_0 t+\phi)}_{\Im \text{part}}
+\]
+Each part is a real sinusoid whose amplitude is modulated by a real exponential.
+
+An important visualization of the general case is to view the signal x(t) as a vector rotating counter-clockwise in the complex plane for positive $t$.
+
+\begin{center}
+ \includegraphics[scale=0.7]{figures/CT_complexsinusoid_visual}
+\end{center}
+
+For $r < 0$ the tip of the arrow traces out an inward spiral, whereas for $r > 0$ it traces out an outward spiral. For $r = 0$ it traces out the unit circle.
