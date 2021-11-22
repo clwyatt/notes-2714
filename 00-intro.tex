@@ -1,6 +1,6 @@
 \section{Course Introduction}
 
-The concepts and techniques in this course are probably the most useful in engineering. A {\it signal} is a function of one or more independent variables conveying information about a physical (or virtual) phenomena. A {\it system} may respond to signals to produce other signals, or produce signals directly.
+The concepts and techniques in this course are probably the most useful in engineering. A \textit{signal} is a function of one or more independent variables conveying information about a physical (or virtual) phenomena. A \textit{system} may respond to signals to produce other signals, or produce signals directly.
 
 \begin{center}
   \begin{tikzpicture}[auto, node distance=3cm,>=latex']
@@ -78,7 +78,7 @@ This course is about the mathematical models and related techniques for the desi
     \end{tikzpicture}
   \end{center}
   
-  How do we convert the motor into a servo for use in a robotic joint? What are its characteristics (e.g. how fast can it move)?
+  How do we convert the motor into a servo for use in a robotic joint? What are its characteristics (e.g.\ how fast can it move)?
 \end{example}
 
 \begin{example} Audio Processing. Suppose you record an interview for a podcast, but during an important part of the discussion, the HVAC turns on and there is an annoying noise in the background.
@@ -90,7 +90,7 @@ This course is about the mathematical models and related techniques for the desi
   How could you remove the noise minimizing distortion to the rest of the audio?
 \end{example}
 
-\begin{example} Communications. Consider a wireless sensor, that needs to transmit to a base station, e.g. a wireless mic system. 
+\begin{example} Communications. Consider a wireless sensor, that needs to transmit to a base station, e.g.\ a wireless mic system. 
   \begin{center}
     \tikzset{block/.style = {draw, fill=white, rectangle,
         minimum height=3em, minimum width=2cm},
@@ -113,7 +113,7 @@ This course is about the mathematical models and related techniques for the desi
 \end{example}
 
 \subsection*{Types of Problems}
-Applications of this material occur in all areas of science and engineering. When we have a measured output but are unsure what combination of inputs and system components could have produced it, we have a {\it modeling} problem.
+Applications of this material occur in all areas of science and engineering. When we have a measured output but are unsure what combination of inputs and system components could have produced it, we have a \textit{modeling} problem.
 
 \begin{center}
   \begin{tikzpicture}[auto, node distance=3cm,>=latex']
@@ -121,14 +121,14 @@ Applications of this material occur in all areas of science and engineering. Whe
     \node [block, right of=input] (system) {?};
     \node [output, right of=system] (output) {};
 
-    \draw [draw,->] (input) -- node {Input ?} (system);
+    \draw [draw,->] (input) -- node {Input?} (system);
     \draw [->] (system) -- node {Output $y$} (output);
   \end{tikzpicture}
 \end{center}
 
 Models are the bedrock of the scientific method and are required to apply the concepts of this course to engineering problems. 
 
-When we know the input and the system description and desire to know the output we have an {\it analysis} problem. 
+When we know the input and the system description and desire to know the output we have an \textit{analysis} problem. 
 
 \begin{center}
   \begin{tikzpicture}[auto, node distance=3cm,>=latex']
@@ -137,7 +137,7 @@ When we know the input and the system description and desire to know the output 
     \node [output, right of=system] (output) {};
 
     \draw [draw,->] (input) -- node {Input $x$} (system);
-    \draw [->] (system) -- node {Output ?} (output);
+    \draw [->] (system) -- node {Output?} (output);
   \end{tikzpicture}
 \end{center}
 
@@ -147,7 +147,7 @@ When we know either the input and desired output and seek the system to perform 
 \begin{center}
   \begin{tikzpicture}[auto, node distance=3cm,>=latex']
     \node [input, name=input] {};
-    \node [block, right of=input] (system) {System ?};
+    \node [block, right of=input] (system) {System?};
     \node [output, right of=system] (output) {};
 
     \draw [draw,->] (input) -- node {Input $x$} (system);
@@ -163,12 +163,12 @@ or we know the system description and output and desire the input that would gen
     \node [block, right of=input] (system) {System $T$};
     \node [output, right of=system] (output) {};
 
-    \draw [draw,->] (input) -- node {Input ?} (system);
+    \draw [draw,->] (input) -- node {Input?} (system);
     \draw [->] (system) -- node {Output $y$} (output);
   \end{tikzpicture}
 \end{center}
 
-we have a {\it design problem}.
+we have a \textit{design problem}.
 
 This course focuses on modeling and analysis with applications to electrical circuits and devices for measurement and control of the physical world and is broadly applicable to all ECE majors. Some Examples:
 
@@ -192,7 +192,7 @@ The learning objectives (LOs) for the course are:
 \item[LO-5] Communicate solutions to problems and document projects within the domain of signals and systems through formal written documents.
 \end{enumerate}
 
-These are broken down further into the following topic learning objectives (TLOs). These are well covered in the course Textbook "Oppenheim, A. V., Willsky, A. S., and Nawab, S. H. Signals and Systems. ii, Essex UK: Prentice Hall Pearson, 1996." (abbreviated OW). This is an older, but very good book. However there are many, many texts that cover the same material. \textit{Engaged} reading the textbook is one of the most important things you can do to learn this material. Importantly, these notes should \textbf{not} be considered a replacement for the textbook.
+These are broken down further into the following topic learning objectives (TLOs). These are well covered in the course Textbook "Oppenheim, A. V., Willsky, A. S., and Nawab, S. H. Signals and Systems\. ii, Essex UK: Prentice Hall Pearson, 1996." (abbreviated OW). This is an older, but very good book. However there are many, many texts that cover the same material. \textit{Engaged} reading the textbook is one of the most important things you can do to learn this material. Importantly, these notes should \textbf{not} be considered a replacement for the textbook. The TLOs generally onto one class meeting.
 
 \begin{enumerate}
 \item[TLO-1] Course introduction (OW Forward and \S 1.0)
@@ -238,13 +238,13 @@ These are broken down further into the following topic learning objectives (TLOs
   \item impulse response from LCCDE
   \end{enumerate}
   
-\item[TLO-4] DT systems as linear constant coefficient difference equations (OW \S 2.4.2)
+\item[TLO-5] DT systems as linear constant coefficient difference equations (OW \S 2.4.2)
   \begin{enumerate}
   \item LCCDE and their solution (1st and 2nd order)
   \item impulse response from LCCDE
   \end{enumerate}
   
-\item[TLO-5] Linear time invariant CT systems (OW \S 1.5, 1.6, 2.3)
+\item[TLO-6] Linear time invariant CT systems (OW \S 1.5, 1.6, 2.3)
   \begin{enumerate}
   \item Memory
   \item Invertability
@@ -255,7 +255,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item Define LTI system
   \end{enumerate}
 
-\item[TLO-6] Linear time invariant DT systems (OW \S 1.5, 1.6, 2.3)
+\item[TLO-7] Linear time invariant DT systems (OW \S 1.5, 1.6, 2.3)
   \begin{enumerate}
   \item Memory
   \item Invertability
@@ -266,7 +266,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item Define LTI system
   \end{enumerate}
 
-\item[TLO-7] CT convolution (OW \S 2.2)
+\item[TLO-8] CT convolution (OW \S 2.2)
   \begin{enumerate}
   \item Review CT LTI systems and superposition property
   \item CT Convolution Integral
@@ -279,7 +279,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item Determining system response using convolution with impulse response
   \end{enumerate}
 
-\item[TLO-8] DT convolution (OW \S 2.1)
+\item[TLO-9] DT convolution (OW \S 2.1)
   \begin{enumerate}
   \item Review DT LTI systems and superposition property
   \item DT Convolution Sum
@@ -292,7 +292,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item Determining system response using convolution with impulse response
   \end{enumerate}
   
-\item[TLO-9] CT block diagrams (OW \S 1.5.2 and 2.4.3)
+\item[TLO-10] CT block diagrams (OW \S 1.5.2 and 2.4.3)
   \begin{enumerate}
   \item blocks represented by impulse response
   \item series and parallel connections, reductions
@@ -303,7 +303,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item implementing a LCCDE using adders, multipliers, and integrators
   \end{enumerate}
 
-\item[TLO-10] DT block diagrams (OW \S 1.5.2 and 2.4.3)
+\item[TLO-11] DT block diagrams (OW \S 1.5.2 and 2.4.3)
   \begin{enumerate}
   \item blocks represented by impulse response
   \item series and parallel connections, reductions
@@ -314,7 +314,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item implementing a LCCDE using adders, multipliers, and delays
   \end{enumerate}
 
-\item[TLO-11] Eigenfunctions of CT systems (OW \S 3.2 and 3.8)
+\item[TLO-12] Eigenfunctions of CT systems (OW \S 3.2 and 3.8)
   \begin{enumerate}
   \item Eigenfunction $e^{st}$
   \item Transfer Function $H(s)$
@@ -323,7 +323,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item What signals can be decomposed this way, foreshadow Fourier Analysis
   \end{enumerate}
   
-\item[TLO-12] Eigenfunctions of DT systems (OW \S 3.2 and 3.8)
+\item[TLO-13] Eigenfunctions of DT systems (OW \S 3.2 and 3.8)
   \begin{enumerate}
   \item Eigenfunction $z^{n}$
   \item Transfer Function $H(z)$
@@ -332,7 +332,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item What signals can be decomposed this way, foreshadow Fourier Analysis
   \end{enumerate}
   
-\item[TLO-13] CT Fourier Series representation of signals (OW \S 3.3 through 3.5)
+\item[TLO-14] CT Fourier Series representation of signals (OW \S 3.3 through 3.5)
   \begin{enumerate}
   \item review CT periodic functions
   \item harmonic sums
@@ -347,7 +347,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item properties of CT FS
   \end{enumerate}
 
-\item[TLO-14] DT Fourier Series representation of signals  (OW \S 3.6 and 3.7)
+\item[TLO-15] DT Fourier Series representation of signals  (OW \S 3.6 and 3.7)
   \begin{enumerate}
   \item review DT periodic functions
   \item harmonic sums
@@ -358,7 +358,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item properties of DT FS
   \end{enumerate}
   
-\item[TLO-15] CT Fourier Transform (OW \S 4.0 through 4.7)
+\item[TLO-16] CT Fourier Transform (OW \S 4.0 through 4.7)
   \begin{enumerate}
   \item derive the CTFT pair from the CTFS 
   \item Dirichlet existence conditions
@@ -377,7 +377,7 @@ These are broken down further into the following topic learning objectives (TLOs
     \end{enumerate}
   \end{enumerate}
 
-\item[TLO-16] DT Fourier Transform (OW \S 5.0 though 5.8)
+\item[TLO-17] DT Fourier Transform (OW \S 5.0 though 5.8)
   \begin{enumerate}
   \item derive the DTFT from DTFS
   \item DTFT of DTFS
@@ -398,7 +398,7 @@ These are broken down further into the following topic learning objectives (TLOs
     \end{enumerate}
   \end{enumerate}
 
-\item[TLO-17] CT Frequency Response (OW \S 6.1, 6.2, 6.5)
+\item[TLO-18] CT Frequency Response (OW \S 6.1, 6.2, 6.5)
   \begin{enumerate}
   \item review CTFR as CTFT of impulse response
   \item review CTFR to/from LCCDE
@@ -414,7 +414,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item CTFR of first and second order systems
   \end{enumerate}
 
-\item[TLO-18] DT Frequency Response (OW \S 6.1, 6.2, 6.6)
+\item[TLO-19] DT Frequency Response (OW \S 6.1, 6.2, 6.6)
   \begin{enumerate}
   \item review DTFR as DTFT of impulse response
   \item review DTFR to/from LCCDE
@@ -430,7 +430,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item DTFR of first and second order systems
   \end{enumerate}
   
-\item[TLO-19] Frequency Selective Filters in CT (OW \S 3.9, 3.10, 6.3, 6.4) 
+\item[TLO-20] Frequency Selective Filters in CT (OW \S 3.9, 3.10, 6.3, 6.4) 
   \begin{enumerate}
   \item ideal low-pass
   \item ideal high-pass
@@ -448,7 +448,7 @@ These are broken down further into the following topic learning objectives (TLOs
     \end{enumerate}
   \end{enumerate}
   
-\item[TLO-20] Frequency Selective Filters in DT (OW \S 3.11, 6.3, 6.4)
+\item[TLO-21] Frequency Selective Filters in DT (OW \S 3.11, 6.3, 6.4)
   \begin{enumerate}
   \item ideal low-pass
   \item ideal high-pass
@@ -466,7 +466,7 @@ These are broken down further into the following topic learning objectives (TLOs
     \end{enumerate}
   \end{enumerate}
   
-\item[TLO-21] The Discrete Fourier Transform
+\item[TLO-22] The Discrete Fourier Transform
   \begin{enumerate}
   \item time window the DTFT to get the DFT
   \item interpreting the index axis as DT and CT frequency
@@ -475,7 +475,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item briefly mention fast algorithms to compute the DFT = FFT
   \end{enumerate}
   
-\item[TLO-22] Sampling (OW \S 7.1, 7.3, 7.4)
+\item[TLO-23] Sampling (OW \S 7.1, 7.3, 7.4)
   \begin{enumerate}
   \item sampling using the impulse train
   \item derive the Nyquist rate
@@ -484,7 +484,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \item designing anti-aliasing filters
   \end{enumerate}
 
-\item[TLO-23] Reconstruction (OW \S 7.2)
+\item[TLO-24] Reconstruction (OW \S 7.2)
   \begin{enumerate}
   \item reconstruction as removal of images
   \item reconstruction as interpolation

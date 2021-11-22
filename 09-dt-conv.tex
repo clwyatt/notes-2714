@@ -223,9 +223,9 @@ These properties can be used in combination with a table like that above to comp
     &= \left( u[n] \right) * \left( \left( \frac{1}{2}\right)^nu[n] \right) - \left( u[n-N]\right) * \left( \left( \frac{1}{2}\right)^nu[n] \right) \mbox{ using distributive property}\\
     &= \frac{1-\left(\frac{1}{2}\right)^{n+1}}{1-\left(\frac{1}{2}\right)}u[n] - \frac{1-\left(\frac{1}{2}\right)^{n+1}}{1-\left(\frac{1}{2}\right)}u[n] \Big|_{n\rightarrow n-N} \mbox{ from Table row 2 and index shift property}\\
     &= \frac{1-\left(\frac{1}{2}\right)^{n+1}}{\left(\frac{1}{2}\right)}u[n] - \frac{1-\left(\frac{1}{2}\right)^{n-N+1}}{\left(\frac{1}{2}\right)}u[n-N]\\
-    &= \frac{1-\left(\frac{1}{2}\right)^{n+1}}{\left(\frac{1}{2}\right)}u[n] - \frac{1-\left(\frac{1}{2}\right)^N\left(\frac{1}{2}\right)^{n+1}}{\left(\frac{1}{2}\right)}u[n-N]\\
-    &= 2\left(1-\left(\frac{1}{2}\right)^{n+1}\right)u[n] - 2\left(1-\left(\frac{1}{2}\right)^N\left(\frac{1}{2}\right)^{n+1} \right)u[n-N]\\
-    &= \left(2-\left(\frac{1}{2}\right)^{n}\right)u[n] - \left(2-\left(\frac{1}{2}\right)^N\left(\frac{1}{2}\right)^{n} \right)u[n-N]
+    &= \frac{1-\left(\frac{1}{2}\right)^{n+1}}{\left(\frac{1}{2}\right)}u[n] - \frac{1-\left(\frac{1}{2}\right)^{-N}\left(\frac{1}{2}\right)^{n+1}}{\left(\frac{1}{2}\right)}u[n-N]\\
+    &= 2\left(1-\left(\frac{1}{2}\right)^{n+1}\right)u[n] - 2\left(1-\left(\frac{1}{2}\right)^{-N}\left(\frac{1}{2}\right)^{n+1} \right)u[n-N]\\
+    &= \left(2-\left(\frac{1}{2}\right)^{n}\right)u[n] - \left(2-\left(\frac{1}{2}\right)^{-N}\left(\frac{1}{2}\right)^{n} \right)u[n-N]
   \end{align*}
 $\blacksquare$
 \end{example}

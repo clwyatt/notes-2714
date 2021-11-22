@@ -1,3 +1,156 @@
 \section{CT Frequency Response}
 
-TODO: typeset handwritten notes
+In this lecture we are going to focus on the frequency response and highlight it's importance in linear systems theory.
+
+\subsection{Determining the frequency response (FR) of a CT system}
+
+The frequency response of a CT LTI system can be thought of as arising in several equivalent ways. What follows is a common, but not exhaustive, list of ways the frequency response can be derived from other representations.
+
+\subsubsection*{Using the Eigenvalues / Transfer Function}
+
+Recall if we apply the Eigenfunction $e^{st}$ for the complex frequency $s \in \mathbb{C}$ as the input to a LTI system, the output is the Eigenfunction scaled by the Eigenvalue (transfer function) $H(s)$ for values of $s$ in the region of convergence, where
+\[
+H(s) = \int\limits_{-\infty}^{\infty} h(t) e^{st}\; dt \; .
+\]
+is the bilateral Laplace transform of the impulse response.
+
+\begin{center}
+  \includegraphics[scale=1]{graphics/18-ct-tf.pdf}
+\end{center}
+
+If a system is stable, then the region of convergence includes the imaginary axis $s = j\omega$. In that case, evaluating the Eigenvalues on the imaginary axis $s = j\omega$ gives the CT frequency response $H(j\omega)$. This converts from a function of a complex variable, $s$, to one of a real variable $\omega$.
+
+\begin{example} Consider a system with Eigenvalues (transfer function)
+  \[
+  H(s) = \frac{2}{s+5}\mbox{ for } \Re{s} > -5
+  \]
+  Determine the frequency response of the system, if possible.\\
+
+  Solution: We first need to check of the system is stable using the region-of-convergence. Since the real part of the region of convergence includes the imaginary axis ($\Re s = 0$), the system is stable. To find the frequency response we substitute $s = j\omega$ to give
+  \[
+  H(j\omega) = \frac{2}{j\omega+5}
+  \]
+  \\$\blacksquare$
+\end{example}
+
+\begin{example} Consider an apparently similar system with Eigenvalues
+  \[
+  H(s) = \frac{2}{s-5}\mbox{ for } \Re{s} > 5
+  \]
+  Determine the frequency response of the system, if possible.\\
+
+  Solution: Again, we first need to check of the system is stable using the region-of-convergence. Since the real part of the region of convergence does not include the imaginary axis ($\Re s = 0$), the system is unstable. Thus, the frequency response does not exist.
+  \\$\blacksquare$
+\end{example}
+
+\subsubsection*{Using the CTFT}
+
+Another way we can view the frequency response is as the CT Fourier Transform of the impulse response. If the system is stable, then the impulse response is absolutely integrable, and the Fourier transform exists giving $H(j\omega) = \mathcal{F}\left\{h(t)\right\}$. This is connected to the transfer function by noting the bilateral Laplace transform and the Fourier Transform are identical under the substitution $s = j\omega$, which is allowed if the system is stable.
+
+\begin{example} Suppose the impulse response of a CT LTI system is given by
+  \[
+  h(t) = \left(e^{-t}-e^{-6t}\right)u(t) 
+  \]
+  Determine the frequency response of the system, if possible.\\
+
+  Solution: If the system is stable, the Fourier transform of the impulse response exists. Since
+  \[
+  \int\limits_{0}^{\infty} \left| e^{-t}-e^{-6t} \right| \; dt < \int\limits_{0}^{\infty} e^{-t} \; dt < \infty 
+  \]
+  the system is stable and the Fourier Transform exists, giving
+  \[
+H(j\omega) = \mathcal{F}\left\{ \left(e^{-t}-e^{-6t}\right)u(t) \right\} = \mathcal{F}\left\{ \left(e^{-t}u(t) \right\} - \mathcal{F}\left\{e^{-6t}\right)u(t) \right\} = \frac{1}{j\omega + 1} - \frac{1}{j\omega + 6} = \frac{7}{6-\omega^2 + j7\omega}
+\]\\
+$\blacksquare$
+\end{example}
+
+\subsubsection*{Directly from a LCCDE}
+
+By the convolution theorem of the CTFT, the frequency response is the ratio of the output to input in the frequency domain, i.e.
+\[
+H(j\omega) = \frac{Y(j\omega)}{X(j\omega)}
+\]
+We can easily determine this ratio from the LCCDE representation of the system using the derivative property of the Fourier Transform. Recall this property states if $\mathcal{F}\{x(t)\} = X(j\omega)$ then
+\[
+\mathcal{F}\left\{\frac{d^n x}{dt^n}(t) \right\} = (j\omega)^n  X(j\omega) \; .
+\]
+
+If the system is stable (and thus the frequency response exists) then \textbf{all} roots of the characteriztic equation $Q(D)$ have real parts that are less than zero. If the system is stable we can take the Fourier transform of each term of the LCCDE using the derivative property, then algebrically solve for the ratio of output to input. Note this provides a signifigant savings in analysis effort since we do not have to first find the impulse response, then take it's Fourier transform to arrive at the frequency response (although that approach is still valid).
+
+\begin{example} Consider a sytem decribed by the LCCDE
+  \[
+\frac{d^2y}{dt^2}(t) + 15\frac{dy}{dt}(t) + 50y(t) = 10x(t) 
+  \]
+  Determine the frequency response of the system, if possible.
+
+  Solution: We first need to check for stability. The characteristic equation is $Q(D) = D^2 + 15D + 50$ which has two real roots $-10$ and $-5$. Since both are less than zero, the system is stable. Next we take the Fourier transform of both sides and apply the derivative property
+  \[
+  (j\omega)^2Y(j\omega) + 15(j\omega) Y(j\omega) + 50Y(j\omega) = 10X(j\omega)
+  \]
+  and rearrange to get the frequency response
+  \[
+  H(j\omega) = \frac{Y(j\omega)}{X(j\omega)} = \frac{10}{(j\omega)^2 + 15(j\omega) + 50} = \frac{10}{50-\omega^2 + j15\omega}
+  \]\\
+  $\blacksquare$
+\end{example}
+
+\subsection{Magnitude-phase representation of the CTFR}
+
+Note that any complex valued function can be expressed in polar form using the magnitude and phase. Specifically the input and output can be put into this form
+\[
+X(j\omega) = |X(j\omega)|e^{\angle X(j\omega)}
+\]
+\[
+Y(j\omega) = |Y(j\omega)|e^{\angle Y(j\omega)}
+\]
+
+By the convolution theorem then
+  \[
+  H(j\omega) = \frac{Y(j\omega)}{X(j\omega)} = \frac{|Y(j\omega)|e^{\angle Y(j\omega)}}{X(j\omega) = |X(j\omega)|e^{\angle X(j\omega)}} = \frac{|Y(j\omega)|}{|X(j\omega)|}e^{\angle Y(j\omega) - \angle X(j\omega)} = |H(j\omega)|e^{\angle H(j\omega)}
+  \]
+  Thus we see that
+  \[
+  |H(j\omega)| = \frac{|Y(j\omega)|}{|X(j\omega)|}
+  \]
+  and
+  \[
+  \angle H(j\omega) = \angle Y(j\omega) - \angle X(j\omega)
+  \]
+  This is the magnitude and phase representation of the frequency response.
+  
+\subsection{CTFR acting on sinusoids}
+
+The advantage of the magnitude and phase representation of the frequency response, is the ease with which we can find the output due to a sinusoidal input. If we apply a sinusoidal input $x(t) = A e^{j\omega t}$, the output is a the same sinusoid scaled by the frequency response $y(t) = H(j\omega) A e^{j\omega t}$.
+
+\begin{center}
+  \includegraphics[scale=1]{graphics/18-ct-fr.pdf}
+\end{center}
+
+Now using the magnitude and phase representation
+\[
+y(t) = H(j\omega) A e^{j\omega t} = |H(j\omega)|e^{\angle H(j\omega)} A e^{j\omega t} = A |H(j\omega)| e^{j\omega t + \angle H(j\omega)} 
+\]
+Thus we can interpret the frequency response as telling us how the input sinsusoids are scaled in magnitude and phase shifted as they pass through the system.
+
+By the linearity property this extends to real sinusoidal inputs since
+\begin{align*}
+  x(t) &\longrightarrow y(t)\\
+  \sin(\omega t) &\longrightarrow \frac{1}{2j}|H(j\omega)| e^{j\omega t + \angle H(j\omega)} - \frac{1}{2j}|H(j\omega)| e^{-j\omega t + \angle H(j\omega)}\\
+  \sin(\omega t) &\longrightarrow |H(j\omega)|\sin(\omega t + \angle H(j\omega))  
+\end{align*}
+and
+\begin{align*}
+  x(t) &\longrightarrow y(t)\\
+  \cos(\omega t) &\longrightarrow \frac{1}{2}|H(j\omega)| e^{j\omega t + \angle H(j\omega)} + \frac{1}{2}|H(j\omega)| e^{-j\omega t + \angle H(j\omega)}\\
+  \cos(\omega t) &\longrightarrow |H(j\omega)|\cos(\omega t + \angle H(j\omega))  
+\end{align*}
+
+Also by the linearity property this analysis extends to the CT Fourier representation of a signal (an infinite sum of sinusoids):
+\[
+x(t) = \frac{1}{2\pi}\int\limits_{-\infty}^{\infty} X(j \omega) \, e^{j \omega t}\; d\omega \;\longrightarrow\; y(t) = \frac{1}{2\pi}\int\limits_{-\infty}^{\infty} H(j \omega) X(j \omega) \, e^{j \omega t}\; d\omega = \frac{1}{2\pi}\int\limits_{-\infty}^{\infty} \left| H(j \omega)\right| X(j \omega) \, e^{j \omega t + \angle H(j \omega)}\; d\omega
+\]
+
+Thus we arrive at the reason for the name \textit{Frequency Response} -- it specifies the the response of a stable system to any linear combination of sinusoidal inputs, i.e. any signal with a Fourier Transform.
+
+\subsection{Bode plots}
+\subsection{CTFR of first and second order systems}

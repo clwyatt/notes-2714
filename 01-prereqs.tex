@@ -133,13 +133,9 @@ where the $z_i$ are the $N$ \textit{roots} of the polynomial. These are complex 
 
 Note: the \texttt{roots} function in Matlab can be used to find the roots of any order polynomial given a vector of coefficients.
 
-\subsection{Calculus}
+\subsection{Functions}
 
-Calculus is used heavily in the course. Here we remind ourselves of some basic facts. Consult your calculus text for more details.
-
-\subsubsection*{Functions}
-
-A function is a mapping between sets
+As we will see in the first few lectures, signals are modelled as functions. Recall a \textit{function} is a mapping between sets
 \[
 f: A \rightarrow B
 \]
@@ -147,11 +143,30 @@ where $A$ is a set called the {\it domain} and $B$ is a set called the {\it co-d
 
 \begin{itemize}
 \item the real-valued functions of an integer variable $f:\mathbb{Z}\mapsto\mathbb{R}$
-\item the complex-valued functions of an integer variable $f:\mathbb{R}\mapsto\mathbb{C}$
+\item the complex-valued functions of an integer variable $f:\mathbb{Z}\mapsto\mathbb{C}$
 \item the real-valued functions of a real variable $f:\mathbb{R}\mapsto\mathbb{R}$
 \item the complex-valued functions of a real variable $f:\mathbb{R}\mapsto\mathbb{C}$
 \end{itemize}
 We will also briefly discuss the the complex-valued functions of a complex variable $f:\mathbb{C}\mapsto\mathbb{C}$.
+
+Functions can be defined using an expression operating on the \textit{independent variable} representing a value from the domain. For example a function $f:\mathbb{R}\mapsto\mathbb{R}$ might be defined by the expression
+\[
+f(t) = 2t^2
+\]
+where $t\in\mathbb{R}$ is the independent variable. Common operations are sums, difference, products, quotients, powers, and application of trigonometric and transendental functions. Functions with different expressions for different intervals of the domain are called \textit{piecewise}. For example
+\[
+f(t) = \left\{ \begin{array}{cc}
+   e^{t} & t < 0\\
+   e^{-t} & t \geq 0
+\end{array}
+\right.
+\]
+
+Functions can also be defined using composition. Given two functions $f:\mathbb{R}\mapsto\mathbb{R}$ and $g:\mathbb{R}\mapsto\mathbb{R}$ we can define a new function
+\[
+(f \circ g)(t) = f(g(t)) 
+\]
+where we first apply $g$ then use it's value as the input to $f$. This will be used to define several transformations of signals.
 
 \subsubsection*{Visualizing Functions}
 
@@ -167,27 +182,27 @@ where $z_m(t) = |z(t)|$ and $z_a(t) = \angle z(t)$ are the magnitude and angle o
 
 Another approach to visualizing a complex number is to plot it as the tip of a vector that moves as a function of the independent variable.
 
-\begin{example} Consider the function $z(t) = e^{|t| + j2t}$. Lets convert it to polar and Cartesian form
+\begin{example} Consider the function $z(t) = e^{-|t| + j2t}$. Lets convert it to polar and Cartesian form
   \begin{align*}
-    z(t) &=  e^{|t| + j2t}\\
-    &=  \underbrace{e^{|t|}}_{z_m(t)} e^{j\overbrace{2t}^{z_a(t)}}\\
-    &=  e^{|t|} (\cos(2t) + j\sin(2t))\\
-    &=  \underbrace{e^{|t|}\cos(2t)}_{z_r(t)} + j \underbrace{e^{|t|}\sin(2t)}_{z_i(t)}
+    z(t) &=  e^{-|t| + j2t}\\
+    &=  \underbrace{e^{-|t|}}_{z_m(t)} e^{j\overbrace{2t}^{z_a(t)}}\\
+    &=  e^{-|t|} (\cos(2t) + j\sin(2t))\\
+    &=  \underbrace{e^{-|t|}\cos(2t)}_{z_r(t)} + j \underbrace{e^{-|t|}\sin(2t)}_{z_i(t)}
   \end{align*}
   We can then visualize the function as plots of the real and imaginary functions,
 
   \begin{tabular}{cc}
   \begin{tikzpicture}
     \begin{axis}[xmin=-5, xmax=5, ymin = -1, ymax=1, samples=1000, xlabel=$t$, ylabel=$z_r(t)$]
-      \addplot[blue, thick] (x,(cos(2*180*x/pi)*cos(2*180*x/pi)));
+      \addplot[blue, thick] {exp(-abs(x))*cos(2*x*180/pi)};
       \addplot[mark=none, black] coordinates {(0,-1) (0,1)};
       \addplot[mark=none, black] coordinates {(-5,0) (5,0)};
     \end{axis}
   \end{tikzpicture}
   &
   \begin{tikzpicture}
-    \begin{axis}[xmin=-5, xmax=5, ymin = -10, ymax=10, samples=10, xlabel=$t$, ylabel=$z_i(t)$]
-      \addplot[blue, thick] (x,2*x));
+    \begin{axis}[xmin=-5, xmax=5, ymin = -1, ymax=1, samples=1000, xlabel=$t$, ylabel=$z_i(t)$]
+      \addplot[blue, thick] {exp(-abs(x))*sin(2*x*180/pi)};
       \addplot[mark=none, black] coordinates {(0,-10) (0,10)};
       \addplot[mark=none, black] coordinates {(-5,0) (5,0)};
     \end{axis}
@@ -197,7 +212,7 @@ Another approach to visualizing a complex number is to plot it as the tip of a v
   \begin{tabular}{cc}
   \begin{tikzpicture}
     \begin{axis}[xmin=-5, xmax=5, ymin = 0, ymax=1, samples=1000, xlabel=$t$, ylabel=$z_m(t)$]
-      \addplot[blue, thick] (x,e^(-abs(x)));
+      \addplot[blue, thick] {exp(-abs(x))};
       \addplot[mark=none, black] coordinates {(0,0) (0,1)};
       \addplot[mark=none, black] coordinates {(-5,1) (5,1)};
     \end{axis}
@@ -205,7 +220,7 @@ Another approach to visualizing a complex number is to plot it as the tip of a v
   &
   \begin{tikzpicture}
     \begin{axis}[xmin=-5, xmax=5, ymin = -10, ymax=10, samples=10, xlabel=$t$, ylabel=$z_a(t)$]
-      \addplot[blue, thick] (x,2*x));
+      \addplot[blue, thick] {2*x};
       \addplot[mark=none, black] coordinates {(0,-10) (0,10)};
       \addplot[mark=none, black] coordinates {(-5,0) (5,0)};
     \end{axis}
@@ -213,74 +228,380 @@ Another approach to visualizing a complex number is to plot it as the tip of a v
   \end{tabular}
 \end{example}
 
+\subsection{Calculus}
+
+Calculus is used heavily in the course. Here we remind ourselves of some basic facts. Consult your calculus text for more details.
+
+\subsubsection*{Limits}
+
+The \textit{limit} $L$ of a function $f(t)$ is the function value as the independent variable approaches a constant $t\rightarrow c$, written as
+\[
+\lim_{t\rightarrow c} f(t) = L
+\]
+The one-sided limit is defined as the limit as the independent variable approaches the constant from below or above
+\[
+\lim_{t\rightarrow c^-} f(t) = L \mbox{ (limit from below) or } \lim_{t\rightarrow c^+} f(t) = L \mbox{ (limit from above)}
+\]
 
 \subsubsection*{Derivatives of real-valued functions}
 
-For functions $f:\mathbb{R}\mapsto\mathbb{R}$ recall the derivative is the rate of change in the value as a function of the independent variable, and can be defined using a limit of a difference. Consider such a function $f(t)$ for $t\in\mathbb{R}$, it's derivative is given using a forward difference:
+For functions $f:\mathbb{R}\mapsto\mathbb{R}$ recall the derivative is the instantaneous rate of change in the value as a function of the independent variable, and can be defined using a limit of a difference. Consider such a function $f(t)$ for $t\in\mathbb{R}$, it's derivative is given using a limit of a forward difference:
 
 \[
-\frac{df}{dt} (t) = \lim_{h->0} \frac{f(t+h)-f(t)}{h}
+\frac{df}{dt} (t) = \lim_{h->0^+} \frac{f(t+h)-f(t)}{h}
 \]
 
 Higher-order derivative are defined recursively. For example, the second derivative is
 
 \[
-\frac{d^2f}{dt^2} = \lim_{h->0} \frac{\frac{df}{dt}(t+h)-\frac{df}{dt}(t)}{h}
+\frac{d^2f}{dt^2} (t) = \lim_{h->0^+} \frac{\frac{df}{dt}(t+h)-\frac{df}{dt}(t)}{h}
 \]
 In the general case the $N^\text{th}$ order derivative is
 \[
-\frac{d^Nf}{dt^N} = \lim_{h->0} \frac{\frac{d^{N-1}f}{dt^{N-1}}(t+h)-\frac{d^{N-1}f}{dt^{N-1}}(t)}{h}
+\frac{d^Nf}{dt^N} (t) = \lim_{h->0^+} \frac{\frac{d^{N-1}f}{dt^{N-1}}(t+h)-\frac{d^{N-1}f}{dt^{N-1}}(t)}{h}
 \]
 
-Note there are several different notations for derivatives, e.g. $\frac{df}{dt} = f^\prime (t) = \dot{f}(t)$, but we will use the former in most cases. We will also use the derivative operator notation $\frac{d^Nf}{dt^N} = (D^N f)(t)$, which is convenient for higher-order derivatives.
+Note there are several different notations for derivatives, e.g. $\frac{df}{dt}(t) = f^\prime (t) = \dot{f}(t)$, but we will use the former (Leibnitz) in most cases. We will also use the derivative operator notation $\frac{d^Nf}{dt^N} = (D^N f)(t)$, which is convenient for higher-order derivatives.
 
-A function with finite derivatives for all values of the independent variable is called \textit{continuous}. Values of the independent variable where the derivative is not finite are called \textit{discontinuities}. A function with a finite number of discontinuities is called \textit{piecewise continuous}.
+A function with finite derivatives (in the limit) for all values of the independent variable over an interval is called \textit{continuous} over that interval. Values of the independent variable where the derivative is not finite (in the limit) are called \textit{discontinuities}. A function with a finite number of discontinuities is called \textit{piecewise continuous}. If the limit is one-sided then we say the function is piecewise continuous from the left or right (or from below/above).
 
 \subsubsection*{Integrals of real-valued functions}
 
+The \textit{indefinite integral} $F(t)$ is the anti-derivative of a function $f(t)$ if $\frac{dF}{dt}(t) = f(t)$ up to a constant term, written as
+\[
+F(t) + C = \int f(t)\; dt
+\]
+where $C$ is an arbitrary constant.
+
+The \textit{definite integral} is the area under a function between the \textit{lower limit} $a$ and the \textit{upper limit} $b$, defined as
+\[
+\int\limits_{a}^{b} f(t) \; dt = F(b) - F(a)
+\]
+In cases where one or both of the limits is infinite, the definition changes to use limits
+\[
+\int\limits_{-\infty}^{b} f(t) \; dt = F(b) - \lim_{a\rightarrow -\infty} F(a)
+\]
+\[
+\int\limits_{a}^{\infty} f(t) \; dt = \lim_{b\rightarrow \infty} F(b) - F(a)
+\]
+\[
+\int\limits_{-\infty}^{\infty} f(t) \; dt = \lim_{b\rightarrow \infty} F(b) - \lim_{a\rightarrow -\infty} F(a)
+\]
+
 \subsection{Differential Equations}
 
-This course assumes a background in basic differential equations. However, we use only consider linear, constant-coefficient differential equations.
+This course assumes a background in basic differential equations (e.g. as taught in Math 2214). However, we use only consider linear, constant-coefficient differential equations.
 
-\subsubsection*{linear, constant-coefficient differential equations, homogeneous and particular solutions}
+A linear, constant coefficient (LCC) differential equation is of the form
+\[
+a_0\, y + a_1\, \frac{dy}{dt} + a_2\, \frac{d^2y}{dt^2} + \cdots + a_N\, \frac{d^Ny}{dt^N}  = b_0\, x + b_1\, \frac{dx}{dt} + bb_2\, \frac{d^2x}{dt^2} + \cdots + b_M\, \frac{d^My}{dt^M}
+\]
+which can be written compactly as
+\[
+\sum\limits_{k = 0}^{N} a_k\, \frac{d^ky}{dt^k} = \sum\limits_{k = 0}^{M} b_k\, \frac{d^kx}{dt^k}
+\]
 
-Recall,
+It is helpful to clean up this notation using the derivative operator $D^n = \frac{d^n}{dt^n}$. For example
+$D^2y = \frac{d^2y}{dt^2}$ and $D^0 y= y$. To give for form as
+\[
+\sum\limits_{k = 0}^{N} a_k\, D^k y = \sum\limits_{k = 0}^{M} b_k\, D^k x
+\]
+
+We can factor out the derivative operators
+\[
+a_0y + a_1Dy + a_2D^2y + \cdots + a_ND^Ny  = b_0\, x + b_1\, Dx + b_2\, D^2x + \cdots + b_M\, D^M x
+\]
+\[
+\underbrace{\left(a_0 + a_1D + a_2D^2 + \cdots + a_ND^N\right)}_{\text{Polynimial in } D, Q(D)} y = \underbrace{\left(b_0 + b_1 D + b_2 D^2 + \cdots + b_M D^M\right)}_{\text{Polynimial in } D, P(D)} x
+\]
+to give:
+  
+\[
+Q(D)y = P(D)x
+\]
+
+You learned how to solve these in differential equations as
+
+\[
+y(t) = y_\text{h}(t) + y_\text{p}(t)
+\]
+
+The term $y_\text{h}(t)$ is the solution of the homogeneous equation
+\[
+Q(D)y = 0
+\]
+Given the $N-1$ auxillary conditions $y(t_0) = y_0$, $Dy(t_0) = y_1$, $D^2y(t_0) = y_2$, up to $D^{N-1}y(t_0) = y_{N-1}$.
+
+The term $y_\text{p}(t)$ is the solution of the particular equation
+\[
+Q(D)y = P(D)x
+\]
+for a given $x(t)$.
+
+Rather than recapitulate the solution to $y_\text{h}(t)$ and $y_\text{p}(t)$ in the general case we focus on the homogeneous solution $y_\text{h}(t)$ only. The reason is that we will use the homogeneous solution to find the impulse response in future lectures and take a different approach to solving the general case for an arbitrary input using the impulse response and convolution.
+
+To solve the homogenous system:
+
+\textbf{Step 1:} Find the \emph{characteristic equation} by replacing the derivative operators by powers of an aribrary complex variable $s$.
+\[
+Q(D) = a_0 + a_1D + a_2D^2 + \cdots + a_ND^N
+\]
+becomes
+\[
+Q(s) = a_0 + a_1s + a_2s^2 + \cdots + a_Ns^N
+\]
+a polynomial in $s$ with $N$ roots $s_i$ for $i = 1, 2, \cdots, N$ such that
+\[
+(s - s_1)(s-s_2)\cdots(s-s_N) = 0
+\]
+
+\textbf{Step 2:} Select the form of the solution, a sum of terms corresponding to the roots of the characteristic equation.
+
+\begin{itemize}
+\item For a real root $s_1\in \mathbb{R}$ the term is of the form
+  \[
+  C_1 e^{s_1 t}.
+  \]
+\item For a pair of complex roots (they will always be in pairs) $s_{1,2} = a \pm jb$ the term is of the form
+  \[
+  C_1 e^{s_1 t} + C_2 e^{s_2 t} = e^{a t}\left(C_3\cos(bt) + C_4\sin(bt)\right) = C_5 e^{a t}\cos(bt + C_6).
+  \]
+\item For a repeated roots $s_1$, repeated r times, the term is of the form
+  \[
+  e^{s_1 t} (C_0 + C_1 t + \cdots + C_{r-1} t^{r-1}).\]
+\end{itemize}
+
+\textbf{Step 3:} Solve for the unknown constants in the solution using the auxillary conditions. 
+
+We now examine two common special cases, when $N=1$ (first-order) and when $N=2$ (second-order).
+
+\subsubsection*{First-Order Homogeneous LCCDE}
+
+Consider the first order homogeneous differential equation
+\[
+\frac{dy}{dt}(t) + ay(t) = 0 \mbox{ for } a \in \mathbb{R}
+\]
+The characteristic equation is given by
+\[
+s + a = 0
+\]
+which has a single root $s_1 = -a$. The solution is of the form
+\[
+y(t) = Ce^{s_1 t} = Ce^{-a t} 
+\]
+where the constant $C$ is found using the auxillary condition $y(t_0) = y_0$.
+
+\textit{Example}: Consider the homogeneous equation
+\[
+\frac{dy}{dt}(t) + 3y(t) = 0 \mbox{ where } y(0) = 10
+\]
+The solution is
+\[
+y(t) = Ce^{-3 t} 
+\]
+To find $C$ we use the auxillary condition
+\[
+y(0) = Ce^{-3 \cdot 0} = C = 10
+\]
+and the final solution is
+\[
+y(t) = 10e^{-3 t} 
+\]
+\subsubsection*{Second-Order Homogeneous LCCDE}
+
+Consider the second-order homogeneous differential equation
+\[
+\frac{d^2y}{dt^2}(t) + a\frac{dy}{dt}(t) + by(t) = 0 \mbox{ for } a,b \in \mathbb{R}
+\]
+The characteristic equation is given by
+\[
+s^2 + as + b = 0
+\]
+
+Let's look at several examples to illustrate the functional forms.
+
+Example 1:
+\[
+\frac{d^2y}{dt^2}(t) + 7\frac{dy}{dt}(t) + 10y(t) = 0 
+\]
+The characteristic equation is given by
+\[
+s^2 + 7s + 10 = 0
+\]
+which has roots $s_1 = -2$ and $s_2 = -5$. Thus the form of the solution is
+\[
+y(t) = C_1e^{-2t} + C_2e^{-5t}
+\]
+
+Example 2:
+\[
+\frac{d^2y}{dt^2}(t) + 2\frac{dy}{dt}(t) + 5y(t) = 0 
+\]
+The characteristic equation is given by
+\[
+s^2 + 2s + 5 = 0
+\]
+which has complex roots $s_1 = -1+j2$ and $s_1 = -1-j2$. Thus the form of the solution is
+\[
+y(t) = e^{-t}\left(C_1\cos(2t) + C_2\sin(2t)\right)
+\]
+
+Example 3:
+\[
+\frac{d^2y}{dt^2}(t) + 2\frac{dy}{dt}(t) + y(t) = 0 
+\]
+The characteristic equation is given by
+\[
+s^2 + 2s + 1 = 0
+\]
+which has a root $s_1 = -1$ repeated $r=2$ times. Thus the form of the solution is
+\[
+y(t) = e^{-t}\left(C_1 + C_2t\right)
+\]
+
+In each of the above cases the constants, $C_1$ and $C_2$, are found using the auxillary conditions $y(t_0)$ and $y\prime(t_0)$.
 
 \subsection{Circuits}
 
-ECE 2024 is required for knowledge of continuous signals representation as voltages and currents, and the analysis and construction of circuits containing resistors, capacitors, inductors, and operational amplifiers.
+ECE 2024 is required for knowledge of continuous signals representation as voltages and currents, and the analysis and construction of circuits containing resistors, capacitors, inductors, and operational amplifiers. We will assume you can derive the differential governing equation for simple circuits using the voltage and current relationships for the circuit elements and Kerchoffs laws.
 
 \begin{itemize}
-\item $v = iR$\hspace{2em}
+\item Resistor: $v_R = R \,i_R$\hspace{2em}
+  \begin{center}
   \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
     \draw
-    (0,0) to[R,l=$R$] (4,0);
+    (0,0) to[R,l=$R$,v=$v_R$,i=$i_R$] (4,0);
   \end{circuitikz}
-  
-\item $i = Cv^\prime$ \hspace{2em}
+  \end{center}
+\item Capacitor: $i_C = C\, v_C^\prime$ \hspace{2em}
+  \begin{center}
   \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
     \draw
-    (0,0) to[C,l=$C$] (4,0);
+    (0,0) to[C,l=$C$,v=$v_C$,i=$i_C$] (4,0);
   \end{circuitikz}
-\item $v = Li^\prime$ \hspace{2em}
+  \end{center}
+\item Inductor: $v_L = L\, i_L^\prime$ \hspace{2em}
+  \begin{center}
   \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
     \draw
-    (0,0) to[L,l=$L$] (4,0);
+    (0,0) to[L,l=$L$,v=$v_L$,i=$i_L$] (4,0);
   \end{circuitikz}
-\item KVL
-\item KCL
-\item Ideal Op-Amp
+  \end{center}
+\item Ideal Op-Amp: the ideal op-amp operates so as to keep $i_+ = i_- = 0$ and $v_- = v_+$.
+  \begin{center}
+  \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
+    \draw
+    (0,0) node[op amp] (op1) {}
+    (-2,0.5) to[short,i=$i_-$,o-] (op1.-)
+    (-2,-0.5) to[short,i=$i_+$,o-] (op1.+)
+    (op1.out) to[short,i=$i_o$,-o] (2,0)
+    (-2.5,0.5) node {$v_-$}
+    (-2.5,-0.5) node {$v_+$}
+    (2.5,0) node {$v_o$};
+  \end{circuitikz}
+  \end{center}
 \end{itemize}
+
+These elements are the building blocks of most continuous-time signal processing implementations.
 
 \subsubsection*{KVL}
 
+\textit{Kerchoff's Voltage Law} (KVL) says that the sum of the voltages around any closed loop must be zero.
+
 \subsubsection*{KCL}
+
+\textit{Kerchoff's Current Law} (KVL) says that the sum of the currents into a node must be zero.
 
 \subsubsection*{Ideal OpAmps}
 
-\subsubsection*{from circuit to differential equation}
+An op-amp is a device that has two inputs, labeled the inverting ($-$) and non-inverting ($+$) input respectively, and a single output. The ideal op-amp is an approximation to simplify analysis. This approximation assumes:
 
-\subsubsection*{using LiaB and building/measuring circuits}
+\begin{enumerate}
+\item the inputs have an infinite impedance such that no current flows into the inputs, $i_+ = i_- = 0$
+\item the op-amp operates such that the input voltages are made equal $v_- = v_+$
+\item the output can source as much current as needed
+\end{enumerate}
+ 
+While this is just an approximation, within the frequency regimes we are concerned with in this course, it works well. 
+
+\subsubsection*{Governing Equations}
+
+Given the component descriptions above and Kerchoff's laws with some algebra and calculus we can derive the input output equation for a wide variety circuits, inlcuding those with op-amps. When the circuit contains $N$ energy storage elements (inductors or capacitors) the resulting equation will be an $N^\text{th}$ order linear, constant-coefficient differential equation. Note, the cleanest route to the governing equation is not always clear at the start and it takes some trial and error on your part.
+
+\begin{example} Consider the following RC circuit where $v(t)$ is the time-varying source voltage and we wish to know the resulting voltage across the capacitor $v_C(t)$.
+  \begin{center}
+    \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
+      \draw
+      (0,2) to[V,l=$v(t)$] (0,0)
+      (0,2) to[R,l=$R$, i=$i(t)$] (3,2)
+      (3,2) to[C,l=$C$, v=$v_c(t)$] (3,0)
+      (0,0) to[short] (3,0);
+  \end{circuitikz}
+  \end{center}
+  We can analyze it using either a KVL or a KCL. Using a KVL we note
+  \[
+  v(t) = R\,i(t) + v_c(t) 
+  \]
+  and note that the curent through the resistor and capacitor is the same. We use the voltage-current relationship for the capacitor to obtain
+  \[
+  i(t) = C\,\frac{dv_c}{dt}\; .
+  \]
+  Substituting into the KVL we get
+  \[
+  v(t) = RC\,\frac{dv_c}{dt} + v_c(t) 
+  \]
+  which we can rearrange into the standard form for a differential equation
+  \[
+  \frac{dv_c}{dt} + \frac{1}{RC}v_c(t) = \frac{1}{RC}\,v(t)
+  \]
+  Alternatively we could have used a KCL at the top of the capacitor
+  \[
+  i(t) = C\frac{dv_C(t)}{dt}
+  \]
+  The current through the resistor using Ohm's law is
+  \[
+  i(t) = \frac{v(t) - v_C(t)}{R} 
+  \]
+  Equating the two expressions and putting into standard form we get the same governing equation as before. 
+\end{example}
+\begin{example} We can take the previous circuit and connect to an op-amp in the voltage follower form to arrive at a circuit that isolates the circuit from other parts of a larger circuit. This strategy, where we form these \textit{stages} will be used throughout the course.  
+  \begin{center}
+    \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
+      \draw
+      (5.5,2.5) node[op amp] (op1) {}
+      (0,2) to[V,l=$v(t)$] (0,0)
+      (0,2) to[R,l=$R$, i=$i(t)$] (3,2)
+      (3,2) to[C,l=$C$, v=$v_c(t)$] (3,0)
+      (3,2) to[short] (op1.+)
+      (op1.out) to (6.7,4) to (4.3,4) to (op1.-)
+      (op1.out) to[short, -o] (7,2.5)
+      (0,0) to[short, -o] (7,0)
+      (7,2.5) to[open, v=$y(t)$] (7,0);
+  \end{circuitikz}
+  \end{center}
+  The analysis proceeds very similar to the previous one. Using the ideal op-amp conditions, a KCL at the non-inverting input gives
+  \[
+  i(t) = C\frac{dv_C(t)}{dt} + 0
+  \]
+  and
+  \[
+  y(t) = v_c(t)
+  \]
+  Again, the current through the resistor using Ohm's law is
+  \[
+  i(t) = \frac{v(t) - v_C(t)}{R} 
+  \]
+  Equating the two expressions, substituting $v_C(t) \rightarrow y(t)$, and putting into standard form we get
+  \[
+  \frac{dy}{dt}(t) + \frac{1}{RC}y(t) = \frac{1}{RC}\,v(t)
+  \]
+\end{example}
+
+
+\subsubsection*{Building and Characterizing Circuits}
+
+We will be building and characterizing physical circuits to better connect the course to the real world. We assume you know how to build relatively simple circuits on a protoboard, as well as use a power supply, function generator and oscilliscope (i.e. the Digilent Analog Discovery). We also assume you have taken or are currently taking the embedded course, so that toward the end of the semester you know how to interface and program with the TI MSP432 "Red Board".
+(MSP-EXP432P401R Evaluation board).
 
 \subsection{Programming}
 
@@ -291,7 +612,11 @@ ECE 2514 is required for the ability to model and simulate physical systems usin
 \item C++ (a small subset) for implementing digital filters
 \end{itemize}
 
-\subsubsection*{plotting and vizualization with Matlab/Python/Julia}
+For general computation we don't require Matlab and Mathematica, Python, or Julia work as well. Matlab is required for access to filter design functionality using the signal processing toolbox. 
+
+\subsubsection*{Plotting and Visualization}
+
+We assume you can plot real and complex functions using Matlab/Python/Julia/Mathematica, label axes appropriately, and generate readable graphics for inclusion in problem set solutions and the project report.
 
 \subsubsection*{Computation with C or C++}
 
@@ -299,7 +624,7 @@ ECE 2514 is required for the ability to model and simulate physical systems usin
 
 ECE 2544 is required for for knowledge of digital signal representation and the analysis and construction of circuits containing combinatorial and sequential logic.
 
-\subsubsection*{binary representation of integers vs floating point}
+\subsubsection*{Binary Representation of Integers vs Floating Point}
 
 \subsubsection*{shift registers}
 
