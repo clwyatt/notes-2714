@@ -1,10 +1,10 @@
-\section{Discrete-time Signals}
+\chapter{Discrete-time Signals}
 
 Recall from the previous meeting that a discrete-time (DT) signal is modeled as a function $f: \mathbb{Z} \rightarrow \mathbb{C}$. We will write these as $x[n]$, $y[n]$, etc. Note $n$ is dimensionless. These are graphically plotted as stem or "lollipop" plots, as demonstrated in Fig.~\ref{fig:dtplots}.
 
 Since the domain $\mathbb{Z}$ is usually interpreted as a time index, we will still call these {\it time-domain} signals. In the time-domain, when the co-domain is $\mathbb{R}$ we call these real DT signals. Unlike with CT signals there are no physical limitations requiring DT signals to be real, since in discrete hardware, a value at a given index can be a complex number, i.e. just a pair of numbers. However it is computationally advantageous to restrict ourselves to real arithmetic and such signals are often converted to or from CT signals, which do have to be real. For this reason real DT signals dominate in models.
 
-\subsection{Primitive Models}
+\section{Primitive Models}
 
 As with CT signals, we mathematically model DT signals by combining elementary/primitive functions, for example:  
 \begin{itemize}
@@ -45,7 +45,7 @@ f_2[n] & n \geq 0\\
     again sampled at 8kHz. This example shows we can use addition to build-up signals to approximate real signals of interest.
 \end{example}
 
-\subsection{Basic Transformations}
+\section{Basic Transformations}
 
 Similar to CT signals, we can also apply transformations to DT signals to increase their modeling flexibility.
 
@@ -107,7 +107,7 @@ x\left[ \frac{n}{m}\right] & n = 0\; , \; \pm m, , \; \pm 2m \cdots\\
 When $m = 2$ this inserts a zero sample between every sample of the signal.
 \end{itemize}
 
-\subsection{Characterization of Signals}
+\section{Characterization of Signals}
 
 There are a few basic ways of characterizing DT signals.
 
@@ -152,7 +152,7 @@ P_x = \lim_{N\rightarrow\infty} \frac{1}{2N+1} \sum\limits_{-N}^N \lvert x[n]\rv
 
 DT Signals with finite, non-zero energy and zero power are called {\it energy signals}. DT Signals with finite, non-zero power (and by implication infinite energy) are called {\it power signals}. These categories are non-exclusive, some signals are neither energy or power signals.
 
-\subsection{DT Unit Impulse Function}
+\section{DT Unit Impulse Function}
 
 In DT the unit impulse function, denoted $\delta[n]$ is defined as
 \[
@@ -189,7 +189,7 @@ or
 u[n] = \sum\limits_{k=0}^{\infty} \delta[n-k]
 \]
 
-\subsection{DT Complex Exponential}
+\section{DT Complex Exponential}
 
 The DT Complex Exponential is defined in a similar fashion the the CT version, but with some important differences. The general DT complex exponential is given by the expression:
 \[
@@ -203,7 +203,7 @@ where $\alpha = e^{\beta}$ is a complex number $\alpha = \cos(\beta) + j\sin(\be
 
 We now examine several special cases.
 
-\subsubsection{DT Complex Exponential: real case}
+\subsection{DT Complex Exponential: real case}
 
 Let $C$ and $\alpha$ be real, then there are four intervals of interest:
 
@@ -225,7 +225,7 @@ Each of these are shown in Fig.~\ref{fig:dtexpreal}.
 \label{fig:dtexpreal}
 \end{figure}
 
-\subsubsection{DT Complex Exponential: sinusoidal case}
+\subsection{DT Complex Exponential: sinusoidal case}
 
 Let $C = 1$. When $\beta$ is purely imaginary, $\beta = j\omega_0$
 \[
@@ -247,7 +247,7 @@ and
 The energy and power are the same as for the CT complex sinusoid: $E_x = \infty$ and $P_x = 1$.
 
 
-\subsubsection{DT Complex Exponential: sinusoidal case with phase shift}
+\subsection{DT Complex Exponential: sinusoidal case with phase shift}
 
 The general DT sinusoid is
 
@@ -273,7 +273,7 @@ e^{j\omega_0 n}\rvert_{\omega_0 = \pi} = e^{j\pi n} = (-1)^n
 
 \includegraphics[scale=0.5]{graphics/dtfastsin.pdf}
 
-\subsubsection{Properties of DT complex sinusoid}
+\subsection{Properties of DT complex sinusoid}
 
 If we consider two frequencies: $\omega_0$ and $\omega_0+2\pi$. In the first case:
 \[
@@ -317,7 +317,7 @@ x_k(t) = e^{jk\frac{2\pi}{N} n} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots
 This implies there are only $N$ distinct harmonics in DT.
 
 
-\subsubsection{DT Complex Exponential: general case}
+\subsection{DT Complex Exponential: general case}
 
 In the general case we get a sinusoid signal modulated by an exponential. Let $C = Ae^{j\phi}$ and $\beta = r + j\omega_0$, then
 \[

@@ -1,6 +1,6 @@
-\section{Linear time invariant DT systems}
+\chapter{Linear time invariant DT systems}
 
-\subsection{DT system representations}
+\section{DT system representations}
 
 We can mathematically represent, or model, DT systems multiple ways.
 
@@ -22,7 +22,7 @@ We can mathematically represent, or model, DT systems multiple ways.
 \item graphically, using a mixture of math and block diagrams
 \end{itemize}
 
-\subsection{System properties and classification}
+\section{System properties and classification}
 
 Choosing the right kind of system model is important. Here are some important properties that allow us to broadly classify systems.
 \begin{itemize}
@@ -36,7 +36,7 @@ Choosing the right kind of system model is important. Here are some important pr
 
 Let's define each it turn.
 
-\subsubsection{Memory}
+\subsection{Memory}
 The output of a DT system with memory depends on previous or future inputs and is said to be {\it dynamic}. Otherwise the system is memoryless or {\it instantaneous}, and the output $y[n]$ at index $n$ depends only on $x[n]$.
 For example:
 \[
@@ -52,7 +52,7 @@ y[n] = -y[n-1] + x[n-1]
 \]
 and we see explicitly the current output $y[n]$ depends on past values of output and input.
 
-\subsubsection{Invertability}
+\subsection{Invertability}
 
 A system is invertible if there exists a system that when placed in series with the original recovers the input.
 \[
@@ -72,7 +72,7 @@ z[n] = y[n] - y[n-1] = \sum\limits_{m=-\infty}^{n} x[m] - \sum\limits_{m=-\infty
 \]
 i.e. the difference undoes the accumulation.
 
-\subsubsection{Causality}
+\subsection{Causality}
 A DT system is causal if the output at index $n$ depends on the input for index values at or before $n$:
 \[
 y[n] \;\text{depends on}\; x[m] \;\text{for} \; m \leq n
@@ -99,7 +99,7 @@ y[n] = -y[n-1] + 2x[n]
 We see the current output $y[n]$ depends on a "past" value of the output $y[n-1]$ and the current input $x[n]$. Thus the system \textbf{is} causal. In practice we can immediately compute $y[n]$ with no delay. 
 \end{example}
 
-\subsubsection{Stability}
+\subsection{Stability}
 
 A DT system is (BIBO) stable if applying a bounded-input
 \[
@@ -117,7 +117,7 @@ y[n+1] - 2 y[n] = x[n+1]
 \]
 is unstable because the solution $y[n]$ will have one term of the form $\left( 2\right)^n$, for most non-zero inputs $x[n]$ or any non-zero initial condition, that grows unbounded as $n$ increases.
 
-\subsubsection{Time-invariance}
+\subsection{Time-invariance}
 A DT system is time(index)-invariant if, given
 \[
 x[n] \mapsto y[n]
@@ -151,7 +151,7 @@ y[n+1] - \frac{n}{2} y[n] = x[n+1]
 \]
 so that it is no longer LCC then the solution depends on $m$ and the system is no longer time-invariant.
 
-\subsubsection{Linearity}
+\subsection{Linearity}
 
 A DT system is linear if the output due to a sum of scaled individual inputs is the same as the scaled sum of the individual outputs with respect to those inputs. In other words given
 \[
@@ -174,7 +174,7 @@ This is a very important property, called {\it superposition}, and it simplifies
 
 An important non-linear system is that is described by a LCCDE with non-zero auxiliary conditions at some $n_0$, $y[n_0] = y_0$. As in CT, such systems will have a term in it's solution that depends on $y_0$. Given two inputs, each individual response will have that term in it, so their sum has double that term. However the response due to the sum of the inputs would again only have one and the sum of the responses would not be the same as the response of the sum. Such a system cannot be linear. Thus the system must be "at rest" before applying the input in order to be a linear system.
 
-\subsection{Stable LTI Systems}
+\section{Stable LTI Systems}
 
 The remainder of this course is about stable, linear, time-invariant (LTI) systems. As we have seen in DT such systems can be described by a LCCDE with zero auxiliary (initial) conditions (the system is \emph{at rest}). 
 

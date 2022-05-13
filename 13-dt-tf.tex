@@ -1,4 +1,4 @@
-\section{Eigenfunctions of DT systems}
+\chapter{Eigenfunctions of DT systems}
 To summarize the course so far for DT analysis, given an input signal $x[n]$ and a LTI system described (equivalently) by a linear, constant coefficient difference equation, impulse response, or a block diagram, we can determine the output using convolution. This is referred to as \emph{discrete time-domain} analysis since the index $n$ usually refers to a time index.
 
 Like in CT, the advantages of this approach are that the analysis is straightforward and applies to all LTI systems, stable or otherwise. Discrete time-domain representations of signals are also intuitive when viewed as equally-spaced samples of physical signals.
@@ -7,7 +7,7 @@ As in CT, there are disadvantages. It does not scale well to larger systems sinc
 
 Similar to CT we can transform the domain of the signal representations to one in which the operation of DT convolution becomes one of multiplication.
 
-\subsection{The Response of DT LTI Systems to Complex Exponentials}
+\section{The Response of DT LTI Systems to Complex Exponentials}
 
 Recall convolution can be viewed as a decomposition of a signal into an infinite sum of $\delta$ functions plus the linearity property.
 \[
@@ -15,7 +15,7 @@ x[n] = \sum\limits_{m = -\infty}^{\infty} x[m]\delta[n-m] \;\longrightarrow\; y[
 \]  
 We now consider a different decomposition based on the complex exponential, $z^n$ for $z \in \mathbb{C}$, rather than $\delta$ functions. As we will see this decomposition simplifies convolution, turning it into multiplication.
 
-\subsubsection{Eigenfunction $z^n$ and Transfer Function $H(z)$}
+\subsection{Eigenfunction $z^n$ and Transfer Function $H(z)$}
 
 Let $x[n] = z^n$ for $z\in \mathbb{C}$, then $y[n] = h[n] * x[n] = x[n] * h[n]$ and by the definition of DT convolution
 \begin{align*}
@@ -98,7 +98,7 @@ In some cases the sums are countably infinite while in others the uncountably in
    $\blacksquare$
 \end{example}
 
-\subsection{Decomposition of signals using DT complex exponentials}
+\section{Decomposition of signals using DT complex exponentials}
 
 Similar to CT, in this course we consider the cases of stable DT systems. Recall a stable system is one in which a bounded input leads to a bounded output, or equivalently the impulse response is absolutely summable. We will consider two decompositions of the input:
 

@@ -1,4 +1,4 @@
-\section{Eigenfunctions of CT systems}
+\chapter{Eigenfunctions of CT systems}
 To summarize the course so far given an input signal $x(t)$ and a LTI system described (equivalently) by a linear, constant coefficient differential equation, impulse response, or a block diagram, we can determine the output using convolution. This is referred to as \emph{time-domain} analysis.
 
 The advantages of this approach are that the analysis is straightforward (if cumbersome) and it applies to all LTI systems, stable or otherwise. Time-domain representations of signals are also intuitive given their direct application in physical systems.
@@ -7,7 +7,7 @@ There are also some disadvantages. First, time-domain analysis does not scale we
 
 We can borrow a technique from mathematics to overcome these disadvantages by transforming the \emph{domain} of the representations to one in which the operation of convolution becomes one of multiplication. This approach, called generally \emph{frequency domain} analysis has a number of advantages and will be our focus for the remainder of the course.
 
-\subsection{The Response of LTI Systems to Complex Exponentials}
+\section{The Response of LTI Systems to Complex Exponentials}
 
 Recall convolution can be viewed as a decomposition of a signal into an infinite sum of $\delta$ functions plus the linearity property.
 \[
@@ -16,7 +16,7 @@ x(t) = \int\limits_{-\infty}^{\infty} x(\tau)\delta(t-\tau) \; d\tau \;\longrigh
   
 We now consider a different decomposition based on the complex exponential, $e^{st}$ for $s \in \mathbb{C}$, rather than $\delta$ functions. As we will see this decomposition simplifies convolution, turning it into multiplication.
 
-\subsubsection{Eigenfunction $e^{st}$ and Transfer Function $H(s)$}
+\subsection{Eigenfunction $e^{st}$ and Transfer Function $H(s)$}
 
 Let $x(t) = e^{st}$ for $s\in \mathbb{C}$, then $y(t) = h(t) * x(t) = x(t) * h(t)$ and by the definition of convolution
 \begin{align*}
@@ -97,7 +97,7 @@ In some cases the sums are countably infinite while in others the uncountably in
    $\blacksquare$
 \end{example}
 
-\subsection{Decomposition of signals using complex exponentials}
+\section{Decomposition of signals using complex exponentials}
 
 In this course we consider the cases of stable CT systems. Recall a stable system is one in which a bounded input leads to a bounded output, or equivalently the impulse response is absolutely integrable. We will consider two decompositions of the input:
 

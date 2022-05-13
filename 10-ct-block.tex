@@ -1,6 +1,6 @@
-\section{CT Block Diagrams}
+\chapter{CT Block Diagrams}
 
-\subsection{The Four Basic Motifs}
+\section{The Four Basic Motifs}
 
 Understanding complex systems, with many interconnections, is aided by graphical representations, generally called block diagrams \footnote{There is a closely related graphical approach called \emph{signal flow graphs} that you may learn about in upper-level courses. They are equivalent to block diagrams, but are more amenable to computer representation and manipulation.}. They are a hybrid graphical-analytical approach.
 
@@ -86,7 +86,7 @@ There are just four basic motifs needed to build any block diagram. Let $\mathca
 
 Note the feedback is negative (the minus sign on the feedback summation input). These can be use in various combinations, as we shall see shortly.
 
-\subsection{Connections to Convolution}
+\section{Connections to Convolution}
 
 Each subsystem, $\mathcal{S}_i$, can be represented by a basic time-domain operation (e.g. derivatives, integrals, addition, and scaling) or more generally by it's impulse response $h_i(t)$.
 \
@@ -312,11 +312,11 @@ h(t) = \frac{e^{-2 t}-e^{-6 t}}{4}u(t) - \frac{e^{-4 t}-e^{-6 t}}{2}u(t) = \frac
 \end{example}
 
 
-\subsection{Connections to LCCDE}
+\section{Connections to LCCDE}
 
 The other system representation we have seen are linear, constant-coefficient differential equations. These can be expressed as combinations of derivative and/or integration blocks.
 
-\subsubsection*{First-Order System}
+\subsection*{First-Order System}
 
 To illustrate this consider the first-order LCCDE
 \[
@@ -426,7 +426,7 @@ which requires only a single integrator
 
 The choice of using derivative or integrator blocks is not arbitrary in practice. Derivatives are sensitive to noise at high frequencies (for reasons we will see later in the semester) and so integrators perform much better when implemented in hardware. 
 
-\subsubsection*{Second-Order System}
+\subsection*{Second-Order System}
 
 Now consider the second-order system
 \[
@@ -604,7 +604,7 @@ We then note that the signal $z$ and the output of the integrator blocks are the
   \end{tikzpicture}
 \end{center}
 
-\subsection{Implementing a System in Hardware}
+\section{Implementing a System in Hardware}
 
 One of the most powerful uses of block diagrams is the implementation of a CT system in hardware. As we shall see later in the semester, designing CT systems for a particular purpose leads to a mathematical description that is equivalent to either an impulse response, or a LCCDE. We have seen how these can be represented as block diagrams. Once we have reduced a system to blocks consisting of simple operations, we can then convert the block diagram to a circuit.
 
@@ -754,7 +754,7 @@ One of the most powerful uses of block diagrams is the implementation of a CT sy
 \end{tabular}
 
 \newpage
-\subsection*{Solved Problems}
+\section*{Solved Problems}
 
 \begin{enumerate}
 \item Consider a system with the following block diagram:

@@ -1,4 +1,4 @@
-\section{CT Fourier Transform}
+\chapter{CT Fourier Transform}
 
 Recall the complex exponential $e^{st}$ for $s\in\mathbb{C}$ is the Eigenfunction of CT LTI systems. If we can decompose an input into a (possibly infinite) sum of such signals, we can easily determine the output using the superposition principle. In this section we consider the decomposition when the input is aperiodic, called the CT \emph{Fourier Transform} (CTFT).
 
@@ -14,7 +14,7 @@ H(j\omega) = \frac{1}{1+(j\omega)^2} = \frac{1}{1-\omega^2} = H(\omega)
 \]
 are the same function since $j^2 = -1$.
 
-\subsection{Synthesis and Analysis Equation}
+\section{Synthesis and Analysis Equation}
 
 Consider the aperiodic signal
 \[
@@ -166,7 +166,7 @@ Consider the signal $x(t) = e^{j\omega_0 t}$ for $\omega_0\in \mathbb{R}$.  The 
   $\blacksquare$
 \end{example}
 
-\subsection{Existence of the CT Fourier Transform}
+\section{Existence of the CT Fourier Transform}
 
 The example of the real exponential above showed that for the Fourier transform to exist, the Fourier (analysis) integral must exist. Similar to the Fourier series some mild conditions, called the Dirichlet conditions, are a sufficient prerequisite for the Fourier transform of a signal $x(t)$ to exist:
 \begin{itemize}
@@ -180,7 +180,7 @@ The example of the real exponential above showed that for the Fourier transform 
 
 These conditions are not necessary however, and we can extend the Fourier transform to a broader class of signals, if we allow delta functions in the transform, as in the cosine example above. 
 
-\subsection{Properties of the CT Fourier Transform}
+\section{Properties of the CT Fourier Transform}
 
 There are several useful properties of the CT Fourier Transform that, when combined with a table of transforms (see Table 4.2, page 329 of OW), allow us to take the Fourier transform of  wide array of signals, and one, the convolution property, that allows us to determine the output of a system in the frequency domain easily. We state these here without proof in rough order of usefulness. See the course text for detailed derivations.
 
@@ -233,7 +233,7 @@ We use the notation $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$
 \end{itemize}
 
 
-\subsection{CT Fourier Transform of a Periodic Signal}
+\section{CT Fourier Transform of a Periodic Signal}
 
 Even though the Fourier transform was derived in the case of an a-periodic signal, the linearity property of the transform, combined with one of our examples above shows us that we can take the Fourier Transform of a periodic signal. Consider a periodic signal with Fourier series expansion
 \[

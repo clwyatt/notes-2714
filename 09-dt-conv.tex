@@ -1,6 +1,6 @@
-\section{DT Convolution}
+\chapter{DT Convolution}
 
-\subsection{Review DT LTI systems and superposition property}
+\section{Review DT LTI systems and superposition property}
 
 Recall the superposition property of LTI systems. If a DT system is LTI then the superposition property holds. Given a system where
 \[   
@@ -13,7 +13,7 @@ then
 
 As in CT we can use superposition to enable a problem reduction strategy in DT systems, where we write the input as a weighted sum of simple signals.  In this lecture, the simple signals are weighted, time shifts of one signal, the DT delta function, $\delta[n]$.
 
-\subsection{Convolution Sum}
+\section{Convolution Sum}
 
 To derive this we start with the sifting property of the DT impulse function (from lecture 3)
 \[
@@ -37,7 +37,7 @@ This is called the \emph{convolution sum}.
 
 The significance is similar to that in CT convolution. For a LTI DT system, if I know it's impulse response $h[n]$, I can find the response due to \textbf{any} input using convolution. For this reason the impulse response is another way to represent an LTI system.
 
-\subsection{Graphical View of the Convolution Sum.}
+\section{Graphical View of the Convolution Sum.}
 
 Lets break the convolution expression down into pieces. In it's general form the convolution of two signals $x_1[n]$ and $x_2[n]$ is
 \[
@@ -66,7 +66,7 @@ Then the terms of the convolution sum is the product $x_1[m]x_2[n-m]$ whose plot
 
 Then convolution is the total sum of the product (bold plots above) for that value of $n$. For the example above we see the sum will be zero for $n$ less than $n_0$ since the two signals do not overlap and their product is zero. For $n_0 \leq n \leq n_1$ the signals overap and the product is non-zero, and the effective bounds of summation are $[n_0,n]$. For $n > n_1$ the signals again overap and the product is non-zero, but the effective bounds of summation are $[n_0,n_1]$. 
 
-\subsection{DT Convolution of Finite-Length Signals}
+\section{DT Convolution of Finite-Length Signals}
 
 For finite-length signals, DT convolution gives us an algorithm to determine their convolution. Suppose the signal $x_1$ is non-zero only over the interval $[N_1,M_1]$, and the signal $x_2$ is non-zero only over the interval $[N_2,M_2]$. The \emph{length} of the signals are $L_1 = M_1-N_1+1$ and $L_2 = M_2-N_2+1$ respectively. The non-zero terms of the convolution sum (when the signals overlap) is then the range $[N_1+N_2,M_1+M_2]$ and the sum can be truncated as:
 
@@ -101,7 +101,7 @@ $\blacksquare$
 
 An interesting aside, convolution of finite length signals is equivalent to multiplication of two polynomials, where the signal values are the coefficients.
 
-\subsection{Examples of DT Convolution}
+\section{Examples of DT Convolution}
 
 \begin{example} Consider the convolution of two unit step functions:
   \[
@@ -188,7 +188,7 @@ The following table lists several DT convolution results.
 
 \end{center}
 
-\subsection{Properties of DT Convolution}
+\section{Properties of DT Convolution}
 There are several useful properties of convolution. We do not prove these here, but it is not terribly difficult to do so. Given signals $x_1[n]$, $x_2[n]$, and $x_3[n]$:
 
 \begin{description}

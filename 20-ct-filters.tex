@@ -1,4 +1,4 @@
-\section{Frequency Selective Filters in CT}
+\chapter{Frequency Selective Filters in CT}
 
 Recall the response of stable CT LTI systems to periodic inputs. Given a stable LTI system with frequency response $H(j\omega)$
 \[       
@@ -14,7 +14,7 @@ x(t) = \frac{1}{2\pi} \int\limits_{-\infty}^{\infty} X(j\omega) e^{j\omega t}\; 
 
 Note the output is equivalent to a signal with Fourier Transform $Y(j\omega) = X(j\omega) H(jk\omega_0)$. That is the Fourier transform at each continuous frequency $\omega$ is scaled by the frequency response at that frequency.
 
-We can use this behavior to our advantage. In many applications we want to modify the values of $a_k$ selectively, passing them unmodified, increasing (amplifying) them, or decreasing (attenuating) them. This is accomplished by designing a frequency response. Such systems are called frequency selective \emph{filters} and come in 4 basic types:
+We can use this behavior to our advantage. In many applications we want to modify the values of $a_k$ or $X(j\omega)$ selectively, passing them unmodified, increasing (amplifying) them, or decreasing (attenuating) them. This is accomplished by designing a frequency response. Such systems are called frequency selective \emph{filters} and come in 4 basic types:
 \begin{itemize}
 \item Low-pass Filters attenuate high frequencies while passing through lower frequencies. They are often used to reduce the effects of high-frequency noise in a signal and to prepare it for sampling (so-called anti-aliasing filters). They are the most common filter.
 \item High-pass Filters attenuate lower frequencies while passing through higher frequencies. While less common, they are often used to remove the DC component ($\omega$ = 0) of a signal and to compute the derivative of a signal.
@@ -24,7 +24,7 @@ We can use this behavior to our advantage. In many applications we want to modif
 
 While the design of such filters is outside the scope of this course, you are now equipped to understand and apply them based on your knowledge of the Fourier methods covered over the past several weeks.
 
-\subsection{Ideal Filters}
+\section{Ideal Filters}
 
 The above filter types each have an ideal (although unrealizable) form.
 
@@ -85,7 +85,7 @@ with magnitude and phase plot
 \end{center}
 Often the bandstop filter has a very narrow bandwidth, thus it "notches" out a frequency component of the input signal.
 
-\subsection{Practical Filters}
+\section{Practical Filters}
 
 Ideal CT filters cannot be implemented in practice because they are non-causal and thus physically impossible. To see why consider the impulse response of the ideal low-pass filter:
 
@@ -104,7 +104,7 @@ Practical filters differ from ideal filters in that they cannot be zero over any
 
 The overall gain of the filter is the magnitude of the frequency response at a frequency that depends on the filter type, zero for a low-pass filter and the center frequency for a band-pass filter. The pass-band is defined by the frequency at which the magnitude of the frequency response drops below the overall gain, often -3dB = $\frac{\sqrt{2}}{2}$. The stop-band is defined similarly, as the frequency at which the magnitude of the frequency response drops further below the overall gain, often -20dB = 0.1 or -40dB = 0.01. The \emph{transition bandwidth} is defined as the difference in the stop-band and pass-band frequencies. The \emph{pass-band ripple} is defined as the maximum deviation from the overall gain, over the pass-band.
 
-\subsection{First-order and second-order systems as filters}
+\section{First-order and second-order systems as filters}
 
 Given the equivalence of LTI systems and linear, constant-coefficient differential equations, block diagrams, impulse responses, and frequency responses, filters can be represented in any of these ways.
 
@@ -252,7 +252,7 @@ We have covered extensively first-order and second-order CT systems and seen how
   Note the price we pay for this decreased transition bandwidth is a larger phase shift (and a two more components).
 \end{example}
 
-\subsection{Higher-Order Filters}
+\section{Higher-Order Filters}
 
 We can continue to increase the steepness of the passband to stop-band transitions by increasing the order of the filter. This is typically accomplished using a serial connection of systems, called \emph{stages} in filter parlance, where each stage is a first-order or second-order system.
 

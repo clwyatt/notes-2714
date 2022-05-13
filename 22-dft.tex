@@ -1,4 +1,4 @@
-\section{Discrete Fourier Transform}
+\chapter{Discrete Fourier Transform}
 
 The Discrete Fourier Transform or DFT is the Fourier Transform of a finite length DT signal. As we shall see, the DFT/FFT is mathematically equivalent to the Discrete-Time Fourier Series. It can be viewed as a way to numerically approximate the CT Fourier transform. Lets first just state the transform and then derive it and see how to interpret and apply it.
 
@@ -8,7 +8,7 @@ X[k] = \sum_{n = 0}^{N-1}  x[n] e^{-j \frac{2\pi}{N}k n}
 \]
 for $k = 0, 1, 2, \cdots, N-1$. When $N$ is a power of 2, an efficient algorithm to compute this result exists and is called the \emph{Fast Fourier Transform} or FFT.
 
-\subsection{Numerically Approximating the CT Fourier Transform}
+\section{Numerically Approximating the CT Fourier Transform}
 
 Recall the CT Fourier transform pair $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(j\omega)$:
 \[
@@ -104,7 +104,7 @@ x[n] = \sum\limits_{k = N_0}^{N_0 + N - 1} a_k e^{j\frac{2\pi}{N}kn} =  \sum\lim
 a_k = \frac{1}{N}\sum\limits_{n = N_0}^{N_0 + N - 1} x[n] e^{-j\frac{2\pi}{N}kn} =  \frac{1}{N}\sum\limits_{n = 0}^{N - 1} x[n] e^{-j\frac{2\pi}{N}kn}
 \]
 
-\subsection{Efficient Computation of DFT (FFT)}
+\section{Efficient Computation of DFT (FFT)}
 
 Given the DFT pair and an input signal, it is easy to compute the DFT. For example in C++ we can define a signal as an array of complex numbers
 
@@ -216,7 +216,7 @@ unsigned int bitReverse(unsigned int x, int log2n){
 }
 \end{verbatim}
 
-\subsection{DFT/FFT in Matlab}
+\section{DFT/FFT in Matlab}
 
 In Matlab (and other languages/platforms) you can use the Fast Fourier Transform to compute the DFT. For example:
 
@@ -238,7 +238,7 @@ or
 \end{verbatim}
 
 
-\subsection{Summary of Fourier Transforms}
+\section{Summary of Fourier Transforms}
 
 \begin{itemize}
 \item Discrete-time Fourier Series: periodic DT signal $x[n] \mapsto a_k$ periodic discrete frequencies
@@ -252,7 +252,7 @@ And now we have the DFT
 \item Discrete Fourier Transform: aperiodic DT signal of finite length $x[n] \mapsto X[k]$ periodic discrete frequencies
 \end{itemize}
 
-\subsection{Applications the DFT}
+\section{Applications the DFT}
 
 Our discussion of the DFT raises some important questions:
 
@@ -335,4 +335,4 @@ Reconstruct the current output
 \[
 y(t) \approx y(nT) = y[n]
 \]
-This is the approach taken in the course project.
+

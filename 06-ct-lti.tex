@@ -1,6 +1,6 @@
-\section{Linear time invariant CT systems}
+\chapter{Linear time invariant CT systems}
 
-\subsection{System types}
+\section{System types}
 
 A system is an interconncted set of components or sub-systems. Mathematically a system is a transformation between one or more signals, a rule that maps functions to functions.
 
@@ -126,7 +126,7 @@ When a system has no input, the system is {\it autonomous}. An autonomous system
 
 We can think of an autonomous system as a function generator, producing signals for use.
 
-\subsection{CT system representations}
+\section{CT system representations}
 
 We can mathematically represent, or model, systems multiple ways.
 
@@ -239,7 +239,7 @@ y^{\prime\prime} + \frac{1}{RC} y^\prime + \frac{1}{LC}y = \frac{1}{LC}f(t)
 
 Comparing these systems, if $R = \frac{1}{B}$, $L = \frac{1}{K}$, and $C = M$, they are mathematically identical.
 
-\subsection{System properties and classification}
+\section{System properties and classification}
 
 Choosing the right kind of system model is important. Here are some important properties that allow us to broadly classify systems.
 \begin{itemize}
@@ -253,7 +253,7 @@ Choosing the right kind of system model is important. Here are some important pr
 
 Let's define each it turn.
 
-\subsubsection{Memory}
+\subsection{Memory}
 The output of a system with memory depends on previous or future inputs and is said to be {\it dynamic}. Otherwise the system is memoryless or {\it instantaneous}, and the output $y(t)$ at time $t$ depends only on $x(t)$.
 For example in CT:
 \[
@@ -265,7 +265,7 @@ y(t) = \int\limits_{-\infty}^{t} x(\tau) \; dt
 \]
 has memory.
 
-\subsubsection{Invertability}
+\subsection{Invertability}
 
 A system is invertable if there exists a system that when placed in series with the original recovers the input.
 \[
@@ -281,7 +281,7 @@ y(t) \mapsto z(t) = \frac{dy}{dt}
 \]
 The combination in series $x(t) \mapsto y(t) \mapsto z(t) = x(t)$, i.e. the derivative undoes the integral.
 
-\subsubsection{Causality}
+\subsection{Causality}
 A CT system is causal if the output at time $t$ depends on the input for time values at or before $t$:
 \[
 y(t) \;\text{depends on}\; x(\tau) \;\text{for} \; \tau \leq t
@@ -290,7 +290,7 @@ All physical CT systems are causal, even if all continuous systems are not (e.g.
 
 For example, consider a CT system whose impulse response is $h(t) = e^{-t^2}$. This implies the system produces output \emph{before} (i.e. for $t < 0$) the impulse is applied at $t=0$, somehow anticipating the arrival of the impulse. Barring time-travel, this is physically impossible.
 
-\subsubsection{Stability}
+\subsection{Stability}
 
 A CT system is (BIBO) stable if applying a bounded-input
 \[
@@ -308,7 +308,7 @@ For example, a CT system described by the LCCDE
 \]
 is unstable because the solution $y(t)$ will have one term of the form $Ce^{2t}$, for most non-zero inputs $x(t)$ or any non-zero initial condition, that grows unbounded as time increases.
 
-\subsubsection{Time-invariance}
+\subsection{Time-invariance}
 A CT system is time-invariant if, given
 \[
 x(t) \mapsto y(t)
@@ -324,7 +324,7 @@ An important example is a CT system described by a LCCDE, e.g.
 \]
 but non-zero auxillary conditions at some $t_0$, $y(t_0) = y_0$. Such systems will have a term in it's solution that depends on $y_0$. However if I time shift the input, the term that depends on $y_0$ does not shift (since it is achored to $t_0$) and the total output does not shift identically with the input. Thus the system cannot be time-invariant.
 
-\subsubsection{Linearity}
+\subsection{Linearity}
 
 A CT system is linear if the output due to a sum of scaled individual inputs is the same as the scaled sum of the individual outputs with respect to those inputs. In other words given
 \[
@@ -347,7 +347,7 @@ This is a very important property, called {\it superposition}, and it simplifies
 
 Similar to time-invariance an important non-linear system is that is described by a LCCDE with non-zero auxillary conditions at some $t_0$, $y(t_0) = y_0$. Again such systems will have a term in it's solution that depends on $y_0$. Given two inputs, each individual response will have that term in it, so thier sum has double that term. However the response due to the sum of the inputs would again only have one and the sum of the responses would not be the same as the response of the sum. Such a system cannot be linear.
 
-\subsection{Stable LTI Systems}
+\section{Stable LTI Systems}
 
 The remainder of this course is about stable, linear, time-invariant (LTI) systems. As we have seen in CT such systems can be described by a LCCDE with zero auxillary (initial) conditions (the system is \emph{at rest}). 
 

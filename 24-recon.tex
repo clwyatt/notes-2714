@@ -1,8 +1,8 @@
-\section{Reconstructing  CT Signals}
+\chapter{Reconstructing  CT Signals}
 
 In the previous lecture we focused on sampling of CT signals to produce a DT signal $x[n] = x(nT)$ with sample index $n$ and sample time $T$. In this lecture we consider \emph{reconstruction}, converting from a DT signal $x[n]$ to a CT signal $x(t)$ using a sample time $T$ as the spacing between samples. Ideally a conversion from $x(t)$ to $x[n]$ and back again would result in identical signal. 
 
-\subsection{Reconstruction Theory}
+\section{Reconstruction Theory}
 Given a DT signal $x[n]$ and a sample spacing $T$, we can define a corresponding CT signal as 
 \[
 x_p(t) = \sum\limits_{n = -\infty}^{\infty} x[n] \, \delta(t-nT)
@@ -34,11 +34,11 @@ h(t) = \mathcal{F}^{-1} \left\{ H(j\omega) \right\} = \frac{1}{2\pi} \int\limits
 
 Thus the ideal ideal interpolation function is the sinc function, and reconstruction is low-pass filtering of the weighted impulse train $x_p(t)$ \footnote{As an aside this also gives an intuitive view of convolution with an impulse train, as interpolation}.
 
-\subsection{Practical Reconstruction}
+\section{Practical Reconstruction}
 
 As we have seen before we cannot physically represent the impulse train nor the ideal low-pass filter. Thus practical reconstruction uses an approximation of the ideal reconstruction filter by a digital-to-analog converter (DAC), followed by a causal (and thus physically possible) low-pass filter.
 
-\subsubsection{Zero-order hold using an R-2R ladder}
+\subsection{Zero-order hold using an R-2R ladder}
 
 A zero-order hold DAC can be implemented by a circuit called a resistor ladder. Consider a digital output with $N$ bits and a reference voltage $V_{ref}$ (for example an 8-bit output port on a micro-controller using CMOS 3.3v logic).
 
@@ -56,7 +56,7 @@ V_o = V_{ref}\frac{V}{2^N}
 
 If the port value is changed every sample time $T$, then the resister ladder and buffer op-amp combine to implement a zero-order hold circuit.
 
-\subsubsection{Reconstruction(anti-imaging) filter}
+\subsection{Reconstruction(anti-imaging) filter}
 
 The zero-order hold is followed by the reconstruction (anti-imaging) filter which low-pass filters the output and smooths-out the jumps from value to value.
 

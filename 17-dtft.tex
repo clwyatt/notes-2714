@@ -1,4 +1,4 @@
-\section{DT Fourier Transform}
+\chapter{DT Fourier Transform}
 
 Recall the complex exponential $z^{n}$ for $z\in\mathbb{C}$ is the Eigenfunction of DT LTI systems. If we can decompose an input into a (possibly infinite) sum of such signals, we can easily determine the output using the superposition principle. In this section we consider the decomposition when the input is aperiodic, called the DT \emph{Fourier Transform} (DTFT).
 
@@ -10,7 +10,7 @@ where $H\left(e^{j \omega}\right)$ are the Eigenvalues, again called the \emph{f
 
 \textbf{Note:} The notation $X\left(e^{j\omega}\right)$ can be confusing. It just emphasizes that $z \rightarrow e^{j\omega}$. The expressions are functions of the independent variable $\omega$.
 
-\subsection{Analysis and Synthesis Equations}
+\section{Analysis and Synthesis Equations}
 
 Consider the Fourier series of $x[n]$, a periodically extended finite-length DT signal $\tilde{x}[n]$, e.g.
 
@@ -135,7 +135,7 @@ Below is a plot of the original signal and the magnitude and phase spectrum when
   $\blacksquare$
 \end{example}
 
-\subsection{Existence of the DT Fourier Transform}
+\section{Existence of the DT Fourier Transform}
 
 The example of the exponential $x[n] = \left(\gamma\right)^n\,u[n]$ above showed that for the DT Fourier transform to exist, the Fourier (analysis) sum must exist. Similar to the CT Fourier transform, a mild conditions is a sufficient prerequisite for the Fourier transform of a signal $x[n]$ to exist: it must be  absolutely summable
 \[
@@ -144,7 +144,7 @@ The example of the exponential $x[n] = \left(\gamma\right)^n\,u[n]$ above showed
 
 This conditions is not necessary however, and we can extend the Fourier transform to a broader class of signals, if we allow delta functions in the transform, as in the sinusoidal examples above. 
 
-\subsection{Properties of the DT Fourier Transform}
+\section{Properties of the DT Fourier Transform}
 
 There are several useful properties of the DT Fourier Transform that, when combined with a table of transforms (see Table 5.2, page 392 of OW), allow us to take the Fourier transform of  wide array of signals, and one, the convolution property, that allows us to determine the output of a system in the frequency domain easily. We state these here without proof in rough order of usefulness. See the course text for detailed derivations.
 
@@ -307,7 +307,7 @@ Example:
   \]
 \end{itemize}
 
-\subsection{DT Fourier Transform of a Periodic Signal}
+\section{DT Fourier Transform of a Periodic Signal}
 
 The DTFS allows us to write any periodic function with period $N$ as
 \[

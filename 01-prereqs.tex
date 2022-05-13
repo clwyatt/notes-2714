@@ -1,12 +1,12 @@
-\section{Prerequisites}
+\chapter{Prerequisites}
 
 This course uses many concepts from prerequisite courses, particularly those from calculus and circuits. While we assume you know this material, the following sections offer a review of the most pertinent and establish some notation. If you have trouble with any of them seek assistance -- the sooner the better.
 
-\subsection{Complex Numbers}
+\section{Complex Numbers}
 
 Complex numbers are used extensively throughout the course. You need to be very adept at manipulating them.
 
-\subsubsection*{The Number System}
+\subsection*{The Number System}
 
 By way of review and to motivate the discussion of complext numbers, recall the following basic facts.
 
@@ -28,7 +28,7 @@ Graphically the numbers and thier ordering can be expressed using the number lin
   \includegraphics[scale=1]{graphics/number-line.pdf}
 \end{center}
 
-\subsubsection*{Complex numbers as extension of reals}
+\subsection*{Complex numbers as extension of reals}
 
 Continuing the pattern of the basic number system we can ask what are solutions of equations of the form $x^2+a = 0$ or $x^2 + 2ax +a^2 + b^2 = 0$ for $a,b \in \mathbb{R}$ ? As above, finding such solutions requires moving to a larger set of numbers, the \emph{complex numbers} denoted $\mathbb{C}$.
 
@@ -43,7 +43,7 @@ A complex variable $z\in\mathbb{C}$ can be written as $z = a + j\, b$ for $a,b\i
 \item the \emph{complex conjugate} of $z = a + jb$ is $z^* = a - jb$.
 \end{itemize}
 
-\subsubsection*{Operations on complex numbers}
+\subsection*{Operations on complex numbers}
 
 Arithmetic operations on complex numbers are defined using the algebra of real numbers, replacing $j^2 = -1$. Given complex numbers $a + j\, b$ and $c + j\, d$
 
@@ -55,7 +55,7 @@ Arithmetic operations on complex numbers are defined using the algebra of real n
 \end{description}
 
 
-\subsubsection*{Basic properties of complex numbers}
+\subsection*{Basic properties of complex numbers}
 
 Let $z_1, z_2, z_3 \in \mathbb{C}$, then:
 
@@ -67,7 +67,7 @@ Let $z_1, z_2, z_3 \in \mathbb{C}$, then:
 \item[inverse elements] for any $z_1$ there exists an inverse $z_2 = -z_1$ such that $z_1 + z_2 = 0$, and for any $z_1 \neq 0$ there exists an inverse $z_2 = z_1^{-1} = \tfrac{1}{z_1}$ such that $z_1 \cdot z_2 = 1$
 \end{description}
 
-\subsubsection*{Absolute Value (Magnitude) of complex numbers}
+\subsection*{Absolute Value (Magnitude) of complex numbers}
 
 The absolute value or \textit{magnitude} of a complex number $z = a + jb$ is denoted $|z| = |a+jb|$ and is given by
 \[
@@ -79,14 +79,14 @@ For complex numbers $z_1, z_2, \ldots, z_n$, the following useful properties hol
 \item $\left| \frac{z_1}{z_2}\right| = \frac{|z_1|}{|z_2|}$ for $z_2 \neq 0$
 \end{itemize}
 
-\subsubsection*{Argument (Angle) of complex numbers}
+\subsection*{Argument (Angle) of complex numbers}
 The argument or \textit{angle} of a complex number $z = a + jb$ is denoted $\angle z = \angle(a+jb)$ and is given by
 \[
 \angle(a + jb) = \arctan\frac{b}{a}
 \]
 Take care when computing this number on your calculator (or in a programming language) so that it produces and angle in radians and in the correct quadrant. For example $\angle(-1-j1) = \arctan\frac{-1}{-1} = \frac{5\pi}{4} = -\frac{3\pi}{4}$ is different from $\angle(-1-j1) = \arctan\frac{-1}{-1} = \arctan\frac{1}{1} = \frac{\pi}{4}$, the later being incorrect.
 
-\subsubsection*{Cartesian and Polar representation of complex numbers}
+\subsection*{Cartesian and Polar representation of complex numbers}
 
 A complex number $z$ can be represented in Cartesian form as a pair of numbers in the \textit{Complex Plane}, $(\Re{z},\Im{z})$. The same $z$ can be represented in polar form as $z = |z|\cdot e^{j\angle z}$. We can convert between the representations using  $\Re{z} = |z| \cos(\angle z)$ and $\Im{z} = |z| \sin(\angle z)$. The following relations hold
 
@@ -114,7 +114,7 @@ These representations and relations can be visualized as follows
   \includegraphics[scale=1]{graphics/complex-viz-prereq.pdf}
 \end{center}
 
-\subsubsection*{Complex numbers as roots of polynomial equations}
+\subsection*{Complex numbers as roots of polynomial equations}
 
 Recall our original motivation for complex numbers, as solutions to polynomials. Consider the $N^\text{th}$ order polynomial
 \[
@@ -133,7 +133,7 @@ where the $z_i$ are the $N$ \textit{roots} of the polynomial. These are complex 
 
 Note: the \texttt{roots} function in Matlab can be used to find the roots of any order polynomial given a vector of coefficients.
 
-\subsection{Functions}
+\section{Functions}
 
 As we will see in the first few lectures, signals are modelled as functions. Recall a \textit{function} is a mapping between sets
 \[
@@ -168,7 +168,7 @@ Functions can also be defined using composition. Given two functions $f:\mathbb{
 \]
 where we first apply $g$ then use it's value as the input to $f$. This will be used to define several transformations of signals.
 
-\subsubsection*{Visualizing Functions}
+\subsection*{Visualizing Functions}
 
 You are certainly familiar with the graph of functions $f:\mathbb{R}\mapsto\mathbb{R}$. To graph a complex-valued function of a single variable we need to plot two functions. Consider a function $z(t) \in \mathbb{C}$ for $t \in \mathbb{R}$ expressed in Cartesian form:
 \[
@@ -228,11 +228,11 @@ Another approach to visualizing a complex number is to plot it as the tip of a v
   \end{tabular}
 \end{example}
 
-\subsection{Calculus}
+\section{Calculus}
 
 Calculus is used heavily in the course. Here we remind ourselves of some basic facts. Consult your calculus text for more details.
 
-\subsubsection*{Limits}
+\subsection*{Limits}
 
 The \textit{limit} $L$ of a function $f(t)$ is the function value as the independent variable approaches a constant $t\rightarrow c$, written as
 \[
@@ -243,29 +243,29 @@ The one-sided limit is defined as the limit as the independent variable approach
 \lim_{t\rightarrow c^-} f(t) = L \mbox{ (limit from below) or } \lim_{t\rightarrow c^+} f(t) = L \mbox{ (limit from above)}
 \]
 
-\subsubsection*{Derivatives of real-valued functions}
+\subsection*{Derivatives of real-valued functions}
 
 For functions $f:\mathbb{R}\mapsto\mathbb{R}$ recall the derivative is the instantaneous rate of change in the value as a function of the independent variable, and can be defined using a limit of a difference. Consider such a function $f(t)$ for $t\in\mathbb{R}$, it's derivative is given using a limit of a forward difference:
 
 \[
-\frac{df}{dt} (t) = \lim_{h->0^+} \frac{f(t+h)-f(t)}{h}
+\frac{df}{dt} (t) = \lim_{h\rightarrow0^+} \frac{f(t+h)-f(t)}{h}
 \]
 
 Higher-order derivative are defined recursively. For example, the second derivative is
 
 \[
-\frac{d^2f}{dt^2} (t) = \lim_{h->0^+} \frac{\frac{df}{dt}(t+h)-\frac{df}{dt}(t)}{h}
+\frac{d^2f}{dt^2} (t) = \lim_{h\rightarrow0^+} \frac{\frac{df}{dt}(t+h)-\frac{df}{dt}(t)}{h}
 \]
 In the general case the $N^\text{th}$ order derivative is
 \[
-\frac{d^Nf}{dt^N} (t) = \lim_{h->0^+} \frac{\frac{d^{N-1}f}{dt^{N-1}}(t+h)-\frac{d^{N-1}f}{dt^{N-1}}(t)}{h}
+\frac{d^Nf}{dt^N} (t) = \lim_{h\rightarrow0^+} \frac{\frac{d^{N-1}f}{dt^{N-1}}(t+h)-\frac{d^{N-1}f}{dt^{N-1}}(t)}{h}
 \]
 
 Note there are several different notations for derivatives, e.g. $\frac{df}{dt}(t) = f^\prime (t) = \dot{f}(t)$, but we will use the former (Leibnitz) in most cases. We will also use the derivative operator notation $\frac{d^Nf}{dt^N} = (D^N f)(t)$, which is convenient for higher-order derivatives.
 
 A function with finite derivatives (in the limit) for all values of the independent variable over an interval is called \textit{continuous} over that interval. Values of the independent variable where the derivative is not finite (in the limit) are called \textit{discontinuities}. A function with a finite number of discontinuities is called \textit{piecewise continuous}. If the limit is one-sided then we say the function is piecewise continuous from the left or right (or from below/above).
 
-\subsubsection*{Integrals of real-valued functions}
+\subsection*{Integrals of real-valued functions}
 
 The \textit{indefinite integral} $F(t)$ is the anti-derivative of a function $f(t)$ if $\frac{dF}{dt}(t) = f(t)$ up to a constant term, written as
 \[
@@ -288,13 +288,13 @@ In cases where one or both of the limits is infinite, the definition changes to 
 \int\limits_{-\infty}^{\infty} f(t) \; dt = \lim_{b\rightarrow \infty} F(b) - \lim_{a\rightarrow -\infty} F(a)
 \]
 
-\subsection{Differential Equations}
+\section{Differential Equations}
 
 This course assumes a background in basic differential equations (e.g. as taught in Math 2214). However, we use only consider linear, constant-coefficient differential equations.
 
 A linear, constant coefficient (LCC) differential equation is of the form
 \[
-a_0\, y + a_1\, \frac{dy}{dt} + a_2\, \frac{d^2y}{dt^2} + \cdots + a_N\, \frac{d^Ny}{dt^N}  = b_0\, x + b_1\, \frac{dx}{dt} + bb_2\, \frac{d^2x}{dt^2} + \cdots + b_M\, \frac{d^My}{dt^M}
+a_0\, y + a_1\, \frac{dy}{dt} + a_2\, \frac{d^2y}{dt^2} + \cdots + a_N\, \frac{d^Ny}{dt^N}  = b_0\, x + b_1\, \frac{dx}{dt} + b_2\, \frac{d^2x}{dt^2} + \cdots + b_M\, \frac{d^My}{dt^M}
 \]
 which can be written compactly as
 \[
@@ -302,7 +302,7 @@ which can be written compactly as
 \]
 
 It is helpful to clean up this notation using the derivative operator $D^n = \frac{d^n}{dt^n}$. For example
-$D^2y = \frac{d^2y}{dt^2}$ and $D^0 y= y$. To give for form as
+$D^2y = \frac{d^2y}{dt^2}$ and $D^0 y= y$. To gives the form:
 \[
 \sum\limits_{k = 0}^{N} a_k\, D^k y = \sum\limits_{k = 0}^{M} b_k\, D^k x
 \]
@@ -375,7 +375,7 @@ a polynomial in $s$ with $N$ roots $s_i$ for $i = 1, 2, \cdots, N$ such that
 
 We now examine two common special cases, when $N=1$ (first-order) and when $N=2$ (second-order).
 
-\subsubsection*{First-Order Homogeneous LCCDE}
+\subsection*{First-Order Homogeneous LCCDE}
 
 Consider the first order homogeneous differential equation
 \[
@@ -407,7 +407,7 @@ and the final solution is
 \[
 y(t) = 10e^{-3 t} 
 \]
-\subsubsection*{Second-Order Homogeneous LCCDE}
+\subsection*{Second-Order Homogeneous LCCDE}
 
 Consider the second-order homogeneous differential equation
 \[
@@ -461,7 +461,7 @@ y(t) = e^{-t}\left(C_1 + C_2t\right)
 
 In each of the above cases the constants, $C_1$ and $C_2$, are found using the auxillary conditions $y(t_0)$ and $y\prime(t_0)$.
 
-\subsection{Circuits}
+\section{Circuits}
 
 ECE 2024 is required for knowledge of continuous signals representation as voltages and currents, and the analysis and construction of circuits containing resistors, capacitors, inductors, and operational amplifiers. We will assume you can derive the differential governing equation for simple circuits using the voltage and current relationships for the circuit elements and Kerchoffs laws.
 
@@ -504,15 +504,15 @@ ECE 2024 is required for knowledge of continuous signals representation as volta
 
 These elements are the building blocks of most continuous-time signal processing implementations.
 
-\subsubsection*{KVL}
+\subsection*{KVL}
 
 \textit{Kerchoff's Voltage Law} (KVL) says that the sum of the voltages around any closed loop must be zero.
 
-\subsubsection*{KCL}
+\subsection*{KCL}
 
 \textit{Kerchoff's Current Law} (KVL) says that the sum of the currents into a node must be zero.
 
-\subsubsection*{Ideal OpAmps}
+\subsection*{Ideal OpAmps}
 
 An op-amp is a device that has two inputs, labeled the inverting ($-$) and non-inverting ($+$) input respectively, and a single output. The ideal op-amp is an approximation to simplify analysis. This approximation assumes:
 
@@ -524,7 +524,7 @@ An op-amp is a device that has two inputs, labeled the inverting ($-$) and non-i
  
 While this is just an approximation, within the frequency regimes we are concerned with in this course, it works well. 
 
-\subsubsection*{Governing Equations}
+\subsection*{Governing Equations}
 
 Given the component descriptions above and Kerchoff's laws with some algebra and calculus we can derive the input output equation for a wide variety circuits, inlcuding those with op-amps. When the circuit contains $N$ energy storage elements (inductors or capacitors) the resulting equation will be an $N^\text{th}$ order linear, constant-coefficient differential equation. Note, the cleanest route to the governing equation is not always clear at the start and it takes some trial and error on your part.
 
@@ -598,12 +598,12 @@ Given the component descriptions above and Kerchoff's laws with some algebra and
 \end{example}
 
 
-\subsubsection*{Building and Characterizing Circuits}
+\subsection*{Building and Characterizing Circuits}
 
 We will be building and characterizing physical circuits to better connect the course to the real world. We assume you know how to build relatively simple circuits on a protoboard, as well as use a power supply, function generator and oscilliscope (i.e. the Digilent Analog Discovery). We also assume you have taken or are currently taking the embedded course, so that toward the end of the semester you know how to interface and program with the TI MSP432 "Red Board".
 (MSP-EXP432P401R Evaluation board).
 
-\subsection{Programming}
+\section{Programming}
 
 ECE 2514 is required for the ability to model and simulate physical systems using computational tools, and basic programming ability.
 
@@ -614,18 +614,18 @@ ECE 2514 is required for the ability to model and simulate physical systems usin
 
 For general computation we don't require Matlab and Mathematica, Python, or Julia work as well. Matlab is required for access to filter design functionality using the signal processing toolbox. 
 
-\subsubsection*{Plotting and Visualization}
+\subsection*{Plotting and Visualization}
 
 We assume you can plot real and complex functions using Matlab/Python/Julia/Mathematica, label axes appropriately, and generate readable graphics for inclusion in problem set solutions and the project report.
 
-\subsubsection*{Computation with C or C++}
+\subsection*{Computation with C or C++}
 
-\subsection{Digitial Systems}
+\section{Digitial Systems}
 
 ECE 2544 is required for for knowledge of digital signal representation and the analysis and construction of circuits containing combinatorial and sequential logic.
 
-\subsubsection*{Binary Representation of Integers vs Floating Point}
+\subsection*{Binary Representation of Integers vs Floating Point}
 
-\subsubsection*{shift registers}
+\subsection*{shift registers}
 
-\subsubsection*{adders and multipliers}
+\subsection*{adders and multipliers}

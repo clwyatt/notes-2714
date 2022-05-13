@@ -1,4 +1,4 @@
-\section{Sampling CT Signals}
+\chapter{Sampling CT Signals}
 
 Up until now in the course we have focused on either CT or DT signals and systems. Practical systems though often are hybrid and require conversion between DT and CT signals. For example a CT audio signal might be converted to a DT audio signal for storage and/or transmission, and at a later time or location converted back to a CT signal for playback through a speaker.
 
@@ -6,7 +6,7 @@ It is also common to design a CT system and then implement it as a DT system. Ad
 
 In this lecture we focus on \emph{sampling} of CT signals to produce a DT signal $x[n] = x(nT)$ with sample index $n$ and sample time $T$. In the next lecture we consider the case of converting from a DT to CT signal. 
 
-\subsection{Sampling Theory}
+\section{Sampling Theory}
 
 The process of sampling is to produce a DT signal $x[n]$ from a CT signal $x(t)$ by sampling time at regular intervals $T\in \mathbb{R}^+$ called the \emph{sample-time}, or equivalently sampling at a frequency of $\tfrac{1}{T}$ Hz or $\tfrac{2\pi}{T}$ rad/s. Mathematically this is simple to express in the time domain as $x[n] = x(nT)$, however we seek a system that can perform this task.
 
@@ -76,11 +76,11 @@ As we will see next time, to reconstruct the signal $x_2[n]$ back to $x_2(t)$ we
   \]
 \end{example}
 
-\subsection{Practical Sampling}
+\section{Practical Sampling}
 
 Sampling in practice requires addressing three issues. First, we cannot generate the impulse train, but can only approximate it. Second, digital signals must have a fixed bit width so we have to convert the real signal value to a \emph{quantized} one. Lastly, since in general we have no control over the input signal means we need to ensure the signal is approximately band-limited before sampling.
 
-\subsubsection{Sample and Hold}
+\subsection{Sample and Hold}
 Sampling is typically accomplished using a circuit called a \emph{sample-and-hold}, schematically illustrated below.
 
 \begin{center}
@@ -90,7 +90,7 @@ Sampling is typically accomplished using a circuit called a \emph{sample-and-hol
 
 The CT signal is applied to the input of the first op-amp buffer. The output of this first buffer is switched into a charging capacitor for the \emph{sample time}, then disconnected (high impedance) at regular intervals for the \emph{hold time}, typically using a MOSFET switch. The effect is the capacitor is charged to the current value of $x(t)$ during the sample-time, which it maintains during the hold-time, the value of which is bufered by the second op-amp. This can be mathematically modeled as a pulse train with a width equal to the sample time rather than as an impulse train.
 
-\subsubsection{Quantization}
+\subsection{Quantization}
 
 To quantize the signal after the sample-and-hold into $N$ bits, several strategies can be used. One popular approach is called \emph{successive approximation}, illustrated below
 
@@ -100,7 +100,7 @@ To quantize the signal after the sample-and-hold into $N$ bits, several strategi
 
 The current quantized digital value is held in a counter connected to a clock signal. The direction of the counter (up or down) is controlled by a comparator connected to the output of the sample and hold and the current counter output and a digital-to-analog converter (DAC, usually a resistor ladder) that converts it back to an analog value. If the DAC value is less than the held value, the counter counts up, if the DAC value is greater than the held value the counter counts down. In this fashion the counter output tracks the held value after a settling time required for convergence, at which point the counter value is clocked into a register for storage.
 
-\subsubsection{Anti-aliasing}
+\subsection{Anti-aliasing}
 
 Before the sample and hold we need to include a filter to limit the bandwidth. This can be accomplished by a CT low-pass filter called an \emph{anti-aliasing} filter whose cutoff frequency in the ideal case is $\omega_c = 2\pi B$. As we saw in lecture 24 ideal filters cannot be implemented, thus we specify the anti-aliasing filter as a pass-band gain/frequency and a stop-band gain/frequency. Since the transition band is non-zero for a practical filter, this means we have to either lower the pass-band relative to the ideal or increase the sample rate. In the best case, the filter should have a stop-band frequency at half the sampling frequency with the order of the filter and pass-band frequency adjusted as needed. Alternatively the gain that defines the stop-band can be relaxed. This gives a desired frequency response magnitude that looks like the following.
 

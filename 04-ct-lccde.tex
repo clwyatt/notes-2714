@@ -1,4 +1,4 @@
-\section{CT Systems as Linear Constant Coefficient Differential Equations}
+\chapter{CT Systems as Linear Constant Coefficient Differential Equations}
 
 Recall a system is a transformation of signals, turning the input signal into the output signal. While this might seem like a new concept to you, you already know something about them from your differential equations course, i.e. MATH 2214 and your circuits course.
 
@@ -53,9 +53,7 @@ y(t) = \left(1 - e^{-\frac{1}{RC}t}\right)u(t)
 
 As we will see later this representation of systems is central to the course, so we take some time here to review the solution of such equations.
  
-\subsection{Solving Linear, Constant Coefficient Differential Equations}
-
-NOTE THIS SUBSECTION MOVED TO PREREQUISITES
+\section{Solving Linear, Constant Coefficient Differential Equations}
 
 A linear, constant coefficient (LCC) differential equation is of the form
 \[
@@ -138,7 +136,7 @@ a polynomial in $s$ with $N$ roots $s_i$ for $i = 1, 2, \cdots, N$ such that
 
 We now examine two common special cases, when $N=1$ (first-order) and when $N=2$ (second-order).
 
-\subsubsection{First-Order Homogeneous LCCDE}
+\subsection{First-Order Homogeneous LCCDE}
 
 Consider the first order homogeneous differential equation
 \[
@@ -170,7 +168,7 @@ and the final solution is
 \[
 y(t) = 10e^{-3 t} 
 \]
-\subsubsection{Second-Order Homogeneous LCCDE}
+\subsection{Second-Order Homogeneous LCCDE}
 
 Consider the second-order homogeneous differential equation
 \[
@@ -224,7 +222,7 @@ y(t) = e^{-t}\left(C_1 + C_2t\right)
 
 In each of the above cases the constants, $C_1$ and $C_2$, are found using the auxillary conditions $y(t_0)$ and $y\prime(t_0)$.
 
-\subsection{Finding the impulse response of a system described by a LCCDE}
+\section{Finding the impulse response of a system described by a LCCDE}
 
 As we will see next week an important response of a system is the one that corresponds to an impulse input, i.e. the \emph{impulse response} $y(t) = h(t)$ when $x(t) = \delta(t)$. Thus we focus here on a recipe for solving LCCDEs for this special case when $M \leq N$. We will skip the derivation of why this works.
 

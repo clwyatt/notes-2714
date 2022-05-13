@@ -1,16 +1,15 @@
-\title{Outline and Notes for\\ ECE 2714: Signals and Systems}
-\author{C.L. Wyatt}
-\date{Spring 2022 Version}
-\documentclass{article}
+\documentclass[]{book}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % begin preamble -- MOVE TO STY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% more modern font (mismatch with font in figures)
-%\usepackage{newtxtext}
-%\usepackage{newtxmath}
-    
-\usepackage[parfill]{parskip}
+\usepackage[Bjarne]{fncychap}
+
+\usepackage{fancyhdr}
+%% \fancyhf{}
+%% \fancyhead[R]{\thepage}
+\pagestyle{fancy}
+
 \usepackage{amsmath, amssymb, graphicx, fullpage}
 
 \usepackage{amsthm}
@@ -40,71 +39,86 @@
 % use less fancy real and imag operators
 \renewcommand{\Re}{\operatorname{Re}}
 \renewcommand{\Im}{\operatorname{Im}}
+
+% index
+\usepackage{imakeidx}
+\makeindex[columns=2, title=Topic Index, intoc]
+
 % end preamble
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\numberwithin{section}{chapter}
+\numberwithin{equation}{chapter}
+
+
 \begin{document}
+
+\frontmatter
+
+\title{Outline and Notes for\\ ECE 2714: Signals and Systems}
+\author{C.L. Wyatt}
+\date{Spring 2022\\Version \today}
 \maketitle
-\begin{abstract}
-This is set of notes and examples for ECE 2714 in outline style. It is not a replacement for the textbook, but can act as a reference and guide your reading. It is also not a replacement for attending class, but a prerequisite. These notes are not comprehensive -- often additional material and insights are covered during class.
-\end{abstract}
+This work is licensed under a Creative Commons Attribution 4.0 International License.
 
-\newpage
+\chapter*{Preface}
+
+\section*{To the student:}
+This is a set of notes and examples for ECE 2714 in outline style. It is not a replacement for the textbook, but can act as a reference and guide your reading. It is also not a replacement for attending class, but a prerequisite. These notes are not comprehensive -- often additional material and insights are covered during class.
+
+This material is well covered in the official course text "Oppenheim, A. V., Willsky, A. S., and Nawab, S. H. Signals and Systems\. ii, Essex UK: Prentice Hall Pearson, 1996." (abbreviated OW). This is an older, but very good book. However there are many, many texts that cover the same material. \textit{Engaged} reading a textbook is one of the most important things you can do to learn this material. Again, these notes should \textbf{not} be considered a replacement for a textbook.
+
+\section*{To the instructor:}
+These notes are simply a way to provide some consistency in topic coverage and notation between and within semesters. Feel free to share these with your class but you are under no obligation to do so. There are many alternative ways to motivate and develop this material and you should use the way that you like best. This is just how I do it.
+
+Each chapter corresponds to a "Topic Learning Objective" and would typically be covered in one class meeting on a Tuesday-Thursday schedule. Note CT and DT topics are taught interleaved rather than in separate blocks. This gets the student used to going back and forth between the two signal and system types. We introduce time-domain topics first, followed by (real) frequency domain topics, using complex frequency domain for sinusoidal analysis only and as a bridge. Detailed analysis and application of Laplace and Z-transforms is left to ECE 3704. 
+
+\section*{Acknowledgements}
+The development of this course has been, and continues to be, a team effort. Dr. Mike Buehrer was instrumental in the initial design and roll-out of the course. Dr. Mary Lanzerotti has helped enormously with the course organization and academic integrity. All the instructors thus far, Drs. Buehrer, Safaai-Jazi, Lanzerotti, Kekatos, and Talty, have shaped the course in some fashion and are to be commended for its deployment under trying circumstances.
+
+\vspace{2em}
+\begin{flushright}
+C.L. Wyatt\\
+May 13, 2022
+\end{flushright}
+
+
 \tableofcontents
-\newpage
+\mainmatter
 
-% switch formatting
-\setlength{\parindent}{0em}
-\setlength{\parskip}{1em}
+\include{00-intro}
+\include{02-ct-signals}
+\include{03-dt-signals}
+\include{04-ct-lccde}
+\include{05-dt-lccde}
+\include{06-ct-lti}
+\include{07-dt-lti}
+\include{08-ct-conv}
+\include{09-dt-conv}
+\include{10-ct-block}
+\include{11-dt-block}
+\include{12-ct-tf}
+\include{13-dt-tf}
+\include{14-ctfs}
+\include{15-dtfs}
+\include{16-ctft} % TODO add table of transforms
+\include{17-dtft} % TODO add table of transforms
+\include{18-ct-fr}
+\include{19-dt-fr}
+\include{20-ct-filters}
+\include{21-dt-filters}
+\include{22-dft}
+\include{23-sampling}
+\include{24-recon}
 
-\input{00-intro}
-\newpage
-\input{01-prereqs}
-\newpage
-\input{02-ct-signals}
-\newpage
-\input{03-dt-signals}
-\newpage
-\input{04-ct-lccde}
-\newpage
-\input{05-dt-lccde}
-\newpage
-\input{06-ct-lti}
-\newpage
-\input{07-dt-lti}
-\newpage
-\input{08-ct-conv}
-\newpage
-\input{09-dt-conv}
-\newpage
-\input{10-ct-block}
-\newpage
-\input{11-dt-block}
-\newpage
-\input{12-ct-tf}
-\newpage
-\input{13-dt-tf}
-\newpage
-\input{14-ctfs}
-\newpage
-\input{15-dtfs}
-\newpage
-\input{16-ctft}
-\newpage
-\input{17-dtft}
-\newpage
-\input{18-ct-fr}
-\newpage
-\input{19-dt-fr}
-\newpage
-\input{20-ct-filters}
-\newpage
-\input{21-dt-filters}
-\newpage
-\input{22-dft}
-\newpage
-\input{23-sampling}
-\newpage
-\input{24-recon}
+\appendix
+\include{01-prereqs}
+
+\backmatter
+%\bibliographystyle{amsalpha}
+%\bibliography{}
+
+\printindex
 
 \end{document}
+

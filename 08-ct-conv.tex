@@ -1,6 +1,6 @@
-\section{CT Convolution}
+\chapter{CT Convolution}
 
-\subsection{Review CT LTI systems and superposition property}
+\section{Review CT LTI systems and superposition property}
 
 Recall the superposition property of LTI systems. If a CT system is LTI then the superposition property holds. Given a system where
 \[   
@@ -21,7 +21,7 @@ Superposition enables a powerful problem reduction strategy. The overall idea fo
 
 This will be a recurring pattern in this course. In this lecture, the simple signals are weighted, time shifts of one signal, the delta function, $\delta(t)$.
 
-\subsection{Convolution Integral}
+\section{Convolution Integral}
 
 To derive this we start with the sifting property of the CT impulse function (from lecture 2)
 \[
@@ -45,7 +45,7 @@ This is called the \emph{convolution integral}.
 
 It is worth pausing here to see the signifigance. For a LTI CT system, if I know it's impulse response $h(t)$, I can find the response due to \textbf{any} input using convolution. For this reason the impulse response is another way to represent an LTI system.
 
-\subsection{Graphical View of the Convolution Integral.}
+\section{Graphical View of the Convolution Integral.}
 
 Lets break the convolution expression down into pieces. In it's general form the convolution of two signals $x_1(t)$ and $x_2(t)$ is
 \[
@@ -71,7 +71,7 @@ Then the integrand of convolution is the product $x_1(\tau)x_2(t-\tau)$ whose pl
 \end{center}
 Then convolution is the total integral of the product (bold curves above) for that value of $t$. For the example above we see the integral will be zero for $t$ less than $t_0$ since the two signals do not overlap and their product is zero. For $t_0 < t < t_1$ the signals overap and the product is non-zero, and the effective bounds of integration are $[t_0,t]$. For $t > t_1$ the signals again overap and the product is non-zero, but the effective bounds of integration are $[t_0,t_1]$. 
 
-\subsection{Examples of CT Convolution}
+\section{Examples of CT Convolution}
 
 \begin{example}[$u(t) * u(t)$] Consider the convolution of two unit step functions.
   \[
@@ -156,7 +156,7 @@ The following table lists several convolution results.
 
 \end{center}
 
-\subsection{Properties of CT Convolution}
+\section{Properties of CT Convolution}
 There are several useful properties of convolution. We do not prove these here, but it is not terribly difficult to do so. Given signals $x_1(t)$, $x_2(t)$, and $x_3(t)$:
 
 \begin{description}

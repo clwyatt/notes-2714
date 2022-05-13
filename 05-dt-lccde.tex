@@ -1,4 +1,4 @@
-\section{DT systems as linear constant coefficient difference equations}
+\chapter{DT systems as linear constant coefficient difference equations}
 
 A \emph{difference equation} is a relation among combinations of two DT functions and shifted versions of them. Similar to differential equations where the solution is a CT function, the solution to a difference equation is a DT function. For example:
 \[                         
@@ -8,7 +8,7 @@ is a first order, linear, constant-coefficient difference equation. Given $x[n]$
 
 There is a parallel theory to differential equations for solving difference equations. However in this lecture we will focus specifically on the iterative solution of linear, constant-coefficient difference equations and the case when the input is a delta function, as this is all we need for this course.
 
-\subsection{Definition of linear constant coefficient difference equation}
+\section{Definition of linear constant coefficient difference equation}
 
 A \emph{linear}, \emph{constant-coefficient}, difference equation (LCCDE) comes in one of two forms.
 
@@ -96,7 +96,7 @@ Note: The DT delay operator $D$ is similar, but \emph{not} identical to the deri
 $\blacksquare$
 \end{example}
 
-\subsection{Iterative solution of LCCDEs}
+\section{Iterative solution of LCCDEs}
 
 Difference equations are different (pun!) from differential equations in that they can be solved by manually running the equation forward using previous values of the output and current and previous values of the input, given some initial conditions. This is called an \emph{iterative} solution for this reason.
 
@@ -135,7 +135,7 @@ Now lets examine what this expression says in words. To compute the current outp
 $\blacksquare$
 \end{example}
 
-\subsection{Solution of the homogeneous LCCDE}
+\section{Solution of the homogeneous LCCDE}
 
 Note the iterative solution does not give us (directly) and analytical expression for the output at arbitrary $n$. We have to start at the initial conditions and compute our way up to $n$. We now consider an analytical solution when the input is zero, the solution to the \emph{homogeneous} difference equation
 \[
@@ -206,7 +206,7 @@ for constants $C$ and $\theta$.
   $\blacksquare$
 \end{example}
 
-\subsection{Impulse response from LCCDE}
+\section{Impulse response from LCCDE}
 
 Today our goal is to find the solution to $Q(E)y=P(E)x$ when $x[n] = \delta[n]$ assuming $y[n] = 0$ for $n < 0$, giving the \emph{impulse response} $y[n] = h[n]$. We skip the derivation here and just give a procedure.
 

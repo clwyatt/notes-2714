@@ -1,12 +1,12 @@
-\section{CT Frequency Response}
+\chapter{CT Frequency Response}
 
 In this lecture we are going to focus on the frequency response and highlight it's importance in linear systems theory.
 
-\subsection{Determining the frequency response (FR) of a CT system}
+\section{Determining the frequency response (FR) of a CT system}
 
 The frequency response of a CT LTI system can be thought of as arising in several equivalent ways. What follows is a common, but not exhaustive, list of ways the frequency response can be derived from other representations.
 
-\subsubsection*{Using the Eigenvalues / Transfer Function}
+\subsection*{Using the Eigenvalues / Transfer Function}
 
 Recall if we apply the Eigenfunction $e^{st}$ for the complex frequency $s \in \mathbb{C}$ as the input to a LTI system, the output is the Eigenfunction scaled by the Eigenvalue (transfer function) $H(s)$ for values of $s$ in the region of convergence, where
 \[
@@ -43,7 +43,7 @@ If a system is stable, then the region of convergence includes the imaginary axi
   \\$\blacksquare$
 \end{example}
 
-\subsubsection*{Using the CTFT}
+\subsection*{Using the CTFT}
 
 Another way we can view the frequency response is as the CT Fourier Transform of the impulse response. If the system is stable, then the impulse response is absolutely integrable, and the Fourier transform exists giving $H(j\omega) = \mathcal{F}\left\{h(t)\right\}$. This is connected to the transfer function by noting the bilateral Laplace transform and the Fourier Transform are identical under the substitution $s = j\omega$, which is allowed if the system is stable.
 
@@ -64,7 +64,7 @@ H(j\omega) = \mathcal{F}\left\{ \left(e^{-t}-e^{-6t}\right)u(t) \right\} = \math
 $\blacksquare$
 \end{example}
 
-\subsubsection*{Directly from a LCCDE}
+\subsection*{Directly from a LCCDE}
 
 By the convolution theorem of the CTFT, the frequency response is the ratio of the output to input in the frequency domain, i.e.
 \[
@@ -94,7 +94,7 @@ If the system is stable (and thus the frequency response exists) then \textbf{al
   $\blacksquare$
 \end{example}
 
-\subsection{Magnitude-phase representation of the CTFR}
+\section{Magnitude-phase representation of the CTFR}
 
 Note that any complex valued function can be expressed in polar form using the magnitude and phase. Specifically the input and output can be put into this form
 \[
@@ -118,7 +118,7 @@ By the convolution theorem then
   \]
   This is the magnitude and phase representation of the frequency response.
   
-\subsection{CTFR acting on sinusoids}
+\section{CTFR acting on sinusoids}
 
 The advantage of the magnitude and phase representation of the frequency response, is the ease with which we can find the output due to a sinusoidal input. If we apply a sinusoidal input $x(t) = A e^{j\omega t}$, the output is a the same sinusoid scaled by the frequency response $y(t) = H(j\omega) A e^{j\omega t}$.
 
@@ -152,5 +152,75 @@ x(t) = \frac{1}{2\pi}\int\limits_{-\infty}^{\infty} X(j \omega) \, e^{j \omega t
 
 Thus we arrive at the reason for the name \textit{Frequency Response} -- it specifies the the response of a stable system to any linear combination of sinusoidal inputs, i.e. any signal with a Fourier Transform.
 
+
 \subsection{Bode plots}
-\subsection{CTFR of first and second order systems}
+
+We can visualize the frequency response as a plot of the real and imaginary part, or, of the magnitude and phase. Since the magnitude and phase allow us to directly see the system behavior at a given frequency, those plots are much more useful.
+
+Rather than simply plot the magnitude and phase as a function of $\omega$, it is common to change the abscissa (horizontal / $\omega$-axis) to be on a logarithmic scale and so only plot the positive frequency portion of the spectrum (recall if the signal is real, the frequency response is even, so no information is lost). This is because the frequency response for physically realizable systems changes slowly as a function of frequency. Plotting on a log-scale compresses this information horizontally so that we can see how a wide range of frequency content is scaled. When plotting the magnitude spectrum it is also common to make the ordinate (vertical / gain axis) to be in decibels (dB). This is because of Weber's law, which states the humans perceive a doubling in strength of stimulus, when it is actually a ten-fold increase. Thus the magnitude of the frequency response in dB is $20 \log_{10} |H(j\omega)|$. When the frequency response is plotted this particular way we get what is called a \textit{Bode plot} (after the engineer Hendrik Wade Bode, an important figure in the development of control theory).
+
+You will likely encounter Bode plots at several points in your career, so it is important to understand them well enough to create them on your own using software and read them. Also data-sheets and other documentation for CT devices generally use a Bode plot rather than giving an explicit mathematical model of the frequency response. It is also instructive to learn how to plot them manually (which was the traditional way to do it) since it gives you insight that can help with reverse engineering a model, however we do not cover this in detail in this course. Note that we will plot the spectrum as a function of frequency in units of rad/s, but it is also common to see it plotted in units of Hz. Take care to read the horizontal axis label as mixing up the two is a common source of error.
+
+\begin{example} Consider a frequency response given by
+  \[
+  H(j\omega) = \frac{20000}{(j\omega)^2 + 300(j\omega) + 20000}
+  \]
+  The following Matlab code shows you how to plot the spectrum as a Bode plot (with some extra code to make it look nicer). You should read the documentation for the \texttt{bode} command in Matlab. It is also easy to just compute the magnitude and phase yourself.
+  
+\begin{verbatim}
+H = tf([20000],[1,300,20000]);
+[mag,ph,w] = bode(H);
+
+% Create a nice bode plot 
+hFig = figure();
+hold on;
+
+subplot(2,1,1);
+hm = semilogx(w,20*log10(squeeze(mag)));
+grid on;
+hTitle  = title ('Frequency Response');
+hYLabel1 = ylabel('Magnitude (dB)');
+set(gca, 'FontSize', 14, 'YTick', -60:10:20, ...
+    'Box', 'off', 'LineWidth', 2);
+
+subplot(2,1,2);
+hp = semilogx(w,squeeze(ph*(pi/180)));
+grid on;
+hYLabel2 = ylabel('Phase (radians)');
+hXLabel = xlabel('Frequency (rad/s)');
+set(gca, 'FontSize', 14, 'Box', 'off', 'LineWidth', 2);
+
+set(hm, 'linewidth', 2);
+set(hp, 'linewidth', 2);
+set([hXLabel, hYLabel1, hYLabel2]  , ...
+     'FontSize'   , 14          );
+set( hTitle                    , ...
+     'FontSize'   , 14          , ...
+     'FontWeight' , 'bold'      );
+\end{verbatim}
+This gives the following plot
+\begin{center}
+\includegraphics[scale=0.5]{graphics/lecture20_1.png}
+\end{center}
+
+$\blacksquare$
+\end{example}
+
+To read a Bode plot to see the behavior of the system at a given frequency, one need only read the values off the plot and convert from dB to a unit-less gain. A common mistake is to not realize the horizontal axis is logarithmic.
+
+\begin{example}
+  Suppose you are given the Bode plot (only) from the previous example and are asked what the output of the system is when the input is $x(t) = \cos(2\pi 32 t)$, i.e. a sinusoid at 32 Hz.\\
+  \textbf{Solution:} First we determine the frequency in rad/s, $\omega = 2\pi 32 \approx 200$ rad/s. We go to that frequency on the Bode plot and read off a value of about $-10$ dB for the magnitude and about $-1.9$ rad for the phase. To convert back from dB
+  \[
+  |H(200)| = 10^{\frac{-10}{20}} \approx 0.3 
+  \]
+  so the output would be
+  \[
+  y(t) \approx 0.3\cos(2\pi 32 t - 1.9)
+  \]
+  $\blacksquare$
+\end{example}
+
+\section{CTFR of first and second order systems}
+
+TODO

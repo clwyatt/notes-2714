@@ -1,4 +1,4 @@
-\section{CT Fourier Series}
+\chapter{CT Fourier Series}
 
 Recall the complex exponential $e^{st}$ for $s\in\mathbb{C}$ is the Eigenfunction of CT LTI systems. If we can decompose an input into a (possibly infinite) sum of such signals, we can easily determine the output using the superposition principle. In this section we consider the decomposition when the input is periodic, called the CT \emph{Fourier Series} (CTFS).
 
@@ -8,7 +8,7 @@ x(t) = \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t} \; \longright
 \]
 where $H(j k\omega_0)$ are the Eigenvalues or frequency response. We now turn to determining under what circumstances the decomposition exists and how to find the coefficients $a_k$.
 
-\subsection{Synthesis and Analysis Equation}
+\section{Synthesis and Analysis Equation}
 
 Suppose we can approximate (we will revisit shortly when this approximation is exact) the periodic function $x(t)$ by the sum
 \[
@@ -124,7 +124,7 @@ Giving the amplitude and phase spectrum plot
 $\blacksquare$
 \end{example}
 
-\subsection{Variations on the Synthesis and Analysis Equations}
+\section{Variations on the Synthesis and Analysis Equations}
 There are two commonly used, equivalent, expressions for computing the CTFS coefficients. They can be derived using Euler's formula and related trig identities.
 
 \begin{itemize}
@@ -168,7 +168,7 @@ There are two commonly used, equivalent, expressions for computing the CTFS coef
   \]
 \end{itemize}
 
-\subsection{Convergence of the CT Fourier Series}
+\section{Convergence of the CT Fourier Series}
 
 As mentioned above the Fourier Series is strictly speaking an approximation
 \[
@@ -316,7 +316,7 @@ These conditions rule out pathological functions. For most practical signals of 
 \end{example}
 
 
-\subsection{Properties of the CT Fourier Series}
+\section{Properties of the CT Fourier Series}
 
 Let $a_k$ and $b_k$ be the CTFS coefficients for the periodic signals $x(t)$ and $y(t)$ respectively.
 
@@ -357,8 +357,3 @@ Let $a_k$ and $b_k$ be the CTFS coefficients for the periodic signals $x(t)$ and
   \frac{1}{T_0} \int_{T_0} |x(t)|^2\;dt = \sum\limits_{k = -\infty}^{\infty} |a_k|^2
   \]
 \end{itemize}
-
-
-%\subsection{Applications of the CT Fourier Series}
-
-%TODO example of recitifier

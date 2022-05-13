@@ -1,4 +1,4 @@
-\section{DT Fourier Series}
+\chapter{DT Fourier Series}
 
 Recall the complex exponential $z^n$ is the Eigenfunction of DT LTI systems. If we can decompose an input into a (possibly infinite) sum of such signals, we can easily determine the output using the superposition principle. In this section we consider the decomposition when the input is periodic, called the DT \emph{Fourier Series} (DTFS). The DTFS is similar, but not identical to the CTFS. Notably, the approximation requires only a finite number of terms, there are no convergence issues, and the resulting spectrum is a periodic function.
 
@@ -8,7 +8,7 @@ x[n] = \sum\limits_{k = N_0}^{N_0 + N-1} a_k e^{jk\omega_0n} \;\longrightarrow\;
 \]
 where $H\left(e^{j k\omega_0}\right)$ are the Eigenvalues or DT frequency response. We now turn to how to find the coefficients $a_k$.
 
-\subsection{Synthesis and Analysis Equation}
+\section{Synthesis and Analysis Equation}
 
 Similar to the CTFS we wish to show that any periodic DT signal can be represented by the sum of complex exponentials whose frequencies are harmonics of the fundamental. This differs from the CTFS in that there are only $N$ distinct harmonics, so that the sum is over a finite range
 \[  
@@ -133,7 +133,7 @@ $\blacksquare$
   $\blacksquare$
 \end{example}
 
-\subsection{Properties of the DT Fourier Series}
+\section{Properties of the DT Fourier Series}
 
 Given two signals $x[n]$ and $y[n]$ periodic in $N$ with $\omega_0 = \frac{2\pi}{N}$, having DT Fourier coefficients
 $a_k$ and $b_k$ respectively.
@@ -178,7 +178,7 @@ $a_k$ and $b_k$ respectively.
 \end{itemize}
 
 
-\subsection{Comparison of CT and DT Fourier Series}
+\section{Comparison of CT and DT Fourier Series}
 A summary of the CT and DT Fourier Series is as follows.\\
 
 In CT, a periodic signal $x(t)$ can be decomposed as a countably infinite combination of complex sinusoids at harmonic frequencies of the fundamental. The Fourier series coefficients are a discrete signal that is a-periodic.

@@ -1,4 +1,4 @@
-\section{Course Introduction}
+\chapter{Course Introduction}
 
 The concepts and techniques in this course are probably the most useful in engineering. A \textit{signal} is a function of one or more independent variables conveying information about a physical (or virtual) phenomena. A \textit{system} may respond to signals to produce other signals, or produce signals directly.
 
@@ -19,6 +19,8 @@ This course is about the mathematical models and related techniques for the desi
 \item the representation and analysis of signals as information carrying channels
 \item and how to analyze and implement linear, time-invariant systems to transform those signals.
 \end{itemize}
+
+\section{Example Signals and Systems}
 
 \begin{example} Electrical Circuits. This is a Sallen-Key filter, a second-order system commonly use to select frequencies from a signal:
   \begin{center}
@@ -42,7 +44,8 @@ This course is about the mathematical models and related techniques for the desi
       (12,3.5) to[open, v=$y(t)$] (12,0);
     \end{circuitikz}
   \end{center}
-  How do we choose the values of the resistors and capacitors to select the frequencies we are interested in? How do we determine what those frequencies are?
+  There are two signals we can easily identify, the input signal as the voltage applied across $x(t)$, and the output voltage measured across $y(t)$. We build on your circuits course by viewing this circuit as an implementation of a more abstract linear system. We see how it can be viewed as a frequency selective filter. We will see how to answer questions such as:  
+  how do we choose the values of the resistors and capacitors to select the frequencies we are interested in? and how do we determine what those frequencies are?
 \end{example}
 
 \begin{example} Robotic Joint. This is a Linear, Time-Invariant model of a DC motor, a mixture of electrical and mechanical components.
@@ -112,7 +115,7 @@ This course is about the mathematical models and related techniques for the desi
   How should the signal be processed so it can be transmitted? How should the received signal be processed?
 \end{example}
 
-\subsection*{Types of Problems}
+\section{Types of Problems}
 Applications of this material occur in all areas of science and engineering. When we have a measured output but are unsure what combination of inputs and system components could have produced it, we have a \textit{modeling} problem.
 
 \begin{center}
@@ -181,7 +184,7 @@ This course focuses on modeling and analysis with applications to electrical cir
 
 Subsequent courses, e.g. ECE 3704, focus more on analysis and design.
 
-\subsection*{Learning Objectives}
+\section{Learning Objectives}
 
 The learning objectives (LOs) for the course are:
 \begin{enumerate}
@@ -192,17 +195,17 @@ The learning objectives (LOs) for the course are:
 \item[LO-5] Communicate solutions to problems and document projects within the domain of signals and systems through formal written documents.
 \end{enumerate}
 
-These are broken down further into the following topic learning objectives (TLOs). These are well covered in the course Textbook "Oppenheim, A. V., Willsky, A. S., and Nawab, S. H. Signals and Systems\. ii, Essex UK: Prentice Hall Pearson, 1996." (abbreviated OW). This is an older, but very good book. However there are many, many texts that cover the same material. \textit{Engaged} reading the textbook is one of the most important things you can do to learn this material. Importantly, these notes should \textbf{not} be considered a replacement for the textbook. The TLOs generally onto one class meeting.
+These are broken down further into the following topic learning objectives (TLOs).  The TLOs generally map onto one class meeting but are used extensively in later TLOs.
 
 \begin{enumerate}
-\item[TLO-1] Course introduction (OW Forward and \S 1.0)
+\item[TLO-1] Course introduction (OW Forward and \S 1.0) TODO add brief summary?
   \begin{enumerate}
   \item Signals as models
   \item Systems as transformation of signals
   \item Prerequisites
   \end{enumerate}
 
-\item[TLO-2] Continuous-time (CT) signals (OW \S 1.1 through 1.4 and 2.5)
+\item[TLO-2] Continuous-time (CT) signals (OW \S 1.1 through 1.4 and 2.5): A continuous-time (CT) signal \index{CT Signal} is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.
   \begin{enumerate}
   \item Continuous-time signals as functions $\mathbb{R}\mapsto\mathbb{C}$
   \item Transformations of time
@@ -493,7 +496,7 @@ These are broken down further into the following topic learning objectives (TLOs
   \end{enumerate}
 \end{enumerate}
 
-\subsection*{Graphical Outline}
+\section{Graphical Outline}
 
 \begin{center}
   \includegraphics[scale=1]{graphics/system-representations-fig.pdf}

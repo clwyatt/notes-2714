@@ -1,6 +1,6 @@
-\section{DT Block Diagrams}
+\chapter{DT Block Diagrams}
 
-\subsection{The Four Basic Motifs}
+\section{The Four Basic Motifs}
 
 Block diagrams of DT systems are similar to CT systems.
 
@@ -84,7 +84,7 @@ The four motifs are:
 
 Note the feedback is negative (the minus sign on the feedback summation input). As in CT, these can be use in various combinations.
 
-\subsection{Connections to Convolution}
+\section{Connections to Convolution}
 
 Each subsystem, $\mathcal{S}_i$, can be represented by a basic discrete time-domain operation (e.g. differences, running sums, addition, and scaling) or more generally by it's impulse response $h_i[n]$.
 
@@ -279,11 +279,11 @@ These properties allow us to perform transformations, either breaking up a syste
   \end{center}
 \end{example}
 
-\subsection{Connections to LCCDE}
+\section{Connections to LCCDE}
 
 The other DT system representation we have seen are linear, constant-coefficient difference equations. These can be expressed as combinations of advance or delay blocks. This is straightforward compared the CT system case.
 
-\subsubsection*{First-Order System}
+\subsection*{First-Order System}
 
 To illustrate this consider the first-order LCCDE
 \[
@@ -343,7 +343,7 @@ which can be expressed as a block diagram using the delay operator, $D$
 
 The choice of using advance or delay blocks results in a non-causal or causal (respectively) system. Thus, delay blocks are required for real-time DT system implementations.
 
-\subsubsection*{Second-Order System}
+\subsection*{Second-Order System}
 
 Now consider the second-order system
 \[
@@ -383,7 +383,7 @@ we obtain the block diagram
   \end{tikzpicture}
 \end{center}
 
-\subsection{Implementing a DT System}
+\section{Implementing a DT System}
 
 As in the CT case, one of the most powerful uses of block diagrams is the implementation of a DT system in hardware. As we shall see later in the semester, designing a DT system for a particular purpose leads to a mathematical description that is equivalent to either an impulse response or a LCCDE. We have seen how these can be represented as block diagrams. Once we have reduced a system to blocks consisting of simple operations, we can then convert the block diagram to a digital circuit, implement using a digital signal processor, or write an equivalent program to run on an embedded or general purpose computer.
 

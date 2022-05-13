@@ -1,8 +1,8 @@
-\section{Continuous-time Signals}
+\chapter{Continuous-time Signals}
 
-A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.
+A continuous-time (CT) signal \index{CT Signal} is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.
 
-\subsection{Signals as Functions}
+\section{Signals as Functions}
 
 In order to reason about signals mathematically we need a representation or {\it model}. Signals are modeled as functions, mappings between sets
 \[
@@ -58,7 +58,7 @@ The co-domain can also be complex.
   
 Since the domains $\mathbb{R}$ and $\mathbb{Z}$ are usually interpreted as time, we will call these {\it time-domain} signals. In the time-domain, when the co-domain is $\mathbb{R}$ we call these real signals. All physical signals are real. However complex signals will become important when we discuss the frequency domain.
 
-\subsection{Primitive Models}
+\section{Primitive Models}
 
 We mathematically model signals by combining elementary/primitive functions, for example:
   
@@ -127,7 +127,7 @@ We use this model so much we give it it's own name and symbol: Unit Step, $u(t)$
     This example shows we can use addition to build-up signals to approximate real signals of interest.
 \end{example}
 
-\subsection{Basic Transformations}
+\section{Basic Transformations}
 
 We can also apply transformations to signals to increase their modeling flexibility.
   
@@ -174,7 +174,7 @@ We can also apply transformations to signals to increase their modeling flexibil
     Example: time reversal $ x_2(t) = x_1(-t)$
 \end{itemize}
 
-\subsection{Characterization of Signals}
+\section{Characterization of Signals}
 
 There are a few basic ways of characterizing signals.
 
@@ -236,7 +236,7 @@ Signals can be characterized based on their energy or power:
 
 Note, these categories are non-exclusive, some signals are neither energy or power signals.
 
-\subsection{Unit Impulse Function}
+\section{Unit Impulse Function}
 An important CT signal is the unit impulse function, also called the "delta" $\delta$ function for the symbol traditionally used to define it. Applying this signal to a system models a "kick" to that system. For example, consider striking a tuning fork. The reason this signal is so important is that it will turn out that the response of the system to this input tells us all we need to know about a linear, time-invariant system!
 
 \begin{definition}[CT Impulse Function]
@@ -327,7 +327,7 @@ We can apply additional transformations to the impulse and step functions to get
       \]
 \end{itemize}
 
-\subsection{CT Complex Exponential}
+\section{CT Complex Exponential}
 
 One of the most important signals in systems theory is the complex exponential:
 \[
@@ -453,7 +453,7 @@ has the functional representation
 x(t) = 2\cos\left(\frac{\pi}{2} (t+\tfrac{1}{2}) \right) =  2\cos\left(\frac{\pi}{2} t +\frac{\pi}{4} \right)
 \]
 
-\subsubsection{Energy of CT complex sinusoid}
+\subsection{Energy of CT complex sinusoid}
 
 Recall the energy of a CT signal $x(t)$ is    
 \[
@@ -464,7 +464,7 @@ Substituting $x(t) = e^{j\omega_0 t}$ and letting $T = N T_0$
     E_x = \lim_{N\rightarrow\infty} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} 2NT_0 = \infty
   \]
 
-\subsubsection{Power of CT complex sinusoid}
+\subsection{Power of CT complex sinusoid}
 
 Recall the power of a CT signal $x(t)$ is
 \[
@@ -475,7 +475,7 @@ Again, substituting $x(t) = e^{j\omega_0 t}$ and letting $T = N T_0$
   E_x = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} 2NT_0 = 1
 \]
   
-\subsubsection{Harmonics}
+\subsection{Harmonics}
 
 Two CT complex sinusoids are {\it harmonics} of one another is both are periodic in $T_0$. This occurs when
 
@@ -485,7 +485,7 @@ Two CT complex sinusoids are {\it harmonics} of one another is both are periodic
 
 The term comes from music where the vibrations of a string instrument are modeled as a weighted combination of harmonic tones. 
 
-\subsubsection{Geometric interpretation of the Complex Exponential}
+\subsection{Geometric interpretation of the Complex Exponential}
 
 In the general case we get a sinusoid signal modulated by an exponential. Let $C = Ae^{j\phi}$ and $a = r + j\omega_0$, then
 \[
@@ -504,3 +504,101 @@ An important visualization of the general case is to view the signal x(t) as a v
 \end{center}
 
 For $r < 0$ the tip of the arrow traces out an inward spiral, whereas for $r > 0$ it traces out an outward spiral. For $r = 0$ it traces out the unit circle.
+
+\section{Solved Problems}
+
+\begin{enumerate}
+
+\item Consider a signal described by the function
+  \[
+  x(t) = e^{-3t}\sin(10\pi t)u(t)
+  \]
+
+  a) Determine the magnitude and phase of $x\left( \frac{1}{20}\right)$\\
+  \textbf{Solution:}
+  Substituting $t = \frac{1}{20}$ gives
+  \[
+  x\left( \frac{1}{20}\right) = e^{-3\frac{1}{20}}\sin\left(10\pi \frac{1}{20}\right)u\left( \frac{1}{20}\right) = e^{-\frac{3}{20}} \approx 0.86
+  \]
+  Since the signal is purely real and exponential is always positive, the magnitude is
+  \[
+  \left|x\left( \frac{1}{20}\right)\right| = \left| e^{-\frac{3}{20}}\right| =  e^{-\frac{3}{20}}  \approx 0.86
+  \]
+  and the phase is
+  \[
+  \angle x\left( \frac{1}{20}\right) = 0
+  \]
+
+  b) Using Matlab, plot the signal $|x(t)|$ between $[-2, 2]$. Give your code and embed the plot.\\
+
+  \textbf{Solution:}
+\begin{verbatim}
+% Solution to PS01 - Problem 1b
+t = -2:0.001:2;
+x = exp(-3*t).*sin(10*pi*t).*heaviside(t);
+hp = plot(t,abs(x));
+grid on;
+xh = xlabel('t');
+yh = ylabel('|x(t)|');
+th = title('Plot for PS01 Problem 1b');
+
+% make the plot more readable
+set(gca, 'FontSize', 12, 'Box', 'off', 'LineWidth', 2);
+set(hp, 'linewidth', 2);
+set([xh, yh, th], 'FontSize', 12);
+
+set(gcf, 'PaperPositionMode', 'auto');
+print -dpng ps1p1b.png
+\end{verbatim}
+%% \begin{center}
+%% \includegraphics[scale=0.8]{graphics/ps1p1b.png}
+%% \end{center}
+
+  \item Find a solution to the differential equation
+  \[
+  \frac{dy}{dt}(t) + 9y(t) = e^{-t}
+  \]
+  for $t \geq 0$, when $y(0) = 1$.\\
+
+  \textbf{Solution:}
+  The homogeneous equation is
+  \[
+  \frac{dy_h}{dt}(t) + 9y_h(t) = 0
+  \]
+  with initial condition $y_h(0) = 1$. It's solution is of the form
+  \[
+  y_h(t) = C\, e^{-9t} 
+  \]
+  for constant $C$. Using the initial condition
+  \[
+  y_h(0) = C\, e^{-0} = C = 1
+  \]
+  gives
+  \[
+  y_h(t) = e^{-9t} 
+  \]
+  The particular solution is of the form
+  \[
+  y_p(t) = C_1 e^{-t} + C_2 e^{-9t}
+  \]
+  Substitution and equating coefficients gives $C_1 = \frac{1}{8}$ and $C_2 = -\frac{1}{8}$. The total solution is the sum of the two solutions or
+  \[
+  y(t) = \frac{1}{8} e^{-t} - \frac{1}{8} e^{-9t} + e^{-9t} = \frac{1}{8} e^{-t} + \frac{7}{8} e^{-9t}
+  \]
+
+  \item Compute the integral
+    \[
+    \int\limits_{-\infty}^{\infty} e^{-t^2} \, \delta(t-10)\; dt
+    \]
+    where $\delta(t)$ is the delta function.\\
+    \textbf{Solution:}
+
+  Using the sifting property of the delta function
+  \[
+  \int\limits_{a}^{b} f(t) \, \delta(t-t_0)\; dt = f(t_0)
+  \]
+  for $a < t_0 < b$, we get
+  \[
+  \int\limits_{-\infty}^{\infty} e^{-t^2} \, \delta(t-10)\; dt = e^{-100} \approx 0
+  \]  
+\end{enumerate}
