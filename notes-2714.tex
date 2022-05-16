@@ -3,7 +3,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % begin preamble -- MOVE TO STY
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\usepackage[Bjarne]{fncychap}
+%\usepackage[Bjarne]{fncychap} BREAKS hyperref
 
 \usepackage{fancyhdr}
 %% \fancyhf{}
@@ -44,12 +44,20 @@
 \usepackage{imakeidx}
 \makeindex[columns=2, title=Topic Index, intoc]
 
+% links
+\usepackage{color}   %May be necessary if you want to color links
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=blue,  %choose some color if you want links to stand out
+}
+
 % end preamble
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \numberwithin{section}{chapter}
 \numberwithin{equation}{chapter}
-
 
 \begin{document}
 
@@ -66,7 +74,7 @@ This work is licensed under a Creative Commons Attribution 4.0 International Lic
 \section*{To the student:}
 This is a set of notes and examples for ECE 2714 in outline style. It is not a replacement for the textbook, but can act as a reference and guide your reading. It is also not a replacement for attending class, but a prerequisite. These notes are not comprehensive -- often additional material and insights are covered during class.
 
-This material is well covered in the official course text "Oppenheim, A. V., Willsky, A. S., and Nawab, S. H. Signals and Systems\. ii, Essex UK: Prentice Hall Pearson, 1996." (abbreviated OW). This is an older, but very good book. However there are many, many texts that cover the same material. \textit{Engaged} reading a textbook is one of the most important things you can do to learn this material. Again, these notes should \textbf{not} be considered a replacement for a textbook.
+This material is well covered in the official course text "Oppenheim, A. V., Willsky, A. S., and Nawab, S. H. Signals and Systems\. ii, Essex UK: Prentice Hall Pearson, 1996." \cite{OW} (abbreviated OW). This is an older, but very good book. However there are many, many texts that cover the same material. \textit{Engaged} reading a textbook is one of the most important things you can do to learn this material. Again, these notes should \textbf{not} be considered a replacement for a textbook.
 
 \section*{To the instructor:}
 These notes are simply a way to provide some consistency in topic coverage and notation between and within semesters. Feel free to share these with your class but you are under no obligation to do so. There are many alternative ways to motivate and develop this material and you should use the way that you like best. This is just how I do it.
@@ -115,8 +123,13 @@ May 13, 2022
 \include{01-prereqs}
 
 \backmatter
-%\bibliographystyle{amsalpha}
-%\bibliography{}
+\bibliographystyle{acm}
+\begin{thebibliography}{9}
+
+\bibitem{OW}
+  Oppenheim, A. V., Willsky, A. S., and Nawab, S. H, \textit{Signals and Systems}, 2nd Edition, Essex UK: Prentice Hall Pearson, 1996.
+
+\end{thebibliography}
 
 \printindex
 
