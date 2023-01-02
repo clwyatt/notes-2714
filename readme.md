@@ -14,9 +14,8 @@ latexmk notes-2714.tex
 * merge figures and  graphics directories
 * replace matlab scripts with python and/or C++
 * move plotting scripts to seperate folder and integrate with build system
-* add remainining lecture notes
 * add a quick reference 
 * add solved problems for most sections using old problem sets
-* move to book class rather than the article?
+* add more material to appendix
 
 

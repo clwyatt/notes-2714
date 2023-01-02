@@ -228,12 +228,14 @@ As we will see next week an important response of a system is the one that corre
 
 Our goal is to find the solution to $Q(D)y = P(D)x$ when $x(t)=\delta(t)$.
 
-\textbf{Step 1:} Let $y_h(t)$ be the homogeneous solution to $Q(D)y_h = 0$ for auxillary conditions
+\textbf{Step 1:} Rearrange the LCCDE so that $a_N = 1$, i.e. divide through by $a_N$ to put it into a standard form.\\
+
+\textbf{Step 2:} Let $y_h(t)$ be the homogeneous solution to $Q(D)y_h = 0$ for auxillary conditions
   \[
     D^{N-1}y_h(0^+) = 1 \; , \; D^{N-2}y_h(0^+) = 0 \; , \; \text{etc.} \; y_h(0^+) = 0 
     \]
     
-\textbf{Step 2:} Assume a form for $h(t)$ given by:
+\textbf{Step 3:} Assume a form for $h(t)$ given by:
   \[
   h(t) = \underbrace{b_N\delta(t)}_{=0 \text{ unless } N=M} + \underbrace{\left[ P(D)y_h\right]}_{\text{apply } P(D) \text{ to } y_n(t)}u(t)
   \]
@@ -247,6 +249,10 @@ Recall from above the homogeneous solution depends on the roots of the character
 \end{itemize}
 
 Example 1: Find the impulse response of the LCCDE
+\[
+2\frac{dy}{dt}(t) + 2y(t) = 2x(t)
+\]
+In the standard for the LCCDE is
 \[
 \frac{dy}{dt}(t) + y(t) = x(t)
 \]
@@ -271,7 +277,7 @@ Example 2: Find the impulse response of the LCCDE
 \[
 \frac{dy}{dt}(t) + y(t) = \frac{dx}{dt}(t) + x(t)
 \]
-The homogeneous solution is the same as in Example 1,
+It is already in the standard form. The homogeneous solution is the same as in Example 1,
 \[
 y_h(t) = e^{-t} 
 \]
@@ -284,7 +290,7 @@ Example 3: Find the impulse response of the LCCDE
 \[
 \frac{d^2y}{dt^2}(t) + 7\frac{dy}{dt}y(t) + 10y(t) = x(t) 
 \]
-The characteristic equation is given by
+It is already in the standard form. The characteristic equation is given by
 \[
 s^2 + 7s + 10 = 0
 \]
