@@ -75,16 +75,22 @@ The absolute value or \textit{magnitude} of a complex number $z = a + jb$ is den
 \]
 For complex numbers $z_1, z_2, \ldots, z_n$, the following useful properties hold
 \begin{itemize}
-\item $|z_1\cdot z_2 \cdots z_N| = |a_1|\cdot |z_2|\cdots|z_N|$
+\item $|z_1\cdot z_2 \cdots z_N| = |z_1|\cdot |z_2|\cdots|z_N|$
 \item $\left| \frac{z_1}{z_2}\right| = \frac{|z_1|}{|z_2|}$ for $z_2 \neq 0$
 \end{itemize}
 
-\subsection*{Argument (Angle) of complex numbers}
+\subsection*{Argument (Phase Angle) of complex numbers}
 The argument or \textit{angle} of a complex number $z = a + jb$ is denoted $\angle z = \angle(a+jb)$ and is given by
 \[
 \angle(a + jb) = \arctan\frac{b}{a}
 \]
 Take care when computing this number on your calculator (or in a programming language) so that it produces and angle in radians and in the correct quadrant. For example $\angle(-1-j1) = \arctan\frac{-1}{-1} = \frac{5\pi}{4} = -\frac{3\pi}{4}$ is different from $\angle(-1-j1) = \arctan\frac{-1}{-1} = \arctan\frac{1}{1} = \frac{\pi}{4}$, the later being incorrect.
+
+For complex numbers $z_1, z_2, \ldots, z_n$, the following useful properties hold
+\begin{itemize}
+\item $\angle \left(z_1\cdot z_2 \cdots z_N\right) = \angle z_1 + \angle z_2 + \cdots + \angle z_N$
+\item $\angle z_i^{-1} = -\angle z_i$
+\end{itemize}
 
 \subsection*{Cartesian and Polar representation of complex numbers}
 
