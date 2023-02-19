@@ -82,14 +82,15 @@ where the indexing of $x_2$ is modulo the signal length, i.e. $x_2[(n-m) \mbox{ 
 
 \begin{example} The following C++ code computes the convolution of the DT signals $\{1,-1,1\}$ and $\{1,1,1,1\}$.
 \begin{verbatim}
-  double x1[6] = {1., -1., 1., 0, 0, 0};
-  double x2[6] = {1., 1., 1., 1., 0, 0};
-  double y[6];
+  const unsigned int L = 6;
+  double x1[L] = {1., -1., 1., 0, 0, 0};
+  double x2[L] = {1., 1., 1., 1., 0, 0};
+  double y[L];
 
-  for(int n = 0; n < 6; n++){
+  for(int n = 0; n < L; n++){
     double sum = 0.;
-    for(int m = 0; m < 6; m++){
-      int idx = (n-m) % 6;
+    for(int m = 0; m < L; m++){
+      int idx = (L+n-m) % L;
       sum += x1[m]*x2[idx];
     }
     y[n] = sum;
