@@ -1,4 +1,4 @@
-\chapter{Prerequisites}
+\chapter{Prerequisite and Otherwise Useful Math}
 
 This course uses many concepts from prerequisite courses, particularly those from calculus and circuits. While we assume you know this material, the following sections offer a review of the most pertinent and establish some notation. If you have trouble with any of them seek assistance -- the sooner the better.
 
@@ -233,6 +233,42 @@ Another approach to visualizing a complex number is to plot it as the tip of a v
   \end{tikzpicture}
   \end{tabular}
 \end{example}
+
+\section{Algebra}
+
+There is a fair amount of algebra involved in the manipulation of expressions in this course. Beyond the standard items there are a few techniques you might have missed or don't remember that come in handy.
+
+\subsection*{Solving a simple system of trigonometric equations}
+
+Consider the system of equations
+\begin{align*}
+  x \cos(y) &= A\\
+  x \cos(B + y) &= C
+\end{align*}
+for constants $A,B,C \in \mathbb{R}$ and variables $x,y\in\mathbb{R}$. How do you solve this for $x,y$?
+
+First expand the second equation using the trigonometric identity for the cosine of addition of two angles:
+
+\[
+x \cos(B + y) = x \cos(B)\cos(y) - x \sin(B)\sin(y) = C
+\]
+Then divide the first equation above by the previous:
+\[
+\frac{x \cos(B)\cos(y) - x \sin(B)\sin(y)}{x \cos(y)} = \frac{C}{A}
+\]
+which simplifies to
+\[
+\cos(B) - \sin(B)\frac{\sin(y)}{\cos(y)} = \frac{C}{A}
+\]
+Recognizing the tangent is sin/cos we can solve for $y$:
+\[
+y = \arctan\left(\frac{\frac{C}{A}-\cos(B)}{-\sin(B)}\right)
+\]
+Then we can subsitute back to get $x$:
+\[
+x = \frac{A}{\cos(y)}
+\]
+
 
 \section{Calculus}
 
