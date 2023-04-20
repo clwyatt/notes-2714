@@ -94,7 +94,7 @@ This gives us the DFT pair
 X[k] = \text{DFT} \{ x[n] \} = \sum_{n = 0}^{N-1}  x[n] e^{-j \frac{2\pi}{N}k n}
 \]
 \[
-x[n] = \text{IDFT} \{ x[n] \} = \frac{1}{N} \sum_{k = 0}^{N-1}  X[k] e^{j \frac{2\pi}{N}k n}
+x[n] = \text{IDFT} \{ X[k] \} = \frac{1}{N} \sum_{k = 0}^{N-1}  X[k] e^{j \frac{2\pi}{N}k n}
 \]
 Note the similarity to the DT Fourier Series when $N_0 = 0$
 \[
