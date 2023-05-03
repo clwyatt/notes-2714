@@ -26,7 +26,7 @@ Now, lets take the Fourier Transform of the Fourier series representation
 \begin{align*}
 X_1(j\omega) &= \int\limits_{-\infty}^{\infty} \sum\limits_{n=-\infty}^{\infty} \frac{1}{T_0} e^{j\tfrac{2\pi}{T_0}nt}e^{j\omega t}\; dt\\
 &= \frac{1}{T_0} \sum\limits_{n=-\infty}^{\infty} \int\limits_{-\infty}^{\infty} e^{j\tfrac{2\pi}{T_0}nt}e^{j\omega t}\; dt\\
-&= \frac{1}{T_0} \sum\limits_{n=-\infty}^{\infty} \delta(\omega - \omega_0 n)
+&= \frac{2\pi}{T_0} \sum\limits_{n=-\infty}^{\infty} \delta(\omega - \omega_0 n)
 \end{align*}
 also an impulse train in the frequency domain. Now suppose we have another signal $x_2(t)$ and we multiply $x_1(t)$ and $x_2(t)$ to get a signal $y(t)$.
 \[
@@ -45,9 +45,9 @@ y(t) = x_1(t) \cdot x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{
 Lets do the convolution
 \begin{align*}
   Y(j\omega) &= \frac{1}{2\pi} X_1(j\omega) * X_2(j\omega)\\
-  &=  \frac{1}{2\pi} \left[  \frac{1}{T_0} \sum\limits_{n=-\infty}^{\infty} \delta(\omega - \omega_0 n) \right] * X_2(j\omega)\\
-  &= \frac{1}{2\pi} \int\limits_{-\infty}^{\infty}  \frac{1}{T_0} \sum\limits_{n=-\infty}^{\infty} \delta(\omega - \omega^\prime - \omega_0 n) X_2(j\omega^\prime) \; d\omega^\prime\\
-  &= \frac{1}{2\pi T_0} \sum\limits_{n=-\infty}^{\infty} X_2(j(\omega - n\omega_0)) 
+  &=  \frac{1}{2\pi} \left[  \frac{2\pi}{T_0} \sum\limits_{n=-\infty}^{\infty} \delta(\omega - \omega_0 n) \right] * X_2(j\omega)\\
+  &= \frac{1}{2\pi} \int\limits_{-\infty}^{\infty}  \frac{2\pi}{T_0} \sum\limits_{n=-\infty}^{\infty} \delta(\omega - \omega^\prime - \omega_0 n) X_2(j\omega^\prime) \; d\omega^\prime\\
+  &= \frac{1}{T_0} \sum\limits_{n=-\infty}^{\infty} X_2(j(\omega - n\omega_0)) 
 \end{align*}
 Thus the sampling process in the frequency domain causes periodic replication of the Fourier transform of the signal being sampled, $x_2(t)$, which are sometimes called \emph{images}. This signal $Y(j\omega)$ is periodic in $\omega_0 = \tfrac{2\pi}{T_0}$ \emph{radians per second} and corresponds to the DT Fourier Transform of $x_2[n]  \stackrel{\mathcal{F}}{\longleftrightarrow} X_2\left(e^{j\omega}\right)$, which is periodic in $2\pi$ \emph{radians per sample time}.
 
