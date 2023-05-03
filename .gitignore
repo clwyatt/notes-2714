@@ -1,0 +1,10 @@
+*.aux
+*.fls
+*.idx
+*.ilg
+*.ind
+*.log
+*.out
+*.toc
+*.fdb_latexmk
+notes-2714.pdf
