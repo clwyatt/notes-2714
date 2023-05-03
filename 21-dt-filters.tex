@@ -32,7 +32,7 @@ The above filter types each have an ideal form.
 
 Low-pass filters remove frequency content above a threshold, $\omega_c \in [0,\pi]$, called the \emph{cutoff frequency}. They have an ideal frequency response ,for any integer multiple $k$, given by:
 \[
-H(j\omega) = \left\{ \begin{array}{lc}
+H\left(e^{j\omega}\right) = \left\{ \begin{array}{lc}
   1 & 2\pi k -\omega_c < \omega < 2\pi k + \omega_c\\
   0 & \text{else}
 \end{array}
@@ -46,7 +46,7 @@ As in CT filters, the range of frequencies $-\omega_c \leq \omega \leq \omega_c$
 
 High-pass filters remove frequency content below the cutoff frequency $\omega_c\in [0,\pi]$. They have an ideal frequency response
 \[
-H(j\omega) = \left\{ \begin{array}{lc}
+H\left(e^{j\omega}\right) = \left\{ \begin{array}{lc}
   0 & 2\pi k -\omega_c < \omega < 2\pi k + \omega_c\\
   1 & \text{else}
 \end{array}
@@ -59,7 +59,7 @@ with magnitude and phase plot
 
 Bandpass filters remove frequency content outside a band of frequencies called the pass-band. They have an ideal frequency response
 \[
-H(j\omega) = \left\{ \begin{array}{lc}
+H\left(e^{j\omega}\right) = \left\{ \begin{array}{lc}
   1 & 2\pi k -\omega_0 - \frac{B}{2} < \omega < 2\pi k -\omega_0+\frac{B}{2}\\[1em]
   1 & 2\pi k + \omega_0 -\frac{B}{2} < \omega < 2\pi k + \omega_0+\frac{B}{2}\\[1em]
   0 & \text{else}
@@ -73,7 +73,7 @@ where $\omega_0\in [0,\pi]$ is the \emph{center frequency} and $B < \pi - \omega
 
 Finally, notch or bandstop filters remove frequency content inside a band of frequencies (the stop band) defined by the center frequency $\omega_0\in [0,\pi]$ and bandwidth $B < \pi-\omega_0$. The ideal frequency response is
 \[
-H(j\omega) = \left\{ \begin{array}{lc}
+H\left(e^{j\omega}\right) = \left\{ \begin{array}{lc}
   0 & -\omega_0 - \frac{B}{2} < \omega < -\omega_0+\frac{B}{2}\\[1em]
   0 & \omega_0 -\frac{B}{2} < \omega < \omega_0+\frac{B}{2}\\[1em]
   1 & \text{else}
