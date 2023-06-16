@@ -1,3 +1,6 @@
+# Obtaining
+
+The latest pdf version can be obtained from [here](https://filebox.ece.vt.edu/~clwyatt/pdfs/notes-2714.pdf).
 
 # Building the document
 
