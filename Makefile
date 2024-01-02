@@ -1,6 +1,4 @@
-all: notes-2714.pdf
-
-notes-2714.pdf: 
+all:
 	latexmk notes-2714.tex
 
 clean:
