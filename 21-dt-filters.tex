@@ -1,6 +1,6 @@
 \chapter{Frequency Selective Filters in DT}
 
-Recall the response of stable DT LTI systems to periodic inputs. Given a stable LTI system with frequency response $H\left(e^{j\omega}\right)$ the input-output relationship is
+Recall the response of stable DT LTI systemsi to periodic inputs. Given a stable LTI system with frequency response $H\left(e^{j\omega}\right)$ the input-output relationship is
 
 \[
 x[n] = \sum\limits_{k = N_0}^{N_0 + N-1} a_k e^{jk\omega_0n} \longrightarrow y[n] = \sum\limits_{k = N_0}^{N_0 + N-1} a_k H\left(e^{jk\omega_0}\right) e^{jk\omega_0n} 
@@ -110,7 +110,7 @@ The overall gain of the filter is the magnitude of the frequency response at a f
 
 \section{First-order and second-order systems as filters}
 
-Given the equivalence of stable LTI systems and linear, constant-coefficient difference equations, block diagrams, impulse responses, and frequency responses, filters can be represented in any of these ways. We have covered extensively first-order and second-order DT systems and seen how they can be represented variously as circuits, difference equations, block diagrams, and as frequency responses. We now see how they can describe simple filters and serve as building blocks for higher-order filters.
+Given the equivalence of stable LTI systems and linear, constant-coefficient difference equations, block diagrams, impulse responses, and frequency responses, filters can be represented in any of these ways. We have covered extensively first-order and second-order DT systems and seen how they can be represented variously as state machines, difference equations, block diagrams, and as frequency responses. We now see how they can describe simple filters and serve as building blocks for higher-order filters.
 
 \begin{example} Consider a first-order DT system
 \[

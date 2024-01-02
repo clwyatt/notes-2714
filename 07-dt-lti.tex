@@ -77,7 +77,7 @@ A DT system is causal if the output at index $n$ depends on the input for index 
 \[
 y[n] \;\text{depends on}\; x[m] \;\text{for} \; m \leq n
 \]
-While all physical CT systems are causal, practical DT systems may not be since we can used memory to "shift time". For CT systems we cannot store the infinite number of values between two time points $t_1$ and $t_2$, but we can store the $n_2-n_1$ values of a DT system between between two indices $n_1$ and $n_2$ (assuming infinite precision).
+While all physical CT systems are causal, practical DT systems may not be since we can use memory to "shift time". For CT systems we cannot store the infinite number of values between two time points $t_1$ and $t_2$, but we can store the $n_2-n_1$ values of a DT system between between two indices $n_1$ and $n_2$ (assuming infinite precision).
 
 \begin{example}
 Consider a DT system whose difference equation is
@@ -103,11 +103,11 @@ We see the current output $y[n]$ depends on a "past" value of the output $y[n-1]
 
 A DT system is (BIBO) stable if applying a bounded-input
 \[
-x[n] < \infty \; \forall \; n
+\left|x[n]\right| < \infty \; \forall \; n
 \]
 results in a bounded-output $x[n] \mapsto y[n]$ and 
 \[
-y[n] < \infty \; \forall \; n
+\left|y[n]\right| < \infty \; \forall \; n
 \]
 Note, bounded in practice is limited by the physical situation, e.g. the number of bits used to store values.
 

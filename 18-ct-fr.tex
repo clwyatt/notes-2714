@@ -1,6 +1,6 @@
 \chapter{CT Frequency Response}
 
-In this lecture we are going to focus on the frequency response and highlight it's importance in linear systems theory.
+In this lecture we are going to focus on the frequency response and highlight its importance in linear systems theory.
 
 \section{Determining the frequency response (FR) of a CT system}
 
@@ -26,7 +26,7 @@ If a system is stable, then the region of convergence includes the imaginary axi
   \]
   Determine the frequency response of the system, if possible.\\
 
-  Solution: We first need to check of the system is stable using the region-of-convergence. Since the real part of the region of convergence includes the imaginary axis ($\Re s = 0$), the system is stable. To find the frequency response we substitute $s = j\omega$ to give
+  Solution: We first need to check if the system is stable using the region-of-convergence. Since the real part of the region of convergence includes the imaginary axis ($\Re s = 0$), the system is stable. To find the frequency response we substitute $s = j\omega$ to give
   \[
   H(j\omega) = \frac{2}{j\omega+5}
   \]
@@ -75,9 +75,9 @@ We can easily determine this ratio from the LCCDE representation of the system u
 \mathcal{F}\left\{\frac{d^n x}{dt^n}(t) \right\} = (j\omega)^n  X(j\omega) \; .
 \]
 
-If the system is stable (and thus the frequency response exists) then \textbf{all} roots of the characteriztic equation $Q(D)$ have real parts that are less than zero. If the system is stable we can take the Fourier transform of each term of the LCCDE using the derivative property, then algebrically solve for the ratio of output to input. Note this provides a signifigant savings in analysis effort since we do not have to first find the impulse response, then take it's Fourier transform to arrive at the frequency response (although that approach is still valid).
+If the system is stable (and thus the frequency response exists) then \textbf{all} roots of the characteriztic equation $Q(D)$ have real parts that are less than zero. If the system is stable we can take the Fourier transform of each term of the LCCDE using the derivative property, then algebrically solve for the ratio of output to input. Note this provides a signifigant savings in analysis effort since we do not have to first find the impulse response, then take its Fourier transform to arrive at the frequency response (although that approach is still valid).
 
-\begin{example} Consider a sytem decribed by the LCCDE
+\begin{example} Consider a system decribed by the LCCDE
   \[
 \frac{d^2y}{dt^2}(t) + 15\frac{dy}{dt}(t) + 50y(t) = 10x(t) 
   \]

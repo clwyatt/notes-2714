@@ -14,7 +14,7 @@ then
 Superposition enables a powerful problem reduction strategy. The overall idea for is that if:
 
 \begin{itemize}
-\item we can write an aribtrary signal as a sum of simple signals, and 
+\item we can write an arbitrary signal as a sum of simple signals, and 
 \item we can determine the response to the simple signals, then
 \item we can easily express the output due to the input using superposition
 \end{itemize}
@@ -23,7 +23,7 @@ This will be a recurring pattern in this course. In this lecture, the simple sig
 
 \section{Convolution Integral}
 
-To derive this we start with the sifting property of the CT impulse function (from lecture 2)
+To derive this we start with the sifting property of the CT impulse function (from chapter 2)
 \[
 \int\limits_{a}^{b} x(t)\delta(t-t_0) \; dt = x(t_0)
 \]
@@ -43,11 +43,11 @@ then the output is given by
 \]
 This is called the \emph{convolution integral} \index{CT Convolution}.
 
-It is worth pausing here to see the signifigance. For a LTI CT system, if I know it's impulse response $h(t)$, I can find the response due to \textbf{any} input using convolution. For this reason the impulse response is another way to represent an LTI system.
+It is worth pausing here to see the signifigance. For a LTI CT system, if I know its impulse response $h(t)$, I can find the response due to \textbf{any} input using convolution. For this reason the impulse response is another way to represent an LTI system.
 
 \section{Graphical View of the Convolution Integral.}
 
-Lets break the convolution expression down into pieces. In it's general form the convolution of two signals $x_1(t)$ and $x_2(t)$ is
+Let us break the convolution expression down into pieces. In its general form the convolution of two signals $x_1(t)$ and $x_2(t)$ is
 \[
 x_1(t) * x_2(t) = \int\limits_{-\infty}^{\infty} x_1(\tau)x_2(t-\tau) \; d\tau
 \]

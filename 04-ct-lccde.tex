@@ -42,7 +42,7 @@ Subsitution back into the differential equation and equating the coefficients gi
 V_C(t) = 1 - e^{-\frac{1}{RC}t}
 \]
 
-Suppose we consider the voltage after the switch as the input signal $x(t)$ to the system composed of the series RC. As we have seen previously a mathematical model of the switch is the unit step $x(t) = u(t)$. Suppose we consider the capacitor voltage at the outut of the system, so that $y(t) = V_C(t)$. Then we can consider the system to be represented by the \emph{linear, constant-coefficient differential equation}
+Suppose we consider the voltage after the switch as the input signal $x(t)$ to the system composed of the series RC. As we have seen previously a mathematical model of the switch is the unit step $x(t) = u(t)$. Suppose we consider the capacitor voltage at the output of the system, so that $y(t) = V_C(t)$. Then we can consider the system to be represented by the \emph{linear, constant-coefficient differential equation}
 \[
 \frac{dy}{dt}(t) + \frac{1}{RC}y(t) = \frac{1}{RC}x(t)
 \]
@@ -75,7 +75,7 @@ We can factor out the derivative operators
 a_0y + a_1Dy + a_2D^2y + \cdots + a_ND^Ny  = b_0\, x + b_1\, Dx + b_2\, D^2x + \cdots + b_M\, D^M x
 \]
 \[
-\underbrace{\left(a_0 + a_1D + a_2D^2 + \cdots + a_ND^N\right)}_{\text{Polynimial in } D, Q(D)} y = \underbrace{\left(b_0 + b_1 D + b_2 D^2 + \cdots + b_M D^M\right)}_{\text{Polynimial in } D, P(D)} x
+\underbrace{\left(a_0 + a_1D + a_2D^2 + \cdots + a_ND^N\right)}_{\text{Polynomial in } D, Q(D)} y = \underbrace{\left(b_0 + b_1 D + b_2 D^2 + \cdots + b_M D^M\right)}_{\text{Polynomial in } D, P(D)} x
 \]
 to give:
   
@@ -103,7 +103,7 @@ Rather than recapitulate the solution to $y_\text{h}(t)$ and $y_\text{p}(t)$ in 
 
 To solve the homogenous system:
 
-\textbf{Step 1:} Find the \emph{characteristic equation} by replacing the derivative operators by powers of an aribrary complex variable $s$.
+\textbf{Step 1:} Find the \emph{characteristic equation} by replacing the derivative operators by powers of an arbitrary complex variable $s$.
 \[
 Q(D) = a_0 + a_1D + a_2D^2 + \cdots + a_ND^N
 \]
@@ -127,7 +127,7 @@ a polynomial in $s$ with $N$ roots $s_i$ for $i = 1, 2, \cdots, N$ such that
   \[
   C_1 e^{s_1 t} + C_2 e^{s_2 t} = e^{a t}\left(C_3\cos(bt) + C_4\sin(bt)\right) = C_5 e^{a t}\cos(bt + C_6).
   \]
-\item For a repeated roots $s_1$, repeated r times, the term is of the form
+\item For a repeated root $s_1$, repeated $r$ times, the term is of the form
   \[
   e^{s_1 t} (C_0 + C_1 t + \cdots + C_{r-1} t^{r-1}).\]
 \end{itemize}

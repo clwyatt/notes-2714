@@ -186,21 +186,21 @@ There are several useful properties of the CT Fourier Transform that, when combi
 
 We use the notation $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ to indicate the signals are related by a Fourier Transform pair.
 \begin{itemize}
-\item Linearity: if $x_1(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)$ and $x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(\omega)$ then
+\item \textbf{Linearity:} if $x_1(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)$ and $x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(\omega)$ then
   \[
   ax_1(t) + bx_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} aX_1(\omega) + bX_2(\omega)
   \]
-\item Convolution: if $x_1(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)$ and $x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(\omega)$ then
+\item \textbf{Convolution:} if $x_1(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)$ and $x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(\omega)$ then
   \[
   x_1(t) * x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)X_2(\omega)
   \]
   Note in particular if one signal is the system input and the other is the impulse response, the output is the product of the Fourier transforms of each, where the Fourier transform of $h(t)$ is $H(\omega)$, the Eigenvalue or frequency response.
-\item Differentiation if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
+\item \textbf{Differentiation:} if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
   \[
   \frac{dx}{dt}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} j\omega X(\omega)
   \]
   This allows us to easily determine the Eigenvalues/Frequency Response from a stable differential equation.
-\item Multiplication: if $x_1(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)$ and $x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(\omega)$ then
+\item \textbf{Multiplication:} if $x_1(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)$ and $x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(\omega)$ then
   \[
   x_1(t) \cdot x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{2\pi} X_1(\omega)*X_2(\omega)
   \]
@@ -208,25 +208,29 @@ We use the notation $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$
   \[
   X_1(\omega)*X_2(\omega) = \int\limits_{-\infty}^{\infty} X_1(\gamma)*X_2(\omega-\gamma)\;d\gamma 
   \]
-\item Time-Shift: if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
+\item \textbf{Time-Shift:} if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
   \[
   x(t-t_0) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)e^{-j\omega t_0}
   \]
-\item Conjugate Symmetry: if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
+\item \textbf{Frequency-Shift:} if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
+  \[
+  e^{j\omega_0 t}x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega-\omega_o)
+  \]
+\item \textbf{Conjugate Symmetry:} if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
   \[
   x^*(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X^*(-\omega)
   \]
   This implies that if $x(t)$ is real, then the magnitude spectrum is an even function, and the phase spectrum is an odd function.
 
-\item Integration: if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
+\item \textbf{Integration:} if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
   \[
   \int\limits_{-\infty}^t x(\tau)\; d\tau \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{j\omega} X(\omega) + \pi X(0) \delta(\omega)
   \]
-\item Time and Frequency Scaling: if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then if $a$ is a real constant
+\item \textbf{Time and Frequency Scaling:} if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then if $a$ is a real constant
   \[
   x(at) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{|a|} X\left(\frac{\omega}{a}\right)
   \]
-\item Parseval's Relation: if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
+\item \textbf{Parseval's Relation:} if $x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)$ then
   \[
   \int\limits_{0-\infty}^{\infty} |x(t)|^2\; dt =  \frac{1}{2\pi}\int\limits_{0-\infty}^{\infty} |X(\omega)|^2\;d\omega
   \]

@@ -8,12 +8,12 @@ Complex numbers are used extensively throughout the course. You need to be very 
 
 \subsection*{The Number System}
 
-By way of review and to motivate the discussion of complext numbers, recall the following basic facts.
+By way of review and to motivate the discussion of complex numbers, recall the following basic facts.
 
 \begin{itemize}
-\item The \emph{Natural Numbers} $\mathbb{N}$ are the positive integers $1,2,3,4,\cdots$. Given two natual numbers $a$ and $b$ the sum $a+b$ and the product $a\,b$ are also natural numbers, that is the set of natural numbers is \emph{closed} under addition and multiplication.
+\item The \emph{Natural Numbers} $\mathbb{N}$ are the positive integers $1,2,3,4,\cdots$. Given two natural numbers $a$ and $b$ the sum $a+b$ and the product $a\,b$ are also natural numbers, that is the set of natural numbers is \emph{closed} under addition and multiplication.
 
-\item Solving equations of the form $x + a = b$ for any natural numbers $a,b$ requires the introduction of the negative integers $\cdots, -4, -3, -2 -1$ and $0$. These plus the natural numbers give the \emph{integers}  $\mathbb{Z}$. Note $\mathbb{N} \subset \mathbb{Z}$. Zero ($0$) is called the identity element with respect to addition, while $1$ is the identity with respect to multiplication, that is $a+0 = a$ and $ a \cdot 1 = a$. The \emph{inverse} of an integer $a$ is $-a$, such that thier sum gives the identity for addition, i.e. $a + -a = 0$.
+\item Solving equations of the form $x + a = b$ for any natural numbers $a,b$ requires the introduction of the negative integers $\cdots, -4, -3, -2 -1$ and $0$. These plus the natural numbers give the \emph{integers}  $\mathbb{Z}$. Note $\mathbb{N} \subset \mathbb{Z}$. Zero ($0$) is called the identity element with respect to addition, while $1$ is the identity with respect to multiplication, that is $a+0 = a$ and $ a \cdot 1 = a$. The \emph{inverse} of an integer $a$ is $-a$, such that their sum gives the identity for addition, i.e. $a + -a = 0$.
 
 \item The \emph{rational numbers} $\mathbb{Q}$ are of the form $\frac{b}{a}$ for integers $a,b$ with $a \neq 0$. They solve problems of the form $ax=b$ and provide the inverse for multiplication since $\frac{1}{a} \cdot a = 1$. Note $\mathbb{Z} \subset \mathbb{Q}$
 
@@ -22,7 +22,7 @@ By way of review and to motivate the discussion of complext numbers, recall the 
 \item The union of the rational and irrational numbers give the \emph{real numbers} denoted $\mathbb{R}$.
 \end{itemize}
 
-Graphically the numbers and thier ordering can be expressed using the number line:
+Graphically, the numbers and their ordering can be expressed using the number line:
 
 \begin{center}
   \includegraphics[scale=1]{graphics/number-line.pdf}
@@ -30,13 +30,13 @@ Graphically the numbers and thier ordering can be expressed using the number lin
 
 \subsection*{Complex numbers as extension of reals}
 
-Continuing the pattern of the basic number system we can ask what are solutions of equations of the form $x^2+a = 0$ or $x^2 + 2ax +a^2 + b^2 = 0$ for $a,b \in \mathbb{R}$ ? As above, finding such solutions requires moving to a larger set of numbers, the \emph{complex numbers} denoted $\mathbb{C}$.
+Continuing the pattern of the basic number system we can ask what are solutions of equations of the form $x^2+a = 0$ or $x^2 + 2ax +a^2 + b^2 = 0$ for $a,b \in \mathbb{R}$ ? As above, finding such solutions requires moving to a larger set of numbers, the \emph{complex numbers} denoted by $\mathbb{C}$.
 
 A complex variable $z\in\mathbb{C}$ can be written as $z = a + j\, b$ for $a,b\in\mathbb{R}$, where $j$ is the imaginary unit and $j^2 = -1$. Note in mathematics the imaginary unit is denoted $i$; this difference is purely historical. Some basic definitions:
 
 \begin{itemize}
-\item the \emph{real part} $\Re(z) = \text{Re}(z) = a$
-\item the \emph{imaginary part} $\Im(z) = \text{Im}(z) = b$
+\item the \emph{real part} $\Re(z) = a$
+\item the \emph{imaginary part} $\Im(z) = b$
 \item two complex numbers $z_1, z_2\in \mathbb{C}$ are equal if $\text{Re}(z_1) = \text{Re}(z_2)$ and $\text{Im}(z_1) = \text{Im}(z_2)$
 \item $\mathbb{R} \subset \mathbb{C}$, when $b = 0$ and we say that the number is purely real
 \item if $a = 0$ we say the number is purely imaginary
@@ -61,7 +61,7 @@ Let $z_1, z_2, z_3 \in \mathbb{C}$, then:
 
 \begin{description}
 \item[closure property] $z_1 + z_2 \in \mathbb{C}$ and  $z_1 \cdot z_2 \in \mathbb{C}$ 
-\item[communative property] $z_1 + z_2 = z_2 + z_1$ and $z_1 \cdot z_2 = z_2 \cdot z_1$ 
+\item[commutative property] $z_1 + z_2 = z_2 + z_1$ and $z_1 \cdot z_2 = z_2 \cdot z_1$ 
 \item[associative property] $z_1 + (z_2 + z_3) = (z_1 + z_2) + z_3$ and $z_1 \cdot (z_2 \cdot z_3) = (z_1 \cdot z_2) \cdot z_3$ 
 \item[identity elements] $0 = (0 + j0) \in \mathbb{C}$ is the identity element for addition since $z_1 + 0 = z_1$ and $1 = 1 + j0 \in \mathbb{C}$ is the identity element for multiplication since $z_1\cdot 1 = z_1$ 
 \item[inverse elements] for any $z_1$ there exists an inverse $z_2 = -z_1$ such that $z_1 + z_2 = 0$, and for any $z_1 \neq 0$ there exists an inverse $z_2 = z_1^{-1} = \tfrac{1}{z_1}$ such that $z_1 \cdot z_2 = 1$
@@ -71,7 +71,7 @@ Let $z_1, z_2, z_3 \in \mathbb{C}$, then:
 
 The absolute value or \textit{magnitude} of a complex number $z = a + jb$ is denoted $|z| = |a+jb|$ and is given by
 \[
-|a + jb| = \sqrt{a*2 + b^2}
+|a + jb| = \sqrt{a^2 + b^2}
 \]
 For complex numbers $z_1, z_2, \ldots, z_n$, the following useful properties hold
 \begin{itemize}
@@ -84,7 +84,7 @@ The argument or \textit{angle} of a complex number $z = a + jb$ is denoted $\ang
 \[
 \angle(a + jb) = \arctan\frac{b}{a}
 \]
-Take care when computing this number on your calculator (or in a programming language) so that it produces and angle in radians and in the correct quadrant. For example $\angle(-1-j1) = \arctan\frac{-1}{-1} = \frac{5\pi}{4} = -\frac{3\pi}{4}$ is different from $\angle(-1-j1) = \arctan\frac{-1}{-1} = \arctan\frac{1}{1} = \frac{\pi}{4}$, the later being incorrect.
+Take care when computing this number on your calculator (or in a programming language) so that it produces an angle in radians and in the correct quadrant. For example $\angle(-1-j1) = \arctan\frac{-1}{-1} = \frac{5\pi}{4} = -\frac{3\pi}{4}$ is different from $\angle(-1-j1) = \arctan\frac{-1}{-1} = \arctan\frac{1}{1} = \frac{\pi}{4}$, the later being incorrect.
 
 For complex numbers $z_1, z_2, \ldots, z_n$, the following useful properties hold
 \begin{itemize}
@@ -134,14 +134,14 @@ where the $z_i$ are the $N$ \textit{roots} of the polynomial. These are complex 
 
 \begin{itemize}
 \item the root is real
-\item the root is complex or purely imaginary, in which case they come in congugate pairs 
+\item the root is complex or purely imaginary, in which case they come in conjugate pairs 
 \end{itemize}
 
 Note: the \texttt{roots} function in Matlab can be used to find the roots of any order polynomial given a vector of coefficients.
 
 \section{Functions}
 
-As we will see in the first few lectures, signals are modelled as functions. Recall a \textit{function} is a mapping between sets
+As we will see in the first few lectures, signals are modeled as functions. Recall a \textit{function} is a mapping between sets
 \[
 f: A \rightarrow B
 \]
@@ -159,7 +159,7 @@ Functions can be defined using an expression operating on the \textit{independen
 \[
 f(t) = 2t^2
 \]
-where $t\in\mathbb{R}$ is the independent variable. Common operations are sums, difference, products, quotients, powers, and application of trigonometric and transendental functions. Functions with different expressions for different intervals of the domain are called \textit{piecewise}. For example
+where $t\in\mathbb{R}$ is the independent variable. Common operations are sums, difference, products, quotients, powers, and application of trigonometric and transcendental functions. Functions with different expressions for different intervals of the domain are called \textit{piecewise}. For example
 \[
 f(t) = \left\{ \begin{array}{cc}
    e^{t} & t < 0\\
@@ -214,7 +214,7 @@ Another approach to visualizing a complex number is to plot it as the tip of a v
     \end{axis}
   \end{tikzpicture}
   \end{tabular}\\
-  or the mangitude and angle functions,\\
+  or the magnitude and angle functions,\\
   \begin{tabular}{cc}
   \begin{tikzpicture}
     \begin{axis}[xmin=-5, xmax=5, ymin = 0, ymax=1, samples=1000, xlabel=$t$, ylabel=$z_m(t)$]
@@ -264,7 +264,7 @@ Recognizing the tangent is sin/cos we can solve for $y$:
 \[
 y = \arctan\left(\frac{\frac{C}{A}-\cos(B)}{-\sin(B)}\right)
 \]
-Then we can subsitute back to get $x$:
+Then we can substitute back to get $x$:
 \[
 x = \frac{A}{\cos(y)}
 \]
@@ -303,7 +303,7 @@ In the general case the $N^\text{th}$ order derivative is
 \frac{d^Nf}{dt^N} (t) = \lim_{h\rightarrow0^+} \frac{\frac{d^{N-1}f}{dt^{N-1}}(t+h)-\frac{d^{N-1}f}{dt^{N-1}}(t)}{h}
 \]
 
-Note there are several different notations for derivatives, e.g. $\frac{df}{dt}(t) = f^\prime (t) = \dot{f}(t)$, but we will use the former (Leibnitz) in most cases. We will also use the derivative operator notation $\frac{d^Nf}{dt^N} = (D^N f)(t)$, which is convenient for higher-order derivatives.
+Note there are several different notations for derivatives, e.g. $\frac{df}{dt}(t) = f^\prime (t) = \dot{f}(t)$, but we will use the former (Leibniz) in most cases. We will also use the derivative operator notation $\frac{d^Nf}{dt^N} = (D^N f)(t)$, which is convenient for higher-order derivatives.
 
 A function with finite derivatives (in the limit) for all values of the independent variable over an interval is called \textit{continuous} over that interval. Values of the independent variable where the derivative is not finite (in the limit) are called \textit{discontinuities}. A function with a finite number of discontinuities is called \textit{piecewise continuous}. If the limit is one-sided then we say the function is piecewise continuous from the left or right (or from below/above).
 
@@ -332,7 +332,7 @@ In cases where one or both of the limits is infinite, the definition changes to 
 
 \section{Differential Equations}
 
-This course assumes a background in basic differential equations (e.g. as taught in Math 2214). However, we use only consider linear, constant-coefficient differential equations.
+This course assumes a background in basic differential equations (e.g. as taught in Math 2214). However, we only consider linear, constant-coefficient differential equations.
 
 A linear, constant coefficient (LCC) differential equation is of the form
 \[
@@ -354,7 +354,7 @@ We can factor out the derivative operators
 a_0y + a_1Dy + a_2D^2y + \cdots + a_ND^Ny  = b_0\, x + b_1\, Dx + b_2\, D^2x + \cdots + b_M\, D^M x
 \]
 \[
-\underbrace{\left(a_0 + a_1D + a_2D^2 + \cdots + a_ND^N\right)}_{\text{Polynimial in } D, Q(D)} y = \underbrace{\left(b_0 + b_1 D + b_2 D^2 + \cdots + b_M D^M\right)}_{\text{Polynimial in } D, P(D)} x
+\underbrace{\left(a_0 + a_1D + a_2D^2 + \cdots + a_ND^N\right)}_{\text{Polynomial in } D, Q(D)} y = \underbrace{\left(b_0 + b_1 D + b_2 D^2 + \cdots + b_M D^M\right)}_{\text{Polynomial in } D, P(D)} x
 \]
 to give:
   
@@ -372,7 +372,7 @@ The term $y_\text{h}(t)$ is the solution of the homogeneous equation
 \[
 Q(D)y = 0
 \]
-Given the $N-1$ auxillary conditions $y(t_0) = y_0$, $Dy(t_0) = y_1$, $D^2y(t_0) = y_2$, up to $D^{N-1}y(t_0) = y_{N-1}$.
+Given the $N-1$ auxiliary conditions $y(t_0) = y_0$, $Dy(t_0) = y_1$, $D^2y(t_0) = y_2$, up to $D^{N-1}y(t_0) = y_{N-1}$.
 
 The term $y_\text{p}(t)$ is the solution of the particular equation
 \[
@@ -380,11 +380,11 @@ Q(D)y = P(D)x
 \]
 for a given $x(t)$.
 
-Rather than recapitulate the solution to $y_\text{h}(t)$ and $y_\text{p}(t)$ in the general case we focus on the homogeneous solution $y_\text{h}(t)$ only. The reason is that we will use the homogeneous solution to find the impulse response in future lectures and take a different approach to solving the general case for an arbitrary input using the impulse response and convolution.
+Rather than recapitulate the solution to $y_\text{h}(t)$ and $y_\text{p}(t)$ in the general case, we focus on the homogeneous solution $y_\text{h}(t)$ only. The reason is that we will use the homogeneous solution to find the impulse response in future lectures and take a different approach to solving the general case for an arbitrary input using the impulse response and convolution.
 
-To solve the homogenous system:
+To solve the homogeneous system:
 
-\textbf{Step 1:} Find the \emph{characteristic equation} by replacing the derivative operators by powers of an aribrary complex variable $s$.
+\textbf{Step 1:} Find the \emph{characteristic equation} by replacing the derivative operators by powers of an arbitrary complex variable $s$.
 \[
 Q(D) = a_0 + a_1D + a_2D^2 + \cdots + a_ND^N
 \]
@@ -408,12 +408,12 @@ a polynomial in $s$ with $N$ roots $s_i$ for $i = 1, 2, \cdots, N$ such that
   \[
   C_1 e^{s_1 t} + C_2 e^{s_2 t} = e^{a t}\left(C_3\cos(bt) + C_4\sin(bt)\right) = C_5 e^{a t}\cos(bt + C_6).
   \]
-\item For a repeated roots $s_1$, repeated r times, the term is of the form
+\item For a repeated root $s_1$, repeated $r$ times, the term is of the form
   \[
   e^{s_1 t} (C_0 + C_1 t + \cdots + C_{r-1} t^{r-1}).\]
 \end{itemize}
 
-\textbf{Step 3:} Solve for the unknown constants in the solution using the auxillary conditions. 
+\textbf{Step 3:} Solve for the unknown constants in the solution using the auxiliary conditions. 
 
 We now examine two common special cases, when $N=1$ (first-order) and when $N=2$ (second-order).
 
@@ -431,7 +431,7 @@ which has a single root $s_1 = -a$. The solution is of the form
 \[
 y(t) = Ce^{s_1 t} = Ce^{-a t} 
 \]
-where the constant $C$ is found using the auxillary condition $y(t_0) = y_0$.
+where the constant $C$ is found using the auxiliary condition $y(t_0) = y_0$.
 
 \textit{Example}: Consider the homogeneous equation
 \[
@@ -441,7 +441,7 @@ The solution is
 \[
 y(t) = Ce^{-3 t} 
 \]
-To find $C$ we use the auxillary condition
+To find $C$ we use the auxiliary condition
 \[
 y(0) = Ce^{-3 \cdot 0} = C = 10
 \]
@@ -501,7 +501,7 @@ which has a root $s_1 = -1$ repeated $r=2$ times. Thus the form of the solution 
 y(t) = e^{-t}\left(C_1 + C_2t\right)
 \]
 
-In each of the above cases the constants, $C_1$ and $C_2$, are found using the auxillary conditions $y(t_0)$ and $y\prime(t_0)$.
+In each of the above cases the constants, $C_1$ and $C_2$, are found using the auxiliary conditions $y(t_0)$ and $y\prime(t_0)$.
 
 \section{Circuits}
 
@@ -568,7 +568,7 @@ While this is just an approximation, within the frequency regimes we are concern
 
 \subsection*{Governing Equations}
 
-Given the component descriptions above and Kerchoff's laws with some algebra and calculus we can derive the input output equation for a wide variety circuits, inlcuding those with op-amps. When the circuit contains $N$ energy storage elements (inductors or capacitors) the resulting equation will be an $N^\text{th}$ order linear, constant-coefficient differential equation. Note, the cleanest route to the governing equation is not always clear at the start and it takes some trial and error on your part.
+Given the component descriptions above and Kerchoff's laws with some algebra and calculus we can derive the input output equation for a wide variety circuits, including those with op-amps. When the circuit contains $N$ energy storage elements (inductors or capacitors) the resulting equation will be an $N^\text{th}$ order linear, constant-coefficient differential equation. Note, the cleanest route to the governing equation is not always clear at the start and it takes some trial and error on your part.
 
 \begin{example} Consider the following RC circuit where $v(t)$ is the time-varying source voltage and we wish to know the resulting voltage across the capacitor $v_C(t)$.
   \begin{center}
@@ -584,7 +584,7 @@ Given the component descriptions above and Kerchoff's laws with some algebra and
   \[
   v(t) = R\,i(t) + v_c(t) 
   \]
-  and note that the curent through the resistor and capacitor is the same. We use the voltage-current relationship for the capacitor to obtain
+  and note that the current through the resistor and capacitor is the same. We use the voltage-current relationship for the capacitor to obtain
   \[
   i(t) = C\,\frac{dv_c}{dt}\; .
   \]
@@ -642,7 +642,7 @@ Given the component descriptions above and Kerchoff's laws with some algebra and
 
 \subsection*{Building and Characterizing Circuits}
 
-We will be building and characterizing physical circuits to better connect the course to the real world. We assume you know how to build relatively simple circuits on a protoboard, as well as use a power supply, function generator and oscilliscope (i.e. the Digilent Analog Discovery). We also assume you have taken or are currently taking the embedded course, so that toward the end of the semester you know how to interface and program with the TI MSP432 "Red Board".
+We will be building and characterizing physical circuits to better connect the course to the real world. We assume you know how to build relatively simple circuits on a protoboard, as well as use a power supply, function generator and oscilloscope (i.e. the Digilent Analog Discovery). We also assume you have taken or are currently taking the embedded course, so that toward the end of the semester you know how to interface and program with the TI MSP432 "Red Board".
 (MSP-EXP432P401R Evaluation board).
 
 \section{Programming}
@@ -660,12 +660,18 @@ For general computation we don't require Matlab and Mathematica, Python, or Juli
 
 We assume you can plot real and complex functions using Matlab/Python/Julia/Mathematica, label axes appropriately, and generate readable graphics for inclusion in problem set solutions and the project report.
 
-\section{Digitial Systems}
+\section{Digital Systems}
 
 ECE 2544 is required for for knowledge of digital signal representation and the analysis and construction of circuits containing combinatorial and sequential logic.
 
 \subsection*{Binary Representation of Integers vs Floating Point}
 
+TODO
+
 \subsection*{shift registers}
 
+TODO
+
 \subsection*{adders and multipliers}
+
+TODO

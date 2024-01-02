@@ -88,7 +88,7 @@ Note the feedback is negative (the minus sign on the feedback summation input). 
 
 \section{Connections to Convolution}
 
-Each subsystem, $\mathcal{S}_i$, can be represented by a basic time-domain operation (e.g. derivatives, integrals, addition, and scaling) or more generally by it's impulse response $h_i(t)$.
+Each subsystem, $\mathcal{S}_i$, can be represented by a basic time-domain operation (e.g. derivatives, integrals, addition, and scaling) or more generally by its impulse response $h_i(t)$.
 \
 For example a block representing an system acting as integrator is typically drawn as
 
@@ -555,14 +555,14 @@ Recall that, from the commutative property of convolution, the order of systems 
     \draw (conn3) -- node {$b$} (conn4);
     \draw [->] (conn3) -| (sum2);
     \draw [->] (sum2) -- node[pos=0.95] {$-$} (sum);
-    \draw [->] (conn1) -- node[pos=1] {$z(t)$} (output);
+    \draw [->] (conn1) -- node[pos=1] {$u(t)$} (output);
 
     \node [input, name=input] at (6,0) {};
     \node [block, right of=input,node distance=2cm] (block1) {$\int$};
     \node [block, right of=block1,node distance=2cm] (block2) {$\int$};
     \node [output, right of=block2] (output) {};
 
-    \draw [->] (input) -- node {$z(t)$} (block1);
+    \draw [->] (input) -- node {$u(t)$} (block1);
     \draw [->] (block1) -- (block2);
     \draw [->] (block2) -- node[pos=1] {$y(t)$} (output);
   \end{tikzpicture}

@@ -128,7 +128,7 @@ $\blacksquare$
 There are two commonly used, equivalent, expressions for computing the CTFS coefficients. They can be derived using Euler's formula and related trig identities.
 
 \begin{itemize}
-\item Exponential Form. This is the form derived above
+\item \textbf{Exponential Form}. This is the form derived above
   \[
   x(t) = \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t}
   \]
@@ -136,7 +136,7 @@ There are two commonly used, equivalent, expressions for computing the CTFS coef
   \[
   a_k = \frac{1}{T_0} \int\limits_{T_0} x(t)e^{-jk\omega_0 t} \; dt
   \]
-\item Trig Form
+\item \textbf{Trig Form}
   \[
   x(t) = b_0 + \sum\limits_{k = 1}^{\infty} b_k \,\cos(k\omega_0 t) + c_k\,\sin(k\omega_0 t) 
   \]
@@ -151,7 +151,7 @@ There are two commonly used, equivalent, expressions for computing the CTFS coef
   \[
   c_k = \frac{2}{T_0} \int\limits_{T_0} x(t)\sin(k\omega_0 t) \; dt
   \]
-\item Compact Trig Form
+\item \textbf{Compact Trig Form}
   \[
   x(t) = d_0 + \sum\limits_{k = 1}^{\infty} d_k \,\cos(k\omega_0 t + \theta_k) 
   \]
@@ -168,6 +168,8 @@ There are two commonly used, equivalent, expressions for computing the CTFS coef
   \]
 \end{itemize}
 
+Note that $2a_k = b_k -j c_k$ for $k \geq 1$ and $a_0=b_0$.
+
 \section{Convergence of the CT Fourier Series}
 
 As mentioned above the Fourier Series is strictly speaking an approximation
@@ -180,7 +182,7 @@ The coefficients $a_k$ will exist when the integral converges, or equivalently w
 \[
 \int\limits_{T_0} \left|x(t)\right| \; dt < \infty
 \]
-i.e. the signal is absolutely integrable over any period. Note, such a signal is a power signal.
+i.e. the signal is absolutely integrable over any period.
 
 To determine when the summation converges, first consider the \emph{truncated} CT Fourier Series
 \[
@@ -321,38 +323,39 @@ These conditions rule out pathological functions. For most practical signals of 
 Let $a_k$ and $b_k$ be the CTFS coefficients for the periodic signals $x(t)$ and $y(t)$ respectively.
 
 \begin{itemize}
-\item Linearity. The coefficients of the signal
+\item \textbf{Linearity}. The coefficients of the signal
   \[
   z(t) = Ax(t) + By(t) \mbox{ for constants } A,B 
   \]
   are $Aa_k + Bb_k$
-\item Time Shifting. The coefficients of
+\item \textbf{Time Shifting}. The coefficients of
   \[
   z(t) = x(t-t_0) \mbox{ are } e^{-jk\omega_0 t_0}a_k
   \]
   that is it adds a phase shift.
-\item Time reversal. The coefficients of
+\item \textbf{Time reversal}. The coefficients of
   \[
   z(t) = x(-t) \mbox{ are } a_{-k}
   \]
   that is the sequence reverses.
-\item Time Scaling. Let $T_0$ and $\omega_0$ be the fundamental period and frequency of a periodic $x(t)$. The signal 
+\item \textbf{Time Scaling}. Let $T_0$ and $\omega_0$ be the fundamental period and frequency of a periodic $x(t)$. The signal 
   \[
   z(t) = x(\alpha t) \mbox{ for } \alpha > 0
   \]
   is periodic with period $\frac{T_0}{\alpha}$ and fundamental frequency $\alpha\omega_0$.
   The coefficients of $z(t)$ are the same as $x(t)$.
-\item Multiplication. The coefficients of
+  %\item TODO: time derivative property? - depends on form used
+\item \textbf{Multiplication}. The coefficients of
   \[
   z(t) = x(t) \cdot y(t) \mbox{ are } \sum\limits_{m = -\infty}^{\infty} a_m\cdot b_{k-m}
   \]
   the discrete convolution of the individual signals' coefficients.
-\item Conjugate Symmetry. The coefficients of
+\item \textbf{Conjugate Symmetry}. The coefficients of
   \[
   z(t) = x^*(t) = \Re{x(t)} - j\Im{x(t)} \mbox{ are } a_{-k}^*
   \]
-  A consequence of this property is that real, even signals have real, even $a_k$; and real, odd signals have purely imaginary, odd $a_k$ (check the examples above).
-\item Parseval's Relation. The power of the signal with Fourier series coefficients
+  A consequence of this property and the time-reversal property is that real, even signals have real, even $a_k$; and real, odd signals have purely imaginary, odd $a_k$ (see the examples above).
+\item \textbf{Parseval's Relation}. The power of the signal with Fourier series coefficients
   \[
   \frac{1}{T_0} \int_{T_0} |x(t)|^2\;dt = \sum\limits_{k = -\infty}^{\infty} |a_k|^2
   \]

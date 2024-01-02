@@ -139,7 +139,7 @@ We can also apply transformations to signals to increase their modeling flexibil
   for $a \in \mathbb{R}$.
 \item derivatives
   \[
-  x_2(t) = x_1^\prime(t)
+  x_2(t) = x_1^\prime(t) = \frac{d x_1}{dt}(t)
   \]
 \item integrals
   \[
@@ -168,10 +168,12 @@ We can also apply transformations to signals to increase their modeling flexibil
     x_2(t) = x_1\left(\frac{t}{\tau}\right)
     \]
     \begin{itemize}
-    \item if $\tau >0$ increasing $\tau$ expands in time, slows the signal
-    \item if $\tau <0$ time reverses and decreasing $\tau$ expands in time
+    \item if $\tau >1$ increasing $\tau$ expands in time, slows down the signal
+    \item if $0 < \tau < 1$ decreasing $\tau$ contracts in time, speeds up the signal
+    \item if $-1 < \tau <0$ time reverses and increasing $\tau$ contracts in time, speeding up the signal
+    \item if $\tau < -1$ time reverses and decreasing $\tau$ expands in time, slows down the signal
     \end{itemize}
-    Example: time reversal $ x_2(t) = x_1(-t)$
+    Common uses are time reversal, $x_2(t) = x_1(-t)$, and changing the frequency of of sinusoids.
 \end{itemize}
 
 \section{Characterization of Signals}
@@ -335,7 +337,7 @@ x(t) = C\, e^{a t}
 \]
 where the parameters $C, a \in \mathbb{C}$ in general.
 
-When $C$ and $a$ are both real ($\Im(C) = \Im(a) = 0$), we have the familiar exponential. When $a > 0$, $x(t) = C e^{a t}$ looks like:
+When $C$ and $a$ are both real ($\Im(C) = \Im(a) = 0$), we have the familiar exponential. When $a > 0$ and $C > 0$, $x(t) = C e^{a t}$ looks like:
 
 \begin{center}   
   \begin{tikzpicture}
@@ -348,7 +350,7 @@ When $C$ and $a$ are both real ($\Im(C) = \Im(a) = 0$), we have the familiar exp
   \end{tikzpicture}
 \end{center}
 
-When $a < 0$, $x(t) = C e^{a t}$ looks like:
+When $a < 0$ and $C > 0$, $x(t) = C e^{a t}$ looks like:
 
 \begin{center}
   \begin{tikzpicture}
@@ -360,6 +362,9 @@ When $a < 0$, $x(t) = C e^{a t}$ looks like:
     \end{axis}
   \end{tikzpicture}
 \end{center}
+
+If $C < 0$ the signals reflect about the time axis.
+
 
 To get the pure sinusoidal case, let $C \in \mathbb{R}$ and $a$ be purely imaginary: $a = j\omega_0$:
 \[
@@ -401,7 +406,7 @@ Ce^{j\omega_0 t} = Ce^{j\omega_0 (t+T)}= Ce^{j\omega_0 t}\underbrace{e^{j\omega_
 Some useful properties of sinusoids:
 
 \begin{itemize}
-\item If x(t) is periodic with period $T$ and $g$ is any function then $g(x(t))$ is periodic with period $T$.
+\item If $x(t)$ is periodic with period $T$ and $g$ is any function then $g(x(t))$ is periodic with period $T$.
 \item If $x_1(t)$ is periodic with period $T_1$ and $x_2(t)$ is periodic with period $T_2$, and if there exists positive integers $a,b$ such that
   \[
   aT_1 = b T_2 = P
@@ -468,11 +473,11 @@ Substituting $x(t) = e^{j\omega_0 t}$ and letting $T = N T_0$
 
 Recall the power of a CT signal $x(t)$ is
 \[
-  E_x = \lim_{T\rightarrow\infty} \frac{1}{2T} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
+  P_x = \lim_{T\rightarrow\infty} \frac{1}{2T} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
 \]
 Again, substituting $x(t) = e^{j\omega_0 t}$ and letting $T = N T_0$
 \[
-  E_x = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} 2NT_0 = 1
+  P_x = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} 2NT_0 = 1
 \]
   
 \subsection{Harmonics}
@@ -497,7 +502,7 @@ x(t) = \underbrace{Ae^{rt}\cos(\omega_0 t+\phi)}_{\Re \text{part}} + j \underbra
 \]
 Each part is a real sinusoid whose amplitude is modulated by a real exponential.
 
-An important visualization of the general case is to view the signal x(t) as a vector rotating counter-clockwise in the complex plane for positive $t$.
+An important visualization of the general case is to view the signal $x(t)$ as a vector rotating counter-clockwise in the complex plane for positive $t$.
 
 \begin{center}
  \includegraphics[scale=0.7]{graphics/CT_complexsinusoid_visual}
@@ -565,7 +570,7 @@ print -dpng ps1p1b.png
   \[
   \frac{dy_h}{dt}(t) + 9y_h(t) = 0
   \]
-  with initial condition $y_h(0) = 1$. It's solution is of the form
+  with initial condition $y_h(0) = 1$. Its solution is of the form
   \[
   y_h(t) = C\, e^{-9t} 
   \]

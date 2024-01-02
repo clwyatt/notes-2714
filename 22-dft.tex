@@ -160,7 +160,9 @@ Which can be compactly written as
 x = \frac{1}{N} \mathcal{W}^{*} X
 \]
 
-This implies $\frac{1}{N}\mathcal{W}\mathcal{W}^* = I$. This special structure ($\mathcal{W}$ is orthogonal) is what enables the Fast Fourier Transform algorithm to compute the DFT/IDFT in $O(N\log_2 N)$ multiply/adds. The most common algorithm for implemeting the FFT is called the Cooley–Tukey radix-2 algorithm. This algorithm can be implemented using C++ as:
+This implies $\frac{1}{N}\mathcal{W}\mathcal{W}^* = I$ and that $\mathcal{W}$ is orthogonal.
+
+The Fast Fourier Transform algorithm computes the DFT/IDFT in $O(N\log_2 N)$ multiply/adds. The most common algorithm for implemeting the FFT is called the Cooley–Tukey radix-2 algorithm. This algorithm can be implemented using C++ as:
 
 \begin{verbatim}
 Signal fft(const Signal & in){
@@ -227,7 +229,7 @@ In Matlab (and other languages/platforms) you can use the Fast Fourier Transform
 >> X = fft(x);
 >> plot(abs(X))
 \end{verbatim}
-To give a plot consistent with the CTFT
+To give a plot consistent with the CTFT of $\cos(2\pi t)u(t-100)$
 \begin{verbatim}
 >> w = (-pi/0.001):(2*pi/100):(pi/0.001);
 >> stem(w, T*fftshift(abs(X)))
@@ -252,7 +254,7 @@ And now we have the DFT
 \item Discrete Fourier Transform: aperiodic DT signal of finite length $x[n] \mapsto X[k]$ periodic discrete frequencies
 \end{itemize}
 
-\section{Applications the DFT}
+\section{Applications of the DFT}
 
 Our discussion of the DFT raises some important questions:
 
@@ -268,7 +270,7 @@ These will be answered in the last two lectures. It also admits some important a
 \item Implementation of CT systems using DT systems
 \end{itemize}
 
-As an example application, suppose you have a physical signal, say an audio signal from a microphone. How would you estimate it's Fourier Transform? Sample $x(t)$ at a frequency of $\frac{2\pi}{T}$ for $NT$ seconds.
+As an example application, suppose you have a physical signal, say an audio signal from a microphone. How would you estimate its Fourier Transform? Sample $x(t)$ at a frequency of $\frac{2\pi}{T}$ for $NT$ seconds.
 \[
 x[n] = x(nT)
 \]
@@ -293,14 +295,14 @@ Note, in practice this requires multiplication by a windowing function to get go
   However $k \in (0, N-1)$ where $N= 100000$. Thus $k = -100 = N - 100 = 99900$. Note, the Matlab command \texttt{fftshift} does this unwrapping for you.
 \end{example}
 
-As another application, suppose you have a CT frequency response, for example a CT filter. How could you simulate the response to a physical signal, such as an audio signal from a microphone? Again, sample $x(t)$ at a frequency of $\frac{2\pi}{T}$ for $NT$ seconds.
+As another application, suppose you have a CT frequency response, $H(j\omega)$, for example a CT filter. How could you simulate the response to a physical signal, such as an audio signal from a microphone? Again, sample $x(t)$ at a frequency of $\frac{2\pi}{T}$ for $NT$ seconds.
 \[
 x[n] = x(nT)
 \]
 \[
 X[k] = \text{DFT}\left\{ x[n] \right\}
 \]
-Using the convolution property of the CTFT
+Using the convolution property
 \[
 Y[k] = H\left(j\frac{2\pi}{NT} k\right) X[k]
 \]

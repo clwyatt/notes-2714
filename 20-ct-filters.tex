@@ -96,9 +96,9 @@ which has nonzero values for $t < 0$, and thus corresponds to a non-casual syste
 
 Practical filters are described by a frequency response that is a ratio of two polynomials in $j\omega$, i.e.
 \[
-H(j\omega) = \frac{K \cdot(j\omega - b_1)\cdot(j\omega - b_2)\cdots (j\omega - b_M)}{(j\omega - a_1)\cdot(j\omega - a_2)\cdots (j\omega - a_N)}
+H(j\omega) = \frac{K \cdot(j\omega - \beta_1)\cdot(j\omega - \beta_2)\cdots (j\omega - \beta_M)}{(j\omega - \alpha_1)\cdot(j\omega - \alpha_2)\cdots (j\omega - \alpha_N)}
 \]
-where $K$ is a constant that controls the gain at DC, and the zero or more complex coefficients $b_k$ and the one or more complex coefficients $a_k$ are called the \emph{zeros} and \emph{poles} of the filter respectively. Such systems correspond to differential equations as we have covered before and are physically realizable as circuits if all poles and zeros are real or come in conjugate pairs. The processes of designing filters consists of choosing the poles and zeros, or equivalently choosing the coefficients of the numerator and dominator polynomials. This is covered in ECE 3704, ECE 4624, and other upper-level courses. 
+where $K$ is a constant that controls the gain at DC, and the zero or more complex coefficients $\beta_k$ and the one or more complex coefficients $\alpha_k$ are called the \emph{zeros} and \emph{poles} of the filter respectively. Such systems correspond to differential equations as we have covered before and are physically realizable as circuits if all poles and zeros are real or come in conjugate pairs. The processes of designing filters consists of choosing the poles and zeros, or equivalently choosing the coefficients of the numerator and dominator polynomials. This is covered in ECE 3704, ECE 4624, and other upper-level courses. 
 
 Practical filters differ from ideal filters in that they cannot be zero over any finite range of frequencies and cannot transition discontinuously between stop and pass bands. Instead they must vary over the bands and transition smoothly, with a degree of variation and sharpness that is a function of the order of the filter and the exact form of the frequency response polynomials. Thus practical filters are described by additional parameters that define the stop and pass-bands.
 

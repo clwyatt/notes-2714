@@ -71,28 +71,35 @@ a_0y[n] + a_1 Dy + \cdots a_N D^N y = b_0 x + \cdots b_MD^M x
 \]
 Note: The DT delay operator $D$ is similar, but \emph{not} identical to the derivative operator $D$ in CT.
 
+%% To make this example more informative, it may be good to pick DE coefficients not to be symmetric around the middle term. This is because now the two polynomials Q(E) and Q(D) turn out to be the same, whereas that is not the case in general.
+%% For example, the DE 
+%% y[n]+3y[n-1]+2y[n-2]
+%% would have 
+%% Q(D)=2D^d+3D+1 and 
+%% Q(E)=E^2+3E+2
 \begin{example}
   Consider the difference equation
   \[
-  2y[n+1] + 5y[n] + 2y[n-1] = 2x[n+1]
+  3y[n+1] + 4y[n] + 5y[n-1] = 2x[n+1]
   \]
   The advance form would be:
   \[
-  2y[n+2] + 5y[n+1] + 2y[n] = 2x[n+2]
+  3y[n+2] + 4y[n+1] + 5y[n] = 2x[n+2]
   \]
   or using the advance operator
   \[
-  \left(2E^2 + 5E + 2\right)y = 2E^2x
+  \left(3E^2 + 4E + 5\right)y = 2E^2x
   \]
-  with $Q(E) = 2E^2 + 5E + 2$ and $P(E) = 2E^2$.\\[1em]
+  with $Q(E) = 3E^2 + 4E + 5$ and $P(E) = 2E^2$.\\[1em]
   The delay form would be:
   \[
-  2y[n] + 5y[n-1] + 2y[n-2] = 2x[n]
+  3y[n] + 4y[n-1] + 5y[n-2] = 2x[n]
   \]
   or using the delay operator
   \[
-  \left(2D^2 + 5D + 2\right)y = 2x
+  \left(5D^2 + 4D + 3\right)y = 2x
   \]
+  with $Q(D) = 5D^2 + 4D + 3$ and $P(D) = 2$.
 $\blacksquare$
 \end{example}
 
@@ -143,7 +150,7 @@ Q(E)\, y = a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = 0 \; .
 \]
 given $N$ sequential auxiliary conditions on $y$.
 
-Similar to differential equations, the homogeneous solution depends on the roots of the characteristic equation $Q(E)=0$ whose roots are either real or occur in complex conjugate pairs. Let $\lambda_i$ be the i-th root of $Q(E) = 0$, then the solution is of the form
+Similar to differential equations, the homogeneous solution depends on the roots of the characteristic equation $Q(E)=0$ whose roots are either real or occur in complex conjugate pairs. Let $\lambda_i$ be the $i$-th root of $Q(E) = 0$, then the solution is of the form
 \[
 y[n] = \sum\limits_{i=1}^N C_i \lambda_i^{n}
 \]
@@ -222,7 +229,7 @@ h[n] = \frac{b_N}{a_N}\delta[n] + y_h[n]u[n]
 \textbf{Step 3:} Using the iterative procedure above find the $N$ auxiliary conditions we need by,
 
 \begin{itemize}
-\item first, rewrite the equation in delay form and solving for $y[n]$,
+\item first, rewrite the equation in delay form and solve for $y[n]$,
 \item then let $x[n] = \delta[n]$ and manually compute $h[0]$ assuming $h[n] = 0$ for $n < 0$,
 \item repeating the previous step for $h[1]$, continuing up to $h[N-1]$.
 \end{itemize}
