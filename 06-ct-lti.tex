@@ -292,13 +292,13 @@ For example, consider a CT system whose impulse response is $h(t) = e^{-t^2}$. T
 
 \subsection{Stability}
 
-A CT system is (BIBO) stable if applying a bounded-input
+A CT system is (BIBO) stable if applying a bounded-input (BI)
 \[
-x(t) < \infty \; \forall \; t
+\left|x(t)\right| < \infty \; \forall \; t
 \]
-results in a bounded-output $x(t) \mapsto y(t)$ and 
+results in a bounded-output (BO) $x(t) \mapsto y(t)$ and 
 \[
-y(t) < \infty \; \forall \; t
+\left|y(t)\right| < \infty \; \forall \; t
 \]
 Note, bounded in practice is limited by the physical situation, e.g. positive and negative rails in a physical circuit.
 
