@@ -51,7 +51,7 @@ Lets do the convolution
 \end{align*}
 Thus the sampling process in the frequency domain causes periodic replication of the Fourier transform of the signal being sampled, $x_2(t)$, which are sometimes called \emph{images}. This signal $Y(j\omega)$ is periodic in $\omega_0 = \tfrac{2\pi}{T_0}$ \emph{radians per second} and corresponds to the DT Fourier Transform of $x_2[n]  \stackrel{\mathcal{F}}{\longleftrightarrow} X_2\left(e^{j\omega}\right)$, which is periodic in $2\pi$ \emph{radians per sample time}.
 
-To help us visualize this, suppose that the signal $x_2(t)  \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(j\omega)$ is \emph{band-limited} to $B$ Hz, that is $X_2(j\omega) = 0$ for all $-2\pi B < \omega < 2\pi B$. This is shown schematically as the magnitude spectrum below:
+To help us visualize this, suppose that the signal $x_2(t)  \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(j\omega)$ is \emph{band-limited} to $B$ Hz, that is $X_2(j\omega) = 0$ for all frequencies outside the band $-2\pi B < \omega < 2\pi B$. This is shown schematically as the magnitude spectrum below:
 
 \begin{center}
   \includegraphics[scale=1]{graphics/bandlimited.pdf}
