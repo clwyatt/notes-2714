@@ -189,31 +189,27 @@ for constants $C$ and $\theta$.
   \]
   Note $Q(E) = E^2 + E + \frac{1}{2}$ has a pair of complex roots $\lambda_{1,2} = -\frac{1}{2} \pm j\frac{1}{2}$. Thus the solution is of the form
   \[
-  y[n] = C \left|\frac{1}{\sqrt{2}}\right|^n\cos\left(\frac{\pi}{4} n + \theta\right)
+  y[n] = C \left|\frac{1}{\sqrt{2}}\right|^n\cos\left(\frac{3\pi}{4} n + \theta\right)
   \]
   where the parameters are found using
   \[
   y[0] = C\cos\left(\theta\right) = 1
   \]
   \[
-  y[1] = C\frac{1}{\sqrt{2}}\cos\left(\frac{\pi}{4} + \theta\right) = 0
+  y[1] = C\frac{1}{\sqrt{2}}\cos\left(\frac{3\pi}{4} + \theta\right) = 0
   \]
   This is true when
   \[
-  C = \sqrt{2} \mbox{ and } \theta = \frac{\pi}{4} + 2\pi m
-  \]
-  or
-  \[      
-  C = -\sqrt{2} \mbox{ and } \theta = -\frac{3\pi}{4} + 2\pi m
+  C = \sqrt{2} \mbox{ and } \theta = -\frac{\pi}{4} + 2\pi m
   \]
   for any $m\in \mathbb{Z}$ since $\cos$ is periodic in $2\pi$. A final solution is then
   \[
-  y[n] = \sqrt{2} \left|\frac{1}{\sqrt{2}}\right|^n\cos\left(\frac{\pi}{4} n + \frac{\pi}{4}\right)
+  y[n] = \sqrt{2} \left|\frac{1}{\sqrt{2}}\right|^n\cos\left(\frac{3\pi}{4} n - \frac{\pi}{4}\right)
   \]
   $\blacksquare$
 \end{example}
 
-See the appendix for a general tehnique to solve for these constants.
+See the appendix for a general technique to solve for these constants.
 
 \section{Impulse response from LCCDE}
 

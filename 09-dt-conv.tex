@@ -161,33 +161,7 @@ Consider the convolution of a unit step and the function $\gamma^n\,u[n]$ for so
   Thus the convolution with the impulse gives back the same signal (the $\delta$ is the \emph{identity} signal). $\blacksquare$
 \end{example}
 
-The following table lists several DT convolution results.
-
-\begin{center}
-  Table of Representative Convolution Sums
-  \vspace{1em}
-  
-\bgroup
-\def\arraystretch{2}
-\setlength\tabcolsep{2em}
-\begin{tabular}{|c|c|c|}
-  \hline
-  $x_1[n]$ & $x_2[n]$ & $x_1[n] * x_2[n]$\\
-  \hline
-  \hline
-  $u[n]$ & $u[n]$ & $(n+1)u[n]$\\
-  $\gamma^{n}u[n]$ & $u[n]$ & $\frac{1-\gamma^{n+1}}{1-\gamma}u[n]$ for $\gamma \neq 1$\\
-  $\gamma_1^{n}u[n]$ & $\gamma_2^{n}u[n]$ & $\frac{\gamma_1^{n+1}-\gamma_2^{n+1}}{\gamma_1-\gamma_2}u[n]$ for $\gamma_1 \neq \gamma_2$\\
-  $\gamma^{n}u[n]$ & $\gamma^{n}u[n]$ & $(n+1)\gamma^{n}u[n]$\\
-  $|\gamma_1|^{n}\cos\left(\beta n + \theta \right)u[n]$ & $|\gamma_2|^{n}u[n]$ & $\frac{1}{R}\left[ |\gamma_1|^{n+1}\cos\left( \beta (n+1) + \theta - \phi\right) - |\gamma_2|^{n+1}\cos\left( \theta - \phi\right)\right]u[n]$\\
-           & & $R = \left[ |\gamma_1|^2 + |\gamma_2|^2 -2|\gamma_1||\gamma_2|\cos(\beta)\right]^{\frac{1}{2}}$\\
-  & & $\phi = \arctan\left( \frac{|\gamma_1|\sin(\beta)}{|\gamma_1|\cos(\beta) - |\gamma_2|} \right)$\\
-
-\hline                       
-\end{tabular}
-\egroup
-
-\end{center}
+\noindent Table \ref{table:dtconv} lists several DT convolution results.
 
 \section{Properties of DT Convolution}
 There are several useful properties of convolution. We do not prove these here, but it is not terribly difficult to do so. Given signals $x_1[n]$, $x_2[n]$, and $x_3[n]$:
