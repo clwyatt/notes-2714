@@ -41,7 +41,7 @@ The {\it order} of the system is given by $N$. The delay and advance forms are e
   \]
   Replacing $n \rightarrow n+2$, the advance form is
   \[
-  a_0 y[n+2] + a_1 y[n+1] + a_2 y[n] = b+0 x[n+2] + b_1 x[n+1]
+  a_0 y[n+2] + a_1 y[n+1] + a_2 y[n] = b_0 x[n+2] + b_1 x[n+1]
   \]
   $\blacksquare$
 \end{example}
@@ -55,7 +55,7 @@ a_0 E^Ny + a_1E^{N-1}y + \cdots a_N y = b_0 E^{N}x + \cdots b_M E^{N-M}x
 \]
 Factoring out the advance operators gives
 \[
-\underbrace{\left(a_0E^N + a_1E^{N-1} + \cdots a_N\right)}_{Q(E)} y = \underbrace{\left(b_M E^{N} + \cdots b_M E^{N-M}\right)}_{P(E)} x
+\underbrace{\left(a_0E^N + a_1E^{N-1} + \cdots a_N\right)}_{Q(E)} y = \underbrace{\left(b_0 E^{N} + \cdots b_M E^{N-M}\right)}_{P(E)} x
 \]
 or
 \[
