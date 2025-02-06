@@ -1,0 +1,28 @@
+project:
+  type: book
+
+book:
+  title: "Supplementary Notes for ECE 2714: Signals and Systems"
+  author: "C.L. Wyatt"
+  date: "2/6/2025"
+  repo-url: https://github.com/clwyatt/notes-2714/
+  downloads: [pdf, epub]
+  chapters:
+    - index.qmd
+    - 01-intro.qmd
+    - summary.qmd
+    - references.qmd
+
+comments:
+  hypothesis: true
+  
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

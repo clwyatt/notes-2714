@@ -1,0 +1,37 @@
+```{=html}
+<style>
+.flushright {
+   text-align: right;
+}
+</style>
+```
+
+This work is licensed under a Creative Commons Attribution 4.0 International License.
+
+# Preface {.unnumbered}
+
+## To the student:
+
+This is a set of supplementary notes and examples for ECE 2714. It is not a replacement for the textbook, but can act as a reference and guide your reading. These notes are not comprehensive -- often additional material and insights are covered during class.
+
+This material is well covered in the official course text "Oppenheim, A. V., Willsky, A. S., and Nawab, S. H. Signals and Systems\. ii, Essex UK: Prentice Hall Pearson, 1996." \cite{OW} (abbreviated OW). This is an older, but very good book. However there are many, many texts that cover the same material. \textit{Engaged} reading a textbook is one of the most important things you can do to learn this material. Again, these notes should \textbf{not} be considered a replacement for a textbook.
+
+## To the instructor:
+
+These notes are simply a way to provide some consistency in topic coverage and notation between and within semesters. Feel free to share these with your class but you are under no obligation to do so. There are many alternative ways to motivate and develop this material and you should use the way that you like best. This is just how I do it.
+
+Each chapter corresponds to a "Topic Learning Objective" and would typically be covered in one class meeting on a Tuesday-Thursday or Monday-Wednesday schedule. Note CT and DT topics are taught interleaved rather than in separate blocks. This gets the student used to going back and forth between the two signal and system types. We introduce time-domain topics first, followed by (real) frequency domain topics, using complex frequency domain for sinusoidal analysis only and as a bridge. Detailed analysis and application of Laplace and Z-transforms is left to ECE 3704. 
+
+## Acknowledgements:
+
+The development of this course has been, and continues to be, a team effort. Dr. Mike Buehrer was instrumental in the initial design and roll-out of the course. Dr. Mary Lanzerotti has helped enormously with the course organization and academic integrity. All the instructors thus far: Drs. Buehrer, Safaai-Jazi, Lanzerotti, Kekatos, Poon, Xu, and Talty, have shaped the course in some fashion.
+
+
+::: {.flushright data-latex=""}
+C.L. Wyatt
+
+May 7, 2024
+:::
+
+
+
