@@ -76,7 +76,7 @@ x_1[n] * x_2[n] = \sum\limits_{m = N_1+N_2}^{M_1+M_2} x_1[m]x_2[n-m]
 
 It is common to shift both signals so that they both start at index $0$ (in order to be represented as arrays in a zero-based index programming language like C or C++), zero-padding them both to have length $L=L_1+L_2-1$ (zero-pad means to just add zero values to the end of the sequence). Then the convolution becomes
 \[
-y = x_1 * x_2 = \sum\limits_{m = 0}^{L} x_1[m]x_2[n-m]
+y = x_1 * x_2 = \sum\limits_{m = 0}^{L-1} x_1[m]x_2[n-m]
 \]
 where the indexing of $x_2$ is modulo the signal length, i.e. $x_2[(n-m) \mbox{ mod } L]$. The resulting signal after convolution, $y$, is also of length $L$, and can then be shifted back to start at $N_1+N_2$.
 
