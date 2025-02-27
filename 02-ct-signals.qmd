@@ -138,7 +138,7 @@ The co-domain can also be complex.
   $$
 
   
-Since the domains $\mathbb{R}$ and $\mathbb{Z}$ are usually interpreted as time, we will call these {\it time-domain} signals. In the time-domain, when the co-domain is $\mathbb{R}$ we call these real signals. All physical signals are real. However complex signals will become important when we discuss the frequency domain.
+Since the domains $\mathbb{R}$ and $\mathbb{Z}$ are usually interpreted as time, we will call these _time-domain_ signals. In the time-domain, when the co-domain is $\mathbb{R}$ we call these real signals. All physical signals are real. However complex signals will become important when we discuss the frequency domain.
 
 
 ## Primitive Models
