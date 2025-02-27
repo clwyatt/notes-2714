@@ -1,0 +1,142 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Supplementary Notes for ECE 2714: Signals and Systems",
+    "section": "",
+    "text": "About the Notes\nThis is a set of supplementary notes and examples for ECE 2714 in the Bradley Department of Electrical and Computer Engineering at Virginia Tech.",
+    "crumbs": [
+      "About the Notes"
+    ]
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "Supplementary Notes for ECE 2714: Signals and Systems",
+    "section": "License",
+    "text": "License\nThis work is licensed under a Creative Commons Attribution 4.0 International License.",
+    "crumbs": [
+      "About the Notes"
+    ]
+  },
+  {
+    "objectID": "index.html#update-history",
+    "href": "index.html#update-history",
+    "title": "Supplementary Notes for ECE 2714: Signals and Systems",
+    "section": "Update History",
+    "text": "Update History\nThis book is continually updated as new content becomes available and errata corrected.\n\nFeb 2025: Conversion from LaTeX pdf to accessible html started.",
+    "crumbs": [
+      "About the Notes"
+    ]
+  },
+  {
+    "objectID": "preface.html",
+    "href": "preface.html",
+    "title": "Preface",
+    "section": "",
+    "text": "To the student:\nThis is a set of supplementary notes and examples for ECE 2714. It is not a replacement for the textbook, but can act as a reference and guide your reading. These notes are not comprehensive – often additional material and insights are covered during class.\nThis material is well covered in the official course text “Oppenheim, A. V., Willsky, A. S., and Nawab, S. H. Signals and Systems. ii, Essex UK: Prentice Hall Pearson, 1996.” (abbreviated OW). This is an older, but very good book. However there are many, many texts that cover the same material. reading a textbook is one of the most important things you can do to learn this material. Again, these notes should be considered a replacement for a textbook.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "preface.html#to-the-instructor",
+    "href": "preface.html#to-the-instructor",
+    "title": "Preface",
+    "section": "To the instructor:",
+    "text": "To the instructor:\nThese notes are simply a way to provide some consistency in topic coverage and notation between and within semesters. Feel free to share these with your class but you are under no obligation to do so. There are many alternative ways to motivate and develop this material and you should use the way that you like best. This is just how I do it.\nEach chapter corresponds to a “Topic Learning Objective” and would typically be covered in one class meeting on a Tuesday-Thursday or Monday-Wednesday schedule. Note CT and DT topics are taught interleaved rather than in separate blocks. This gets the student used to going back and forth between the two signal and system types. We introduce time-domain topics first, followed by (real) frequency domain topics, using complex frequency domain for sinusoidal analysis only and as a bridge. Detailed analysis and application of Laplace and Z-transforms is left to ECE 3704.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "preface.html#acknowledgements",
+    "href": "preface.html#acknowledgements",
+    "title": "Preface",
+    "section": "Acknowledgements:",
+    "text": "Acknowledgements:\nThe development of this course has been, and continues to be, a team effort. Dr. Mike Buehrer was instrumental in the initial design and roll-out of the course. Dr. Mary Lanzerotti has helped enormously with the course organization and academic integrity. All the instructors thus far: Drs. Buehrer, Safaai-Jazi, Lanzerotti, Kekatos, Poon, Xu, and Talty, have shaped the course in some fashion.\n\nC.L. Wyatt\nMay 7, 2024",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "01-intro.html",
+    "href": "01-intro.html",
+    "title": "1  Course Introduction",
+    "section": "",
+    "text": "1.1 Example Signals and Systems",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Course Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro.html#example-signals-and-systems",
+    "href": "01-intro.html#example-signals-and-systems",
+    "title": "1  Course Introduction",
+    "section": "",
+    "text": "Electrical Circuits. This is a Sallen-Key filter, a second-order system commonly use to select frequencies from a signal:\n\nFIGURE\n\nThere are two signals we can easily identify, the input signal as the voltage applied across \\(x(t)\\), and the output voltage measured across \\(y(t)\\). We build on your circuits course by viewing this circuit as an implementation of a more abstract linear system. We see how it can be viewed as a frequency selective filter. We will see how to answer questions such as: how do we choose the values of the resistors and capacitors to select the frequencies we are interested in? and how do we determine what those frequencies are?\n\n\nRobotic Joint. This is a Linear, Time-Invariant model of a DC motor, a mixture of electrical and mechanical components.\n\nFIGURE\n\nHow do we convert the motor into a servo for use in a robotic joint? What are its characteristics (e.g. how fast can it move)?\n\n\nAudio Processing. Suppose you record an interview for a podcast, but during an important part of the discussion, the HVAC turns on and there is an annoying noise in the background.\n\nFIGURE\n\nHow could you remove the noise minimizing distortion to the rest of the audio?\n\n\nCommunications. Consider a wireless sensor, that needs to transmit to a base station, e.g. a wireless mic system.\n\nFIGURE\n\nHow should the signal be processed so it can be transmitted? How should the received signal be processed?",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Course Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro.html#types-of-problems",
+    "href": "01-intro.html#types-of-problems",
+    "title": "1  Course Introduction",
+    "section": "1.2 Types of Problems",
+    "text": "1.2 Types of Problems\nApplications of this material occur in all areas of science and engineering. When we have a measured output but are unsure what combination of inputs and system components could have produced it, we have a modeling problem.\n\nFIGURE\n\nModels are the bedrock of the scientific method and are required to apply the concepts of this course to engineering problems.\nWhen we know the input and the system description and desire to know the output we have an analysis problem.\n\nFIGURE\n\nAnalysis problems are the kind you have encountered most often already. For example, given an electrical circuit and an applied voltage or current, what are the voltages and currents across and through the various components.\nWhen we know either the input and desired output and seek the system to perform this transformation,\n\nFIGURE\n\nor we know the system description and output and desire the input that would generate the output,\n\nFIGURE\n\nwe have a design problem.\nThis course focuses on modeling and analysis with applications to electrical circuits and devices for measurement and control of the physical world and is broadly applicable to all ECE majors. Some Examples:\n\nControls, Robotics, & Autonomy: LTI systems theory forms the basis of perception and control of machines.\nCommunications & Networking: LTI systems theory forms the basis of transmission and reception of signals, e.g. AM and FM radio.\nMachine Learning: LTI systems are often used to pre-process samples or to create basis functions to improve learning.\nEnergy & Power Electronic Systems: linear circuits are often modeled as LTI systems.\n\nSubsequent courses, e.g. ECE 3704, focus more on analysis and design.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Course Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro.html#learning-objectives",
+    "href": "01-intro.html#learning-objectives",
+    "title": "1  Course Introduction",
+    "section": "1.3 Learning Objectives",
+    "text": "1.3 Learning Objectives\nThe learning objectives (LOs) for the course are:\n\nDescribe a given system using a block-level description and identify the input/output signals.\nMathematically model continuous and discrete linear, time-invariant systems using differential and difference equations respectively.\nAnalyze the use of filters and their interpretation in the time and frequency domains and implement standard filters in hardware and/or software.\nApply computations of the four fundamental Fourier transforms to the analysis and design of linear systems.\nCommunicate solutions to problems and document projects within the domain of signals and systems through formal written documents.\n\nThese are broken down further into the following topic learning objectives (TLOs). The TLOs generally map onto one class meeting but are used extensively in later TLOs.\n\nCourse introduction (OW Forward and §1.0)\n\nSignals as models\nSystems as transformation of signals\nPrerequisites\n\nContinuous-time (CT) signals (OW §1.1 through 1.4 and 2.5): A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.\n\nContinuous-time signals as functions \\(\\mathbb{R}\\mapsto\\mathbb{C}\\)\nTransformations of time\nCharacterizing signals\n\nperiodic/aperiodic\neven/odd\nenergy or/nor power\n\nImpulse function\nStep function\nComplex exponential\n\nDiscrete-time (DT) signals (OW §1.1 through 1.4)\n\nDiscrete-time signals as functions \\(\\mathbb{Z}\\mapsto\\mathbb{C}\\)\nTransformations of time index\nCharacterizing signals\n\nperiodic/aperiodic\neven/odd\nenergy or/nor power\n\nImpulse function\nStep function\nComplex exponential\n\nCT systems as linear constant coefficient differential equations (OW §2.4.1)\n\nLCCDE and their solution (1st and 2nd order)\nimpulse response from LCCDE\n\nDT systems as linear constant coefficient difference equations (OW §2.4.2)\n\nLCCDE and their solution (1st and 2nd order)\nimpulse response from LCCDE\n\nLinear time invariant CT systems (OW §1.5, 1.6, 2.3)\n\nMemory\nInvertability\nCausality\nStability\nTime-invariance\nLinearity\nDefine LTI system\n\nLinear time invariant DT systems (OW §1.5, 1.6, 2.3)\n\nMemory\nInvertability\nCausality\nStability\nTime-invariance\nLinearity\nDefine LTI system\n\nCT convolution (OW §2.2)\n\nReview CT LTI systems and superposition property\nCT Convolution Integral\nProperties of convolution\n\ncommunative\ndistributive\nassociative\n\nDetermining system response using convolution with impulse response\n\nDT convolution (OW §2.1)\n\nReview DT LTI systems and superposition property\nDT Convolution Sum\nProperties of convolution\n\ncommunative\ndistributive\nassociative\n\nDetermining system response using convolution with impulse response\n\nCT block diagrams (OW §1.5.2 and 2.4.3)\n\nblocks represented by impulse response\nseries and parallel connections, reductions\nscale, sum, and integrator blocks\nequivalence of LCCDE’s and block diagrams\nfirst-order differential equation as feedback motif\nsecond-order differential equation as a feedback motif\nimplementing a LCCDE using adders, multipliers, and integrators\n\nDT block diagrams (OW §1.5.2 and 2.4.3)\n\nblocks represented by impulse response\nseries and parallel connections, reductions\nscale, sum, and unit delay blocks\nequivalence of LCCDE’s and block diagrams\nfirst-order difference equation as feedback motif\nsecond-order difference equation as a feedback motif\nimplementing a LCCDE using adders, multipliers, and delays\n\nEigenfunctions of CT systems (OW §3.2 and 3.8)\n\nEigenfunction \\(e^{st}\\)\nTransfer Function \\(H(s)\\)\nStability and Frequency Response (FR) \\(H(j\\omega)\\)\nHow this is useful - decomposition of input signal into complex exp\nWhat signals can be decomposed this way, foreshadow Fourier Analysis\n\nEigenfunctions of DT systems (OW §3.2 and 3.8)\n\nEigenfunction \\(z^{n}\\)\nTransfer Function \\(H(z)\\)\nStability and Frequency Response (FR) \\(H\\left(e^{j\\omega}\\right)\\)\nHow this is useful - decomposition of input signal into complex exp\nWhat signals can be decomposed this way, foreshadow Fourier Analysis\n\nCT Fourier Series representation of signals (OW §3.3 through 3.5)\n\nreview CT periodic functions\nharmonic sums\nderive synthesis equation\nderive analysis equation\nspectrum plots\ndefine mean-square convergence\ntruncated CT FS\nstable LTI system response using CTFS\nexample of the impulse train (for sampling theory later)\nformal Dirichlet conditions\nproperties of CT FS\n\nDT Fourier Series representation of signals (OW §3.6 and 3.7)\n\nreview DT periodic functions\nharmonic sums\nderive synthesis equation\nderive analysis equation\nspectrum plots\nstable LTI system response using DTFS\nproperties of DT FS\n\nCT Fourier Transform (OW §4.0 through 4.7)\n\nderive the CTFT pair from the CTFS\nDirichlet existence conditions\nCTFT of the CTFS\nProperties of the CT Fourier Transform\n\nlinearity\ntime shift\nconjugacy\nintegration and differentiation: application to LCCDE \\(\\mapsto\\) CTFR\ntime scaling\nduality\nconvolution: stable LTI system response using CTFT\nmultiplication/modulation\napplication of the properties in combination\n\n\nDT Fourier Transform (OW §5.0 though 5.8)\n\nderive the DTFT from DTFS\nDTFT of DTFS\nProperties of the DT Fourier Transform\n\nperiodicity\nlinearity\nindex-shift: application to LCCDE \\(\\mapsto\\) DTFR\nfrequency shift\nconjugation\nfinite difference and accumulation\ninterpolation /index expansion\nfrequency differentiation\nParseval’s\nconvolution: stable LTI system response using DTFT\nmultiplication/modulation\napplication of the properties in combination\n\n\nCT Frequency Response (OW §6.1, 6.2, 6.5)\n\nreview CTFR as CTFT of impulse response\nreview CTFR to/from LCCDE\nreview CTFR to/from block diagram\nmagnitude-phase representation of the frequency response\nfrequency response acting on sinusoids\nBode plots\n\nwhy plot it this way: dB units and log time axis\nhow to read them (not construct them manually)\nBode plots in software, e.g. Matlab/Python/Julia\n\nCTFR of first and second order systems\n\nDT Frequency Response (OW §6.1, 6.2, 6.6)\n\nreview DTFR as DTFT of impulse response\nreview DTFR to/from LCCDE\nreview DTFR to/from block diagram\nmagnitude-phase representation of the frequency response\nfrequency response acting on sinusoids\nDTFR plots\n\nperiodicity\ndB units\nDTFR plots in software, e.g. Matlab/Python/Julia\n\nDTFR of first and second order systems\n\nFrequency Selective Filters in CT (OW §3.9, 3.10, 6.3, 6.4)\n\nideal low-pass\nideal high-pass\nideal bandpass\nideal notch/bandstop\npractical filters\ntransformations\nfirst and second order systems as building blocks\n\nreview LCCDE representation\nreview block diagram representation\nreview CTFR representation\nCT 1st order RC+buffer\nCT Sallen-key\n\n\nFrequency Selective Filters in DT (OW §3.11, 6.3, 6.4)\n\nideal low-pass\nideal high-pass\nideal bandpass\nideal notch/bandstop\npractical filters\ntransformations\nfirst and second order systems as building blocks\n\nreview LCCDE representation\nreview block diagram representation\nreview DTFR representation\nDT 1st order implementation in code\nDT 2nd order implementation in code\n\n\nThe Discrete Fourier Transform\n\ntime window the DTFT to get the DFT\ninterpreting the index axis as DT and CT frequency\nzero-padding\noffline or batched filtering using the DFT\nbriefly mention fast algorithms to compute the DFT = FFT\n\nSampling (OW §7.1, 7.3, 7.4)\n\nsampling using the impulse train\nderive the Nyquist rate\neffects of aliasing\npractical ADC (sample and hold, SAR, bit-width)\ndesigning anti-aliasing filters\n\nReconstruction (OW §7.2)\n\nreconstruction as removal of images\nreconstruction as interpolation\npractical DAC: R-2R ladder\ndesigning reconstruction filters",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Course Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "01-intro.html#graphical-outline",
+    "href": "01-intro.html#graphical-outline",
+    "title": "1  Course Introduction",
+    "section": "1.4 Graphical Outline",
+    "text": "1.4 Graphical Outline\nFIGURES",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Course Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "02-ct-signals.html",
+    "href": "02-ct-signals.html",
+    "title": "2  Continuous-Time Signals",
+    "section": "",
+    "text": "2.1 Signals as Functions\nIn order to reason about signals mathematically we need a representation or model. Signals are modeled as functions, mappings between sets \\[\nf: A \\rightarrow B\n\\] where \\(A\\) is a set called the domain and \\(B\\) is a set called the range.\nThe most basic classification of signals depends on the sets that makeup the domain and co-domain. We will be interested in two versions of the domain, the reals denoted \\(\\mathbb{R}\\) and the integers denoted \\(\\mathbb{Z}\\). We will be interested in two versions of the co-domain, the reals \\(\\mathbb{R}\\) and the set of complex numbers \\(\\mathbb{C}\\).\nCode\nimport matplotlib\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nt = np.linspace(-6, 6, 1000);\nu = (t &gt;= 0)\ne = np.exp(-t)*u\ns = np.sin(2*np.pi*t)\nes = e*s\n\nf = plt.figure()\n\nplt.subplot(2, 2, 1)\nplt.plot(np.linspace(-6, 0, 1000), np.zeros(1000), color='b')\nplt.plot(np.linspace(0, 6, 1000), np.ones(1000), color='b')\nplt.xlabel('$t$')\nplt.ylabel('$x(t)$')\nplt.title('$x(t) = u(t)$')\nplt.autoscale(enable=True, axis='x', tight=True)\n\nplt.subplot(2, 2, 2)\nplt.plot(t,e)\nplt.xlabel('$t$')\nplt.ylabel('$x(t)$')\nplt.title('$x(t) = e^{-t}u(t)$')\nplt.autoscale(enable=True, axis='x', tight=True)\n\nplt.subplot(2, 2, 3)\nplt.plot(t,s)\nplt.xlabel('$t$')\nplt.ylabel('$x(t)$')\nplt.title('$x(t) = sin(2\\pi t)$')\nplt.autoscale(enable=True, axis='x', tight=True)\n\nplt.subplot(2, 2, 4)\nplt.plot(t,es)\nplt.xlabel('$t$')\nplt.ylabel('$x(t)$')\nplt.title('$x(t) = e^{-t}sin(2\\pi t)u(t)$')\nplt.autoscale(enable=True, axis='x', tight=True)\n\nplt.tight_layout()\n\nplt.show()\n\n\n\n\n\n\n\n\nFigure 2.1: Example plots of analog signals.\nCode\nimport matplotlib\nimport matplotlib.pyplot as plt\nimport numpy as np\n\nn = np.linspace(-6, 6, 13);\nu = (n &gt;= 0)\ne = np.exp(-n)*u\ns = np.sin(n)\nes = e*s\n\nf = plt.figure()\n\nplt.subplot(2, 2, 1)\nplt.stem(n, u)\nplt.xlabel('$n$')\nplt.ylabel('$x[n]$')\nplt.title('$x[n] = u[n]$')\nplt.autoscale(enable=True, axis='x', tight=True)\n\nplt.subplot(2, 2, 2)\nplt.stem(n,e)\nplt.xlabel('$n$')\nplt.ylabel('$x[n]$')\nplt.title('$x[n] = e^{-n}u[n]$')\nplt.autoscale(enable=True, axis='x', tight=True)\n\nplt.subplot(2, 2, 3)\nplt.stem(n,s)\nplt.xlabel('$n$')\nplt.ylabel('$x[n]$')\nplt.title('$x[n] = sin(n)$')\nplt.autoscale(enable=True, axis='x', tight=True)\n\nplt.subplot(2, 2, 4)\nplt.stem(n,es)\nplt.xlabel('$n$')\nplt.ylabel('$x[n]$')\nplt.title('$x[n] = e^{-n}sin(n)u[n]$')\nplt.autoscale(enable=True, axis='x', tight=True)\n\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\nFigure 2.2: Example plots of analog signals.\nSome other possibilities:\nThe co-domain can also be complex.\nSince the domains \\(\\mathbb{R}\\) and \\(\\mathbb{Z}\\) are usually interpreted as time, we will call these time-domain signals. In the time-domain, when the co-domain is \\(\\mathbb{R}\\) we call these real signals. All physical signals are real. However complex signals will become important when we discuss the frequency domain.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Continuous-Time Signals</span>"
+    ]
+  },
+  {
+    "objectID": "02-ct-signals.html#signals-as-functions",
+    "href": "02-ct-signals.html#signals-as-functions",
+    "title": "2  Continuous-Time Signals",
+    "section": "",
+    "text": "Note\n\n\n\nAnalog Signal: If the function \\(f: \\mathbb{R} \\rightarrow \\mathbb{R}\\), we call this an analog or real, continuous-time signal, e.g. a voltage at time \\(t \\in \\mathbb{R}\\), \\(v(t)\\). We will write these as \\(x(t)\\), \\(y(t)\\), etc. The units of \\(t\\) are seconds. Figure 2.1 shows some graphical representations, i.e. plots.\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nReal, Discrete-time Signal: If the function \\(f: \\mathbb{Z} \\rightarrow \\mathbb{R}\\), we call this a real, discrete-time signal, e.g. the temperature every day at noon. We will write these as \\(x[n]\\), \\(y[n]\\), etc. Note \\(n\\) is dimensionless. Figure 2.2 shows some graphical representations.\n\n\n\n\n\n\\(f: \\mathbb{R} \\rightarrow \\mathbb{Z}\\), digital, continuous-time signals, e.g. the output of a general purpose pin on a microcontroller\n\\(f: \\mathbb{Z} \\rightarrow \\mathbb{Z}\\), digital, discrete-time signals, e.g. the signal on a computer bus\n\n\n\n\\(f: \\mathbb{R} \\rightarrow \\mathbb{C}\\), complex-valued, continuous-time signals, e.g. \\[\nx(t) = e^{j\\omega t} = \\cos(\\omega t) + j\\sin(\\omega t)\n\\]\n\\(f: \\mathbb{Z} \\rightarrow \\mathbb{C}\\), complex-valued, discrete-time signals, e.g. \\[\nx[n] = e^{j\\omega n} = \\cos(\\omega n) + j\\sin(\\omega n)\n\\]",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Continuous-Time Signals</span>"
+    ]
+  },
+  {
+    "objectID": "02-ct-signals.html#primitive-models",
+    "href": "02-ct-signals.html#primitive-models",
+    "title": "2  Continuous-Time Signals",
+    "section": "2.2 Primitive Models",
+    "text": "2.2 Primitive Models\nWe mathematically model signals by combining elementary/primitive functions, for example:\n\npolynomials: \\(x(t) = t\\), \\(x(t) = t^2\\), etc.\ntransendental functions: \\(x(t) = e^t\\), \\(x(t) = \\sin(t)\\), \\(x(t) = \\cos(t)\\), etc.\npiecewise functions, e.g. \\[\n   x(t) = \\left\\{  \\begin{array}{cl}\n     f_1(t) & t &lt; 0\\\\\n     f_2(t) & t \\geq 0\\\\\n   \\end{array}\\right.\n\\]\n\n\n\n\n\n\n\nNote\n\n\n\nModeling a Switch: Consider a mathematical model of a switch, which moves positions at time \\(t = 0\\).\nFIGURE HERE\nWe use this model so much we give it it’s own name and symbol: Unit Step, \\(u(t)\\)\n\\[\nu(t) = \\left\\{  \\begin{array}{cl}\n        0 & t &lt; 0\\\\\n        1 & t \\geq 0\\\\\n      \\end{array}\\right.\n\\] so a mathematical model of the switch circuit above would be \\(x(t) = V u(t)\\).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Continuous-Time Signals</span>"
+    ]
+  }
+]
