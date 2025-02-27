@@ -1,0 +1,15 @@
+# About the Notes {.unnumbered}
+
+This is a set of supplementary notes and examples for ECE 2714 in the Bradley Department of Electrical and Computer Engineering at Virginia Tech.
+
+## License
+
+This work is licensed under a Creative Commons Attribution 4.0 International License.
+
+## Update History
+
+This book is continually updated as new content becomes available and errata corrected.
+
+* **Feb 2025**: Conversion from LaTeX pdf to accessible html started.
+
+
