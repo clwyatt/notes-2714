@@ -1,0 +1,173 @@
+---
+title: "Continuous-Time Signals"
+---
+
+A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.
+
+## Signals as Functions
+
+In order to reason about signals mathematically we need a representation or *model*. Signals are modeled as functions, mappings between sets
+$$
+f: A \rightarrow B
+$$
+where $A$ is a set called the *domain* and $B$ is a set called the *range*.
+
+The most basic classification of signals depends on the sets that makeup the domain and co-domain. We will be interested in two versions of the domain, the reals denoted $\mathbb{R}$ and the integers denoted $\mathbb{Z}$. We will be interested in two versions of the co-domain, the reals $\mathbb{R}$ and the set of complex numbers $\mathbb{C}$.
+
+::: {.callout-note}
+**Analog Signal:**
+If the function $f: \mathbb{R} \rightarrow \mathbb{R}$, we call this an analog or real, continuous-time signal, e.g. a voltage at time $t \in \mathbb{R}$, $v(t)$. We will write these as $x(t)$, $y(t)$, etc. The units of $t$ are seconds. @fig-analog-plots shows some graphical representations, i.e. plots.
+:::
+
+```{python}
+#| label: fig-analog-plots
+#| fig-cap: "Example plots of analog signals."
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+t = np.linspace(-6, 6, 1000);
+u = (t >= 0)
+e = np.exp(-t)*u
+s = np.sin(2*np.pi*t)
+es = e*s
+
+f = plt.figure()
+
+plt.subplot(2, 2, 1)
+plt.plot(np.linspace(-6, 0, 1000), np.zeros(1000), color='b')
+plt.plot(np.linspace(0, 6, 1000), np.ones(1000), color='b')
+plt.xlabel('$t$')
+plt.ylabel('$x(t)$')
+plt.title('$x(t) = u(t)$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.subplot(2, 2, 2)
+plt.plot(t,e)
+plt.xlabel('$t$')
+plt.ylabel('$x(t)$')
+plt.title('$x(t) = e^{-t}u(t)$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.subplot(2, 2, 3)
+plt.plot(t,s)
+plt.xlabel('$t$')
+plt.ylabel('$x(t)$')
+plt.title('$x(t) = sin(2\pi t)$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.subplot(2, 2, 4)
+plt.plot(t,es)
+plt.xlabel('$t$')
+plt.ylabel('$x(t)$')
+plt.title('$x(t) = e^{-t}sin(2\pi t)u(t)$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.tight_layout()
+
+plt.show()
+```
+
+::: {.callout-note}
+**Real, Discrete-time Signal:** If the function $f: \mathbb{Z} \rightarrow \mathbb{R}$, we call this a real, discrete-time signal, e.g. the temperature every day at noon. We will write these as $x[n]$, $y[n]$, etc. Note $n$ is dimensionless. @fig-realdt-plots shows some graphical representations.
+:::
+
+```{python}
+#| label: fig-realdt-plots
+#| fig-cap: "Example plots of analog signals."
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+n = np.linspace(-6, 6, 13);
+u = (n >= 0)
+e = np.exp(-n)*u
+s = np.sin(n)
+es = e*s
+
+f = plt.figure()
+
+plt.subplot(2, 2, 1)
+plt.stem(n, u)
+plt.xlabel('$n$')
+plt.ylabel('$x[n]$')
+plt.title('$x[n] = u[n]$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.subplot(2, 2, 2)
+plt.stem(n,e)
+plt.xlabel('$n$')
+plt.ylabel('$x[n]$')
+plt.title('$x[n] = e^{-n}u[n]$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.subplot(2, 2, 3)
+plt.stem(n,s)
+plt.xlabel('$n$')
+plt.ylabel('$x[n]$')
+plt.title('$x[n] = sin(n)$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.subplot(2, 2, 4)
+plt.stem(n,es)
+plt.xlabel('$n$')
+plt.ylabel('$x[n]$')
+plt.title('$x[n] = e^{-n}sin(n)u[n]$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.tight_layout()
+plt.show()
+```
+
+Some other possibilities:
+  
+* $f: \mathbb{R} \rightarrow \mathbb{Z}$, digital, continuous-time signals, e.g. the output of a general purpose pin on a microcontroller
+* $f: \mathbb{Z} \rightarrow \mathbb{Z}$, digital, discrete-time signals, e.g. the signal on a computer bus
+
+The co-domain can also be complex.
+
+* $f: \mathbb{R} \rightarrow \mathbb{C}$, complex-valued, continuous-time signals, e.g.
+  $$
+  x(t) = e^{j\omega t} = \cos(\omega t) + j\sin(\omega t)
+  $$
+* $f: \mathbb{Z} \rightarrow \mathbb{C}$, complex-valued, discrete-time signals, e.g.
+  $$
+  x[n] = e^{j\omega n} = \cos(\omega n) + j\sin(\omega n)
+  $$
+
+  
+Since the domains $\mathbb{R}$ and $\mathbb{Z}$ are usually interpreted as time, we will call these {\it time-domain} signals. In the time-domain, when the co-domain is $\mathbb{R}$ we call these real signals. All physical signals are real. However complex signals will become important when we discuss the frequency domain.
+
+
+## Primitive Models
+
+We mathematically model signals by combining elementary/primitive functions, for example:
+  
+* polynomials: $x(t) = t$, $x(t) = t^2$, etc.
+* transendental functions: $x(t) = e^t$, $x(t) = \sin(t)$, $x(t) = \cos(t)$, etc.
+* piecewise functions, e.g.
+  $$
+     x(t) = \left\{  \begin{array}{cl}
+       f_1(t) & t < 0\\
+       f_2(t) & t \geq 0\\
+     \end{array}\right.
+  $$
+
+
+::: {.callout-note}
+**Modeling a Switch:** Consider a mathematical model of a switch, which moves positions at time $t = 0$.
+
+FIGURE HERE
+
+We use this model so much we give it it's own name and symbol: Unit Step, $u(t)$
+
+$$
+u(t) = \left\{  \begin{array}{cl}
+        0 & t < 0\\
+        1 & t \geq 0\\
+      \end{array}\right.
+$$
+so a mathematical model of the switch circuit above would be $x(t) = V u(t)$.
+:::
