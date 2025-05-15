@@ -6,9 +6,32 @@ variables conveying information about a physical (or virtual) phenomena.
 A *system* may respond to signals to produce other signals, or produce
 signals directly.
 
-::: center
-FIGURE
-:::
+:::: center
+
+```{.tikz}
+%%| filename: figure1-1
+%%| fig-align: center
+%%| alt: Diagram showing how the input of a sytem is realted to the output.
+
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing}
+\tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+    minimum height=3em, minimum width=6em]
+\tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+  \begin{tikzpicture}[auto, node distance=3cm,>=latex']
+    \node [input, name=input] {};
+    \node [block, right of=input] (system) {System $T$};
+    \node [output, right of=system] (output) {};
+
+    \draw [draw,->] (input) -- node {Input $x$} (system);
+    \draw [->] (system) -- node {Output $y$} (output);
+  \end{tikzpicture}
+```
+
+::::
 
 This course is about the mathematical models and related techniques for
 the design and understanding of systems as signal transformations. We

@@ -21,14 +21,16 @@ book:
   
 bibliography: references.bib
 
+filters:
+  - diagram
+  
 format:
   html:
     theme: cosmo
     #css: styles.css
     toc: true
     code-fold: true
-#  pdf:
-#    documentclass: scrreprt
+  pdf: default
 
 
 
