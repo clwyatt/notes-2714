@@ -7,8 +7,10 @@ book:
   author: "C.L. Wyatt"
   date: "2/6/2025"
   repo-url: https://github.com/clwyatt/notes-2714/
-  cover-image: images/cover.png 
-  downloads: [pdf]
+  #cover-image: images/cover.png 
+  #downloads: [pdf,docx]
+  sidebar:
+    style: docked
   chapters:
     - index.qmd
     - preface.qmd
@@ -23,14 +25,16 @@ bibliography: references.bib
 
 filters:
   - diagram
-  
+
+
 format:
   html:
-    theme: cosmo
-    #css: styles.css
+    theme: [default, theme-style.scss]
+    css: theme-style.css
     toc: true
     code-fold: true
-  pdf: default
+#  pdf: default
+#  docx: default
 
 
 
