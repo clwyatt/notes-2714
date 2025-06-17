@@ -238,37 +238,39 @@ window.Quarto = {
 <p>How do we convert the motor into a servo for use in a robotic joint? What are its characteristics (e.g.&nbsp;how fast can it move)?</p>
 </div>
 </div>
-<p>Audio Processing. Suppose you record an interview for a podcast, but during an important part of the discussion, the HVAC turns on and there is an annoying noise in the background.</p>
-<div class="center">
-<p>FIGURE</p>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
 </div>
+<div class="example-container">
+<p><strong>Audio Processing.</strong> Suppose you record an interview for a podcast, but during an important part of the discussion, the HVAC turns on and there is an annoying noise in the background.</p>
+<p><img src="graphics/noisysignal.svg" class="img-fluid" alt="A plot of a noisy signal in the time domain."></p>
 <p>How could you remove the noise minimizing distortion to the rest of the audio?</p>
-<p>Communications. Consider a wireless sensor, that needs to transmit to a base station, e.g.&nbsp;a wireless mic system.</p>
-<div class="center">
-<p>FIGURE</p>
 </div>
+</div>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p><strong>Communications.</strong> Consider a wireless sensor, that needs to transmit to a base station, e.g.&nbsp;a wireless mic system.</p>
+<img src="01-intro_files/mediabag/figure1-4.svg" class="img-fluid" alt="Diagram illustrating a wireless transmitter and reciever.">
 <p>How should the signal be processed so it can be transmitted? How should the received signal be processed?</p>
+</div>
+</div>
 </section>
 <section id="types-of-problems" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="types-of-problems"><span class="header-section-number">1.2</span> Types of Problems</h2>
 <p>Applications of this material occur in all areas of science and engineering. When we have a measured output but are unsure what combination of inputs and system components could have produced it, we have a <em>modeling</em> problem.</p>
-<div class="center">
-<p>FIGURE</p>
-</div>
+<img src="01-intro_files/mediabag/figure1-5.svg" class="img-fluid" alt="Block diagram showing an unknown system and input, but known output y">
 <p>Models are the bedrock of the scientific method and are required to apply the concepts of this course to engineering problems.</p>
 <p>When we know the input and the system description and desire to know the output we have an <em>analysis</em> problem.</p>
-<div class="center">
-<p>FIGURE</p>
-</div>
+<img src="01-intro_files/mediabag/figure1-6.svg" class="img-fluid" alt="Block diagram showing a known input and system, but unknown label.">
 <p>Analysis problems are the kind you have encountered most often already. For example, given an electrical circuit and an applied voltage or current, what are the voltages and currents across and through the various components.</p>
 <p>When we know either the input and desired output and seek the system to perform this transformation,</p>
-<div class="center">
-<p>FIGURE</p>
-</div>
+<img src="01-intro_files/mediabag/figure1-7.svg" class="img-fluid" alt="Block diagram showing unknown system, but known input and output.">
 <p>or we know the system description and output and desire the input that would generate the output,</p>
-<div class="center">
-<p>FIGURE</p>
-</div>
+<img src="01-intro_files/mediabag/figure1-8.svg" class="img-fluid" alt="Block diagram showing unknown input, but known system and output.">
 <p>we have a <em>design problem</em>.</p>
 <p>This course focuses on modeling and analysis with applications to electrical circuits and devices for measurement and control of the physical world and is broadly applicable to all ECE majors. Some Examples:</p>
 <ul>
@@ -568,7 +570,8 @@ window.Quarto = {
 </section>
 <section id="graphical-outline" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="graphical-outline"><span class="header-section-number">1.4</span> Graphical Outline</h2>
-<p>FIGURES</p>
+<p><img src="graphics/system-representations-fig.svg" class="img-fluid" alt="A hierarchical diagram showing the two main types of system representations, those in the time domain and those in the frequency domain. Under the time domain are differential and difference equations, impulse response, and circuit or block diagrams. Under frequency domain methods are the frequency response and the Eigenvalue or Transfer function representation."></p>
+<p><img src="graphics/analysis-methods-fig.svg" class="img-fluid" alt="A hierarchical diagram showing the corresponding analysis methods in the previous figure. For time domain we have solving differential or difference equations, or using convolution. For the frequency domain we have the Fourier series, Fourier transform, or the Eigenvalue analysis (for sinusoidal inputs)"></p>
 
 
 </section>

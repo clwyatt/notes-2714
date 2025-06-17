@@ -249,19 +249,12 @@ window.Quarto = {
 f: A \rightarrow B
 \]</span> where <span class="math inline">\(A\)</span> is a set called the <em>domain</em> and <span class="math inline">\(B\)</span> is a set called the <em>range</em>.</p>
 <p>The most basic classification of signals depends on the sets that makeup the domain and co-domain. We will be interested in two versions of the domain, the reals denoted <span class="math inline">\(\mathbb{R}\)</span> and the integers denoted <span class="math inline">\(\mathbb{Z}\)</span>. We will be interested in two versions of the co-domain, the reals <span class="math inline">\(\mathbb{R}\)</span> and the set of complex numbers <span class="math inline">\(\mathbb{C}\)</span>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="example-container">
 <p><strong>Analog Signal:</strong> If the function <span class="math inline">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span>, we call this an analog or real, continuous-time signal, e.g.&nbsp;a voltage at time <span class="math inline">\(t \in \mathbb{R}\)</span>, <span class="math inline">\(v(t)\)</span>. We will write these as <span class="math inline">\(x(t)\)</span>, <span class="math inline">\(y(t)\)</span>, etc. The units of <span class="math inline">\(t\)</span> are seconds. <a href="#fig-analog-plots" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows some graphical representations, i.e.&nbsp;plots.</p>
-</div>
-</div>
 <div id="cell-fig-analog-plots" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
@@ -323,19 +316,14 @@ Figure&nbsp;2.1: Example plots of analog signals.
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
 </div>
 </div>
-<div class="callout-body-container callout-body">
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
 <p><strong>Real, Discrete-time Signal:</strong> If the function <span class="math inline">\(f: \mathbb{Z} \rightarrow \mathbb{R}\)</span>, we call this a real, discrete-time signal, e.g.&nbsp;the temperature every day at noon. We will write these as <span class="math inline">\(x[n]\)</span>, <span class="math inline">\(y[n]\)</span>, etc. Note <span class="math inline">\(n\)</span> is dimensionless. <a href="#fig-realdt-plots" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows some graphical representations.</p>
-</div>
-</div>
 <div id="cell-fig-realdt-plots" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
@@ -395,6 +383,8 @@ Figure&nbsp;2.2: Example plots of analog signals.
 </div>
 </div>
 </div>
+</div>
+</div>
 <p>Some other possibilities:</p>
 <ul>
 <li><span class="math inline">\(f: \mathbb{R} \rightarrow \mathbb{Z}\)</span>, digital, continuous-time signals, e.g.&nbsp;the output of a general purpose pin on a microcontroller</li>
@@ -424,18 +414,13 @@ x[n] = e^{j\omega n} = \cos(\omega n) + j\sin(\omega n)
    \end{array}\right.
 \]</span></li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
 </div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="example-container">
 <p><strong>Modeling a Switch:</strong> Consider a mathematical model of a switch, which moves positions at time <span class="math inline">\(t = 0\)</span>.</p>
-<p>FIGURE HERE</p>
+<img src="02-ct-signals_files/mediabag/figure2-1.svg" class="img-fluid" alt="Circuit showing a single pole, single throw switch connected to a unit DC source.">
 <p>We use this model so much we give it it’s own name and symbol: Unit Step, <span class="math inline">\(u(t)\)</span></p>
 <p><span class="math display">\[
 u(t) = \left\{  \begin{array}{cl}
