@@ -10,6 +10,6 @@ This work is licensed under a Creative Commons Attribution 4.0 International Lic
 
 This book is continually updated as new content becomes available and errata corrected.
 
-* **Feb 2025**: Conversion from LaTeX pdf to accessible html started.
-
+* June 2025: Conversion of Chapter 1 complete.
+* Feb 2025: Conversion from LaTeX pdf to accessible html started.
 

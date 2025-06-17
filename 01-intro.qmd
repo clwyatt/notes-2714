@@ -64,7 +64,7 @@ commonly use to select frequencies from a signal:
 %%| fig-align: center
 %%| alt: Diagram showing a circuit corresponding to a Sallen-Key filter.
 
-\begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
+\begin{circuitikz}[american voltages,scale=1.0, every node/.style={transform shape}]
       \draw
       (7,3.5) node[op amp] (opamp1) {}
       (0,4) to[R,l=$R_1$,o-] (2,4)
@@ -117,7 +117,7 @@ mixture of electrical and mechanical components.
     \tikzstyle{output} = [coordinate]
     \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
 
-    \begin{tikzpicture}[auto, node distance=2cm,>=latex, scale=0.9, every node/.style={transform shape}]
+    \begin{tikzpicture}[auto, node distance=2cm,>=latex, scale=1.0, every node/.style={transform shape}]
 
       \node [sum] at (2.5,0) (vsum) {$\Sigma$};
       \node [block] at (4,0) (arm) {$\frac{1}{R_a + L_a s}$};
@@ -148,31 +148,65 @@ What are its characteristics (e.g. how fast can it move)?
 ::::
 :::
 
-
-
-Audio Processing. Suppose you record an interview for a podcast, but
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+**Audio Processing.** Suppose you record an interview for a podcast, but
 during an important part of the discussion, the HVAC turns on and there
 is an annoying noise in the background.
 
-::: center
-FIGURE
-:::
+![](graphics/noisysignal.svg){fig-alt="A plot of a noisy signal in the time domain."}
 
 How could you remove the noise minimizing distortion to the rest of the
 audio?
 
+::::
+:::
 
 
-Communications. Consider a wireless sensor, that needs to transmit to a
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+**Communications.** Consider a wireless sensor, that needs to transmit to a
 base station, e.g. a wireless mic system.
 
-::: center
-FIGURE
-:::
+```{.tikz}
+%%| filename: figure1-4
+%%| fig-align: center
+%%| alt: Diagram illustrating a wireless transmitter and reciever.
+
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing}
+
+\tikzset{block/.style = {draw, fill=white, rectangle,
+minimum height=3em, minimum width=2cm},
+input/.style = {coordinate},
+output/.style = {coordinate},
+pinstyle/.style = {pin edge={to-,t,black}},
+radiation/.style={decorate,decoration={expanding waves,angle=12,segment length=4pt}}
+}
+\begin{tikzpicture}[auto, node distance=2cm,>=latex']
+\node[block](tx){Sensor Node};
+\node[antenna] at (tx.east) {};
+\node[block,right = 5cm of tx](rx){Base Station};
+\node[antenna,xscale=-1] at (rx.west) {};
+
+\draw[radiation] ([shift={(1cm,2cm)}]tx.east)-- node [above=5mm] {} ([shift={(-1cm,2cm)}]rx.west);
+\end{tikzpicture}
+```
 
 How should the signal be processed so it can be transmitted? How should
 the received signal be processed?
 
+::::
+:::
 
 ## Types of Problems
 
@@ -181,9 +215,29 @@ engineering. When we have a measured output but are unsure what
 combination of inputs and system components could have produced it, we
 have a *modeling* problem.
 
-::: center
-FIGURE
-:::
+```{.tikz}
+%%| filename: figure1-5
+%%| fig-align: center
+%%| alt: Block diagram showing an unknown system and input, but known output y
+
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing}
+     \tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+      minimum height=3em, minimum width=3em]
+    \tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+    \tikzstyle{input} = [coordinate]
+    \tikzstyle{output} = [coordinate]
+    \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+  \begin{tikzpicture}[auto, scale=1.2, node distance=3cm,>=latex']
+    \node [input, name=input] {};
+    \node [block, right of=input] (system) {?};
+    \node [output, right of=system] (output) {};
+
+    \draw [draw,->] (input) -- node {Input?} (system);
+    \draw [->] (system) -- node {Output $y$} (output);
+  \end{tikzpicture}
+
+```
 
 Models are the bedrock of the scientific method and are required to
 apply the concepts of this course to engineering problems.
@@ -191,9 +245,29 @@ apply the concepts of this course to engineering problems.
 When we know the input and the system description and desire to know the
 output we have an *analysis* problem.
 
-::: center
-FIGURE
-:::
+```{.tikz}
+%%| filename: figure1-6
+%%| fig-align: center
+%%| alt: Block diagram showing a known input and system, but unknown label.
+
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing}
+     \tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+      minimum height=3em, minimum width=3em]
+    \tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+    \tikzstyle{input} = [coordinate]
+    \tikzstyle{output} = [coordinate]
+    \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+  \begin{tikzpicture}[auto, scale=1.2, node distance=3cm,>=latex']
+    \node [input, name=input] {};
+    \node [block, right of=input] (system) {System $T$};
+    \node [output, right of=system] (output) {};
+
+    \draw [draw,->] (input) -- node {Input $x$} (system);
+    \draw [->] (system) -- node {Output?} (output);
+\end{tikzpicture}
+
+```
 
 Analysis problems are the kind you have encountered most often already.
 For example, given an electrical circuit and an applied voltage or
@@ -203,16 +277,55 @@ various components.
 When we know either the input and desired output and seek the system to
 perform this transformation,
 
-::: center
-FIGURE
-:::
+```{.tikz}
+%%| filename: figure1-7
+%%| fig-align: center
+%%| alt: Block diagram showing unknown system, but known input and output.
+
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing}
+     \tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+      minimum height=3em, minimum width=3em]
+    \tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+    \tikzstyle{input} = [coordinate]
+    \tikzstyle{output} = [coordinate]
+    \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+  \begin{tikzpicture}[auto, scale=1.2, node distance=3cm,>=latex']
+    \node [input, name=input] {};
+    \node [block, right of=input] (system) {System?};
+    \node [output, right of=system] (output) {};
+
+    \draw [draw,->] (input) -- node {Input $x$} (system);
+    \draw [->] (system) -- node {Output $y$} (output);
+  \end{tikzpicture}
+
+```
 
 or we know the system description and output and desire the input that
 would generate the output,
 
-::: center
-FIGURE
-:::
+```{.tikz}
+%%| filename: figure1-8
+%%| fig-align: center
+%%| alt: Block diagram showing unknown input, but known system and output.
+
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing}
+     \tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+      minimum height=3em, minimum width=3em]
+    \tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+    \tikzstyle{input} = [coordinate]
+    \tikzstyle{output} = [coordinate]
+    \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+  \begin{tikzpicture}[auto, scale=1.2, node distance=3cm,>=latex']
+    \node [input, name=input] {};
+    \node [block, right of=input] (system) {System $T$};
+    \node [output, right of=system] (output) {};
+
+    \draw [draw,->] (input) -- node {Input?} (system);
+    \draw [->] (system) -- node {Output $y$} (output);
+  \end{tikzpicture}
+```
 
 we have a *design problem*.
 
@@ -688,4 +801,6 @@ used extensively in later TLOs.
 
 ## Graphical Outline
 
-FIGURES
+![](graphics/system-representations-fig.svg){fig-alt="A hierarchical diagram showing the two main types of system representations, those in the time domain and those in the frequency domain. Under the time domain are differential and difference equations, impulse response, and circuit or block diagrams. Under frequency domain methods are the frequency response and the Eigenvalue or Transfer function representation."}
+
+![](graphics/analysis-methods-fig.svg){fig-alt="A hierarchical diagram showing the corresponding analysis methods in the previous figure. For time domain we have solving differential or difference equations, or using convolution. For the frequency domain we have the Fourier series, Fourier transform, or the Eigenvalue analysis (for sinusoidal inputs)"}
