@@ -6,7 +6,7 @@ diagram:
     tikz:
       execpath: pdflatex
       header-includes:
-        - '\usepackage{circuitikz}'
+        - '\usepackage{circuitikz,pgfplots}'
 ---
 
 A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.
@@ -211,6 +211,612 @@ u(t) = \left\{  \begin{array}{cl}
 $$
 so a mathematical model of the switch circuit above would be $x(t) = V u(t)$.
 
+  Note: some texts define the step function at $t=0$ to be $1$ or $\frac{1}{2}$. It is typically plotted like so:
+
+```{.tikz}
+%%| filename: figure2-2
+%%| fig-align: center
+%%| alt: PLot of the unit step function.
+
+    \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+  \begin{axis}[ xlabel=$t$, axis x line=center, axis y line = center, 
+    xmin=-2, xmax=2, ymin=0, ymax=1.1, x label style={at={(axis cs:2,0)},anchor=west}]
+    \draw[-,blue,style={ultra thick}] (axis cs:-2,0) -- (axis cs:0,0);
+    \draw[-latex,blue,style={ultra thick}] (axis cs:0,1) -- (axis cs:2,1);
+  \end{axis}
+\end{tikzpicture}
+```
+
 ::::
 :::
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+**Pure audio tone at "middle C".** A signal modeling the air pressure of a specific tone might be 
+
+$$
+  x(t) = \sin\left(2\pi (261.6) t\right)
+$$
+
+::::
+:::
+
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+**Chord.** The chord "G", an additive mixture of tones at G, B, and D and might be modeled as
+    \[
+    x(t) = \sin\left(2\pi (392) t\right) + \sin\left(2\pi (494) t\right) + \sin\left(2\pi (293) t\right) 
+    \]
+    This example shows we can use addition to build-up signals to approximate real signals of interest.
+::::
+:::
+
+## Basic Transformations
+
+We can also apply transformations to signals to increase their modeling flexibility.
+  
+* magnitude scaling
+  $$
+  x_2(t) = a x_1(t)
+  $$
+  for $a \in \mathbb{R}$.
+* derivatives
+  $$
+  x_2(t) = x_1^\prime(t) = \frac{d x_1}{dt}(t)
+  $$
+* integrals
+  $$
+  x_2(t) = \int\limits_{-\infty}^t x_1(\tau) \; d\tau
+  $$
+* sums
+  $$
+  y(t) = \sum\limits_{i} x_i(t)
+  $$
+  an important example we will see is the CT Fourier series.  
+* multiplication (modulation)
+  $$
+  y(t) = x_1(t) x_2(t)
+  $$
+  For example amplitude modulation $y(t) = x(t)\sin(\omega_0 t)$
+* time shift
+  $$
+  x_2(t) = x_1(t+\tau)
+  $$
+  
+  - if $\tau <0$ it is called a {\it delay}
+  - if $\tau >0$ it is called an {\it advance}
+
+* time scaling
+    $$
+    x_2(t) = x_1\left(\frac{t}{\tau}\right)
+    $$
+
+    - if $\tau >1$ increasing $\tau$ expands in time, slows down the signal
+    - if $0 < \tau < 1$ decreasing $\tau$ contracts in time, speeds up the signal
+    - if $-1 < \tau <0$ time reverses and increasing $\tau$ contracts in time, speeding up the signal
+    - if $\tau < -1$ time reverses and decreasing $\tau$ expands in time, slows down the signal
+
+    Common uses are time reversal, $x_2(t) = x_1(-t)$, and changing the frequency of of sinusoids.
+
+
+## Characterization of Signals
+
+There are a few basic ways of characterizing signals.
+
+:::{.example}
+::::{.example-header}
+Definition
+::::
+::::{.example-container}
+**Causal CT Signal.** A CT signal is \emph{causal} if $x(t) = 0$ $\forall t < 0$.
+
+**Anti-Causal CT Signal.** A CT signal is \emph{anti-causal} or acausal if $x(t) = 0$ $\forall t \geq 0$.
+::::
+:::
+
+A signal can be written as the sum of a causal and anti-causal signal.
+
+:::{.example}
+::::{.example-header}
+Definition
+::::
+::::{.example-container}
+**Periodic Signals.** A CT signal is \emph{periodic} if $x(t) = x(t + T)$ $\forall t$ for a fixed parameter $T \in \mathbb{R}$ called the \emph{period}.
+::::
+:::
+  
+The simplest periodic signals are those based on the sinusoidal functions.
+
+:::{.example}
+::::{.example-header}
+Definition
+::::
+::::{.example-container}
+**Even Signal.** A CT signal is \emph{even} if $x(t) = x(-t)$ $\forall t$.
+
+**Odd Signal. ** A CT signal is \emph{odd} if $x(t) = -x(-t)$ $\forall t$. 
+
+::::
+:::
+
+Any CT signal can be written in terms of an even and odd component
+$$
+x(t) = x_e(t) + x_o(t) 
+$$
+where 
+$$
+\begin{array}{ll}
+  x_e(t) &= \frac{1}{2}\left\{x(t) + x(-t)\right\} \\
+  & \\
+  x_o(t) &= \frac{1}{2}\left\{x(t) - x(-t)\right\}
+\end{array}
+$$
+
+:::{.example}
+::::{.example-header}
+Definition
+::::
+::::{.example-container}
+
+**Energy of a CT Signal.** The _energy_ of a CT signal $x(t)$ is defined as a measure of the function
+  $$
+  E_x = \lim_{T\rightarrow\infty} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
+  $$
+::::
+:::
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+**Power of a CT Signal.** The _power_ of a CT signal is the energy averaged over an interval as that interval tends to infinity.
+  $$
+  P_x = \lim_{T\rightarrow\infty} \frac{1}{2T} \int_{-T}^T \lvert x(t)\rvert^2 dt \; .
+  $$
+::::
+:::
+
+Signals can be characterized based on their energy or power:  
+
+* Signals with finite, non-zero energy and zero power are called _energy signals_.
+* Signals with finite, non-zero power (and by implication infinite energy) are called _power signals_.
+
+Note, these categories are non-exclusive, some signals are neither energy or power signals.
+
+
+## Unit Impulse Function
+
+An important CT signal is the unit impulse function, also called the "delta" $\delta$ function for the symbol traditionally used to define it. Applying this signal to a system models a "kick" to that system. For example, consider striking a tuning fork. The reason this signal is so important is that it will turn out that the response of the system to this input tells us all we need to know about a linear, time-invariant system!
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+**CT Impulse Function.** The CT impulse function is not really a function at all, but a mathematical object called a "distribution". Some equivalent definitions:
+
+$$
+\delta(t) = \lim_{\epsilon \rightarrow 0}\left\{
+\begin{array}{ll}
+  \frac{1}{2\epsilon} & |t| < \epsilon\\
+  0 & \text{else}
+\end{array}
+\right.
+$$
+
+$$
+\delta(t) = \lim_{\epsilon \rightarrow 0} \frac{1}{\sqrt{2\pi}\epsilon} e^{-\frac{t^2}{2\epsilon^2}}
+$$
+Note the area under each definition is always one.
+::::
+:::
+
+In practice we can often use the following definition and some properties, without worrying about the distribution functions.
+$$
+\delta(t) = \left\{
+\begin{array}{ll}
+  0 & t \neq 0\\
+  \infty & t = 0
+\end{array}
+\right. 
+$$
+which we draw an vertical arrow in plots:
+
+```{.tikz}
+  \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+    \begin{axis}[ xlabel=$t$, axis x line=center, axis y line = center, 
+        xmin=-2, xmax=2, ymin=0, ymax=1.1, x label style={at={(axis cs:2,0)},anchor=west}]
+      \addplot+[ycomb,mark=triangle,style={ultra thick}] plot coordinates {(0,1)};
+    \end{axis}
+  \end{tikzpicture}
+```
+
+Note the height of the arrow is arbitrary. Often in the case of a non-unit impulse function the area is written in parenthesis near the arrow tip.
+
+The following properties of the impulse function will be used often.
+
+* The area under the unit impulse is unity since by definition
+  $$
+  \int\limits_{-\infty}^{\infty} \delta(t) \; dt = 1
+  $$
+* Sampling property: $x(t)\delta(t-t_0) = x(t_0)\delta(t-t_0)$
+* Sifting Property:
+  $$
+  \int\limits_{a}^{b} x(t)\delta(t-t_0) \; dt = x(t_0)
+  $$
+  for any $a < t_0 < b$.
+
+We previously defined the unit step function. The impulse can be defined in terms of the step:
+$$
+\delta(t) = \frac{du}{dt}
+$$
+and vice-versa
+$$
+u(t) = \int\limits_{-\infty}^{t} \delta(\tau) \; d\tau
+$$
+using the notion of distributions, e.g.
+
+$$
+u(t) = \int\limits_{-\infty}^{t} \delta(\tau) \; d\tau = \lim_{\epsilon \rightarrow 0} \int\limits_{-\infty}^{t} \frac{1}{\sqrt{2\pi}\epsilon} e^{-\frac{\tau^2}{2\epsilon^2}} \; d\tau = \lim_{\epsilon \rightarrow 0} \frac{1}{2}\left(1+\text{erf}\left( \frac{t}{\sqrt{2}\epsilon}\right)\right)
+$$
+
+The step and impulse function are related, but in many cases finding the response of a system to a step input is easier.
+
+We can apply additional transformations to the impulse and step functions to get other useful signals, e.g.
+
+
+* ramp
+  $$
+  r(t) = \int\limits_{-\infty}^{t} u(\tau) \; d\tau = tu(t)
+  $$
+* causal pulse of width $\epsilon$
+  $$
+  p(t) = u(t) - u(t-\epsilon)
+  $$
+* non-causal pulse of width $2\epsilon$
+  $$
+      p(t) = u(t+\epsilon) - u(t-\epsilon)
+  $$
+
+## CT Complex Exponential
+
+One of the most important signals in systems theory is the complex exponential:
+$$
+x(t) = C\, e^{a t}
+$$
+where the parameters $C, a \in \mathbb{C}$ in general.
+
+When $C$ and $a$ are both real ($\Im(C) = \Im(a) = 0$), we have the familiar exponential. When $a > 0$ and $C > 0$, $x(t) = C e^{a t}$ looks like:
+
+```{.tikz}
+  \begin{tikzpicture}
+    \begin{axis}[xmin=-2, xmax=2, ymin = 0, ymax=7, samples=50, xlabel=$t$, xticklabels={,,}, yticklabels={,,}]
+      \addplot[blue, thick] (x,e^x);
+      \addplot[mark=none, black] coordinates {(0,0) (0,7)};
+      \addplot[mark=none, black] coordinates {(-2,1) (2,1)};
+      \node at (axis cs:0,2) [anchor=north east] {$C$};
+    \end{axis}
+  \end{tikzpicture}
+```
+
+When $a < 0$ and $C > 0$, $x(t) = C e^{a t}$ looks like:
+
+```{.tikz}
+  \begin{tikzpicture}
+    \begin{axis}[xmin=-2, xmax=2, ymin = 0, ymax=7, samples=50, xlabel=$t$, xticklabels={,,}, yticklabels={,,}]
+      \addplot[blue, thick] (x,e^-x);
+      \addplot[mark=none, black] coordinates {(0,0) (0,7)};
+      \addplot[mark=none, black] coordinates {(-2,1) (2,1)};
+      \node at (axis cs:0,2) [anchor=north east] {$C$};
+    \end{axis}
+  \end{tikzpicture}
+```
+
+If $C < 0$ the signals reflect about the time axis.
+
+To get the pure sinusoidal case, let $C \in \mathbb{R}$ and $a$ be purely imaginary: $a = j\omega_0$:
+$$
+x(t) = Ce^{j\omega_0 t}
+$$
+where $\omega_0$ is the frequency (in radians/sec). This is called the complex sinusoid.
+
+By Euler's identity:
+$$
+e^{j\omega_0 t} = \cos(\omega_0 t) + j\sin(\omega_0 t)
+$$
+and
+$$
+\Re(x(t)) = \cos(\omega_0 t) = \frac{1}{2}\left( e^{j\omega_0 t} + e^{-j\omega_0 t} \right)
+$$
+
+$$
+\Im(x(t)) = \sin(\omega_0 t) = \frac{1}{2j}\left( e^{j\omega_0 t} - e^{-j\omega_0 t} \right)
+$$
+are both real sinusoids.
+
+Note that the sinusoids are periodic. Recall a signal $x(t)$ is periodic with period $T$ if
+$$
+x(t) = x(t+T) \; \forall t
+$$
+In the case of the complex sinusoid
+$$
+Ce^{j\omega_0 t} = Ce^{j\omega_0 (t+T)}= Ce^{j\omega_0 t}\underbrace{e^{j\omega_0 T}}_{\text{must be 1}}
+$$
+
+
+* if $\omega_0 = 0$ this is true for all $T$
+* if $\omega_0 \neq 0$, then to be periodic $\omega_0 T = 2\pi m$ for $m = \pm 1, \pm 2, \cdots$. The smallest $T$ for which this is true is the {\it fundamental period} $T_0$
+  $$
+  T_0 = \frac{2\pi}{|\omega_0|}
+  $$
+  or equivalently $\omega_0 = \frac{2\pi}{T_0}$
+
+Some useful properties of sinusoids:
+
+* If $x(t)$ is periodic with period $T$ and $g$ is any function then $g(x(t))$ is periodic with period $T$.
+* If $x_1(t)$ is periodic with period $T_1$ and $x_2(t)$ is periodic with period $T_2$, and if there exists positive integers $a,b$ such that
+  $$
+  aT_1 = b T_2 = P
+  $$
+  then $x_1(t) + x_2(t)$ and $x_1(t)x_2(t)$ are periodic with period $P$
+
+The last property implies that both $T_1$ and $T_2$ must both be rational in $\pi$ or neither should be. For example
+
+
+* $x(t) = \sin(2\pi t) + \cos(5\pi t)$ is periodic
+* $x(t) = \sin(2 t) + \cos(5 t)$ is periodic
+* $x(t) = \sin(2\pi t) + \cos(5 t)$ is {\bf not} periodic
+
+When the parameter $C$ is complex we get a phase shift. Again let $a = j\omega_0$. When $C$ is complex we can write it as $C = Ae^{j\phi}$ where $A = |C|$ and $\phi = \angle C$. Then
+
+$$
+x(t) = Ae^{j\phi} e^{j\omega_0 t} = Ae^{j(\omega_0 t+\phi)} 
+$$
+and
+$$
+\Re(x(t)) = A\cos(\omega_0 t+\phi) 
+$$
+
+$$
+\Im(x(t)) = A\sin(\omega_0 t+\phi) 
+$$
+
+Since $\sin$ is a special case of $\cos$, i.e. $\cos(\theta) = \sin(\theta + \frac{\pi}{2})$, the general real sinusoid is
+
+$$
+A\cos(\omega_0 t + \phi)
+$$
+  
+* $A$ is called the amplitude
+* $\omega_0$ is again the frequency in radians/sec.
+* $\phi$ is called the phase shift and is related to a time shift $T_s$ by
+  $$
+  \phi = \omega_0T_s
+  $$
+
+For example the signal graphically represented as follows
+
+```{python}
+#| label: fig-sinusoidal-plot
+#| fig-cap: "Example plot of sinusoidal signal."
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+matplotlib.rcParams.update({'font.size': 12})
+
+t = np.linspace(-2*np.pi, 2*np.pi, 1000);
+x = 2*np.cos(np.pi*t -np.pi/4);
+
+f = plt.figure()
+
+plt.plot(t, x)
+plt.xlabel('$t$')
+plt.autoscale(enable=True, axis='x', tight=True)
+plt.show()
+```
+
+has the functional representation
+
+$$
+x(t) = 2\cos\left(\frac{\pi}{2} (t+\tfrac{1}{2}) \right) =  2\cos\left(\frac{\pi}{2} t +\frac{\pi}{4} \right)
+$$
+
+
+### Energy of CT complex sinusoid
+
+Recall the energy of a CT signal $x(t)$ is    
+$$
+  E_x = \lim_{T\rightarrow\infty} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
+$$
+Substituting $x(t) = e^{j\omega_0 t}$ and letting $T = N T_0$
+$$
+    E_x = \lim_{N\rightarrow\infty} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} 2NT_0 = \infty
+$$
+
+### Power of CT complex sinusoid
+
+Recall the power of a CT signal $x(t)$ is
+$$
+  P_x = \lim_{T\rightarrow\infty} \frac{1}{2T} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
+$$
+Again, substituting $x(t) = e^{j\omega_0 t}$ and letting $T = N T_0$
+$$
+  P_x = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} 2NT_0 = 1
+$$
+  
+### Harmonics
+
+Two CT complex sinusoids are {\it harmonics} of one another is both are periodic in $T_0$. This occurs when
+
+$$
+    x_k(t) = e^{jk\omega_0 t} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots
+$$
+
+The term comes from music where the vibrations of a string instrument are modeled as a weighted combination of harmonic tones. 
+
+### Geometric interpretation of the Complex Exponential
+
+In the general case we get a sinusoid signal modulated by an exponential. Let $C = Ae^{j\phi}$ and $a = r + j\omega_0$, then
+$$
+  x(t) = C e^{a t} =  Ae^{j\phi} e^{(r+j\omega_0)t}
+$$
+Expanding the terms and using Euler's identity gives:
+$$
+x(t) = \underbrace{Ae^{rt}\cos(\omega_0 t+\phi)}_{\Re \text{part}} + j \underbrace{Ae^{rt}\sin(\omega_0 t+\phi)}_{\Im \text{part}}
+$$
+Each part is a real sinusoid whose amplitude is modulated by a real exponential.
+
+An important visualization of the general case is to view the signal $x(t)$ as a vector rotating counter-clockwise in the complex plane for positive $t$.
+
+![The complex sinusoid at a specific point in time.](graphics/CT_complexsinusoid_visual.svg){fig-alt="A figure visualizing the complex sinusoid at a specific point in time."}
+
+For $r < 0$ the tip of the arrow traces out an inward spiral, whereas for $r > 0$ it traces out an outward spiral. For $r = 0$ it traces out the unit circle.
+
+## Example Problems
+
+###
+
+Consider a signal described by the function
+   $$
+  x(t) = e^{-3t}\sin(10\pi t)u(t)
+   $$
+
+  a) Determine the magnitude and phase of $x\left( \frac{1}{20}\right)$
+  
+  **Solution:**
+  
+  Substituting $t = \frac{1}{20}$ gives
+  $$
+  x\left( \frac{1}{20}\right) = e^{-3\frac{1}{20}}\sin\left(10\pi \frac{1}{20}\right)u\left( \frac{1}{20}\right) = e^{-\frac{3}{20}} \approx 0.86
+  $$
+  Since the signal is purely real and exponential is always positive, the magnitude is
+  $$
+  \left|x\left( \frac{1}{20}\right)\right| = \left| e^{-\frac{3}{20}}\right| =  e^{-\frac{3}{20}}  \approx 0.86
+  $$
+  and the phase is
+  $$
+  \angle x\left( \frac{1}{20}\right) = 0
+  $$
+
+  b) Using Matlab, plot the signal $|x(t)|$ between $[-2, 2]$. Give your code and embed the plot.
+
+  **Solution:**
+
+   ```
+% Solution to PS01 - Problem 1b
+t = -2:0.001:2;
+x = exp(-3*t).*sin(10*pi*t).*heaviside(t);
+hp = plot(t,abs(x));
+grid on;
+xh = xlabel('t');
+yh = ylabel('|x(t)|');
+th = title('Plot for PS01 Problem 1b');
+
+% make the plot more readable
+set(gca, 'FontSize', 12, 'Box', 'off', 'LineWidth', 2);
+set(hp, 'linewidth', 2);
+set([xh, yh, th], 'FontSize', 12);
+
+set(gcf, 'PaperPositionMode', 'auto');
+print -dpng ps1p1b.png
+   ```
+
+###
+
+Find a solution to the differential equation
+  $$
+  \frac{dy}{dt}(t) + 9y(t) = e^{-t}
+  $$
+  for $t \geq 0$, when $y(0) = 1$.
+
+  **Solution:**
+  The homogeneous equation is
+  $$
+  \frac{dy_h}{dt}(t) + 9y_h(t) = 0
+  $$
+  with initial condition $y_h(0) = 1$. Its solution is of the form
+  $$
+  y_h(t) = C\, e^{-9t} 
+  $$
+  for constant $C$. Using the initial condition
+  $$
+  y_h(0) = C\, e^{-0} = C = 1
+  $$
+  gives
+  $$
+  y_h(t) = e^{-9t} 
+  $$
+  The particular solution is of the form
+  $$
+  y_p(t) = C_1 e^{-t} + C_2 e^{-9t}
+  $$
+  Substitution and equating coefficients gives $C_1 = \frac{1}{8}$ and $C_2 = -\frac{1}{8}$. The total solution is the sum of the two solutions or
+  $$
+  y(t) = \frac{1}{8} e^{-t} - \frac{1}{8} e^{-9t} + e^{-9t} = \frac{1}{8} e^{-t} + \frac{7}{8} e^{-9t}
+  $$
+
+###
+
+Find a solution to the differential equation
+  $$
+  \frac{dy}{dt}(t) + 9y(t) = e^{-t}
+  $$
+  for $t \geq 0$, when $y(0) = 1$.
+
+  **Solution:**
+  The homogeneous equation is
+  $$
+  \frac{dy_h}{dt}(t) + 9y_h(t) = 0
+  $$
+  with initial condition $y_h(0) = 1$. Its solution is of the form
+  $$
+  y_h(t) = C\, e^{-9t} 
+  $$
+  for constant $C$. Using the initial condition
+  $$
+  y_h(0) = C\, e^{-0} = C = 1
+  $$
+  gives
+  $$
+  y_h(t) = e^{-9t} 
+  $$
+  The particular solution is of the form
+  $$
+  y_p(t) = C_1 e^{-t} + C_2 e^{-9t}
+  $$
+  Substitution and equating coefficients gives $C_1 = \frac{1}{8}$ and $C_2 = -\frac{1}{8}$. The total solution is the sum of the two solutions or
+  $$
+  y(t) = \frac{1}{8} e^{-t} - \frac{1}{8} e^{-9t} + e^{-9t} = \frac{1}{8} e^{-t} + \frac{7}{8} e^{-9t}
+  $$
+
+###
+
+Compute the integral
+    $$
+    \int\limits_{-\infty}^{\infty} e^{-t^2} \, \delta(t-10)\; dt
+    $$
+    where $\delta(t)$ is the delta function.
+    
+    **Solution:**
+
+  Using the sifting property of the delta function
+  $$
+  \int\limits_{a}^{b} f(t) \, \delta(t-t_0)\; dt = f(t_0)
+  $$
+  for $a < t_0 < b$, we get
+  $$
+  \int\limits_{-\infty}^{\infty} e^{-t^2} \, \delta(t-10)\; dt = e^{-100} \approx 0
+  $$ 
+
+
 
