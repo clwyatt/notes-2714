@@ -217,6 +217,23 @@ window.Quarto = {
   <ul>
   <li><a href="#signals-as-functions" id="toc-signals-as-functions" class="nav-link active" data-scroll-target="#signals-as-functions"><span class="header-section-number">2.1</span> Signals as Functions</a></li>
   <li><a href="#primitive-models" id="toc-primitive-models" class="nav-link" data-scroll-target="#primitive-models"><span class="header-section-number">2.2</span> Primitive Models</a></li>
+  <li><a href="#basic-transformations" id="toc-basic-transformations" class="nav-link" data-scroll-target="#basic-transformations"><span class="header-section-number">2.3</span> Basic Transformations</a></li>
+  <li><a href="#characterization-of-signals" id="toc-characterization-of-signals" class="nav-link" data-scroll-target="#characterization-of-signals"><span class="header-section-number">2.4</span> Characterization of Signals</a></li>
+  <li><a href="#unit-impulse-function" id="toc-unit-impulse-function" class="nav-link" data-scroll-target="#unit-impulse-function"><span class="header-section-number">2.5</span> Unit Impulse Function</a></li>
+  <li><a href="#ct-complex-exponential" id="toc-ct-complex-exponential" class="nav-link" data-scroll-target="#ct-complex-exponential"><span class="header-section-number">2.6</span> CT Complex Exponential</a>
+  <ul class="collapse">
+  <li><a href="#energy-of-ct-complex-sinusoid" id="toc-energy-of-ct-complex-sinusoid" class="nav-link" data-scroll-target="#energy-of-ct-complex-sinusoid"><span class="header-section-number">2.6.1</span> Energy of CT complex sinusoid</a></li>
+  <li><a href="#power-of-ct-complex-sinusoid" id="toc-power-of-ct-complex-sinusoid" class="nav-link" data-scroll-target="#power-of-ct-complex-sinusoid"><span class="header-section-number">2.6.2</span> Power of CT complex sinusoid</a></li>
+  <li><a href="#harmonics" id="toc-harmonics" class="nav-link" data-scroll-target="#harmonics"><span class="header-section-number">2.6.3</span> Harmonics</a></li>
+  <li><a href="#geometric-interpretation-of-the-complex-exponential" id="toc-geometric-interpretation-of-the-complex-exponential" class="nav-link" data-scroll-target="#geometric-interpretation-of-the-complex-exponential"><span class="header-section-number">2.6.4</span> Geometric interpretation of the Complex Exponential</a></li>
+  </ul></li>
+  <li><a href="#example-problems" id="toc-example-problems" class="nav-link" data-scroll-target="#example-problems"><span class="header-section-number">2.7</span> Example Problems</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">2.7.1</span> </a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">2.7.2</span> </a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">2.7.3</span> </a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="header-section-number">2.7.4</span> </a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -428,10 +445,435 @@ u(t) = \left\{  \begin{array}{cl}
         1 &amp; t \geq 0\\
       \end{array}\right.
 \]</span> so a mathematical model of the switch circuit above would be <span class="math inline">\(x(t) = V u(t)\)</span>.</p>
+<p>Note: some texts define the step function at <span class="math inline">\(t=0\)</span> to be <span class="math inline">\(1\)</span> or <span class="math inline">\(\frac{1}{2}\)</span>. It is typically plotted like so:</p>
+<img src="02-ct-signals_files/mediabag/figure2-2.svg" class="img-fluid" alt="PLot of the unit step function.">
 </div>
 </div>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p><strong>Pure audio tone at “middle C”.</strong> A signal modeling the air pressure of a specific tone might be</p>
+<p><span class="math display">\[
+  x(t) = \sin\left(2\pi (261.6) t\right)
+\]</span></p>
+</div>
+</div>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p><strong>Chord.</strong> The chord “G”, an additive mixture of tones at G, B, and D and might be modeled as [ x(t) = (2(392) t) + (2(494) t) + (2(293) t) ] This example shows we can use addition to build-up signals to approximate real signals of interest.</p>
+</div>
+</div>
+</section>
+<section id="basic-transformations" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="basic-transformations"><span class="header-section-number">2.3</span> Basic Transformations</h2>
+<p>We can also apply transformations to signals to increase their modeling flexibility.</p>
+<ul>
+<li><p>magnitude scaling <span class="math display">\[
+x_2(t) = a x_1(t)
+\]</span> for <span class="math inline">\(a \in \mathbb{R}\)</span>.</p></li>
+<li><p>derivatives <span class="math display">\[
+x_2(t) = x_1^\prime(t) = \frac{d x_1}{dt}(t)
+\]</span></p></li>
+<li><p>integrals <span class="math display">\[
+x_2(t) = \int\limits_{-\infty}^t x_1(\tau) \; d\tau
+\]</span></p></li>
+<li><p>sums <span class="math display">\[
+y(t) = \sum\limits_{i} x_i(t)
+\]</span> an important example we will see is the CT Fourier series.<br>
+</p></li>
+<li><p>multiplication (modulation) <span class="math display">\[
+y(t) = x_1(t) x_2(t)
+\]</span> For example amplitude modulation <span class="math inline">\(y(t) = x(t)\sin(\omega_0 t)\)</span></p></li>
+<li><p>time shift <span class="math display">\[
+x_2(t) = x_1(t+\tau)
+\]</span></p>
+<ul>
+<li>if <span class="math inline">\(\tau &lt;0\)</span> it is called a {}</li>
+<li>if <span class="math inline">\(\tau &gt;0\)</span> it is called an {}</li>
+</ul></li>
+<li><p>time scaling <span class="math display">\[
+  x_2(t) = x_1\left(\frac{t}{\tau}\right)
+  \]</span></p>
+<ul>
+<li>if <span class="math inline">\(\tau &gt;1\)</span> increasing <span class="math inline">\(\tau\)</span> expands in time, slows down the signal</li>
+<li>if <span class="math inline">\(0 &lt; \tau &lt; 1\)</span> decreasing <span class="math inline">\(\tau\)</span> contracts in time, speeds up the signal</li>
+<li>if <span class="math inline">\(-1 &lt; \tau &lt;0\)</span> time reverses and increasing <span class="math inline">\(\tau\)</span> contracts in time, speeding up the signal</li>
+<li>if <span class="math inline">\(\tau &lt; -1\)</span> time reverses and decreasing <span class="math inline">\(\tau\)</span> expands in time, slows down the signal</li>
+</ul>
+<p>Common uses are time reversal, <span class="math inline">\(x_2(t) = x_1(-t)\)</span>, and changing the frequency of of sinusoids.</p></li>
+</ul>
+</section>
+<section id="characterization-of-signals" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="characterization-of-signals"><span class="header-section-number">2.4</span> Characterization of Signals</h2>
+<p>There are a few basic ways of characterizing signals.</p>
+<div class="example">
+<div class="example-header">
+<p>Definition</p>
+</div>
+<div class="example-container">
+<p><strong>Causal CT Signal.</strong> A CT signal is if <span class="math inline">\(x(t) = 0\)</span> <span class="math inline">\(\forall t &lt; 0\)</span>.</p>
+<p><strong>Anti-Causal CT Signal.</strong> A CT signal is or acausal if <span class="math inline">\(x(t) = 0\)</span> <span class="math inline">\(\forall t \geq 0\)</span>.</p>
+</div>
+</div>
+<p>A signal can be written as the sum of a causal and anti-causal signal.</p>
+<div class="example">
+<div class="example-header">
+<p>Definition</p>
+</div>
+<div class="example-container">
+<p><strong>Periodic Signals.</strong> A CT signal is if <span class="math inline">\(x(t) = x(t + T)\)</span> <span class="math inline">\(\forall t\)</span> for a fixed parameter <span class="math inline">\(T \in \mathbb{R}\)</span> called the .</p>
+</div>
+</div>
+<p>The simplest periodic signals are those based on the sinusoidal functions.</p>
+<div class="example">
+<div class="example-header">
+<p>Definition</p>
+</div>
+<div class="example-container">
+<p><strong>Even Signal.</strong> A CT signal is if <span class="math inline">\(x(t) = x(-t)\)</span> <span class="math inline">\(\forall t\)</span>.</p>
+<p><strong>Odd Signal. </strong> A CT signal is if <span class="math inline">\(x(t) = -x(-t)\)</span> <span class="math inline">\(\forall t\)</span>.</p>
+</div>
+</div>
+<p>Any CT signal can be written in terms of an even and odd component <span class="math display">\[
+x(t) = x_e(t) + x_o(t)
+\]</span> where <span class="math display">\[
+\begin{array}{ll}
+  x_e(t) &amp;= \frac{1}{2}\left\{x(t) + x(-t)\right\} \\
+  &amp; \\
+  x_o(t) &amp;= \frac{1}{2}\left\{x(t) - x(-t)\right\}
+\end{array}
+\]</span></p>
+<div class="example">
+<div class="example-header">
+<p>Definition</p>
+</div>
+<div class="example-container">
+<p><strong>Energy of a CT Signal.</strong> The <em>energy</em> of a CT signal <span class="math inline">\(x(t)\)</span> is defined as a measure of the function <span class="math display">\[
+  E_x = \lim_{T\rightarrow\infty} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
+  \]</span></p>
+</div>
+</div>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p><strong>Power of a CT Signal.</strong> The <em>power</em> of a CT signal is the energy averaged over an interval as that interval tends to infinity. <span class="math display">\[
+  P_x = \lim_{T\rightarrow\infty} \frac{1}{2T} \int_{-T}^T \lvert x(t)\rvert^2 dt \; .
+  \]</span></p>
+</div>
+</div>
+<p>Signals can be characterized based on their energy or power:</p>
+<ul>
+<li>Signals with finite, non-zero energy and zero power are called <em>energy signals</em>.</li>
+<li>Signals with finite, non-zero power (and by implication infinite energy) are called <em>power signals</em>.</li>
+</ul>
+<p>Note, these categories are non-exclusive, some signals are neither energy or power signals.</p>
+</section>
+<section id="unit-impulse-function" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="unit-impulse-function"><span class="header-section-number">2.5</span> Unit Impulse Function</h2>
+<p>An important CT signal is the unit impulse function, also called the “delta” <span class="math inline">\(\delta\)</span> function for the symbol traditionally used to define it. Applying this signal to a system models a “kick” to that system. For example, consider striking a tuning fork. The reason this signal is so important is that it will turn out that the response of the system to this input tells us all we need to know about a linear, time-invariant system!</p>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p><strong>CT Impulse Function.</strong> The CT impulse function is not really a function at all, but a mathematical object called a “distribution”. Some equivalent definitions:</p>
+<p><span class="math display">\[
+\delta(t) = \lim_{\epsilon \rightarrow 0}\left\{
+\begin{array}{ll}
+  \frac{1}{2\epsilon} &amp; |t| &lt; \epsilon\\
+  0 &amp; \text{else}
+\end{array}
+\right.
+\]</span></p>
+<p><span class="math display">\[
+\delta(t) = \lim_{\epsilon \rightarrow 0} \frac{1}{\sqrt{2\pi}\epsilon} e^{-\frac{t^2}{2\epsilon^2}}
+\]</span> Note the area under each definition is always one.</p>
+</div>
+</div>
+<p>In practice we can often use the following definition and some properties, without worrying about the distribution functions. <span class="math display">\[
+\delta(t) = \left\{
+\begin{array}{ll}
+  0 &amp; t \neq 0\\
+  \infty &amp; t = 0
+\end{array}
+\right.
+\]</span> which we draw an vertical arrow in plots:</p>
+<img src="02-ct-signals_files/mediabag/866ea5f3c0d0ff1be554ee0d6c236a18edd78334.svg" class="img-fluid">
+<p>Note the height of the arrow is arbitrary. Often in the case of a non-unit impulse function the area is written in parenthesis near the arrow tip.</p>
+<p>The following properties of the impulse function will be used often.</p>
+<ul>
+<li>The area under the unit impulse is unity since by definition <span class="math display">\[
+\int\limits_{-\infty}^{\infty} \delta(t) \; dt = 1
+\]</span></li>
+<li>Sampling property: <span class="math inline">\(x(t)\delta(t-t_0) = x(t_0)\delta(t-t_0)\)</span></li>
+<li>Sifting Property: <span class="math display">\[
+\int\limits_{a}^{b} x(t)\delta(t-t_0) \; dt = x(t_0)
+\]</span> for any <span class="math inline">\(a &lt; t_0 &lt; b\)</span>.</li>
+</ul>
+<p>We previously defined the unit step function. The impulse can be defined in terms of the step: <span class="math display">\[
+\delta(t) = \frac{du}{dt}
+\]</span> and vice-versa <span class="math display">\[
+u(t) = \int\limits_{-\infty}^{t} \delta(\tau) \; d\tau
+\]</span> using the notion of distributions, e.g.</p>
+<p><span class="math display">\[
+u(t) = \int\limits_{-\infty}^{t} \delta(\tau) \; d\tau = \lim_{\epsilon \rightarrow 0} \int\limits_{-\infty}^{t} \frac{1}{\sqrt{2\pi}\epsilon} e^{-\frac{\tau^2}{2\epsilon^2}} \; d\tau = \lim_{\epsilon \rightarrow 0} \frac{1}{2}\left(1+\text{erf}\left( \frac{t}{\sqrt{2}\epsilon}\right)\right)
+\]</span></p>
+<p>The step and impulse function are related, but in many cases finding the response of a system to a step input is easier.</p>
+<p>We can apply additional transformations to the impulse and step functions to get other useful signals, e.g.</p>
+<ul>
+<li>ramp <span class="math display">\[
+r(t) = \int\limits_{-\infty}^{t} u(\tau) \; d\tau = tu(t)
+\]</span></li>
+<li>causal pulse of width <span class="math inline">\(\epsilon\)</span> <span class="math display">\[
+p(t) = u(t) - u(t-\epsilon)
+\]</span></li>
+<li>non-causal pulse of width <span class="math inline">\(2\epsilon\)</span> <span class="math display">\[
+    p(t) = u(t+\epsilon) - u(t-\epsilon)
+\]</span></li>
+</ul>
+</section>
+<section id="ct-complex-exponential" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="ct-complex-exponential"><span class="header-section-number">2.6</span> CT Complex Exponential</h2>
+<p>One of the most important signals in systems theory is the complex exponential: <span class="math display">\[
+x(t) = C\, e^{a t}
+\]</span> where the parameters <span class="math inline">\(C, a \in \mathbb{C}\)</span> in general.</p>
+<p>When <span class="math inline">\(C\)</span> and <span class="math inline">\(a\)</span> are both real (<span class="math inline">\(\Im(C) = \Im(a) = 0\)</span>), we have the familiar exponential. When <span class="math inline">\(a &gt; 0\)</span> and <span class="math inline">\(C &gt; 0\)</span>, <span class="math inline">\(x(t) = C e^{a t}\)</span> looks like:</p>
+<img src="02-ct-signals_files/mediabag/511fda8e490c073c5ef7eaf070858cb9abad34d4.svg" class="img-fluid">
+<p>When <span class="math inline">\(a &lt; 0\)</span> and <span class="math inline">\(C &gt; 0\)</span>, <span class="math inline">\(x(t) = C e^{a t}\)</span> looks like:</p>
+<img src="02-ct-signals_files/mediabag/8899b8b18d4f3fd1b57ead2e54ddc8aabebd0aec.svg" class="img-fluid">
+<p>If <span class="math inline">\(C &lt; 0\)</span> the signals reflect about the time axis.</p>
+<p>To get the pure sinusoidal case, let <span class="math inline">\(C \in \mathbb{R}\)</span> and <span class="math inline">\(a\)</span> be purely imaginary: <span class="math inline">\(a = j\omega_0\)</span>: <span class="math display">\[
+x(t) = Ce^{j\omega_0 t}
+\]</span> where <span class="math inline">\(\omega_0\)</span> is the frequency (in radians/sec). This is called the complex sinusoid.</p>
+<p>By Euler’s identity: <span class="math display">\[
+e^{j\omega_0 t} = \cos(\omega_0 t) + j\sin(\omega_0 t)
+\]</span> and <span class="math display">\[
+\Re(x(t)) = \cos(\omega_0 t) = \frac{1}{2}\left( e^{j\omega_0 t} + e^{-j\omega_0 t} \right)
+\]</span></p>
+<p><span class="math display">\[
+\Im(x(t)) = \sin(\omega_0 t) = \frac{1}{2j}\left( e^{j\omega_0 t} - e^{-j\omega_0 t} \right)
+\]</span> are both real sinusoids.</p>
+<p>Note that the sinusoids are periodic. Recall a signal <span class="math inline">\(x(t)\)</span> is periodic with period <span class="math inline">\(T\)</span> if <span class="math display">\[
+x(t) = x(t+T) \; \forall t
+\]</span> In the case of the complex sinusoid <span class="math display">\[
+Ce^{j\omega_0 t} = Ce^{j\omega_0 (t+T)}= Ce^{j\omega_0 t}\underbrace{e^{j\omega_0 T}}_{\text{must be 1}}
+\]</span></p>
+<ul>
+<li>if <span class="math inline">\(\omega_0 = 0\)</span> this is true for all <span class="math inline">\(T\)</span></li>
+<li>if <span class="math inline">\(\omega_0 \neq 0\)</span>, then to be periodic <span class="math inline">\(\omega_0 T = 2\pi m\)</span> for <span class="math inline">\(m = \pm 1, \pm 2, \cdots\)</span>. The smallest <span class="math inline">\(T\)</span> for which this is true is the {} <span class="math inline">\(T_0\)</span> <span class="math display">\[
+T_0 = \frac{2\pi}{|\omega_0|}
+\]</span> or equivalently <span class="math inline">\(\omega_0 = \frac{2\pi}{T_0}\)</span></li>
+</ul>
+<p>Some useful properties of sinusoids:</p>
+<ul>
+<li>If <span class="math inline">\(x(t)\)</span> is periodic with period <span class="math inline">\(T\)</span> and <span class="math inline">\(g\)</span> is any function then <span class="math inline">\(g(x(t))\)</span> is periodic with period <span class="math inline">\(T\)</span>.</li>
+<li>If <span class="math inline">\(x_1(t)\)</span> is periodic with period <span class="math inline">\(T_1\)</span> and <span class="math inline">\(x_2(t)\)</span> is periodic with period <span class="math inline">\(T_2\)</span>, and if there exists positive integers <span class="math inline">\(a,b\)</span> such that <span class="math display">\[
+aT_1 = b T_2 = P
+\]</span> then <span class="math inline">\(x_1(t) + x_2(t)\)</span> and <span class="math inline">\(x_1(t)x_2(t)\)</span> are periodic with period <span class="math inline">\(P\)</span></li>
+</ul>
+<p>The last property implies that both <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span> must both be rational in <span class="math inline">\(\pi\)</span> or neither should be. For example</p>
+<ul>
+<li><span class="math inline">\(x(t) = \sin(2\pi t) + \cos(5\pi t)\)</span> is periodic</li>
+<li><span class="math inline">\(x(t) = \sin(2 t) + \cos(5 t)\)</span> is periodic</li>
+<li><span class="math inline">\(x(t) = \sin(2\pi t) + \cos(5 t)\)</span> is {} periodic</li>
+</ul>
+<p>When the parameter <span class="math inline">\(C\)</span> is complex we get a phase shift. Again let <span class="math inline">\(a = j\omega_0\)</span>. When <span class="math inline">\(C\)</span> is complex we can write it as <span class="math inline">\(C = Ae^{j\phi}\)</span> where <span class="math inline">\(A = |C|\)</span> and <span class="math inline">\(\phi = \angle C\)</span>. Then</p>
+<p><span class="math display">\[
+x(t) = Ae^{j\phi} e^{j\omega_0 t} = Ae^{j(\omega_0 t+\phi)}
+\]</span> and <span class="math display">\[
+\Re(x(t)) = A\cos(\omega_0 t+\phi)
+\]</span></p>
+<p><span class="math display">\[
+\Im(x(t)) = A\sin(\omega_0 t+\phi)
+\]</span></p>
+<p>Since <span class="math inline">\(\sin\)</span> is a special case of <span class="math inline">\(\cos\)</span>, i.e.&nbsp;<span class="math inline">\(\cos(\theta) = \sin(\theta + \frac{\pi}{2})\)</span>, the general real sinusoid is</p>
+<p><span class="math display">\[
+A\cos(\omega_0 t + \phi)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(A\)</span> is called the amplitude</li>
+<li><span class="math inline">\(\omega_0\)</span> is again the frequency in radians/sec.</li>
+<li><span class="math inline">\(\phi\)</span> is called the phase shift and is related to a time shift <span class="math inline">\(T_s\)</span> by <span class="math display">\[
+\phi = \omega_0T_s
+\]</span></li>
+</ul>
+<p>For example the signal graphically represented as follows</p>
+<div id="cell-fig-sinusoidal-plot" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>matplotlib.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">12</span>})</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">2</span><span class="op">*</span>np.pi, <span class="dv">1000</span>)<span class="op">;</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.cos(np.pi<span class="op">*</span>t <span class="op">-</span>np.pi<span class="op">/</span><span class="dv">4</span>)<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure()</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.plot(t, x)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$t$'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-sinusoidal-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sinusoidal-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02-ct-signals_files/figure-html/fig-sinusoidal-plot-output-1.png" width="588" height="434" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sinusoidal-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2.3: Example plot of sinusoidal signal.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>has the functional representation</p>
+<p><span class="math display">\[
+x(t) = 2\cos\left(\frac{\pi}{2} (t+\tfrac{1}{2}) \right) =  2\cos\left(\frac{\pi}{2} t +\frac{\pi}{4} \right)
+\]</span></p>
+<section id="energy-of-ct-complex-sinusoid" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="energy-of-ct-complex-sinusoid"><span class="header-section-number">2.6.1</span> Energy of CT complex sinusoid</h3>
+<p>Recall the energy of a CT signal <span class="math inline">\(x(t)\)</span> is<br>
+<span class="math display">\[
+  E_x = \lim_{T\rightarrow\infty} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
+\]</span> Substituting <span class="math inline">\(x(t) = e^{j\omega_0 t}\)</span> and letting <span class="math inline">\(T = N T_0\)</span> <span class="math display">\[
+    E_x = \lim_{N\rightarrow\infty} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} 2NT_0 = \infty
+\]</span></p>
+</section>
+<section id="power-of-ct-complex-sinusoid" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="power-of-ct-complex-sinusoid"><span class="header-section-number">2.6.2</span> Power of CT complex sinusoid</h3>
+<p>Recall the power of a CT signal <span class="math inline">\(x(t)\)</span> is <span class="math display">\[
+  P_x = \lim_{T\rightarrow\infty} \frac{1}{2T} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
+\]</span> Again, substituting <span class="math inline">\(x(t) = e^{j\omega_0 t}\)</span> and letting <span class="math inline">\(T = N T_0\)</span> <span class="math display">\[
+  P_x = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} 2NT_0 = 1
+\]</span></p>
+</section>
+<section id="harmonics" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="harmonics"><span class="header-section-number">2.6.3</span> Harmonics</h3>
+<p>Two CT complex sinusoids are {} of one another is both are periodic in <span class="math inline">\(T_0\)</span>. This occurs when</p>
+<p><span class="math display">\[
+    x_k(t) = e^{jk\omega_0 t} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots
+\]</span></p>
+<p>The term comes from music where the vibrations of a string instrument are modeled as a weighted combination of harmonic tones.</p>
+</section>
+<section id="geometric-interpretation-of-the-complex-exponential" class="level3" data-number="2.6.4">
+<h3 data-number="2.6.4" class="anchored" data-anchor-id="geometric-interpretation-of-the-complex-exponential"><span class="header-section-number">2.6.4</span> Geometric interpretation of the Complex Exponential</h3>
+<p>In the general case we get a sinusoid signal modulated by an exponential. Let <span class="math inline">\(C = Ae^{j\phi}\)</span> and <span class="math inline">\(a = r + j\omega_0\)</span>, then <span class="math display">\[
+  x(t) = C e^{a t} =  Ae^{j\phi} e^{(r+j\omega_0)t}
+\]</span> Expanding the terms and using Euler’s identity gives: <span class="math display">\[
+x(t) = \underbrace{Ae^{rt}\cos(\omega_0 t+\phi)}_{\Re \text{part}} + j \underbrace{Ae^{rt}\sin(\omega_0 t+\phi)}_{\Im \text{part}}
+\]</span> Each part is a real sinusoid whose amplitude is modulated by a real exponential.</p>
+<p>An important visualization of the general case is to view the signal <span class="math inline">\(x(t)\)</span> as a vector rotating counter-clockwise in the complex plane for positive <span class="math inline">\(t\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="graphics/CT_complexsinusoid_visual.svg" class="img-fluid figure-img" alt="A figure visualizing the complex sinusoid at a specific point in time."></p>
+<figcaption>The complex sinusoid at a specific point in time.</figcaption>
+</figure>
+</div>
+<p>For <span class="math inline">\(r &lt; 0\)</span> the tip of the arrow traces out an inward spiral, whereas for <span class="math inline">\(r &gt; 0\)</span> it traces out an outward spiral. For <span class="math inline">\(r = 0\)</span> it traces out the unit circle.</p>
+</section>
+</section>
+<section id="example-problems" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="example-problems"><span class="header-section-number">2.7</span> Example Problems</h2>
+<section id="section" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="section"><span class="header-section-number">2.7.1</span> </h3>
+<p>Consider a signal described by the function <span class="math display">\[
+  x(t) = e^{-3t}\sin(10\pi t)u(t)
+   \]</span></p>
+<ol type="a">
+<li>Determine the magnitude and phase of <span class="math inline">\(x\left( \frac{1}{20}\right)\)</span></li>
+</ol>
+<p><strong>Solution:</strong></p>
+<p>Substituting <span class="math inline">\(t = \frac{1}{20}\)</span> gives <span class="math display">\[
+  x\left( \frac{1}{20}\right) = e^{-3\frac{1}{20}}\sin\left(10\pi \frac{1}{20}\right)u\left( \frac{1}{20}\right) = e^{-\frac{3}{20}} \approx 0.86
+  \]</span> Since the signal is purely real and exponential is always positive, the magnitude is <span class="math display">\[
+  \left|x\left( \frac{1}{20}\right)\right| = \left| e^{-\frac{3}{20}}\right| =  e^{-\frac{3}{20}}  \approx 0.86
+  \]</span> and the phase is <span class="math display">\[
+  \angle x\left( \frac{1}{20}\right) = 0
+  \]</span></p>
+<ol start="2" type="a">
+<li>Using Matlab, plot the signal <span class="math inline">\(|x(t)|\)</span> between <span class="math inline">\([-2, 2]\)</span>. Give your code and embed the plot.</li>
+</ol>
+<p><strong>Solution:</strong></p>
+<pre><code>% Solution to PS01 - Problem 1b
+t = -2:0.001:2;
+x = exp(-3*t).*sin(10*pi*t).*heaviside(t);
+hp = plot(t,abs(x));
+grid on;
+xh = xlabel('t');
+yh = ylabel('|x(t)|');
+th = title('Plot for PS01 Problem 1b');
+
+% make the plot more readable
+set(gca, 'FontSize', 12, 'Box', 'off', 'LineWidth', 2);
+set(hp, 'linewidth', 2);
+set([xh, yh, th], 'FontSize', 12);
+
+set(gcf, 'PaperPositionMode', 'auto');
+print -dpng ps1p1b.png</code></pre>
+</section>
+<section id="section-1" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">2.7.2</span> </h3>
+<p>Find a solution to the differential equation <span class="math display">\[
+  \frac{dy}{dt}(t) + 9y(t) = e^{-t}
+  \]</span> for <span class="math inline">\(t \geq 0\)</span>, when <span class="math inline">\(y(0) = 1\)</span>.</p>
+<p><strong>Solution:</strong> The homogeneous equation is <span class="math display">\[
+  \frac{dy_h}{dt}(t) + 9y_h(t) = 0
+  \]</span> with initial condition <span class="math inline">\(y_h(0) = 1\)</span>. Its solution is of the form <span class="math display">\[
+  y_h(t) = C\, e^{-9t}
+  \]</span> for constant <span class="math inline">\(C\)</span>. Using the initial condition <span class="math display">\[
+  y_h(0) = C\, e^{-0} = C = 1
+  \]</span> gives <span class="math display">\[
+  y_h(t) = e^{-9t}
+  \]</span> The particular solution is of the form <span class="math display">\[
+  y_p(t) = C_1 e^{-t} + C_2 e^{-9t}
+  \]</span> Substitution and equating coefficients gives <span class="math inline">\(C_1 = \frac{1}{8}\)</span> and <span class="math inline">\(C_2 = -\frac{1}{8}\)</span>. The total solution is the sum of the two solutions or <span class="math display">\[
+  y(t) = \frac{1}{8} e^{-t} - \frac{1}{8} e^{-9t} + e^{-9t} = \frac{1}{8} e^{-t} + \frac{7}{8} e^{-9t}
+  \]</span></p>
+</section>
+<section id="section-2" class="level3" data-number="2.7.3">
+<h3 data-number="2.7.3" class="anchored" data-anchor-id="section-2"><span class="header-section-number">2.7.3</span> </h3>
+<p>Find a solution to the differential equation <span class="math display">\[
+  \frac{dy}{dt}(t) + 9y(t) = e^{-t}
+  \]</span> for <span class="math inline">\(t \geq 0\)</span>, when <span class="math inline">\(y(0) = 1\)</span>.</p>
+<p><strong>Solution:</strong> The homogeneous equation is <span class="math display">\[
+  \frac{dy_h}{dt}(t) + 9y_h(t) = 0
+  \]</span> with initial condition <span class="math inline">\(y_h(0) = 1\)</span>. Its solution is of the form <span class="math display">\[
+  y_h(t) = C\, e^{-9t}
+  \]</span> for constant <span class="math inline">\(C\)</span>. Using the initial condition <span class="math display">\[
+  y_h(0) = C\, e^{-0} = C = 1
+  \]</span> gives <span class="math display">\[
+  y_h(t) = e^{-9t}
+  \]</span> The particular solution is of the form <span class="math display">\[
+  y_p(t) = C_1 e^{-t} + C_2 e^{-9t}
+  \]</span> Substitution and equating coefficients gives <span class="math inline">\(C_1 = \frac{1}{8}\)</span> and <span class="math inline">\(C_2 = -\frac{1}{8}\)</span>. The total solution is the sum of the two solutions or <span class="math display">\[
+  y(t) = \frac{1}{8} e^{-t} - \frac{1}{8} e^{-9t} + e^{-9t} = \frac{1}{8} e^{-t} + \frac{7}{8} e^{-9t}
+  \]</span></p>
+</section>
+<section id="section-3" class="level3" data-number="2.7.4">
+<h3 data-number="2.7.4" class="anchored" data-anchor-id="section-3"><span class="header-section-number">2.7.4</span> </h3>
+<p>Compute the integral <span class="math display">\[
+    \int\limits_{-\infty}^{\infty} e^{-t^2} \, \delta(t-10)\; dt
+    \]</span> where <span class="math inline">\(\delta(t)\)</span> is the delta function.</p>
+<pre><code>**Solution:**</code></pre>
+<p>Using the sifting property of the delta function <span class="math display">\[
+  \int\limits_{a}^{b} f(t) \, \delta(t-t_0)\; dt = f(t_0)
+  \]</span> for <span class="math inline">\(a &lt; t_0 &lt; b\)</span>, we get <span class="math display">\[
+  \int\limits_{-\infty}^{\infty} e^{-t^2} \, \delta(t-10)\; dt = e^{-100} \approx 0
+  \]</span></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
