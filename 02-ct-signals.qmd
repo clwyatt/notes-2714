@@ -7,6 +7,8 @@ diagram:
       execpath: pdflatex
       header-includes:
         - '\usepackage{circuitikz,pgfplots}'
+
+code-annotations: true
 ---
 
 A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.
@@ -712,15 +714,15 @@ Consider a signal described by the function
 
   **Solution:**
 
-   ```
-% Solution to PS01 - Problem 1b
-t = -2:0.001:2;
-x = exp(-3*t).*sin(10*pi*t).*heaviside(t);
-hp = plot(t,abs(x));
+   ```{.octave}
+% Solution to Example Problem 2.7.1b
+t = -2:0.001:2;                                               # <1>
+x = exp(-3*t).*sin(10*pi*t).*heaviside(t);                    # <2>
+hp = plot(t,abs(x));                                          # <3>   
 grid on;
 xh = xlabel('t');
-yh = ylabel('|x(t)|');
-th = title('Plot for PS01 Problem 1b');
+yh = ylabel('x(t)');
+th = title('Plot for Example Problem 2.7.1b');
 
 % make the plot more readable
 set(gca, 'FontSize', 12, 'Box', 'off', 'LineWidth', 2);
@@ -728,9 +730,13 @@ set(hp, 'linewidth', 2);
 set([xh, yh, th], 'FontSize', 12);
 
 set(gcf, 'PaperPositionMode', 'auto');
-print -dpng ps1p1b.png
+print -dpng example_2_7_1.png
    ```
 
+   1. Create time slices from -2 seconds to 2 seconds in increments of 1 millisecond
+   2. Compute the signal value at each time slice
+   3. Plot the signal
+   
 ###
 
 Find a solution to the differential equation

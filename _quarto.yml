@@ -9,13 +9,17 @@ book:
   repo-url: https://github.com/clwyatt/notes-2714/
   #cover-image: images/cover.png 
   #downloads: [pdf,docx]
+  navbar:
+    search: true
   sidebar:
     style: docked
+    search: false
   chapters:
     - index.qmd
     - preface.qmd
     - 01-intro.qmd
     - 02-ct-signals.qmd
+    - 03-dt-signals.qmd
     - references.qmd
 
 #comments:
