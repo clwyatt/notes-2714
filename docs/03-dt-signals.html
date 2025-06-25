@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Preface – Supplementary Notes for ECE 2714: Signals and Systems</title>
+<title>3&nbsp; Discrete-Time Signals – Supplementary Notes for ECE 2714: Signals and Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-intro.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./02-ct-signals.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="theme-style.css">
 </head>
@@ -96,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./preface.html">Preface</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03-dt-signals.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Discrete-Time Signals</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -116,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./preface.html" class="sidebar-item-text sidebar-link active">
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Preface</span></a>
   </div>
 </li>
@@ -134,7 +163,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-dt-signals.html" class="sidebar-item-text sidebar-link">
+  <a href="./03-dt-signals.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Discrete-Time Signals</span></span></a>
   </div>
 </li>
@@ -154,9 +183,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#to-the-student" id="toc-to-the-student" class="nav-link active" data-scroll-target="#to-the-student">To the student:</a></li>
-  <li><a href="#to-the-instructor" id="toc-to-the-instructor" class="nav-link" data-scroll-target="#to-the-instructor">To the instructor:</a></li>
-  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements:</a></li>
+  <li><a href="#primitive-models" id="toc-primitive-models" class="nav-link active" data-scroll-target="#primitive-models"><span class="header-section-number">3.1</span> Primitive Models</a></li>
   </ul>
 </nav>
     </div>
@@ -165,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Preface</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Discrete-Time Signals</span></h1>
 </div>
 
 
@@ -182,28 +209,21 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<style>
-.flushright {
-   text-align: right;
-}
-</style>
-<section id="to-the-student" class="level2">
-<h2 class="anchored" data-anchor-id="to-the-student">To the student:</h2>
-<p>This is a set of supplementary notes and examples for ECE 2714. It is not a replacement for the textbook, but can act as a reference and guide your reading. These notes are not comprehensive – often additional material and insights are covered during class.</p>
-<p>This material is well covered in the official course text “Oppenheim, A. V., Willsky, A. S., and Nawab, S. H. Signals and Systems. ii, Essex UK: Prentice Hall Pearson, 1996.” (abbreviated OW). This is an older, but very good book. However there are many, many texts that cover the same material. reading a textbook is one of the most important things you can do to learn this material. Again, these notes should be considered a replacement for a textbook.</p>
-</section>
-<section id="to-the-instructor" class="level2">
-<h2 class="anchored" data-anchor-id="to-the-instructor">To the instructor:</h2>
-<p>These notes are simply a way to provide some consistency in topic coverage and notation between and within semesters. Feel free to share these with your class but you are under no obligation to do so. There are many alternative ways to motivate and develop this material and you should use the way that you like best. This is just how I do it.</p>
-<p>Each chapter corresponds to a “Topic Learning Objective” and would typically be covered in one class meeting on a Tuesday-Thursday or Monday-Wednesday schedule. Note CT and DT topics are taught interleaved rather than in separate blocks. This gets the student used to going back and forth between the two signal and system types. We introduce time-domain topics first, followed by (real) frequency domain topics, using complex frequency domain for sinusoidal analysis only and as a bridge. Detailed analysis and application of Laplace and Z-transforms is left to ECE 3704.</p>
-</section>
-<section id="acknowledgements" class="level2">
-<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements:</h2>
-<p>The development of this course has been, and continues to be, a team effort. Dr.&nbsp;Mike Buehrer was instrumental in the initial design and roll-out of the course. Dr.&nbsp;Mary Lanzerotti has helped enormously with the course organization and academic integrity. All the instructors thus far: Drs. Buehrer, Safaai-Jazi, Lanzerotti, Kekatos, Poon, Xu, and Talty, have shaped the course in some fashion.</p>
-<div class="flushright">
-<p>C.L. Wyatt</p>
-<p>May 7, 2024</p>
-</div>
+<p>Recall from the previous chapter that a discrete-time (DT) signal is modeled as a function <span class="math inline">\(f: \mathbb{Z} \rightarrow \mathbb{C}\)</span>. We will write these as <span class="math inline">\(x[n]\)</span>, <span class="math inline">\(y[n]\)</span>, etc. Note <span class="math inline">\(n\)</span> is dimensionless. These are graphically plotted as stem or “lollipop” plots, as demonstrated in Chapter 2.</p>
+<p>Since the domain <span class="math inline">\(\mathbb{Z}\)</span> is usually interpreted as a time index, we will still call these {} signals. In the time-domain, when the co-domain is <span class="math inline">\(\mathbb{R}\)</span> we call these real DT signals. Unlike with CT signals there are no physical limitations requiring DT signals to be real, since in discrete hardware, a value at a given index can be a complex number, i.e.&nbsp;just a pair of numbers. However it is computationally advantageous to restrict ourselves to real arithmetic and such signals are often converted to or from CT signals, which do have to be real. For this reason, real DT signals dominate in models.</p>
+<section id="primitive-models" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="primitive-models"><span class="header-section-number">3.1</span> Primitive Models</h2>
+<p>As with CT signals, we mathematically model DT signals by combining elementary/primitive functions, for example:</p>
+<ul>
+<li>polynomials: <span class="math inline">\(x[n] = n\)</span>, <span class="math inline">\(x[n] = n^2\)</span>, etc.</li>
+<li>transendental functions: <span class="math inline">\(x[n] = e^n\)</span>, <span class="math inline">\(x[n] = \sin(n)\)</span>, <span class="math inline">\(x[n] = \cos(n)\)</span>, etc.</li>
+<li>piecewise functions, e.g. <span class="math display">\[
+x[n] = \left\{  \begin{array}{cl}
+f_1[n] &amp; n &lt; 0\\
+f_2[n] &amp; n \geq 0\\
+\end{array}\right.
+\]</span></li>
+</ul>
 
 
 </section>
@@ -610,13 +630,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="About the Notes">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">About the Notes</span>
+      <a href="./02-ct-signals.html" class="pagination-link" aria-label="Continuous-Time Signals">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Continuous-Time Signals</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-intro.html" class="pagination-link" aria-label="Course Introduction">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

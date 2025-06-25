@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./03-dt-signals.html" rel="next">
 <link href="./01-intro.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -76,13 +76,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0a858857d8b61103ac85e13a37f1a17a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b123d7f09c07b1138b012ef49f451644.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -138,10 +138,23 @@ window.Quarto = {
 <link rel="stylesheet" href="theme-style.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar docked nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Supplementary Notes for ECE 2714: Signals and Systems</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="https://github.com/clwyatt/notes-2714/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -150,29 +163,13 @@ window.Quarto = {
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-ct-signals.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Continuous-Time Signals</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Supplementary Notes for ECE 2714: Signals and Systems</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/clwyatt/notes-2714/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -197,6 +194,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./02-ct-signals.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Continuous-Time Signals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-dt-signals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Discrete-Time Signals</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -805,22 +808,36 @@ x(t) = \underbrace{Ae^{rt}\cos(\omega_0 t+\phi)}_{\Re \text{part}} + j \underbra
 <li>Using Matlab, plot the signal <span class="math inline">\(|x(t)|\)</span> between <span class="math inline">\([-2, 2]\)</span>. Give your code and embed the plot.</li>
 </ol>
 <p><strong>Solution:</strong></p>
-<pre><code>% Solution to PS01 - Problem 1b
-t = -2:0.001:2;
-x = exp(-3*t).*sin(10*pi*t).*heaviside(t);
-hp = plot(t,abs(x));
-grid on;
-xh = xlabel('t');
-yh = ylabel('|x(t)|');
-th = title('Plot for PS01 Problem 1b');
-
-% make the plot more readable
-set(gca, 'FontSize', 12, 'Box', 'off', 'LineWidth', 2);
-set(hp, 'linewidth', 2);
-set([xh, yh, th], 'FontSize', 12);
-
-set(gcf, 'PaperPositionMode', 'auto');
-print -dpng ps1p1b.png</code></pre>
+<div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode octave code-annotation-code code-with-copy code-annotated"><code class="sourceCode octave"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Solution to Example Problem 2.7.1b</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="op">-</span><span class="fl">2</span><span class="op">:</span><span class="fl">0.001</span><span class="op">:</span><span class="fl">2</span><span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2" onclick="event.preventDefault();">2</a><span id="annotated-cell-2-3" class="code-annotation-target"><a href="#annotated-cell-2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fu">exp</span>(<span class="op">-</span><span class="fl">3</span><span class="op">*</span>t)<span class="op">.*</span><span class="fu">sin</span>(<span class="fl">10</span><span class="op">*</span><span class="bu">pi</span><span class="op">*</span>t)<span class="op">.*</span>heaviside(t)<span class="op">;</span></span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="3" onclick="event.preventDefault();">3</a><span id="annotated-cell-2-4" class="code-annotation-target"><a href="#annotated-cell-2-4" aria-hidden="true" tabindex="-1"></a>hp <span class="op">=</span> <span class="fu">plot</span>(t<span class="op">,</span><span class="fu">abs</span>(x))<span class="op">;</span></span>
+<span id="annotated-cell-2-5"><a href="#annotated-cell-2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span> on<span class="op">;</span></span>
+<span id="annotated-cell-2-6"><a href="#annotated-cell-2-6" aria-hidden="true" tabindex="-1"></a>xh <span class="op">=</span> <span class="fu">xlabel</span>(<span class="st">'t'</span>)<span class="op">;</span></span>
+<span id="annotated-cell-2-7"><a href="#annotated-cell-2-7" aria-hidden="true" tabindex="-1"></a>yh <span class="op">=</span> <span class="fu">ylabel</span>(<span class="st">'x(t)'</span>)<span class="op">;</span></span>
+<span id="annotated-cell-2-8"><a href="#annotated-cell-2-8" aria-hidden="true" tabindex="-1"></a>th <span class="op">=</span> <span class="fu">title</span>(<span class="st">'Plot for Example Problem 2.7.1b'</span>)<span class="op">;</span></span>
+<span id="annotated-cell-2-9"><a href="#annotated-cell-2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-10"><a href="#annotated-cell-2-10" aria-hidden="true" tabindex="-1"></a><span class="co">% make the plot more readable</span></span>
+<span id="annotated-cell-2-11"><a href="#annotated-cell-2-11" aria-hidden="true" tabindex="-1"></a><span class="fu">set</span>(<span class="fu">gca</span><span class="op">,</span> <span class="st">'FontSize'</span><span class="op">,</span> <span class="fl">12</span><span class="op">,</span> <span class="st">'Box'</span><span class="op">,</span> <span class="st">'off'</span><span class="op">,</span> <span class="st">'LineWidth'</span><span class="op">,</span> <span class="fl">2</span>)<span class="op">;</span></span>
+<span id="annotated-cell-2-12"><a href="#annotated-cell-2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">set</span>(hp<span class="op">,</span> <span class="st">'linewidth'</span><span class="op">,</span> <span class="fl">2</span>)<span class="op">;</span></span>
+<span id="annotated-cell-2-13"><a href="#annotated-cell-2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">set</span>([xh<span class="op">,</span> yh<span class="op">,</span> th]<span class="op">,</span> <span class="st">'FontSize'</span><span class="op">,</span> <span class="fl">12</span>)<span class="op">;</span></span>
+<span id="annotated-cell-2-14"><a href="#annotated-cell-2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="annotated-cell-2-15"><a href="#annotated-cell-2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">set</span>(<span class="fu">gcf</span><span class="op">,</span> <span class="st">'PaperPositionMode'</span><span class="op">,</span> <span class="st">'auto'</span>)<span class="op">;</span></span>
+<span id="annotated-cell-2-16"><a href="#annotated-cell-2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span> <span class="op">-</span>dpng example_2_7_1.png</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<dl class="code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="1">Create time slices from -2 seconds to 2 seconds in increments of 1 millisecond</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="3" data-code-annotation="2">Compute the signal value at each time slice</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="4" data-code-annotation="3">Plot the signal</span>
+</dd>
+</dl>
 </section>
 <section id="section-1" class="level3" data-number="2.7.2">
 <h3 data-number="2.7.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">2.7.2</span> </h3>
@@ -1283,8 +1300,8 @@ print -dpng ps1p1b.png</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03-dt-signals.html" class="pagination-link" aria-label="Discrete-Time Signals">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Discrete-Time Signals</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
