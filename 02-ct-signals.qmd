@@ -34,6 +34,7 @@ If the function $f: \mathbb{R} \rightarrow \mathbb{R}$, we call this an analog o
 ```{python}
 #| label: fig-analog-plots
 #| fig-cap: "Example plots of analog signals."
+#| fig-alt: "Example plots of analog signals. Shows a plot of the unit step, causal real exponential, sinusoid, and a damped causal sinusoid."
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -94,7 +95,8 @@ Example
 
 ```{python}
 #| label: fig-realdt-plots
-#| fig-cap: "Example plots of analog signals."
+#| fig-cap: "Example plots of real-valued, discrete-time signals."
+#| fig-alt: "Example plots of real-valued, discrete-time signals. Shows a plot of the unit step, causal real exponential, sinusoid, and a damped causal sinusoid."
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -189,6 +191,7 @@ Example
 ```{.tikz}
 %%| filename: figure2-1
 %%| fig-align: center
+%%| fig-cap: 
 %%| alt: Circuit showing a single pole, single throw switch connected to a unit DC source.
 
   \begin{circuitikz}[american voltages,scale=1.0, every node/.style={transform shape}]
@@ -218,7 +221,8 @@ so a mathematical model of the switch circuit above would be $x(t) = V u(t)$.
 ```{.tikz}
 %%| filename: figure2-2
 %%| fig-align: center
-%%| alt: PLot of the unit step function.
+%%| fig-cap: 
+%%| alt: Plot of the unit step function.
 
     \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
   \begin{axis}[ xlabel=$t$, axis x line=center, axis y line = center, 
@@ -253,10 +257,13 @@ Example
 ::::
 ::::{.example-container}
 **Chord.** The chord "G", an additive mixture of tones at G, B, and D and might be modeled as
-    \[
-    x(t) = \sin\left(2\pi (392) t\right) + \sin\left(2\pi (494) t\right) + \sin\left(2\pi (293) t\right) 
-    \]
-    This example shows we can use addition to build-up signals to approximate real signals of interest.
+
+$$
+x(t) = \sin\left(2\pi (392) t\right) + \sin\left(2\pi (494) t\right) + \sin\left(2\pi (293) t\right) 
+$$
+
+This example shows we can use addition to build-up signals to approximate real signals of interest.
+
 ::::
 :::
 
@@ -292,8 +299,8 @@ We can also apply transformations to signals to increase their modeling flexibil
   x_2(t) = x_1(t+\tau)
   $$
   
-  - if $\tau <0$ it is called a {\it delay}
-  - if $\tau >0$ it is called an {\it advance}
+  - if $\tau <0$ it is called a _delay_
+  - if $\tau >0$ it is called an _advance_
 
 * time scaling
     $$
@@ -376,7 +383,7 @@ Definition
 
 :::{.example}
 ::::{.example-header}
-Example
+Definition
 ::::
 ::::{.example-container}
 **Power of a CT Signal.** The _power_ of a CT signal is the energy averaged over an interval as that interval tends to infinity.
@@ -430,9 +437,14 @@ $$
 \end{array}
 \right. 
 $$
-which we draw an vertical arrow in plots:
+which we draw as a vertical arrow in plots:
 
 ```{.tikz}
+%%| label: fig-delta-plot
+%%| fig-align: "center"
+%%| fig-cap: The delta function shown as a graph.
+%%| alt: Plot of the delta function.
+
   \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
     \begin{axis}[ xlabel=$t$, axis x line=center, axis y line = center, 
         xmin=-2, xmax=2, ymin=0, ymax=1.1, x label style={at={(axis cs:2,0)},anchor=west}]
@@ -499,6 +511,10 @@ where the parameters $C, a \in \mathbb{C}$ in general.
 When $C$ and $a$ are both real ($\Im(C) = \Im(a) = 0$), we have the familiar exponential. When $a > 0$ and $C > 0$, $x(t) = C e^{a t}$ looks like:
 
 ```{.tikz}
+%%| fig-align: center
+%%| fig-cap: 
+%%| alt: Plot of the expoential function with real, positive parameter.
+
   \begin{tikzpicture}
     \begin{axis}[xmin=-2, xmax=2, ymin = 0, ymax=7, samples=50, xlabel=$t$, xticklabels={,,}, yticklabels={,,}]
       \addplot[blue, thick] (x,e^x);
@@ -512,6 +528,10 @@ When $C$ and $a$ are both real ($\Im(C) = \Im(a) = 0$), we have the familiar exp
 When $a < 0$ and $C > 0$, $x(t) = C e^{a t}$ looks like:
 
 ```{.tikz}
+%%| fig-align: center
+%%| fig-cap: 
+%%| alt: Plot of the expoential function with real, negative parameter.
+
   \begin{tikzpicture}
     \begin{axis}[xmin=-2, xmax=2, ymin = 0, ymax=7, samples=50, xlabel=$t$, xticklabels={,,}, yticklabels={,,}]
       \addplot[blue, thick] (x,e^-x);
@@ -555,7 +575,7 @@ $$
 
 
 * if $\omega_0 = 0$ this is true for all $T$
-* if $\omega_0 \neq 0$, then to be periodic $\omega_0 T = 2\pi m$ for $m = \pm 1, \pm 2, \cdots$. The smallest $T$ for which this is true is the {\it fundamental period} $T_0$
+* if $\omega_0 \neq 0$, then to be periodic $\omega_0 T = 2\pi m$ for $m = \pm 1, \pm 2, \cdots$. The smallest $T$ for which this is true is the _fundamental period_ $T_0$
   $$
   T_0 = \frac{2\pi}{|\omega_0|}
   $$
@@ -575,7 +595,7 @@ The last property implies that both $T_1$ and $T_2$ must both be rational in $\p
 
 * $x(t) = \sin(2\pi t) + \cos(5\pi t)$ is periodic
 * $x(t) = \sin(2 t) + \cos(5 t)$ is periodic
-* $x(t) = \sin(2\pi t) + \cos(5 t)$ is {\bf not} periodic
+* $x(t) = \sin(2\pi t) + \cos(5 t)$ is **not** periodic
 
 When the parameter $C$ is complex we get a phase shift. Again let $a = j\omega_0$. When $C$ is complex we can write it as $C = Ae^{j\phi}$ where $A = |C|$ and $\phi = \angle C$. Then
 
@@ -609,6 +629,7 @@ For example the signal graphically represented as follows
 ```{python}
 #| label: fig-sinusoidal-plot
 #| fig-cap: "Example plot of sinusoidal signal."
+#| fig-alt: "Example plot of sinusoidal signal."
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -658,7 +679,7 @@ $$
   
 ### Harmonics
 
-Two CT complex sinusoids are {\it harmonics} of one another is both are periodic in $T_0$. This occurs when
+Two CT complex sinusoids are _harmonics_ of one another is both are periodic in $T_0$. This occurs when
 
 $$
     x_k(t) = e^{jk\omega_0 t} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots
@@ -745,7 +766,7 @@ Find a solution to the differential equation
   $$
   for $t \geq 0$, when $y(0) = 1$.
 
-  **Solution:**
+**Solution:**
   The homogeneous equation is
   $$
   \frac{dy_h}{dt}(t) + 9y_h(t) = 0
@@ -779,7 +800,7 @@ Find a solution to the differential equation
   $$
   for $t \geq 0$, when $y(0) = 1$.
 
-  **Solution:**
+**Solution:**
   The homogeneous equation is
   $$
   \frac{dy_h}{dt}(t) + 9y_h(t) = 0
@@ -813,7 +834,7 @@ Compute the integral
     $$
     where $\delta(t)$ is the delta function.
     
-    **Solution:**
+**Solution:**
 
   Using the sifting property of the delta function
   $$
