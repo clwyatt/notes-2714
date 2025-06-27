@@ -1,0 +1,321 @@
+---
+title: "DT systems as linear constant coefficient difference equations"
+
+diagram:
+  engine:
+    tikz:
+      execpath: pdflatex
+      header-includes:
+        - '\usepackage{circuitikz,pgfplots}'
+---
+
+A *difference equation* is a relation among combinations of two DT
+functions and shifted versions of them. Similar to differential
+equations where the solution is a CT function, the solution to a
+difference equation is a DT function. For example:
+$$y[n+1] + \frac{1}{2}y[n] = x[n]$$ is a first order, linear,
+constant-coefficient difference equation. Given $x[n]$ the solution is a
+function $y[n]$. We can view this as a representation of a DT system,
+where $x[n]$ is the input signal and $y[n]$ is the output.
+
+There is a parallel theory to differential equations for solving
+difference equations. However in this lecture we will focus specifically
+on the iterative solution of linear, constant-coefficient difference
+equations and the case when the input is a delta function, as this is
+all we need for this course.
+
+## Definition of linear constant coefficient difference equation
+
+A *linear*, *constant-coefficient*, difference equation (LCCDE) comes in
+one of two forms.
+
+- Delay form.
+  $$\sum\limits_{k = 0}^N a_k y[n-k] = \sum\limits_{k = 0}^M b_k x[n-k]$$
+  or
+  $$a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]$$
+
+- Advance form. Let $n\rightarrow n+N$, then the delay form becomes
+  $$\sum\limits_{k = 0}^N a_k y[n+N-k] = \sum\limits_{k = 0}^M b_k x[n+N-k]$$
+  or
+  $$a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = b_0 x[n+N] + \cdots b_Mx[n+N-M]$$
+
+The *order* of the system is given by $N$. The delay and advance forms
+are equivalent because the equation holds for any $n$, and we can move
+back and forth between them as needed by a constant index-shift.
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+The delay form is
+$$a_0y[n] + a_1 y[n-1] + a_2 y[n-2] = b_0 x[n] + b_1 x[n-1]$$ Replacing
+$n \rightarrow n+2$, the advance form is
+$$a_0 y[n+2] + a_1 y[n+1] + a_2 y[n] = b_0 x[n+2] + b_1 x[n+1]$$
+
+
+::::
+:::
+
+
+It will be convenient to define the operator $E^m$ as shifting a DT
+function by positive $m$, i.e. $E^m x[n] = x[n+m]$, and the operator
+$D^m$ as shifting a DT function by negative $m$, i.e.
+$D^m x[n] = x[n-m]$. These are called the advance and delay operators
+respectively. Then, the advance form of the difference equation using
+this operator notation is
+$$a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = b_0 x[n+N] + \cdots b_Mx[n+N-M]$$
+$$a_0 E^Ny + a_1E^{N-1}y + \cdots a_N y = b_0 E^{N}x + \cdots b_M E^{N-M}x$$
+Factoring out the advance operators gives
+$$\underbrace{\left(a_0E^N + a_1E^{N-1} + \cdots a_N\right)}_{Q(E)} y = \underbrace{\left(b_0 E^{N} + \cdots b_M E^{N-M}\right)}_{P(E)} x$$
+or $$Q(E)y[n] = P(E)x[n]$$
+
+Similarly, the delay form of the difference equation using this operator
+notation is
+$$a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]$$
+$$a_0y[n] + a_1 Dy + \cdots a_N D^N y = b_0 x + \cdots b_MD^M x$$ Note:
+The DT delay operator $D$ is similar, but *not* identical to the
+derivative operator $D$ in CT.
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+Consider the difference equation $$3y[n+1] + 4y[n] + 5y[n-1] = 2x[n+1]$$
+The advance form would be: $$3y[n+2] + 4y[n+1] + 5y[n] = 2x[n+2]$$ or
+using the advance operator $$\left(3E^2 + 4E + 5\right)y = 2E^2x$$ with
+$Q(E) = 3E^2 + 4E + 5$ and $P(E) = 2E^2$.\
+The delay form would be: $$3y[n] + 4y[n-1] + 5y[n-2] = 2x[n]$$ or using
+the delay operator $$\left(5D^2 + 4D + 3\right)y = 2x$$ with
+$Q(D) = 5D^2 + 4D + 3$ and $P(D) = 2$. 
+
+::::
+:::
+
+
+## Iterative solution of LCCDEs
+
+Difference equations are different (pun!) from differential equations in
+that they can be solved by manually running the equation forward using
+previous values of the output and current and previous values of the
+input, given some initial conditions. This is called an *iterative*
+solution for this reason.
+
+To perform an iterative solution we need the difference equation in
+delay form
+$$a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]$$
+We then solve for the current output $y[n]$
+$$y[n] =  - \left(\frac{a_1}{a_0}y[n-1] + \cdots \frac{a_N}{a_0} y[n-N]\right) + \frac{b_0}{a_0} x[n] + \cdots \frac{b_M}{a_0}x[n-M]$$
+
+Now lets examine what this expression says in words. To compute the
+current output $y[n]$ we need the value of the *previous* $N-1$ outputs,
+the value of the *current* input $x[n]$ and $M-1$ *previous* inputs (and
+the coefficients). Then we can compute the next output $y[n+1]$ by
+adding the previous computation result for $y[n]$ to our list of things
+to remember, and forgetting one previous value of $y$. This can continue
+as long as we like.
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+Consider the first-order difference equation $$y[n+1] + y[n] = x[n+1]$$
+where $y[-1] = 1$ and $x[n] = u[n]$. We first convert this to delay form
+$$y[n] = -y[n-1] + x[n]\; .$$ Then we can compute $y[0]$ as
+$$y[0] = -y[-1] + x[0] = -1 + 1 = 0$$ and continuing
+
+
+```{=latex}
+\begin{aligned}
+  y[1] &= -y[0] + x[1] = 0 + 1 = 1\\
+  y[2] &= -y[1] + x[2] = -1 + 1 = 0\\
+  y[3] &= -y[2] + x[3] = 0 + 1 = 1\\
+  \mbox{etc.}
+  
+\end{aligned}
+```
+
+We can see that this will continue to give the
+alternating sequence $1,0,1,0,1,\cdots$. 
+
+::::
+:::
+
+
+## Solution of the homogeneous LCCDE
+
+Note the iterative solution does not give us (directly) and analytical
+expression for the output at arbitrary $n$. We have to start at the
+initial conditions and compute our way up to $n$. We now consider an
+analytical solution when the input is zero, the solution to the
+*homogeneous* difference equation
+$$Q(E)\, y = a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = 0 \; .$$ given
+$N$ sequential auxiliary conditions on $y$.
+
+Similar to differential equations, the homogeneous solution depends on
+the roots of the characteristic equation $Q(E)=0$ whose roots are either
+real or occur in complex conjugate pairs. Let $\lambda_i$ be the $i$-th
+root of $Q(E) = 0$, then the solution is of the form
+$$y[n] = \sum\limits_{i=1}^N C_i \lambda_i^{n}$$ where the parameters
+$C_i$ are determined from the auxiliary conditions.
+
+For a real system (when the coefficients of the difference equation are
+real) and when the roots are complex
+$\lambda_{1,2} = |\lambda|e^{\pm j\beta}$, it is cleaner to assume a
+form for those terms as $$y[n] = C |\lambda|^n\cos(\beta n + \theta)$$
+for constants $C$ and $\theta$.
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+Find the solution to the first-order homogeneous LCCDE
+$$y[n+1] + \frac{1}{2}y[n] = 0 \mbox{ with } y[0] = 5 \; .$$ Note
+$Q(E) = E + \frac{1}{2}$ has a single root $\lambda_1 = -\frac{1}{2}$.
+Thus the solution is of the form
+$$y[n] = C\left( -\frac{1}{2}\right)^n$$ where the parameter $C$ is
+found using $$y[0] = C = 5$$ to give the final solution
+$$y[n] = 5\left( -\frac{1}{2}\right)^n$$ 
+
+::::
+:::
+
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+Find the solution to the second-order homogeneous LCCDE
+$$y[n+2] + y[n+1] + \frac{1}{2}y[n] = 0 \mbox{ with } y[0] = 1 \mbox{ and } y[1] = 0\; .$$
+Note $Q(E) = E^2 + E + \frac{1}{2}$ has a pair of complex roots
+$\lambda_{1,2} = -\frac{1}{2} \pm j\frac{1}{2}$. Thus the solution is of
+the form
+$$y[n] = C \left|\frac{1}{\sqrt{2}}\right|^n\cos\left(\frac{3\pi}{4} n + \theta\right)$$
+where the parameters are found using
+$$y[0] = C\cos\left(\theta\right) = 1$$
+$$y[1] = C\frac{1}{\sqrt{2}}\cos\left(\frac{3\pi}{4} + \theta\right) = 0$$
+This is true when
+$$C = \sqrt{2} \mbox{ and } \theta = -\frac{\pi}{4} + 2\pi m$$ for any
+$m\in \mathbb{Z}$ since $\cos$ is periodic in $2\pi$. A final solution
+is then
+$$y[n] = \sqrt{2} \left|\frac{1}{\sqrt{2}}\right|^n\cos\left(\frac{3\pi}{4} n - \frac{\pi}{4}\right)$$
+
+
+::::
+:::
+
+
+See the appendix for a general technique to solve for these constants.
+
+## Impulse response from LCCDE
+
+Today our goal is to find the solution to $Q(E)y=P(E)x$ when
+$x[n] = \delta[n]$ assuming $y[n] = 0$ for $n < 0$, giving the *impulse
+response* $y[n] = h[n]$. We skip the derivation here and just give a
+procedure.
+
+**Step 1:** Let $y_h$ be the homogeneous solution to $Q(E)y_h=0$ for
+$n > N$.
+
+**Step 2:** Assume a form for $h[n]$ given by
+$$h[n] = \frac{b_N}{a_N}\delta[n] + y_h[n]u[n]$$
+
+**Step 3:** Using the iterative procedure above find the $N$ auxiliary
+conditions we need by,
+
+- first, rewrite the equation in delay form and solve for $y[n]$,
+
+- then let $x[n] = \delta[n]$ and manually compute $h[0]$ assuming
+  $h[n] = 0$ for $n < 0$,
+
+- repeating the previous step for $h[1]$, continuing up to $h[N-1]$.
+
+**Step 4:** Using the auxillary conditions in step 3, solve for the
+constants in the solution $h[n]$ from step 2.
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+Find the impulse response of the system given by
+$$y[n+2] -\frac{1}{4}y[n+1] -\frac{1}{8}y[n]= 2x[n+1]$$
+
+For step 1 we solve the equation
+$$y_h[n+2] -\frac{1}{4}y_h[n+1] -\frac{1}{8}y_h[n] = 0$$ which is of the
+form
+$$y_h[n] = C_1 \left( -\frac{1}{4}\right)^n + C_2 \left( \frac{1}{2}\right)^n$$
+since the roots of $Q(E) = E^2 - \frac{1}{4}E - \frac{1}{8}$ are
+$-\frac{1}{4}$ and $\frac{1}{2}$.
+
+For step 3, we find the auxiliary conditions needed to find $C_1$ and
+$C_2$ by rewriting the original equation in delay form and solving for
+$y[0]$ and $y[1]$ when $x[n] = \delta[n]$.
+$$y[n] = \frac{1}{4}y[n-1] + \frac{1}{8}y[n-2] + 2x[n-1]$$ Let
+$x[n] = \delta[n]$ and manually compute $y[0]$ assuming $y[n] = 0$ for
+$n < 0$
+$$y[0] = \frac{1}{4}\underbrace{y[0-1]}_{0} + \frac{1}{8}\underbrace{y[0-2]}_{0} + 2\underbrace{\delta[0-1]}_{0} = 0$$
+Repeat for $y[1]$
+$$y[1] = \frac{1}{4}\underbrace{y[1-1]}_{0} + \frac{1}{8}\underbrace{y[1-2]}_{0} + 2\underbrace{\delta[1-1]}_{1} = 2$$
+Now we find the constants using step 4 $$h[0] = C_1  + C_2  = 0$$
+$$h[1] = C_1 \left( -\frac{1}{4}\right) + C_2 \left( \frac{1}{2}\right) = 2$$
+which gives $C_1 = -\frac{8}{3}$ and $C_2 = \frac{8}{3}$. Thus the final
+impulse response is
+$$h[n] = \frac{b_N}{a_N}\delta[n] + y_h[n]u[n] = -\frac{8}{3}\left( -\frac{1}{4}\right)^nu[n] + \frac{8}{3}\left( \frac{1}{2}\right)^n u[n]$$
+since $b_N = 0$. 
+
+::::
+:::
+
+
+Note we can confirm our closed-form result in the previous example, for
+a few values of $n$, by iteratively solving the difference equation
+$$h[0] = \frac{1}{4}\underbrace{h[0-1]}_{0} + \frac{1}{8}\underbrace{h[0-2]}_{0} + 2\underbrace{\delta[0-1]}_{0} = 0$$
+$$h[1] = \frac{1}{4}\underbrace{h[1-1]}_{0} + \frac{1}{8}\underbrace{h[1-2]}_{0} + 2\underbrace{\delta[1-1]}_{1} = 2$$
+$$h[2] = \frac{1}{4}\underbrace{h[2-1]}_{2} + \frac{1}{8}\underbrace{h[2-2]}_{0} + 2\underbrace{\delta[2-1]}_{0} = \frac{1}{2}$$
+$$h[3] = \frac{1}{4}\underbrace{h[3-1]}_{\frac{1}{2}} + \frac{1}{8}\underbrace{h[3-2]}_{2} + 2\underbrace{\delta[2-1]}_{0} = \frac{3}{8}$$
+and comparing to our closed-form solution a the same values of $n$
+$$h[0] = -\frac{8}{3} + \frac{8}{3} = 0$$
+$$h[1] = -\frac{8}{3}\left( -\frac{1}{4}\right) + \frac{8}{3}\left( \frac{1}{2}\right) = 2$$
+$$h[2] = -\frac{8}{3}\left( -\frac{1}{4}\right)^2 + \frac{8}{3}\left( \frac{1}{2}\right)^2 = \frac{1}{2}$$
+$$h[3] = -\frac{8}{3}\left( -\frac{1}{4}\right)^3 + \frac{8}{3}\left( \frac{1}{2}\right)^3 = \frac{3}{8}$$
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+Find the impulse response of the system given by
+$$y[n+1] - \frac{1}{2}y[n] = x[n+1] + x[n]$$
+
+In step 1 we note the solution to $Q(E)y[n] = 0$ is of the form
+$$y_h[n] = C\left( \frac{1}{2}\right)^n$$ From step 2 we note $b_N = 1$
+and $a_N = -\frac{1}{2}$, so that
+$$h[n] = -2\delta[n]  +  C\left( \frac{1}{2}\right)^n\, u[n]$$ In step 3
+we manually find $h[0]$
+
+```{=latex}
+\begin{aligned}
+    y[n] &= \frac{1}{2}y[n-1] + x[n] + x[n-1]\\
+    h[n] &= \frac{1}{2}y[n-1] + \delta[n] + \delta[n-1]\\
+    h[0] &= 0 + 1 + 0 = 1
+  
+\end{aligned}
+```
+
+And in step 4 we solve for $C$
+$$h[0] = -2  +  C = 1 \mbox{ implies } C = 3$$
+to give
+$$h[n] = -2\delta[n]  +  3\left( \frac{1}{2}\right)^n\, u[n]$$
+
+::::
+:::
+
+
+
+
+
