@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -184,6 +219,17 @@ window.Quarto = {
    
   <ul>
   <li><a href="#primitive-models" id="toc-primitive-models" class="nav-link active" data-scroll-target="#primitive-models"><span class="header-section-number">3.1</span> Primitive Models</a></li>
+  <li><a href="#basic-transformations" id="toc-basic-transformations" class="nav-link" data-scroll-target="#basic-transformations"><span class="header-section-number">3.2</span> Basic Transformations</a></li>
+  <li><a href="#characterization-of-signals" id="toc-characterization-of-signals" class="nav-link" data-scroll-target="#characterization-of-signals"><span class="header-section-number">3.3</span> Characterization of Signals</a></li>
+  <li><a href="#dt-unit-impulse-function" id="toc-dt-unit-impulse-function" class="nav-link" data-scroll-target="#dt-unit-impulse-function"><span class="header-section-number">3.4</span> DT Unit Impulse Function</a></li>
+  <li><a href="#dt-complex-exponential" id="toc-dt-complex-exponential" class="nav-link" data-scroll-target="#dt-complex-exponential"><span class="header-section-number">3.5</span> DT Complex Exponential</a>
+  <ul class="collapse">
+  <li><a href="#dt-complex-exponential-real-case" id="toc-dt-complex-exponential-real-case" class="nav-link" data-scroll-target="#dt-complex-exponential-real-case"><span class="header-section-number">3.5.1</span> DT Complex Exponential: real case</a></li>
+  <li><a href="#dt-complex-exponential-sinusoidal-case" id="toc-dt-complex-exponential-sinusoidal-case" class="nav-link" data-scroll-target="#dt-complex-exponential-sinusoidal-case"><span class="header-section-number">3.5.2</span> DT Complex Exponential: sinusoidal case</a></li>
+  <li><a href="#dt-complex-exponential-sinusoidal-case-with-phase-shift" id="toc-dt-complex-exponential-sinusoidal-case-with-phase-shift" class="nav-link" data-scroll-target="#dt-complex-exponential-sinusoidal-case-with-phase-shift"><span class="header-section-number">3.5.3</span> DT Complex Exponential: sinusoidal case with phase shift</a></li>
+  <li><a href="#properties-of-dt-complex-sinusoid" id="toc-properties-of-dt-complex-sinusoid" class="nav-link" data-scroll-target="#properties-of-dt-complex-sinusoid"><span class="header-section-number">3.5.4</span> Properties of DT complex sinusoid</a></li>
+  <li><a href="#dt-complex-exponential-general-case" id="toc-dt-complex-exponential-general-case" class="nav-link" data-scroll-target="#dt-complex-exponential-general-case"><span class="header-section-number">3.5.5</span> DT Complex Exponential: general case</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -224,8 +270,323 @@ f_2[n] &amp; n \geq 0\\
 \end{array}\right.
 \]</span></li>
 </ul>
+<div class="example">
+<div class="example-header">
+<p>Definition</p>
+</div>
+<div class="example-container">
+<p>The DT counterpart of the CT step function is the <em>DT Unit Step</em>, <span class="math inline">\(u[n]\)</span>: <span class="math display">\[u[n] = \left\{  \begin{array}{cl}
+    0 &amp; n &lt; 0\\
+    1 &amp; n \geq 0\\
+  \end{array}\right.\]</span> Note, there are not continuity issues at <span class="math inline">\(n=0\)</span> as DT functions have discrete domains.</p>
+</div>
+</div>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p>A <em>sampled</em> signal modeling the air pressure of a specific tone, sampled at 8kHz, might be <span class="math display">\[x[n] = \sin\left(2\pi (261.6) \tfrac{1}{8000} n\right)\]</span> Such DT signals are commonly used in digital music generation, storage, and playback.</p>
+</div>
+</div>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p>Similarly, the sampled chord "G", an additive mixture of tones at G, B, and D and might be modeled as <span class="math display">\[x[n] = \sin\left(2\pi (392) \tfrac{1}{8000} n\right) + \sin\left(2\pi (494) \tfrac{1}{8000} n\right) + \sin\left(2\pi (293) \tfrac{1}{8000} n\right)\]</span> again sampled at 8kHz. This example shows we can use addition to build-up signals to approximate real signals of interest.</p>
+</div>
+</div>
+</section>
+<section id="basic-transformations" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="basic-transformations"><span class="header-section-number">3.2</span> Basic Transformations</h2>
+<p>Similar to CT signals, we can also apply transformations to DT signals to increase their modeling flexibility.</p>
+<ul>
+<li><p>magnitude scaling <span class="math display">\[x_2[n] = a x_1[n]\]</span> for <span class="math inline">\(a \in \mathbb{R}\)</span>.</p></li>
+<li><p>time differences <span class="math display">\[x_2[n] = x_1[n] - x_1[n-1]\]</span></p></li>
+<li><p>running sums <span class="math display">\[x_2[n] = \sum\limits_{m = -\infty}^{n} x_1[m]\]</span></p></li>
+<li><p>sums <span class="math display">\[y[n] = \sum\limits_{i} x_i[n]\]</span> an important example we will see is the DT Fourier series.</p></li>
+<li><p>multiplication (modulation) <span class="math display">\[y[n] = x_1[n] x_2[n]\]</span></p></li>
+<li><p>time index shift <span class="math display">\[x_2[n] = x_1[n+m]\]</span></p>
+<ul>
+<li><p>if <span class="math inline">\(m &lt; 0\)</span> it is called a <em>delay</em></p></li>
+<li><p>if <span class="math inline">\(m &gt; 0\)</span> it is called an <em>advance</em></p></li>
+</ul></li>
+<li><p>time reversal <span class="math display">\[x_2[n] = x_1[-n]\]</span></p></li>
+<li><p>decimation <span class="math display">\[y[n] = x[m n]\]</span> for <span class="math inline">\(m \in \mathbb{Z}^+\)</span>.</p>
+<ul>
+<li><p>e.g.&nbsp;for <span class="math inline">\(m=2\)</span> only keep every other sample</p></li>
+<li><p>e.g.&nbsp;for <span class="math inline">\(m=3\)</span> only keep every third sample</p></li>
+<li><p>etc.</p></li>
+</ul></li>
+<li><p>interpolation <span class="math display">\[y[n] = \left\{  \begin{array}{cl}
+x\left[ \frac{n}{m}\right] &amp; n = 0\; , \; \pm m, , \; \pm 2m \cdots\\
+0 &amp; \mbox{else}
+\end{array}\right.\]</span> When <span class="math inline">\(m = 2\)</span> this inserts a zero sample between every sample of the signal.</p></li>
+</ul>
+</section>
+<section id="characterization-of-signals" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="characterization-of-signals"><span class="header-section-number">3.3</span> Characterization of Signals</h2>
+<p>There are a few basic ways of characterizing DT signals.</p>
+<div class="example">
+<div class="example-header">
+<p>Definition</p>
+</div>
+<div class="example-container">
+<p>A DT signal is <em>causal</em> if <span class="math inline">\(x[n] = 0\)</span> <span class="math inline">\(\forall n &lt; 0\)</span>.</p>
+</div>
+</div>
+<div class="example">
+<div class="example-header">
+<p>Definition</p>
+</div>
+<div class="example-container">
+<p>A DT signal is <em>anti-causal</em> or acausal if <span class="math inline">\(x[n] = 0\)</span> <span class="math inline">\(\forall n \geq 0\)</span>.</p>
+</div>
+</div>
+<p>A DT signal can be written as the sum of a causal and anti-causal signal.</p>
+<p>A DT signal is periodic if <span class="math inline">\(x[n] = x[n + N] \; \forall n\)</span> for a fixed period <span class="math inline">\(N \in \mathbb{Z}\)</span>.</p>
+<p>A DT signal is even if <span class="math inline">\(x[n] = x[-n] \; \forall n\)</span>.</p>
+<p>A DT signal is odd if <span class="math inline">\(x[n] = -x[-n] \; \forall n\)</span>.</p>
+<p>Any DT signal can be written in terms of an even and odd component <span class="math display">\[x[n] = x_e[n] + x_o[n]\]</span> where <span class="math display">\[\begin{array}{ll}
+x_e[n] &amp;= \frac{1}{2}\left\{x[n] + x[-n]\right\} \\
+&amp; \\
+x_o[n] &amp;= \frac{1}{2}\left\{x[n] - x[-n]\right\}
+\end{array}\]</span></p>
+<p>Analogous to CT signals, the energy of a DT signal is <span class="math display">\[E_x = \lim_{N\rightarrow\infty} \sum\limits_{-N}^N \lvert x[n]\rvert^2 \; .\]</span></p>
+<p>And the power of a DT signal is the energy averaged over an interval as that interval tends to infinity.</p>
+<p><span class="math display">\[P_x = \lim_{N\rightarrow\infty} \frac{1}{2N+1} \sum\limits_{-N}^N \lvert x[n]\rvert^2 \; .\]</span></p>
+<p>DT Signals with finite, non-zero energy and zero power are called <em>energy signals</em>. DT Signals with finite, non-zero power (and by implication infinite energy) are called <em>power signals</em>. These categories are non-exclusive, some signals are neither energy or power signals.</p>
+</section>
+<section id="dt-unit-impulse-function" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="dt-unit-impulse-function"><span class="header-section-number">3.4</span> DT Unit Impulse Function</h2>
+<p>In DT the unit impulse function, denoted <span class="math inline">\(\delta[n]\)</span> is defined as <span class="math display">\[\delta[n] = \left\{
+\begin{array}{ll}
+  1 &amp; n = 0\\
+  0 &amp; \text{else}
+\end{array}
+\right.\]</span> Note this definition is straightforward compared to the CT impulse as there are no continuity issues and it is not defined in terms of a distribution. It is typically drawn as</p>
+<div id="cell-fig-dtdelta-plot" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>matplotlib.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">12</span>})</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">11</span>)<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.zeros(<span class="dv">11</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">5</span>] <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure()</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.stem(n, x)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$</span><span class="er">\</span><span class="st">delta[n]$'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-dtdelta-plot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="a plot of the discrete-time delta function.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dtdelta-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-dt-signals_files/figure-html/fig-dtdelta-plot-output-1.png" alt="a plot of the discrete-time delta function." width="656" height="466" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dtdelta-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Plot of discrete-time delta function.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Some useful properties of the DT impulse function are:</p>
+<ul>
+<li><p>Energy is 1: <span class="math inline">\(\sum\limits_{n=-\infty}^{\infty} \delta[n] = 1\)</span></p></li>
+<li><p>Sampling: <span class="math inline">\(x[n]\delta[n-n_0] = x[n_0]\delta[n-n_0]\)</span></p></li>
+<li><p>Sifting: <span class="math inline">\(\sum\limits_{n=-\infty}^{\infty} x[n]\delta[n-n_0] = x[n_0]\)</span></p></li>
+</ul>
+<p>The impulse can be defined in terms of the step: <span class="math display">\[\delta[n] = u[n] - u[n-1]\]</span> and vice-versa <span class="math display">\[u[n] = \sum\limits_{m=-\infty}^{n} \delta[m]\]</span> or <span class="math display">\[u[n] = \sum\limits_{k=0}^{\infty} \delta[n-k]\]</span></p>
+</section>
+<section id="dt-complex-exponential" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="dt-complex-exponential"><span class="header-section-number">3.5</span> DT Complex Exponential</h2>
+<p>The DT Complex Exponential is defined in a similar fashion the the CT version, but with some important differences. The general DT complex exponential is given by the expression: <span class="math display">\[x[n] = Ce^{\beta n}\]</span> where in general <span class="math inline">\(C \in \mathbb{C}\)</span> and <span class="math inline">\(\beta \in \mathbb{C}\)</span>. It is sometimes convenient (for reasons we will see later) to write this as <span class="math display">\[x[n] = C \alpha^n\]</span> where <span class="math inline">\(\alpha = e^{j\theta}\)</span> is a complex number <span class="math inline">\(\alpha = \cos(\theta) + j\sin(\theta)\)</span>.</p>
+<p>We now examine several special cases.</p>
+<section id="dt-complex-exponential-real-case" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="dt-complex-exponential-real-case"><span class="header-section-number">3.5.1</span> DT Complex Exponential: real case</h3>
+<p>Let <span class="math inline">\(C\)</span> and <span class="math inline">\(\alpha\)</span> be real, then there are four intervals of interest:</p>
+<ul>
+<li><p><span class="math inline">\(\alpha &gt; 1\)</span></p></li>
+<li><p><span class="math inline">\(0 &lt; \alpha &lt; 1\)</span></p></li>
+<li><p><span class="math inline">\(-1 &lt; \alpha &lt; 0\)</span></p></li>
+<li><p><span class="math inline">\(\alpha &lt; -1\)</span></p></li>
+</ul>
+<p>Each of these are shown in <a href="#fig-dtexpreal" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>.</p>
+<div id="cell-fig-dtexpreal" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">13</span>)<span class="op">;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure()</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.stem(n, np.power(alpha, n))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.5</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.stem(n, np.power(alpha, n))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.stem(n, np.power(alpha, n))</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.stem(n, np.power(alpha, n))</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div id="fig-dtexpreal" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Example plots of real exponential signals.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dtexpreal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="03-dt-signals_files/figure-html/fig-dtexpreal-output-1.png" alt="Example plots of real exponential signals." width="656" height="466" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dtexpreal-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.2: DT Complex Exponential: real case, four intervals of interest.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dt-complex-exponential-sinusoidal-case" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="dt-complex-exponential-sinusoidal-case"><span class="header-section-number">3.5.2</span> DT Complex Exponential: sinusoidal case</h3>
+<p>Let <span class="math inline">\(C = 1\)</span>. When <span class="math inline">\(\beta\)</span> is purely imaginary, <span class="math inline">\(\beta = j\omega_0\)</span> <span class="math display">\[x[n] = e^{j\omega_0 n}\]</span></p>
+<p>As in CT, by Euler’s identity: <span class="math display">\[e^{j\omega_0 n} = \cos(\omega_0 n) + j\sin(\omega_0 n)\]</span> and <span class="math display">\[\Re(x[n]) = \cos(\omega_0 n) = \frac{1}{2}\left( e^{j\omega_0 n} + e^{-j\omega_0 n} \right)\]</span> <span class="math display">\[\Im(x[n]) = \sin(\omega_0 n) = \frac{1}{2j}\left( e^{j\omega_0 n} - e^{-j\omega_0 n} \right)\]</span></p>
+<p>The energy and power are the same as for the CT complex sinusoid: <span class="math inline">\(E_x = \infty\)</span> and <span class="math inline">\(P_x = 1\)</span>.</p>
+</section>
+<section id="dt-complex-exponential-sinusoidal-case-with-phase-shift" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="dt-complex-exponential-sinusoidal-case-with-phase-shift"><span class="header-section-number">3.5.3</span> DT Complex Exponential: sinusoidal case with phase shift</h3>
+<p>The general DT sinusoid is</p>
+<p><span class="math display">\[x[n] = A\cos(\omega_0 n + \phi)\]</span></p>
+<ul>
+<li><p><span class="math inline">\(A\)</span> is called the amplitude</p></li>
+<li><p><span class="math inline">\(\phi\)</span> is called the phase shift</p></li>
+<li><p><span class="math inline">\(\omega_0\)</span> is now in radians (assuming <span class="math inline">\(n\)</span> is dimensionless)</p></li>
+</ul>
+<div id="0e01f469" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">21</span>)<span class="op">;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.cos(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">10</span><span class="op">*</span>n <span class="op">+</span> np.pi<span class="op">/</span><span class="dv">8</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure()</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.stem(n, x)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-dt-signals_files/figure-html/cell-4-output-1.png" alt="Example plots of DT Complex Exponential: sinusoidal case with phase shift" width="656" height="466" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>For CT sinusoids as <span class="math inline">\(\omega_0\)</span> increases the signal oscillates faster and faster. However for DT sinusoids there is a "fastest" oscillation.</p>
+<p><span class="math display">\[e^{j\omega_0 n}\rvert_{\omega_0 = \pi} = e^{j\pi n} = (-1)^n\]</span></p>
+<div id="a31a4c44" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">11</span>)<span class="op">;</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.power(<span class="op">-</span><span class="dv">1</span>, n)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure()</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.stem(n, x)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03-dt-signals_files/figure-html/cell-5-output-1.png" alt="Example plots of DT Complex Exponential: sinusoidal case with maximum frequency." width="656" height="466" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="properties-of-dt-complex-sinusoid" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="properties-of-dt-complex-sinusoid"><span class="header-section-number">3.5.4</span> Properties of DT complex sinusoid</h3>
+<p>If we consider two frequencies: <span class="math inline">\(\omega_0\)</span> and <span class="math inline">\(\omega_0+2\pi\)</span>. In the first case: <span class="math display">\[x[n] = e^{j\omega_0 n}\]</span> In the second case: <span class="math display">\[\begin{array}{ll}
+x[n] &amp;= e^{j(\omega_0+2\pi) n} \\
+&amp;= \underbrace{e^{j2\pi n}}_{\text{always 1}}\; e^{j\omega_0 n} \\
+&amp;= e^{j\omega_0 n}
+\end{array}\]</span></p>
+<p>Thus the two are the same signal. This has important implications later in the course.</p>
+<p>Another difference between CT and DT complex sinusoids is periodicity. Recall for a DT signal to be periodic with period <span class="math inline">\(N\)</span> <span class="math display">\[x[n] = x[n+N] \; \forall n\]</span> Substituting the complex sinusoid <span class="math display">\[e^{j\omega_0 n} = e^{j\omega_0 (n+N)} = e^{j\omega_0 n}e^{j\omega_0 N}\]</span> requires <span class="math inline">\(e^{j\omega_0 N} = 1\)</span>, which implies <span class="math inline">\(\omega_0 N\)</span> is a multiple of <span class="math inline">\(2\pi\)</span>: <span class="math display">\[\omega_0 N = 2\pi m \;\;\; m = \pm 1, \pm 2, \cdots\]</span> or equivalently <span class="math display">\[\frac{|\omega_0|}{2\pi} = \frac{m}{N}\]</span> thus <span class="math inline">\(\omega_0\)</span> must be a rational multiple of <span class="math inline">\(\pi\)</span>.</p>
+<p>Two DT complex sinusoids are harmonics of one another is both are periodic in <span class="math inline">\(N\)</span>, i.e when</p>
+<p><span class="math display">\[x_k(t) = e^{jk\frac{2\pi}{N} n} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots\]</span></p>
+<p>This implies there are only <span class="math inline">\(N\)</span> distinct harmonics in DT.</p>
+</section>
+<section id="dt-complex-exponential-general-case" class="level3" data-number="3.5.5">
+<h3 data-number="3.5.5" class="anchored" data-anchor-id="dt-complex-exponential-general-case"><span class="header-section-number">3.5.5</span> DT Complex Exponential: general case</h3>
+<p>In the general case we get a sinusoid signal modulated by an exponential. Let <span class="math inline">\(C = Ae^{j\phi}\)</span> and <span class="math inline">\(\beta = r + j\omega_0\)</span>, then <span class="math display">\[x[n] = C e^{\beta n} =  Ae^{j\phi} e^{(r+j\omega_0)n}\]</span> Expanding the terms and using Euler’s identity gives:</p>
+<p><span class="math display">\[x[n] = \underbrace{Ae^{rn}\cos(\omega_0 n+\phi)}_{\Re \text{part}} + j \underbrace{Ae^{rn}\sin(\omega_0 n+\phi)}_{\Im \text{part}}\]</span> Each part is a real sinusoid whose amplitude is modulated by a real exponential.</p>
+<p>The visualization of the general case is to view the signal <span class="math inline">\(x[n]\)</span> as a vector rotating through fixed angles in the complex plane.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="graphics/DT_complexsinusoid_visual.svg" class="img-fluid figure-img" alt="A figure visualizing the DT complex sinusoid at a specific point in time."></p>
+<figcaption>The DT complex sinusoid at a specific point in time.</figcaption>
+</figure>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

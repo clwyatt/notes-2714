@@ -324,10 +324,10 @@ f: A \rightarrow B
 <span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-analog-plots" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-analog-plots" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Example plots of analog signals. Shows a plot of the unit step, causal real exponential, sinusoid, and a damped causal sinusoid.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-analog-plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-ct-signals_files/figure-html/fig-analog-plots-output-1.png" width="665" height="469" class="figure-img">
+<img src="02-ct-signals_files/figure-html/fig-analog-plots-output-1.png" alt="Example plots of analog signals. Shows a plot of the unit step, causal real exponential, sinusoid, and a damped causal sinusoid." width="665" height="469" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-analog-plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.1: Example plots of analog signals.
@@ -391,13 +391,13 @@ Figure&nbsp;2.1: Example plots of analog signals.
 <span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-realdt-plots" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-realdt-plots" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Example plots of real-valued, discrete-time signals. Shows a plot of the unit step, causal real exponential, sinusoid, and a damped causal sinusoid.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-realdt-plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-ct-signals_files/figure-html/fig-realdt-plots-output-1.png" width="665" height="470" class="figure-img">
+<img src="02-ct-signals_files/figure-html/fig-realdt-plots-output-1.png" alt="Example plots of real-valued, discrete-time signals. Shows a plot of the unit step, causal real exponential, sinusoid, and a damped causal sinusoid." width="665" height="470" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-realdt-plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2.2: Example plots of analog signals.
+Figure&nbsp;2.2: Example plots of real-valued, discrete-time signals.
 </figcaption>
 </figure>
 </div>
@@ -440,7 +440,11 @@ x[n] = e^{j\omega n} = \cos(\omega n) + j\sin(\omega n)
 </div>
 <div class="example-container">
 <p><strong>Modeling a Switch:</strong> Consider a mathematical model of a switch, which moves positions at time <span class="math inline">\(t = 0\)</span>.</p>
-<img src="02-ct-signals_files/mediabag/figure2-1.svg" class="img-fluid" alt="Circuit showing a single pole, single throw switch connected to a unit DC source.">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-ct-signals_files/mediabag/figure2-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 <p>We use this model so much we give it it’s own name and symbol: Unit Step, <span class="math inline">\(u(t)\)</span></p>
 <p><span class="math display">\[
 u(t) = \left\{  \begin{array}{cl}
@@ -449,7 +453,11 @@ u(t) = \left\{  \begin{array}{cl}
       \end{array}\right.
 \]</span> so a mathematical model of the switch circuit above would be <span class="math inline">\(x(t) = V u(t)\)</span>.</p>
 <p>Note: some texts define the step function at <span class="math inline">\(t=0\)</span> to be <span class="math inline">\(1\)</span> or <span class="math inline">\(\frac{1}{2}\)</span>. It is typically plotted like so:</p>
-<img src="02-ct-signals_files/mediabag/figure2-2.svg" class="img-fluid" alt="PLot of the unit step function.">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-ct-signals_files/mediabag/figure2-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <div class="example">
@@ -468,7 +476,11 @@ u(t) = \left\{  \begin{array}{cl}
 <p>Example</p>
 </div>
 <div class="example-container">
-<p><strong>Chord.</strong> The chord “G”, an additive mixture of tones at G, B, and D and might be modeled as [ x(t) = (2(392) t) + (2(494) t) + (2(293) t) ] This example shows we can use addition to build-up signals to approximate real signals of interest.</p>
+<p><strong>Chord.</strong> The chord “G”, an additive mixture of tones at G, B, and D and might be modeled as</p>
+<p><span class="math display">\[
+x(t) = \sin\left(2\pi (392) t\right) + \sin\left(2\pi (494) t\right) + \sin\left(2\pi (293) t\right)
+\]</span></p>
+<p>This example shows we can use addition to build-up signals to approximate real signals of interest.</p>
 </div>
 </div>
 </section>
@@ -496,8 +508,8 @@ y(t) = x_1(t) x_2(t)
 x_2(t) = x_1(t+\tau)
 \]</span></p>
 <ul>
-<li>if <span class="math inline">\(\tau &lt;0\)</span> it is called a {}</li>
-<li>if <span class="math inline">\(\tau &gt;0\)</span> it is called an {}</li>
+<li>if <span class="math inline">\(\tau &lt;0\)</span> it is called a <em>delay</em></li>
+<li>if <span class="math inline">\(\tau &gt;0\)</span> it is called an <em>advance</em></li>
 </ul></li>
 <li><p>time scaling <span class="math display">\[
   x_2(t) = x_1\left(\frac{t}{\tau}\right)
@@ -563,7 +575,7 @@ x(t) = x_e(t) + x_o(t)
 </div>
 <div class="example">
 <div class="example-header">
-<p>Example</p>
+<p>Definition</p>
 </div>
 <div class="example-container">
 <p><strong>Power of a CT Signal.</strong> The <em>power</em> of a CT signal is the energy averaged over an interval as that interval tends to infinity. <span class="math display">\[
@@ -607,8 +619,13 @@ x(t) = x_e(t) + x_o(t)
   \infty &amp; t = 0
 \end{array}
 \right.
-\]</span> which we draw an vertical arrow in plots:</p>
-<img src="02-ct-signals_files/mediabag/866ea5f3c0d0ff1be554ee0d6c236a18edd78334.svg" class="img-fluid">
+\]</span> which we draw as a vertical arrow in plots:</p>
+<div id="fig-delta-plot" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="02-ct-signals_files/mediabag/866ea5f3c0d0ff1be554ee0d6c236a18edd78334.svg" class="img-fluid figure-img"></p>
+<figcaption>The delta function shown as a graph.</figcaption>
+</figure>
+</div>
 <p>Note the height of the arrow is arbitrary. Often in the case of a non-unit impulse function the area is written in parenthesis near the arrow tip.</p>
 <p>The following properties of the impulse function will be used often.</p>
 <ul>
@@ -648,9 +665,17 @@ p(t) = u(t) - u(t-\epsilon)
 x(t) = C\, e^{a t}
 \]</span> where the parameters <span class="math inline">\(C, a \in \mathbb{C}\)</span> in general.</p>
 <p>When <span class="math inline">\(C\)</span> and <span class="math inline">\(a\)</span> are both real (<span class="math inline">\(\Im(C) = \Im(a) = 0\)</span>), we have the familiar exponential. When <span class="math inline">\(a &gt; 0\)</span> and <span class="math inline">\(C &gt; 0\)</span>, <span class="math inline">\(x(t) = C e^{a t}\)</span> looks like:</p>
-<img src="02-ct-signals_files/mediabag/511fda8e490c073c5ef7eaf070858cb9abad34d4.svg" class="img-fluid">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-ct-signals_files/mediabag/511fda8e490c073c5ef7eaf070858cb9abad34d4.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 <p>When <span class="math inline">\(a &lt; 0\)</span> and <span class="math inline">\(C &gt; 0\)</span>, <span class="math inline">\(x(t) = C e^{a t}\)</span> looks like:</p>
-<img src="02-ct-signals_files/mediabag/8899b8b18d4f3fd1b57ead2e54ddc8aabebd0aec.svg" class="img-fluid">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="02-ct-signals_files/mediabag/8899b8b18d4f3fd1b57ead2e54ddc8aabebd0aec.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
 <p>If <span class="math inline">\(C &lt; 0\)</span> the signals reflect about the time axis.</p>
 <p>To get the pure sinusoidal case, let <span class="math inline">\(C \in \mathbb{R}\)</span> and <span class="math inline">\(a\)</span> be purely imaginary: <span class="math inline">\(a = j\omega_0\)</span>: <span class="math display">\[
 x(t) = Ce^{j\omega_0 t}
@@ -670,7 +695,7 @@ Ce^{j\omega_0 t} = Ce^{j\omega_0 (t+T)}= Ce^{j\omega_0 t}\underbrace{e^{j\omega_
 \]</span></p>
 <ul>
 <li>if <span class="math inline">\(\omega_0 = 0\)</span> this is true for all <span class="math inline">\(T\)</span></li>
-<li>if <span class="math inline">\(\omega_0 \neq 0\)</span>, then to be periodic <span class="math inline">\(\omega_0 T = 2\pi m\)</span> for <span class="math inline">\(m = \pm 1, \pm 2, \cdots\)</span>. The smallest <span class="math inline">\(T\)</span> for which this is true is the {} <span class="math inline">\(T_0\)</span> <span class="math display">\[
+<li>if <span class="math inline">\(\omega_0 \neq 0\)</span>, then to be periodic <span class="math inline">\(\omega_0 T = 2\pi m\)</span> for <span class="math inline">\(m = \pm 1, \pm 2, \cdots\)</span>. The smallest <span class="math inline">\(T\)</span> for which this is true is the <em>fundamental period</em> <span class="math inline">\(T_0\)</span> <span class="math display">\[
 T_0 = \frac{2\pi}{|\omega_0|}
 \]</span> or equivalently <span class="math inline">\(\omega_0 = \frac{2\pi}{T_0}\)</span></li>
 </ul>
@@ -685,7 +710,7 @@ aT_1 = b T_2 = P
 <ul>
 <li><span class="math inline">\(x(t) = \sin(2\pi t) + \cos(5\pi t)\)</span> is periodic</li>
 <li><span class="math inline">\(x(t) = \sin(2 t) + \cos(5 t)\)</span> is periodic</li>
-<li><span class="math inline">\(x(t) = \sin(2\pi t) + \cos(5 t)\)</span> is {} periodic</li>
+<li><span class="math inline">\(x(t) = \sin(2\pi t) + \cos(5 t)\)</span> is <strong>not</strong> periodic</li>
 </ul>
 <p>When the parameter <span class="math inline">\(C\)</span> is complex we get a phase shift. Again let <span class="math inline">\(a = j\omega_0\)</span>. When <span class="math inline">\(C\)</span> is complex we can write it as <span class="math inline">\(C = Ae^{j\phi}\)</span> where <span class="math inline">\(A = |C|\)</span> and <span class="math inline">\(\phi = \angle C\)</span>. Then</p>
 <p><span class="math display">\[
@@ -728,10 +753,10 @@ A\cos(\omega_0 t + \phi)
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-display">
-<div id="fig-sinusoidal-plot" class="quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-sinusoidal-plot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Example plot of sinusoidal signal.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sinusoidal-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="02-ct-signals_files/figure-html/fig-sinusoidal-plot-output-1.png" width="588" height="434" class="figure-img">
+<img src="02-ct-signals_files/figure-html/fig-sinusoidal-plot-output-1.png" alt="Example plot of sinusoidal signal." width="588" height="434" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sinusoidal-plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2.3: Example plot of sinusoidal signal.
@@ -763,7 +788,7 @@ x(t) = 2\cos\left(\frac{\pi}{2} (t+\tfrac{1}{2}) \right) =  2\cos\left(\frac{\pi
 </section>
 <section id="harmonics" class="level3" data-number="2.6.3">
 <h3 data-number="2.6.3" class="anchored" data-anchor-id="harmonics"><span class="header-section-number">2.6.3</span> Harmonics</h3>
-<p>Two CT complex sinusoids are {} of one another is both are periodic in <span class="math inline">\(T_0\)</span>. This occurs when</p>
+<p>Two CT complex sinusoids are <em>harmonics</em> of one another is both are periodic in <span class="math inline">\(T_0\)</span>. This occurs when</p>
 <p><span class="math display">\[
     x_k(t) = e^{jk\omega_0 t} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots
 \]</span></p>
@@ -779,8 +804,8 @@ x(t) = \underbrace{Ae^{rt}\cos(\omega_0 t+\phi)}_{\Re \text{part}} + j \underbra
 <p>An important visualization of the general case is to view the signal <span class="math inline">\(x(t)\)</span> as a vector rotating counter-clockwise in the complex plane for positive <span class="math inline">\(t\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="graphics/CT_complexsinusoid_visual.svg" class="img-fluid figure-img" alt="A figure visualizing the complex sinusoid at a specific point in time."></p>
-<figcaption>The complex sinusoid at a specific point in time.</figcaption>
+<p><img src="graphics/CT_complexsinusoid_visual.svg" class="img-fluid figure-img" alt="A figure visualizing the CT complex sinusoid at a specific point in time."></p>
+<figcaption>The CT complex sinusoid at a specific point in time.</figcaption>
 </figure>
 </div>
 <p>For <span class="math inline">\(r &lt; 0\)</span> the tip of the arrow traces out an inward spiral, whereas for <span class="math inline">\(r &gt; 0\)</span> it traces out an outward spiral. For <span class="math inline">\(r = 0\)</span> it traces out the unit circle.</p>
@@ -882,7 +907,7 @@ x(t) = \underbrace{Ae^{rt}\cos(\omega_0 t+\phi)}_{\Re \text{part}} + j \underbra
 <p>Compute the integral <span class="math display">\[
     \int\limits_{-\infty}^{\infty} e^{-t^2} \, \delta(t-10)\; dt
     \]</span> where <span class="math inline">\(\delta(t)\)</span> is the delta function.</p>
-<pre><code>**Solution:**</code></pre>
+<p><strong>Solution:</strong></p>
 <p>Using the sifting property of the delta function <span class="math display">\[
   \int\limits_{a}^{b} f(t) \, \delta(t-t_0)\; dt = f(t_0)
   \]</span> for <span class="math inline">\(a &lt; t_0 &lt; b\)</span>, we get <span class="math display">\[
