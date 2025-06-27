@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Course Introduction – Supplementary Notes for ECE 2714: Signals and Systems</title>
+<title>5&nbsp; DT systems as linear constant coefficient difference equations – Supplementary Notes for ECE 2714: Signals and Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./02-ct-signals.html" rel="next">
-<link href="./preface.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./04-ct-lccde.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -125,7 +125,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-dt-lccde.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -151,7 +151,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./01-intro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Introduction</span></span></a>
   </div>
 </li>
@@ -175,7 +175,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-dt-lccde.html" class="sidebar-item-text sidebar-link">
+  <a href="./05-dt-lccde.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></span></a>
   </div>
 </li>
@@ -195,10 +195,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#example-signals-and-systems" id="toc-example-signals-and-systems" class="nav-link active" data-scroll-target="#example-signals-and-systems"><span class="header-section-number">1.1</span> Example Signals and Systems</a></li>
-  <li><a href="#types-of-problems" id="toc-types-of-problems" class="nav-link" data-scroll-target="#types-of-problems"><span class="header-section-number">1.2</span> Types of Problems</a></li>
-  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">1.3</span> Learning Objectives</a></li>
-  <li><a href="#graphical-outline" id="toc-graphical-outline" class="nav-link" data-scroll-target="#graphical-outline"><span class="header-section-number">1.4</span> Graphical Outline</a></li>
+  <li><a href="#definition-of-linear-constant-coefficient-difference-equation" id="toc-definition-of-linear-constant-coefficient-difference-equation" class="nav-link active" data-scroll-target="#definition-of-linear-constant-coefficient-difference-equation"><span class="header-section-number">5.1</span> Definition of linear constant coefficient difference equation</a></li>
+  <li><a href="#iterative-solution-of-lccdes" id="toc-iterative-solution-of-lccdes" class="nav-link" data-scroll-target="#iterative-solution-of-lccdes"><span class="header-section-number">5.2</span> Iterative solution of LCCDEs</a></li>
+  <li><a href="#solution-of-the-homogeneous-lccde" id="toc-solution-of-the-homogeneous-lccde" class="nav-link" data-scroll-target="#solution-of-the-homogeneous-lccde"><span class="header-section-number">5.3</span> Solution of the homogeneous LCCDE</a></li>
+  <li><a href="#impulse-response-from-lccde" id="toc-impulse-response-from-lccde" class="nav-link" data-scroll-target="#impulse-response-from-lccde"><span class="header-section-number">5.4</span> Impulse response from LCCDE</a></li>
   </ul>
 </nav>
     </div>
@@ -207,7 +207,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Introduction</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></h1>
 </div>
 
 
@@ -224,369 +224,120 @@ window.Quarto = {
 </header>
 
 
-<p>The concepts and techniques in this course are probably the most useful in engineering. A <em>signal</em> is a function of one or more independent variables conveying information about a physical (or virtual) phenomena. A <em>system</em> may respond to signals to produce other signals, or produce signals directly.</p>
-<img src="01-intro_files/mediabag/figure1-1.svg" class="img-fluid" alt="Diagram showing how the input of a sytem is related to the output.">
-<p>This course is about the mathematical models and related techniques for the design and understanding of systems as signal transformations. We focus on a broadly useful class of systems, known as <em>linear, time-invariant systems</em>. You will learn about:</p>
+<p>A <em>difference equation</em> is a relation among combinations of two DT functions and shifted versions of them. Similar to differential equations where the solution is a CT function, the solution to a difference equation is a DT function. For example: <span class="math display">\[y[n+1] + \frac{1}{2}y[n] = x[n]\]</span> is a first order, linear, constant-coefficient difference equation. Given <span class="math inline">\(x[n]\)</span> the solution is a function <span class="math inline">\(y[n]\)</span>. We can view this as a representation of a DT system, where <span class="math inline">\(x[n]\)</span> is the input signal and <span class="math inline">\(y[n]\)</span> is the output.</p>
+<p>There is a parallel theory to differential equations for solving difference equations. However in this lecture we will focus specifically on the iterative solution of linear, constant-coefficient difference equations and the case when the input is a delta function, as this is all we need for this course.</p>
+<section id="definition-of-linear-constant-coefficient-difference-equation" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="definition-of-linear-constant-coefficient-difference-equation"><span class="header-section-number">5.1</span> Definition of linear constant coefficient difference equation</h2>
+<p>A <em>linear</em>, <em>constant-coefficient</em>, difference equation (LCCDE) comes in one of two forms.</p>
 <ul>
-<li><p>the representation and analysis of signals as information carrying channels</p></li>
-<li><p>and how to analyze and implement linear, time-invariant systems to transform those signals.</p></li>
+<li><p>Delay form. <span class="math display">\[\sum\limits_{k = 0}^N a_k y[n-k] = \sum\limits_{k = 0}^M b_k x[n-k]\]</span> or <span class="math display">\[a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]\]</span></p></li>
+<li><p>Advance form. Let <span class="math inline">\(n\rightarrow n+N\)</span>, then the delay form becomes <span class="math display">\[\sum\limits_{k = 0}^N a_k y[n+N-k] = \sum\limits_{k = 0}^M b_k x[n+N-k]\]</span> or <span class="math display">\[a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = b_0 x[n+N] + \cdots b_Mx[n+N-M]\]</span></p></li>
 </ul>
-<section id="example-signals-and-systems" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="example-signals-and-systems"><span class="header-section-number">1.1</span> Example Signals and Systems</h2>
+<p>The <em>order</em> of the system is given by <span class="math inline">\(N\)</span>. The delay and advance forms are equivalent because the equation holds for any <span class="math inline">\(n\)</span>, and we can move back and forth between them as needed by a constant index-shift.</p>
 <div class="example">
 <div class="example-header">
 <p>Example</p>
 </div>
 <div class="example-container">
-<p><strong>Electrical Circuits.</strong> This is a Sallen-Key filter, a second-order system commonly use to select frequencies from a signal:</p>
-<img src="01-intro_files/mediabag/figure1-2.svg" class="img-fluid" alt="Diagram showing a circuit corresponding to a Sallen-Key filter.">
-<p>There are two signals we can easily identify, the input signal as the voltage applied across <span class="math inline">\(x(t)\)</span>, and the output voltage measured across <span class="math inline">\(y(t)\)</span>. We build on your circuits course by viewing this circuit as an implementation of a more abstract linear system. We see how it can be viewed as a frequency selective filter. We will see how to answer questions such as: how do we choose the values of the resistors and capacitors to select the frequencies we are interested in? and how do we determine what those frequencies are?</p>
+<p>The delay form is <span class="math display">\[a_0y[n] + a_1 y[n-1] + a_2 y[n-2] = b_0 x[n] + b_1 x[n-1]\]</span> Replacing <span class="math inline">\(n \rightarrow n+2\)</span>, the advance form is <span class="math display">\[a_0 y[n+2] + a_1 y[n+1] + a_2 y[n] = b_0 x[n+2] + b_1 x[n+1]\]</span></p>
 </div>
 </div>
+<p>It will be convenient to define the operator <span class="math inline">\(E^m\)</span> as shifting a DT function by positive <span class="math inline">\(m\)</span>, i.e.&nbsp;<span class="math inline">\(E^m x[n] = x[n+m]\)</span>, and the operator <span class="math inline">\(D^m\)</span> as shifting a DT function by negative <span class="math inline">\(m\)</span>, i.e. <span class="math inline">\(D^m x[n] = x[n-m]\)</span>. These are called the advance and delay operators respectively. Then, the advance form of the difference equation using this operator notation is <span class="math display">\[a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = b_0 x[n+N] + \cdots b_Mx[n+N-M]\]</span> <span class="math display">\[a_0 E^Ny + a_1E^{N-1}y + \cdots a_N y = b_0 E^{N}x + \cdots b_M E^{N-M}x\]</span> Factoring out the advance operators gives <span class="math display">\[\underbrace{\left(a_0E^N + a_1E^{N-1} + \cdots a_N\right)}_{Q(E)} y = \underbrace{\left(b_0 E^{N} + \cdots b_M E^{N-M}\right)}_{P(E)} x\]</span> or <span class="math display">\[Q(E)y[n] = P(E)x[n]\]</span></p>
+<p>Similarly, the delay form of the difference equation using this operator notation is <span class="math display">\[a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]\]</span> <span class="math display">\[a_0y[n] + a_1 Dy + \cdots a_N D^N y = b_0 x + \cdots b_MD^M x\]</span> Note: The DT delay operator <span class="math inline">\(D\)</span> is similar, but <em>not</em> identical to the derivative operator <span class="math inline">\(D\)</span> in CT.</p>
 <div class="example">
 <div class="example-header">
 <p>Example</p>
 </div>
 <div class="example-container">
-<p><strong>Robotic Joint.</strong> This is a Linear, Time-Invariant model of a DC motor, a mixture of electrical and mechanical components.</p>
-<img src="01-intro_files/mediabag/figure1-3.svg" class="img-fluid" alt="Diagram showing a circuit corresponding to a Sallen-Key filter.">
-<p>How do we convert the motor into a servo for use in a robotic joint? What are its characteristics (e.g.&nbsp;how fast can it move)?</p>
-</div>
-</div>
-<div class="example">
-<div class="example-header">
-<p>Example</p>
-</div>
-<div class="example-container">
-<p><strong>Audio Processing.</strong> Suppose you record an interview for a podcast, but during an important part of the discussion, the HVAC turns on and there is an annoying noise in the background.</p>
-<p><img src="graphics/noisysignal.svg" class="img-fluid" alt="A plot of a noisy signal in the time domain."></p>
-<p>How could you remove the noise minimizing distortion to the rest of the audio?</p>
-</div>
-</div>
-<div class="example">
-<div class="example-header">
-<p>Example</p>
-</div>
-<div class="example-container">
-<p><strong>Communications.</strong> Consider a wireless sensor, that needs to transmit to a base station, e.g.&nbsp;a wireless mic system.</p>
-<img src="01-intro_files/mediabag/figure1-4.svg" class="img-fluid" alt="Diagram illustrating a wireless transmitter and reciever.">
-<p>How should the signal be processed so it can be transmitted? How should the received signal be processed?</p>
+<p>Consider the difference equation <span class="math display">\[3y[n+1] + 4y[n] + 5y[n-1] = 2x[n+1]\]</span> The advance form would be: <span class="math display">\[3y[n+2] + 4y[n+1] + 5y[n] = 2x[n+2]\]</span> or using the advance operator <span class="math display">\[\left(3E^2 + 4E + 5\right)y = 2E^2x\]</span> with <span class="math inline">\(Q(E) = 3E^2 + 4E + 5\)</span> and <span class="math inline">\(P(E) = 2E^2\)</span>.<br>
+The delay form would be: <span class="math display">\[3y[n] + 4y[n-1] + 5y[n-2] = 2x[n]\]</span> or using the delay operator <span class="math display">\[\left(5D^2 + 4D + 3\right)y = 2x\]</span> with <span class="math inline">\(Q(D) = 5D^2 + 4D + 3\)</span> and <span class="math inline">\(P(D) = 2\)</span>.</p>
 </div>
 </div>
 </section>
-<section id="types-of-problems" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="types-of-problems"><span class="header-section-number">1.2</span> Types of Problems</h2>
-<p>Applications of this material occur in all areas of science and engineering. When we have a measured output but are unsure what combination of inputs and system components could have produced it, we have a <em>modeling</em> problem.</p>
-<img src="01-intro_files/mediabag/figure1-5.svg" class="img-fluid" alt="Block diagram showing an unknown system and input, but known output y">
-<p>Models are the bedrock of the scientific method and are required to apply the concepts of this course to engineering problems.</p>
-<p>When we know the input and the system description and desire to know the output we have an <em>analysis</em> problem.</p>
-<img src="01-intro_files/mediabag/figure1-6.svg" class="img-fluid" alt="Block diagram showing a known input and system, but unknown label.">
-<p>Analysis problems are the kind you have encountered most often already. For example, given an electrical circuit and an applied voltage or current, what are the voltages and currents across and through the various components.</p>
-<p>When we know either the input and desired output and seek the system to perform this transformation,</p>
-<img src="01-intro_files/mediabag/figure1-7.svg" class="img-fluid" alt="Block diagram showing unknown system, but known input and output.">
-<p>or we know the system description and output and desire the input that would generate the output,</p>
-<img src="01-intro_files/mediabag/figure1-8.svg" class="img-fluid" alt="Block diagram showing unknown input, but known system and output.">
-<p>we have a <em>design problem</em>.</p>
-<p>This course focuses on modeling and analysis with applications to electrical circuits and devices for measurement and control of the physical world and is broadly applicable to all ECE majors. Some Examples:</p>
+<section id="iterative-solution-of-lccdes" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="iterative-solution-of-lccdes"><span class="header-section-number">5.2</span> Iterative solution of LCCDEs</h2>
+<p>Difference equations are different (pun!) from differential equations in that they can be solved by manually running the equation forward using previous values of the output and current and previous values of the input, given some initial conditions. This is called an <em>iterative</em> solution for this reason.</p>
+<p>To perform an iterative solution we need the difference equation in delay form <span class="math display">\[a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]\]</span> We then solve for the current output <span class="math inline">\(y[n]\)</span> <span class="math display">\[y[n] =  - \left(\frac{a_1}{a_0}y[n-1] + \cdots \frac{a_N}{a_0} y[n-N]\right) + \frac{b_0}{a_0} x[n] + \cdots \frac{b_M}{a_0}x[n-M]\]</span></p>
+<p>Now lets examine what this expression says in words. To compute the current output <span class="math inline">\(y[n]\)</span> we need the value of the <em>previous</em> <span class="math inline">\(N-1\)</span> outputs, the value of the <em>current</em> input <span class="math inline">\(x[n]\)</span> and <span class="math inline">\(M-1\)</span> <em>previous</em> inputs (and the coefficients). Then we can compute the next output <span class="math inline">\(y[n+1]\)</span> by adding the previous computation result for <span class="math inline">\(y[n]\)</span> to our list of things to remember, and forgetting one previous value of <span class="math inline">\(y\)</span>. This can continue as long as we like.</p>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p>Consider the first-order difference equation <span class="math display">\[y[n+1] + y[n] = x[n+1]\]</span> where <span class="math inline">\(y[-1] = 1\)</span> and <span class="math inline">\(x[n] = u[n]\)</span>. We first convert this to delay form <span class="math display">\[y[n] = -y[n-1] + x[n]\; .\]</span> Then we can compute <span class="math inline">\(y[0]\)</span> as <span class="math display">\[y[0] = -y[-1] + x[0] = -1 + 1 = 0\]</span> and continuing</p>
+<span class="math display">\[\begin{aligned}
+  y[1] &amp;= -y[0] + x[1] = 0 + 1 = 1\\
+  y[2] &amp;= -y[1] + x[2] = -1 + 1 = 0\\
+  y[3] &amp;= -y[2] + x[3] = 0 + 1 = 1\\
+  \mbox{etc.}
+  
+\end{aligned}\]</span>
+<p>We can see that this will continue to give the alternating sequence <span class="math inline">\(1,0,1,0,1,\cdots\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="solution-of-the-homogeneous-lccde" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="solution-of-the-homogeneous-lccde"><span class="header-section-number">5.3</span> Solution of the homogeneous LCCDE</h2>
+<p>Note the iterative solution does not give us (directly) and analytical expression for the output at arbitrary <span class="math inline">\(n\)</span>. We have to start at the initial conditions and compute our way up to <span class="math inline">\(n\)</span>. We now consider an analytical solution when the input is zero, the solution to the <em>homogeneous</em> difference equation <span class="math display">\[Q(E)\, y = a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = 0 \; .\]</span> given <span class="math inline">\(N\)</span> sequential auxiliary conditions on <span class="math inline">\(y\)</span>.</p>
+<p>Similar to differential equations, the homogeneous solution depends on the roots of the characteristic equation <span class="math inline">\(Q(E)=0\)</span> whose roots are either real or occur in complex conjugate pairs. Let <span class="math inline">\(\lambda_i\)</span> be the <span class="math inline">\(i\)</span>-th root of <span class="math inline">\(Q(E) = 0\)</span>, then the solution is of the form <span class="math display">\[y[n] = \sum\limits_{i=1}^N C_i \lambda_i^{n}\]</span> where the parameters <span class="math inline">\(C_i\)</span> are determined from the auxiliary conditions.</p>
+<p>For a real system (when the coefficients of the difference equation are real) and when the roots are complex <span class="math inline">\(\lambda_{1,2} = |\lambda|e^{\pm j\beta}\)</span>, it is cleaner to assume a form for those terms as <span class="math display">\[y[n] = C |\lambda|^n\cos(\beta n + \theta)\]</span> for constants <span class="math inline">\(C\)</span> and <span class="math inline">\(\theta\)</span>.</p>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p>Find the solution to the first-order homogeneous LCCDE <span class="math display">\[y[n+1] + \frac{1}{2}y[n] = 0 \mbox{ with } y[0] = 5 \; .\]</span> Note <span class="math inline">\(Q(E) = E + \frac{1}{2}\)</span> has a single root <span class="math inline">\(\lambda_1 = -\frac{1}{2}\)</span>. Thus the solution is of the form <span class="math display">\[y[n] = C\left( -\frac{1}{2}\right)^n\]</span> where the parameter <span class="math inline">\(C\)</span> is found using <span class="math display">\[y[0] = C = 5\]</span> to give the final solution <span class="math display">\[y[n] = 5\left( -\frac{1}{2}\right)^n\]</span></p>
+</div>
+</div>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p>Find the solution to the second-order homogeneous LCCDE <span class="math display">\[y[n+2] + y[n+1] + \frac{1}{2}y[n] = 0 \mbox{ with } y[0] = 1 \mbox{ and } y[1] = 0\; .\]</span> Note <span class="math inline">\(Q(E) = E^2 + E + \frac{1}{2}\)</span> has a pair of complex roots <span class="math inline">\(\lambda_{1,2} = -\frac{1}{2} \pm j\frac{1}{2}\)</span>. Thus the solution is of the form <span class="math display">\[y[n] = C \left|\frac{1}{\sqrt{2}}\right|^n\cos\left(\frac{3\pi}{4} n + \theta\right)\]</span> where the parameters are found using <span class="math display">\[y[0] = C\cos\left(\theta\right) = 1\]</span> <span class="math display">\[y[1] = C\frac{1}{\sqrt{2}}\cos\left(\frac{3\pi}{4} + \theta\right) = 0\]</span> This is true when <span class="math display">\[C = \sqrt{2} \mbox{ and } \theta = -\frac{\pi}{4} + 2\pi m\]</span> for any <span class="math inline">\(m\in \mathbb{Z}\)</span> since <span class="math inline">\(\cos\)</span> is periodic in <span class="math inline">\(2\pi\)</span>. A final solution is then <span class="math display">\[y[n] = \sqrt{2} \left|\frac{1}{\sqrt{2}}\right|^n\cos\left(\frac{3\pi}{4} n - \frac{\pi}{4}\right)\]</span></p>
+</div>
+</div>
+<p>See the appendix for a general technique to solve for these constants.</p>
+</section>
+<section id="impulse-response-from-lccde" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="impulse-response-from-lccde"><span class="header-section-number">5.4</span> Impulse response from LCCDE</h2>
+<p>Today our goal is to find the solution to <span class="math inline">\(Q(E)y=P(E)x\)</span> when <span class="math inline">\(x[n] = \delta[n]\)</span> assuming <span class="math inline">\(y[n] = 0\)</span> for <span class="math inline">\(n &lt; 0\)</span>, giving the <em>impulse response</em> <span class="math inline">\(y[n] = h[n]\)</span>. We skip the derivation here and just give a procedure.</p>
+<p><strong>Step 1:</strong> Let <span class="math inline">\(y_h\)</span> be the homogeneous solution to <span class="math inline">\(Q(E)y_h=0\)</span> for <span class="math inline">\(n &gt; N\)</span>.</p>
+<p><strong>Step 2:</strong> Assume a form for <span class="math inline">\(h[n]\)</span> given by <span class="math display">\[h[n] = \frac{b_N}{a_N}\delta[n] + y_h[n]u[n]\]</span></p>
+<p><strong>Step 3:</strong> Using the iterative procedure above find the <span class="math inline">\(N\)</span> auxiliary conditions we need by,</p>
 <ul>
-<li><p>Controls, Robotics, &amp; Autonomy: LTI systems theory forms the basis of perception and control of machines.</p></li>
-<li><p>Communications &amp; Networking: LTI systems theory forms the basis of transmission and reception of signals, e.g.&nbsp;AM and FM radio.</p></li>
-<li><p>Machine Learning: LTI systems are often used to pre-process samples or to create basis functions to improve learning.</p></li>
-<li><p>Energy &amp; Power Electronic Systems: linear circuits are often modeled as LTI systems.</p></li>
+<li><p>first, rewrite the equation in delay form and solve for <span class="math inline">\(y[n]\)</span>,</p></li>
+<li><p>then let <span class="math inline">\(x[n] = \delta[n]\)</span> and manually compute <span class="math inline">\(h[0]\)</span> assuming <span class="math inline">\(h[n] = 0\)</span> for <span class="math inline">\(n &lt; 0\)</span>,</p></li>
+<li><p>repeating the previous step for <span class="math inline">\(h[1]\)</span>, continuing up to <span class="math inline">\(h[N-1]\)</span>.</p></li>
 </ul>
-<p>Subsequent courses, e.g.&nbsp;ECE 3704, focus more on analysis and design.</p>
-</section>
-<section id="learning-objectives" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1.3</span> Learning Objectives</h2>
-<p>The learning objectives (LOs) for the course are:</p>
-<ol type="1">
-<li><p>Describe a given system using a block-level description and identify the input/output signals.</p></li>
-<li><p>Mathematically model continuous and discrete linear, time-invariant systems using differential and difference equations respectively.</p></li>
-<li><p>Analyze the use of filters and their interpretation in the time and frequency domains and implement standard filters in hardware and/or software.</p></li>
-<li><p>Apply computations of the four fundamental Fourier transforms to the analysis and design of linear systems.</p></li>
-<li><p>Communicate solutions to problems and document projects within the domain of signals and systems through formal written documents.</p></li>
-</ol>
-<p>These are broken down further into the following topic learning objectives (TLOs). The TLOs generally map onto one class meeting but are used extensively in later TLOs.</p>
-<ol type="1">
-<li><p>Course introduction (OW Forward and §1.0)</p>
-<ol type="1">
-<li><p>Signals as models</p></li>
-<li><p>Systems as transformation of signals</p></li>
-<li><p>Prerequisites</p></li>
-</ol></li>
-<li><p>Continuous-time (CT) signals (OW §1.1 through 1.4 and 2.5): A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.</p>
-<ol type="1">
-<li><p>Continuous-time signals as functions <span class="math inline">\(\mathbb{R}\mapsto\mathbb{C}\)</span></p></li>
-<li><p>Transformations of time</p></li>
-<li><p>Characterizing signals</p>
-<ol type="1">
-<li><p>periodic/aperiodic</p></li>
-<li><p>even/odd</p></li>
-<li><p>energy or/nor power</p></li>
-</ol></li>
-<li><p>Impulse function</p></li>
-<li><p>Step function</p></li>
-<li><p>Complex exponential</p></li>
-</ol></li>
-<li><p>Discrete-time (DT) signals (OW §1.1 through 1.4)</p>
-<ol type="1">
-<li><p>Discrete-time signals as functions <span class="math inline">\(\mathbb{Z}\mapsto\mathbb{C}\)</span></p></li>
-<li><p>Transformations of time index</p></li>
-<li><p>Characterizing signals</p>
-<ol type="1">
-<li><p>periodic/aperiodic</p></li>
-<li><p>even/odd</p></li>
-<li><p>energy or/nor power</p></li>
-</ol></li>
-<li><p>Impulse function</p></li>
-<li><p>Step function</p></li>
-<li><p>Complex exponential</p></li>
-</ol></li>
-<li><p>CT systems as linear constant coefficient differential equations (OW §2.4.1)</p>
-<ol type="1">
-<li><p>LCCDE and their solution (1st and 2nd order)</p></li>
-<li><p>impulse response from LCCDE</p></li>
-</ol></li>
-<li><p>DT systems as linear constant coefficient difference equations (OW §2.4.2)</p>
-<ol type="1">
-<li><p>LCCDE and their solution (1st and 2nd order)</p></li>
-<li><p>impulse response from LCCDE</p></li>
-</ol></li>
-<li><p>Linear time invariant CT systems (OW §1.5, 1.6, 2.3)</p>
-<ol type="1">
-<li><p>Memory</p></li>
-<li><p>Invertability</p></li>
-<li><p>Causality</p></li>
-<li><p>Stability</p></li>
-<li><p>Time-invariance</p></li>
-<li><p>Linearity</p></li>
-<li><p>Define LTI system</p></li>
-</ol></li>
-<li><p>Linear time invariant DT systems (OW §1.5, 1.6, 2.3)</p>
-<ol type="1">
-<li><p>Memory</p></li>
-<li><p>Invertability</p></li>
-<li><p>Causality</p></li>
-<li><p>Stability</p></li>
-<li><p>Time-invariance</p></li>
-<li><p>Linearity</p></li>
-<li><p>Define LTI system</p></li>
-</ol></li>
-<li><p>CT convolution (OW §2.2)</p>
-<ol type="1">
-<li><p>Review CT LTI systems and superposition property</p></li>
-<li><p>CT Convolution Integral</p></li>
-<li><p>Properties of convolution</p>
-<ol type="1">
-<li><p>communative</p></li>
-<li><p>distributive</p></li>
-<li><p>associative</p></li>
-</ol></li>
-<li><p>Determining system response using convolution with impulse response</p></li>
-</ol></li>
-<li><p>DT convolution (OW §2.1)</p>
-<ol type="1">
-<li><p>Review DT LTI systems and superposition property</p></li>
-<li><p>DT Convolution Sum</p></li>
-<li><p>Properties of convolution</p>
-<ol type="1">
-<li><p>communative</p></li>
-<li><p>distributive</p></li>
-<li><p>associative</p></li>
-</ol></li>
-<li><p>Determining system response using convolution with impulse response</p></li>
-</ol></li>
-<li><p>CT block diagrams (OW §1.5.2 and 2.4.3)</p>
-<ol type="1">
-<li><p>blocks represented by impulse response</p></li>
-<li><p>series and parallel connections, reductions</p></li>
-<li><p>scale, sum, and integrator blocks</p></li>
-<li><p>equivalence of LCCDE’s and block diagrams</p></li>
-<li><p>first-order differential equation as feedback motif</p></li>
-<li><p>second-order differential equation as a feedback motif</p></li>
-<li><p>implementing a LCCDE using adders, multipliers, and integrators</p></li>
-</ol></li>
-<li><p>DT block diagrams (OW §1.5.2 and 2.4.3)</p>
-<ol type="1">
-<li><p>blocks represented by impulse response</p></li>
-<li><p>series and parallel connections, reductions</p></li>
-<li><p>scale, sum, and unit delay blocks</p></li>
-<li><p>equivalence of LCCDE’s and block diagrams</p></li>
-<li><p>first-order difference equation as feedback motif</p></li>
-<li><p>second-order difference equation as a feedback motif</p></li>
-<li><p>implementing a LCCDE using adders, multipliers, and delays</p></li>
-</ol></li>
-<li><p>Eigenfunctions of CT systems (OW §3.2 and 3.8)</p>
-<ol type="1">
-<li><p>Eigenfunction <span class="math inline">\(e^{st}\)</span></p></li>
-<li><p>Transfer Function <span class="math inline">\(H(s)\)</span></p></li>
-<li><p>Stability and Frequency Response (FR) <span class="math inline">\(H(j\omega)\)</span></p></li>
-<li><p>How this is useful - decomposition of input signal into complex exp</p></li>
-<li><p>What signals can be decomposed this way, foreshadow Fourier Analysis</p></li>
-</ol></li>
-<li><p>Eigenfunctions of DT systems (OW §3.2 and 3.8)</p>
-<ol type="1">
-<li><p>Eigenfunction <span class="math inline">\(z^{n}\)</span></p></li>
-<li><p>Transfer Function <span class="math inline">\(H(z)\)</span></p></li>
-<li><p>Stability and Frequency Response (FR) <span class="math inline">\(H\left(e^{j\omega}\right)\)</span></p></li>
-<li><p>How this is useful - decomposition of input signal into complex exp</p></li>
-<li><p>What signals can be decomposed this way, foreshadow Fourier Analysis</p></li>
-</ol></li>
-<li><p>CT Fourier Series representation of signals (OW §3.3 through 3.5)</p>
-<ol type="1">
-<li><p>review CT periodic functions</p></li>
-<li><p>harmonic sums</p></li>
-<li><p>derive synthesis equation</p></li>
-<li><p>derive analysis equation</p></li>
-<li><p>spectrum plots</p></li>
-<li><p>define mean-square convergence</p></li>
-<li><p>truncated CT FS</p></li>
-<li><p>stable LTI system response using CTFS</p></li>
-<li><p>example of the impulse train (for sampling theory later)</p></li>
-<li><p>formal Dirichlet conditions</p></li>
-<li><p>properties of CT FS</p></li>
-</ol></li>
-<li><p>DT Fourier Series representation of signals (OW §3.6 and 3.7)</p>
-<ol type="1">
-<li><p>review DT periodic functions</p></li>
-<li><p>harmonic sums</p></li>
-<li><p>derive synthesis equation</p></li>
-<li><p>derive analysis equation</p></li>
-<li><p>spectrum plots</p></li>
-<li><p>stable LTI system response using DTFS</p></li>
-<li><p>properties of DT FS</p></li>
-</ol></li>
-<li><p>CT Fourier Transform (OW §4.0 through 4.7)</p>
-<ol type="1">
-<li><p>derive the CTFT pair from the CTFS</p></li>
-<li><p>Dirichlet existence conditions</p></li>
-<li><p>CTFT of the CTFS</p></li>
-<li><p>Properties of the CT Fourier Transform</p>
-<ol type="1">
-<li><p>linearity</p></li>
-<li><p>time shift</p></li>
-<li><p>conjugacy</p></li>
-<li><p>integration and differentiation: application to LCCDE <span class="math inline">\(\mapsto\)</span> CTFR</p></li>
-<li><p>time scaling</p></li>
-<li><p>duality</p></li>
-<li><p>convolution: stable LTI system response using CTFT</p></li>
-<li><p>multiplication/modulation</p></li>
-<li><p>application of the properties in combination</p></li>
-</ol></li>
-</ol></li>
-<li><p>DT Fourier Transform (OW §5.0 though 5.8)</p>
-<ol type="1">
-<li><p>derive the DTFT from DTFS</p></li>
-<li><p>DTFT of DTFS</p></li>
-<li><p>Properties of the DT Fourier Transform</p>
-<ol type="1">
-<li><p>periodicity</p></li>
-<li><p>linearity</p></li>
-<li><p>index-shift: application to LCCDE <span class="math inline">\(\mapsto\)</span> DTFR</p></li>
-<li><p>frequency shift</p></li>
-<li><p>conjugation</p></li>
-<li><p>finite difference and accumulation</p></li>
-<li><p>interpolation /index expansion</p></li>
-<li><p>frequency differentiation</p></li>
-<li><p>Parseval’s</p></li>
-<li><p>convolution: stable LTI system response using DTFT</p></li>
-<li><p>multiplication/modulation</p></li>
-<li><p>application of the properties in combination</p></li>
-</ol></li>
-</ol></li>
-<li><p>CT Frequency Response (OW §6.1, 6.2, 6.5)</p>
-<ol type="1">
-<li><p>review CTFR as CTFT of impulse response</p></li>
-<li><p>review CTFR to/from LCCDE</p></li>
-<li><p>review CTFR to/from block diagram</p></li>
-<li><p>magnitude-phase representation of the frequency response</p></li>
-<li><p>frequency response acting on sinusoids</p></li>
-<li><p>Bode plots</p>
-<ol type="1">
-<li><p>why plot it this way: dB units and log time axis</p></li>
-<li><p>how to read them (<strong>not</strong> construct them manually)</p></li>
-<li><p>Bode plots in software, e.g.&nbsp;Matlab/Python/Julia</p></li>
-</ol></li>
-<li><p>CTFR of first and second order systems</p></li>
-</ol></li>
-<li><p>DT Frequency Response (OW §6.1, 6.2, 6.6)</p>
-<ol type="1">
-<li><p>review DTFR as DTFT of impulse response</p></li>
-<li><p>review DTFR to/from LCCDE</p></li>
-<li><p>review DTFR to/from block diagram</p></li>
-<li><p>magnitude-phase representation of the frequency response</p></li>
-<li><p>frequency response acting on sinusoids</p></li>
-<li><p>DTFR plots</p>
-<ol type="1">
-<li><p>periodicity</p></li>
-<li><p>dB units</p></li>
-<li><p>DTFR plots in software, e.g.&nbsp;Matlab/Python/Julia</p></li>
-</ol></li>
-<li><p>DTFR of first and second order systems</p></li>
-</ol></li>
-<li><p>Frequency Selective Filters in CT (OW §3.9, 3.10, 6.3, 6.4)</p>
-<ol type="1">
-<li><p>ideal low-pass</p></li>
-<li><p>ideal high-pass</p></li>
-<li><p>ideal bandpass</p></li>
-<li><p>ideal notch/bandstop</p></li>
-<li><p>practical filters</p></li>
-<li><p>transformations</p></li>
-<li><p>first and second order systems as building blocks</p>
-<ol type="1">
-<li><p>review LCCDE representation</p></li>
-<li><p>review block diagram representation</p></li>
-<li><p>review CTFR representation</p></li>
-<li><p>CT 1st order RC+buffer</p></li>
-<li><p>CT Sallen-key</p></li>
-</ol></li>
-</ol></li>
-<li><p>Frequency Selective Filters in DT (OW §3.11, 6.3, 6.4)</p>
-<ol type="1">
-<li><p>ideal low-pass</p></li>
-<li><p>ideal high-pass</p></li>
-<li><p>ideal bandpass</p></li>
-<li><p>ideal notch/bandstop</p></li>
-<li><p>practical filters</p></li>
-<li><p>transformations</p></li>
-<li><p>first and second order systems as building blocks</p>
-<ol type="1">
-<li><p>review LCCDE representation</p></li>
-<li><p>review block diagram representation</p></li>
-<li><p>review DTFR representation</p></li>
-<li><p>DT 1st order implementation in code</p></li>
-<li><p>DT 2nd order implementation in code</p></li>
-</ol></li>
-</ol></li>
-<li><p>The Discrete Fourier Transform</p>
-<ol type="1">
-<li><p>time window the DTFT to get the DFT</p></li>
-<li><p>interpreting the index axis as DT and CT frequency</p></li>
-<li><p>zero-padding</p></li>
-<li><p>offline or batched filtering using the DFT</p></li>
-<li><p>briefly mention fast algorithms to compute the DFT = FFT</p></li>
-</ol></li>
-<li><p>Sampling (OW §7.1, 7.3, 7.4)</p>
-<ol type="1">
-<li><p>sampling using the impulse train</p></li>
-<li><p>derive the Nyquist rate</p></li>
-<li><p>effects of aliasing</p></li>
-<li><p>practical ADC (sample and hold, SAR, bit-width)</p></li>
-<li><p>designing anti-aliasing filters</p></li>
-</ol></li>
-<li><p>Reconstruction (OW §7.2)</p>
-<ol type="1">
-<li><p>reconstruction as removal of images</p></li>
-<li><p>reconstruction as interpolation</p></li>
-<li><p>practical DAC: R-2R ladder</p></li>
-<li><p>designing reconstruction filters</p></li>
-</ol></li>
-</ol>
-</section>
-<section id="graphical-outline" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="graphical-outline"><span class="header-section-number">1.4</span> Graphical Outline</h2>
-<p><img src="graphics/system-representations-fig.svg" class="img-fluid" alt="A hierarchical diagram showing the two main types of system representations, those in the time domain and those in the frequency domain. Under the time domain are differential and difference equations, impulse response, and circuit or block diagrams. Under frequency domain methods are the frequency response and the Eigenvalue or Transfer function representation."></p>
-<p><img src="graphics/analysis-methods-fig.svg" class="img-fluid" alt="A hierarchical diagram showing the corresponding analysis methods in the previous figure. For time domain we have solving differential or difference equations, or using convolution. For the frequency domain we have the Fourier series, Fourier transform, or the Eigenvalue analysis (for sinusoidal inputs)"></p>
+<p><strong>Step 4:</strong> Using the auxillary conditions in step 3, solve for the constants in the solution <span class="math inline">\(h[n]\)</span> from step 2.</p>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p>Find the impulse response of the system given by <span class="math display">\[y[n+2] -\frac{1}{4}y[n+1] -\frac{1}{8}y[n]= 2x[n+1]\]</span></p>
+<p>For step 1 we solve the equation <span class="math display">\[y_h[n+2] -\frac{1}{4}y_h[n+1] -\frac{1}{8}y_h[n] = 0\]</span> which is of the form <span class="math display">\[y_h[n] = C_1 \left( -\frac{1}{4}\right)^n + C_2 \left( \frac{1}{2}\right)^n\]</span> since the roots of <span class="math inline">\(Q(E) = E^2 - \frac{1}{4}E - \frac{1}{8}\)</span> are <span class="math inline">\(-\frac{1}{4}\)</span> and <span class="math inline">\(\frac{1}{2}\)</span>.</p>
+<p>For step 3, we find the auxiliary conditions needed to find <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> by rewriting the original equation in delay form and solving for <span class="math inline">\(y[0]\)</span> and <span class="math inline">\(y[1]\)</span> when <span class="math inline">\(x[n] = \delta[n]\)</span>. <span class="math display">\[y[n] = \frac{1}{4}y[n-1] + \frac{1}{8}y[n-2] + 2x[n-1]\]</span> Let <span class="math inline">\(x[n] = \delta[n]\)</span> and manually compute <span class="math inline">\(y[0]\)</span> assuming <span class="math inline">\(y[n] = 0\)</span> for <span class="math inline">\(n &lt; 0\)</span> <span class="math display">\[y[0] = \frac{1}{4}\underbrace{y[0-1]}_{0} + \frac{1}{8}\underbrace{y[0-2]}_{0} + 2\underbrace{\delta[0-1]}_{0} = 0\]</span> Repeat for <span class="math inline">\(y[1]\)</span> <span class="math display">\[y[1] = \frac{1}{4}\underbrace{y[1-1]}_{0} + \frac{1}{8}\underbrace{y[1-2]}_{0} + 2\underbrace{\delta[1-1]}_{1} = 2\]</span> Now we find the constants using step 4 <span class="math display">\[h[0] = C_1  + C_2  = 0\]</span> <span class="math display">\[h[1] = C_1 \left( -\frac{1}{4}\right) + C_2 \left( \frac{1}{2}\right) = 2\]</span> which gives <span class="math inline">\(C_1 = -\frac{8}{3}\)</span> and <span class="math inline">\(C_2 = \frac{8}{3}\)</span>. Thus the final impulse response is <span class="math display">\[h[n] = \frac{b_N}{a_N}\delta[n] + y_h[n]u[n] = -\frac{8}{3}\left( -\frac{1}{4}\right)^nu[n] + \frac{8}{3}\left( \frac{1}{2}\right)^n u[n]\]</span> since <span class="math inline">\(b_N = 0\)</span>.</p>
+</div>
+</div>
+<p>Note we can confirm our closed-form result in the previous example, for a few values of <span class="math inline">\(n\)</span>, by iteratively solving the difference equation <span class="math display">\[h[0] = \frac{1}{4}\underbrace{h[0-1]}_{0} + \frac{1}{8}\underbrace{h[0-2]}_{0} + 2\underbrace{\delta[0-1]}_{0} = 0\]</span> <span class="math display">\[h[1] = \frac{1}{4}\underbrace{h[1-1]}_{0} + \frac{1}{8}\underbrace{h[1-2]}_{0} + 2\underbrace{\delta[1-1]}_{1} = 2\]</span> <span class="math display">\[h[2] = \frac{1}{4}\underbrace{h[2-1]}_{2} + \frac{1}{8}\underbrace{h[2-2]}_{0} + 2\underbrace{\delta[2-1]}_{0} = \frac{1}{2}\]</span> <span class="math display">\[h[3] = \frac{1}{4}\underbrace{h[3-1]}_{\frac{1}{2}} + \frac{1}{8}\underbrace{h[3-2]}_{2} + 2\underbrace{\delta[2-1]}_{0} = \frac{3}{8}\]</span> and comparing to our closed-form solution a the same values of <span class="math inline">\(n\)</span> <span class="math display">\[h[0] = -\frac{8}{3} + \frac{8}{3} = 0\]</span> <span class="math display">\[h[1] = -\frac{8}{3}\left( -\frac{1}{4}\right) + \frac{8}{3}\left( \frac{1}{2}\right) = 2\]</span> <span class="math display">\[h[2] = -\frac{8}{3}\left( -\frac{1}{4}\right)^2 + \frac{8}{3}\left( \frac{1}{2}\right)^2 = \frac{1}{2}\]</span> <span class="math display">\[h[3] = -\frac{8}{3}\left( -\frac{1}{4}\right)^3 + \frac{8}{3}\left( \frac{1}{2}\right)^3 = \frac{3}{8}\]</span></p>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p>Find the impulse response of the system given by <span class="math display">\[y[n+1] - \frac{1}{2}y[n] = x[n+1] + x[n]\]</span></p>
+<p>In step 1 we note the solution to <span class="math inline">\(Q(E)y[n] = 0\)</span> is of the form <span class="math display">\[y_h[n] = C\left( \frac{1}{2}\right)^n\]</span> From step 2 we note <span class="math inline">\(b_N = 1\)</span> and <span class="math inline">\(a_N = -\frac{1}{2}\)</span>, so that <span class="math display">\[h[n] = -2\delta[n]  +  C\left( \frac{1}{2}\right)^n\, u[n]\]</span> In step 3 we manually find <span class="math inline">\(h[0]\)</span></p>
+<span class="math display">\[\begin{aligned}
+    y[n] &amp;= \frac{1}{2}y[n-1] + x[n] + x[n-1]\\
+    h[n] &amp;= \frac{1}{2}y[n-1] + \delta[n] + \delta[n-1]\\
+    h[0] &amp;= 0 + 1 + 0 = 1
+  
+\end{aligned}\]</span>
+<p>And in step 4 we solve for <span class="math inline">\(C\)</span> <span class="math display">\[h[0] = -2  +  C = 1 \mbox{ implies } C = 3\]</span> to give <span class="math display">\[h[n] = -2\delta[n]  +  3\left( \frac{1}{2}\right)^n\, u[n]\]</span></p>
+</div>
+</div>
 
 
 </section>
@@ -993,13 +744,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./preface.html" class="pagination-link" aria-label="Preface">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="./04-ct-lccde.html" class="pagination-link" aria-label="CT Systems as Linear Constant Coefficient Differential Equations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CT Systems as Linear Constant Coefficient Differential Equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-ct-signals.html" class="pagination-link" aria-label="Continuous-Time Signals">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Continuous-Time Signals</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
