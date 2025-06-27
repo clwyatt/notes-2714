@@ -20,6 +20,7 @@ book:
     - 01-intro.qmd
     - 02-ct-signals.qmd
     - 03-dt-signals.qmd
+    - 04-ct-lccde.qmd
     - references.qmd
 
 #comments:
