@@ -26,3 +26,388 @@ As with CT signals, we mathematically model DT signals by combining elementary/p
   f_2[n] & n \geq 0\\
   \end{array}\right.
   $$
+
+
+:::{.example}
+::::{.example-header}
+Definition
+::::
+::::{.example-container}
+The DT counterpart of the CT step function is the *DT Unit Step*,
+$u[n]$: $$u[n] = \left\{  \begin{array}{cl}
+    0 & n < 0\\
+    1 & n \geq 0\\
+  \end{array}\right.$$ Note, there are not continuity issues at $n=0$ as
+DT functions have discrete domains.
+
+::::
+:::
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+A *sampled* signal modeling the air pressure of a specific tone, sampled
+at 8kHz, might be
+$$x[n] = \sin\left(2\pi (261.6) \tfrac{1}{8000} n\right)$$ Such DT
+signals are commonly used in digital music generation, storage, and
+playback.
+
+::::
+:::
+
+
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+Similarly, the sampled chord \"G\", an additive mixture of tones at G,
+B, and D and might be modeled as
+$$x[n] = \sin\left(2\pi (392) \tfrac{1}{8000} n\right) + \sin\left(2\pi (494) \tfrac{1}{8000} n\right) + \sin\left(2\pi (293) \tfrac{1}{8000} n\right)$$
+again sampled at 8kHz. This example shows we can use addition to
+build-up signals to approximate real signals of interest.
+::::
+:::
+
+
+## Basic Transformations
+
+Similar to CT signals, we can also apply transformations to DT signals
+to increase their modeling flexibility.
+
+- magnitude scaling $$x_2[n] = a x_1[n]$$ for $a \in \mathbb{R}$.
+
+- time differences $$x_2[n] = x_1[n] - x_1[n-1]$$
+
+- running sums $$x_2[n] = \sum\limits_{m = -\infty}^{n} x_1[m]$$
+
+- sums $$y[n] = \sum\limits_{i} x_i[n]$$ an important example we will
+  see is the DT Fourier series.
+
+- multiplication (modulation) $$y[n] = x_1[n] x_2[n]$$
+
+- time index shift $$x_2[n] = x_1[n+m]$$
+
+  - if $m < 0$ it is called a *delay*
+
+  - if $m > 0$ it is called an *advance*
+
+- time reversal $$x_2[n] = x_1[-n]$$
+
+- decimation $$y[n] = x[m n]$$ for $m \in \mathbb{Z}^+$.
+
+  - e.g. for $m=2$ only keep every other sample
+
+  - e.g. for $m=3$ only keep every third sample
+
+  - etc.
+
+- interpolation $$y[n] = \left\{  \begin{array}{cl}
+  x\left[ \frac{n}{m}\right] & n = 0\; , \; \pm m, , \; \pm 2m \cdots\\
+  0 & \mbox{else}
+  \end{array}\right.$$ When $m = 2$ this inserts a zero sample between
+  every sample of the signal.
+
+## Characterization of Signals
+
+There are a few basic ways of characterizing DT signals.
+
+:::{.example}
+::::{.example-header}
+Definition
+::::
+::::{.example-container}
+A DT signal is *causal* if $x[n] = 0$ $\forall n < 0$.
+::::
+:::
+
+:::{.example}
+::::{.example-header}
+Definition
+::::
+::::{.example-container}
+A DT signal is *anti-causal* or acausal if $x[n] = 0$
+$\forall n \geq 0$.
+::::
+:::
+
+A DT signal can be written as the sum of a causal and anti-causal
+signal.
+
+A DT signal is periodic if $x[n] = x[n + N] \; \forall n$ for a fixed
+period $N \in \mathbb{Z}$.
+
+A DT signal is even if $x[n] = x[-n] \; \forall n$.
+
+A DT signal is odd if $x[n] = -x[-n] \; \forall n$.
+
+Any DT signal can be written in terms of an even and odd component
+$$x[n] = x_e[n] + x_o[n]$$ where $$\begin{array}{ll}
+x_e[n] &= \frac{1}{2}\left\{x[n] + x[-n]\right\} \\
+& \\
+x_o[n] &= \frac{1}{2}\left\{x[n] - x[-n]\right\}
+\end{array}$$
+
+Analogous to CT signals, the energy of a DT signal is
+$$E_x = \lim_{N\rightarrow\infty} \sum\limits_{-N}^N \lvert x[n]\rvert^2 \; .$$
+
+And the power of a DT signal is the energy averaged over an interval as
+that interval tends to infinity.
+
+$$P_x = \lim_{N\rightarrow\infty} \frac{1}{2N+1} \sum\limits_{-N}^N \lvert x[n]\rvert^2 \; .$$
+
+DT Signals with finite, non-zero energy and zero power are called
+*energy signals*. DT Signals with finite, non-zero power (and by
+implication infinite energy) are called *power signals*. These
+categories are non-exclusive, some signals are neither energy or power
+signals.
+
+## DT Unit Impulse Function
+
+In DT the unit impulse function, denoted $\delta[n]$ is defined as
+$$\delta[n] = \left\{
+\begin{array}{ll}
+  1 & n = 0\\
+  0 & \text{else}
+\end{array}
+\right.$$ Note this definition is straightforward compared to the CT
+impulse as there are no continuity issues and it is not defined in terms
+of a distribution. It is typically drawn as
+
+```{python}
+#| label: fig-dtdelta-plot
+#| fig-cap: "Plot of discrete-time delta function."
+#| fig-alt: "a plot of the discrete-time delta function."
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+matplotlib.rcParams.update({'font.size': 12})
+
+n = np.linspace(-5, 5, 11);
+x = np.zeros(11)
+x[5] = 1
+
+f = plt.figure()
+
+plt.stem(n, x)
+plt.xlabel('$n$')
+plt.ylabel('$\delta[n]$')
+plt.grid(True)
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.tight_layout()
+plt.show()
+```
+
+Some useful properties of the DT impulse function are:
+
+- Energy is 1: $\sum\limits_{n=-\infty}^{\infty} \delta[n] = 1$
+
+- Sampling: $x[n]\delta[n-n_0] = x[n_0]\delta[n-n_0]$
+
+- Sifting: $\sum\limits_{n=-\infty}^{\infty} x[n]\delta[n-n_0] = x[n_0]$
+
+The impulse can be defined in terms of the step:
+$$\delta[n] = u[n] - u[n-1]$$ and vice-versa
+$$u[n] = \sum\limits_{m=-\infty}^{n} \delta[m]$$ or
+$$u[n] = \sum\limits_{k=0}^{\infty} \delta[n-k]$$
+
+## DT Complex Exponential
+
+The DT Complex Exponential is defined in a similar fashion the the CT
+version, but with some important differences. The general DT complex
+exponential is given by the expression: $$x[n] = Ce^{\beta n}$$ where in
+general $C \in \mathbb{C}$ and $\beta \in \mathbb{C}$. It is sometimes
+convenient (for reasons we will see later) to write this as
+$$x[n] = C \alpha^n$$ where $\alpha = e^{j\theta}$ is a complex number
+$\alpha = \cos(\theta) + j\sin(\theta)$.
+
+We now examine several special cases.
+
+### DT Complex Exponential: real case
+
+Let $C$ and $\alpha$ be real, then there are four intervals of interest:
+
+- $\alpha > 1$
+
+- $0 < \alpha < 1$
+
+- $-1 < \alpha < 0$
+
+- $\alpha < -1$
+
+Each of these are shown in @fig-dtexpreal.
+
+```{python}
+#| label: fig-dtexpreal
+#| fig-cap: "DT Complex Exponential: real case, four intervals of interest."
+#| fig-alt: "Example plots of real exponential signals."
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+n = np.linspace(-6, 6, 13);
+
+f = plt.figure()
+
+plt.subplot(2, 2, 1)
+alpha = 2
+plt.stem(n, np.power(alpha, n))
+plt.xlabel('$n$')
+plt.ylabel('$x[n]$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.subplot(2, 2, 2)
+alpha = 0.5
+plt.stem(n, np.power(alpha, n))
+plt.xlabel('$n$')
+plt.ylabel('$x[n]$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.subplot(2, 2, 3)
+alpha = -0.5
+plt.stem(n, np.power(alpha, n))
+plt.xlabel('$n$')
+plt.ylabel('$x[n]$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.subplot(2, 2, 4)
+alpha = -2
+plt.stem(n, np.power(alpha, n))
+plt.xlabel('$n$')
+plt.ylabel('$x[n]$')
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.tight_layout()
+
+plt.show()
+```
+
+### DT Complex Exponential: sinusoidal case
+
+Let $C = 1$. When $\beta$ is purely imaginary, $\beta = j\omega_0$
+$$x[n] = e^{j\omega_0 n}$$
+
+As in CT, by Euler's identity:
+$$e^{j\omega_0 n} = \cos(\omega_0 n) + j\sin(\omega_0 n)$$ and
+$$\Re(x[n]) = \cos(\omega_0 n) = \frac{1}{2}\left( e^{j\omega_0 n} + e^{-j\omega_0 n} \right)$$
+$$\Im(x[n]) = \sin(\omega_0 n) = \frac{1}{2j}\left( e^{j\omega_0 n} - e^{-j\omega_0 n} \right)$$
+
+The energy and power are the same as for the CT complex sinusoid:
+$E_x = \infty$ and $P_x = 1$.
+
+### DT Complex Exponential: sinusoidal case with phase shift
+
+The general DT sinusoid is
+
+$$x[n] = A\cos(\omega_0 n + \phi)$$
+
+- $A$ is called the amplitude
+
+- $\phi$ is called the phase shift
+
+- $\omega_0$ is now in radians (assuming $n$ is dimensionless)
+
+```{python}
+#| fig-cap: ""
+#| fig-alt: "Example plots of DT Complex Exponential: sinusoidal case with phase shift"
+
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+n = np.linspace(-10, 10, 21);
+x = np.cos(2*np.pi/10*n + np.pi/8)
+
+f = plt.figure()
+
+plt.stem(n, x)
+plt.xlabel('$n$')
+plt.ylabel('$x[n]$')
+plt.grid(True)
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.tight_layout()
+
+plt.show()
+```
+
+For CT sinusoids as $\omega_0$ increases the signal oscillates faster
+and faster. However for DT sinusoids there is a \"fastest\" oscillation.
+
+$$e^{j\omega_0 n}\rvert_{\omega_0 = \pi} = e^{j\pi n} = (-1)^n$$
+
+```{python}
+#| fig-cap: ""
+#| fig-alt: "Example plots of DT Complex Exponential: sinusoidal case with maximum frequency."
+import matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+
+n = np.linspace(-5, 5, 11);
+x = np.power(-1, n)
+
+f = plt.figure()
+
+plt.stem(n, x)
+plt.xlabel('$n$')
+plt.ylabel('$x[n]$')
+plt.grid(True)
+plt.autoscale(enable=True, axis='x', tight=True)
+
+plt.tight_layout()
+
+plt.show()
+```
+
+### Properties of DT complex sinusoid
+
+If we consider two frequencies: $\omega_0$ and $\omega_0+2\pi$. In the
+first case: $$x[n] = e^{j\omega_0 n}$$ In the second case:
+$$\begin{array}{ll}
+x[n] &= e^{j(\omega_0+2\pi) n} \\
+&= \underbrace{e^{j2\pi n}}_{\text{always 1}}\; e^{j\omega_0 n} \\
+&= e^{j\omega_0 n}
+\end{array}$$
+
+Thus the two are the same signal. This has important implications later
+in the course.
+
+Another difference between CT and DT complex sinusoids is periodicity.
+Recall for a DT signal to be periodic with period $N$
+$$x[n] = x[n+N] \; \forall n$$ Substituting the complex sinusoid
+$$e^{j\omega_0 n} = e^{j\omega_0 (n+N)} = e^{j\omega_0 n}e^{j\omega_0 N}$$
+requires $e^{j\omega_0 N} = 1$, which implies $\omega_0 N$ is a multiple
+of $2\pi$: $$\omega_0 N = 2\pi m \;\;\; m = \pm 1, \pm 2, \cdots$$ or
+equivalently $$\frac{|\omega_0|}{2\pi} = \frac{m}{N}$$ thus $\omega_0$
+must be a rational multiple of $\pi$.
+
+Two DT complex sinusoids are harmonics of one another is both are
+periodic in $N$, i.e when
+
+$$x_k(t) = e^{jk\frac{2\pi}{N} n} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots$$
+
+This implies there are only $N$ distinct harmonics in DT.
+
+### DT Complex Exponential: general case
+
+In the general case we get a sinusoid signal modulated by an
+exponential. Let $C = Ae^{j\phi}$ and $\beta = r + j\omega_0$, then
+$$x[n] = C e^{\beta n} =  Ae^{j\phi} e^{(r+j\omega_0)n}$$ Expanding the
+terms and using Euler's identity gives:
+
+$$x[n] = \underbrace{Ae^{rn}\cos(\omega_0 n+\phi)}_{\Re \text{part}} + j \underbrace{Ae^{rn}\sin(\omega_0 n+\phi)}_{\Im \text{part}}$$
+Each part is a real sinusoid whose amplitude is modulated by a real
+exponential.
+
+The visualization of the general case is to view the signal $x[n]$ as a
+vector rotating through fixed angles in the complex plane.
+
+![The DT complex sinusoid at a specific point in time.](graphics/DT_complexsinusoid_visual.svg){fig-alt="A figure visualizing the DT complex sinusoid at a specific point in time."}
+
