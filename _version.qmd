@@ -1,0 +1,12 @@
+---
+execute:
+  echo: false
+---
+
+```{python}
+import subprocess
+
+command = ['git', 'rev-parse', 'HEAD']
+result = subprocess.check_output(command).decode().strip()
+print("\nVersion: ", result, "\n")
+```
