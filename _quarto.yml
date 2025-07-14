@@ -6,11 +6,6 @@ book:
   title: "Supplementary Notes for ECE 2714: Signals and Systems"
   author: "C.L. Wyatt"
   date: last-modified
-  repo-url: https://github.com/clwyatt/notes-2714/
-  #cover-image: images/cover.png 
-  #downloads: [pdf,docx]
-  navbar:
-    search: true
   sidebar:
     style: docked
     search: false
@@ -23,24 +18,19 @@ book:
     - 04-ct-lccde.qmd
     - 05-dt-lccde.qmd
     - references.qmd
-
-#comments:
-#  hypothesis: true
   
 bibliography: references.bib
 
 filters:
   - diagram
 
-
 format:
   html:
-    theme: [default, theme-style.scss]
-    css: theme-style.css
+    html-math-method: mathml
+    theme: simplex
     toc: true
     code-fold: true
-#  pdf: default
-#  docx: default
+
 
 
 
