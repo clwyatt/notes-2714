@@ -76,13 +76,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-b123d7f09c07b1138b012ef49f451644.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d9599027ee90100a95cbb1a4f3462695.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -105,56 +105,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
-<link rel="stylesheet" href="theme-style.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Supplementary Notes for ECE 2714: Signals and Systems</span>
-    </a>
-  </div>
-        <div class="quarto-navbar-tools tools-end">
-    <a href="https://github.com/clwyatt/notes-2714/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
-</div>
-          <div id="quarto-search" class="" title="Search"></div>
-      </div> <!-- /container-fluid -->
-    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -167,9 +124,14 @@ window.Quarto = {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Supplementary Notes for ECE 2714: Signals and Systems</a> 
+    </div>
+      </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -277,16 +239,16 @@ window.Quarto = {
 <p>A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.</p>
 <section id="signals-as-functions" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="signals-as-functions"><span class="header-section-number">2.1</span> Signals as Functions</h2>
-<p>In order to reason about signals mathematically we need a representation or <em>model</em>. Signals are modeled as functions, mappings between sets <span class="math display">\[
+<p>In order to reason about signals mathematically we need a representation or <em>model</em>. Signals are modeled as functions, mappings between sets <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>A</mi><mo>→</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">
 f: A \rightarrow B
-\]</span> where <span class="math inline">\(A\)</span> is a set called the <em>domain</em> and <span class="math inline">\(B\)</span> is a set called the <em>range</em>.</p>
-<p>The most basic classification of signals depends on the sets that makeup the domain and co-domain. We will be interested in two versions of the domain, the reals denoted <span class="math inline">\(\mathbb{R}\)</span> and the integers denoted <span class="math inline">\(\mathbb{Z}\)</span>. We will be interested in two versions of the co-domain, the reals <span class="math inline">\(\mathbb{R}\)</span> and the set of complex numbers <span class="math inline">\(\mathbb{C}\)</span>.</p>
+</annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> is a set called the <em>domain</em> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>B</mi><annotation encoding="application/x-tex">B</annotation></semantics></math> is a set called the <em>range</em>.</p>
+<p>The most basic classification of signals depends on the sets that makeup the domain and co-domain. We will be interested in two versions of the domain, the reals denoted <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> and the integers denoted <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℤ</mi><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math>. We will be interested in two versions of the co-domain, the reals <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> and the set of complex numbers <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℂ</mi><annotation encoding="application/x-tex">\mathbb{C}</annotation></semantics></math>.</p>
 <div class="example">
 <div class="example-header">
 <p>Example</p>
 </div>
 <div class="example-container">
-<p><strong>Analog Signal:</strong> If the function <span class="math inline">\(f: \mathbb{R} \rightarrow \mathbb{R}\)</span>, we call this an analog or real, continuous-time signal, e.g.&nbsp;a voltage at time <span class="math inline">\(t \in \mathbb{R}\)</span>, <span class="math inline">\(v(t)\)</span>. We will write these as <span class="math inline">\(x(t)\)</span>, <span class="math inline">\(y(t)\)</span>, etc. The units of <span class="math inline">\(t\)</span> are seconds. <a href="#fig-analog-plots" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows some graphical representations, i.e.&nbsp;plots.</p>
+<p><strong>Analog Signal:</strong> If the function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>ℝ</mi><mo>→</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">f: \mathbb{R} \rightarrow \mathbb{R}</annotation></semantics></math>, we call this an analog or real, continuous-time signal, e.g.&nbsp;a voltage at time <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>∈</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">t \in \mathbb{R}</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>v</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">v(t)</annotation></semantics></math>. We will write these as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t)</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">y(t)</annotation></semantics></math>, etc. The units of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math> are seconds. <a href="#fig-analog-plots" class="quarto-xref">Figure&nbsp;<span>2.1</span></a> shows some graphical representations, i.e.&nbsp;plots.</p>
 <div id="cell-fig-analog-plots" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
@@ -355,7 +317,7 @@ Figure&nbsp;2.1: Example plots of analog signals.
 <p>Example</p>
 </div>
 <div class="example-container">
-<p><strong>Real, Discrete-time Signal:</strong> If the function <span class="math inline">\(f: \mathbb{Z} \rightarrow \mathbb{R}\)</span>, we call this a real, discrete-time signal, e.g.&nbsp;the temperature every day at noon. We will write these as <span class="math inline">\(x[n]\)</span>, <span class="math inline">\(y[n]\)</span>, etc. Note <span class="math inline">\(n\)</span> is dimensionless. <a href="#fig-realdt-plots" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows some graphical representations.</p>
+<p><strong>Real, Discrete-time Signal:</strong> If the function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>ℤ</mi><mo>→</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">f: \mathbb{Z} \rightarrow \mathbb{R}</annotation></semantics></math>, we call this a real, discrete-time signal, e.g.&nbsp;the temperature every day at noon. We will write these as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x[n]</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">y[n]</annotation></semantics></math>, etc. Note <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> is dimensionless. <a href="#fig-realdt-plots" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> shows some graphical representations.</p>
 <div id="cell-fig-realdt-plots" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
@@ -419,52 +381,52 @@ Figure&nbsp;2.2: Example plots of real-valued, discrete-time signals.
 </div>
 <p>Some other possibilities:</p>
 <ul>
-<li><span class="math inline">\(f: \mathbb{R} \rightarrow \mathbb{Z}\)</span>, digital, continuous-time signals, e.g.&nbsp;the output of a general purpose pin on a microcontroller</li>
-<li><span class="math inline">\(f: \mathbb{Z} \rightarrow \mathbb{Z}\)</span>, digital, discrete-time signals, e.g.&nbsp;the signal on a computer bus</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>ℝ</mi><mo>→</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">f: \mathbb{R} \rightarrow \mathbb{Z}</annotation></semantics></math>, digital, continuous-time signals, e.g.&nbsp;the output of a general purpose pin on a microcontroller</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>ℤ</mi><mo>→</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">f: \mathbb{Z} \rightarrow \mathbb{Z}</annotation></semantics></math>, digital, discrete-time signals, e.g.&nbsp;the signal on a computer bus</li>
 </ul>
 <p>The co-domain can also be complex.</p>
 <ul>
-<li><span class="math inline">\(f: \mathbb{R} \rightarrow \mathbb{C}\)</span>, complex-valued, continuous-time signals, e.g. <span class="math display">\[
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>ℝ</mi><mo>→</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">f: \mathbb{R} \rightarrow \mathbb{C}</annotation></semantics></math>, complex-valued, continuous-time signals, e.g. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>ω</mi><mi>t</mi></mrow></msup><mo>=</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ω</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>j</mi><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ω</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 x(t) = e^{j\omega t} = \cos(\omega t) + j\sin(\omega t)
-\]</span></li>
-<li><span class="math inline">\(f: \mathbb{Z} \rightarrow \mathbb{C}\)</span>, complex-valued, discrete-time signals, e.g. <span class="math display">\[
+</annotation></semantics></math></li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>ℤ</mi><mo>→</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">f: \mathbb{Z} \rightarrow \mathbb{C}</annotation></semantics></math>, complex-valued, discrete-time signals, e.g. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>ω</mi><mi>n</mi></mrow></msup><mo>=</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ω</mi><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>j</mi><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>ω</mi><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 x[n] = e^{j\omega n} = \cos(\omega n) + j\sin(\omega n)
-\]</span></li>
+</annotation></semantics></math></li>
 </ul>
-<p>Since the domains <span class="math inline">\(\mathbb{R}\)</span> and <span class="math inline">\(\mathbb{Z}\)</span> are usually interpreted as time, we will call these <em>time-domain</em> signals. In the time-domain, when the co-domain is <span class="math inline">\(\mathbb{R}\)</span> we call these real signals. All physical signals are real. However complex signals will become important when we discuss the frequency domain.</p>
+<p>Since the domains <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℤ</mi><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math> are usually interpreted as time, we will call these <em>time-domain</em> signals. In the time-domain, when the co-domain is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> we call these real signals. All physical signals are real. However complex signals will become important when we discuss the frequency domain.</p>
 </section>
 <section id="primitive-models" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="primitive-models"><span class="header-section-number">2.2</span> Primitive Models</h2>
 <p>We mathematically model signals by combining elementary/primitive functions, for example:</p>
 <ul>
-<li>polynomials: <span class="math inline">\(x(t) = t\)</span>, <span class="math inline">\(x(t) = t^2\)</span>, etc.</li>
-<li>transendental functions: <span class="math inline">\(x(t) = e^t\)</span>, <span class="math inline">\(x(t) = \sin(t)\)</span>, <span class="math inline">\(x(t) = \cos(t)\)</span>, etc.</li>
-<li>piecewise functions, e.g. <span class="math display">\[
+<li>polynomials: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">x(t) = t</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>t</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">x(t) = t^2</annotation></semantics></math>, etc.</li>
+<li>transendental functions: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mi>t</mi></msup></mrow><annotation encoding="application/x-tex">x(t) = e^t</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t) = \sin(t)</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t) = \cos(t)</annotation></semantics></math>, etc.</li>
+<li>piecewise functions, e.g. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>f</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mi>t</mi><mo>&lt;</mo><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>f</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mi>t</mi><mo>≥</mo><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
    x(t) = \left\{  \begin{array}{cl}
      f_1(t) &amp; t &lt; 0\\
      f_2(t) &amp; t \geq 0\\
    \end{array}\right.
-\]</span></li>
+</annotation></semantics></math></li>
 </ul>
 <div class="example">
 <div class="example-header">
 <p>Example</p>
 </div>
 <div class="example-container">
-<p><strong>Modeling a Switch:</strong> Consider a mathematical model of a switch, which moves positions at time <span class="math inline">\(t = 0\)</span>.</p>
+<p><strong>Modeling a Switch:</strong> Consider a mathematical model of a switch, which moves positions at time <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">t = 0</annotation></semantics></math>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="02-ct-signals_files/mediabag/figure2-1.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>We use this model so much we give it it’s own name and symbol: Unit Step, <span class="math inline">\(u(t)\)</span></p>
-<p><span class="math display">\[
+<p>We use this model so much we give it it’s own name and symbol: Unit Step, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">u(t)</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="left" style="text-align: left"><mi>t</mi><mo>&lt;</mo><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="left" style="text-align: left"><mi>t</mi><mo>≥</mo><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
 u(t) = \left\{  \begin{array}{cl}
         0 &amp; t &lt; 0\\
         1 &amp; t \geq 0\\
       \end{array}\right.
-\]</span> so a mathematical model of the switch circuit above would be <span class="math inline">\(x(t) = V u(t)\)</span>.</p>
-<p>Note: some texts define the step function at <span class="math inline">\(t=0\)</span> to be <span class="math inline">\(1\)</span> or <span class="math inline">\(\frac{1}{2}\)</span>. It is typically plotted like so:</p>
+</annotation></semantics></math> so a mathematical model of the switch circuit above would be <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>V</mi><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t) = V u(t)</annotation></semantics></math>.</p>
+<p>Note: some texts define the step function at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">t=0</annotation></semantics></math> to be <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>1</mn><annotation encoding="application/x-tex">1</annotation></semantics></math> or <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mfrac><mn>1</mn><mn>2</mn></mfrac><annotation encoding="application/x-tex">\frac{1}{2}</annotation></semantics></math>. It is typically plotted like so:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="02-ct-signals_files/mediabag/figure2-2.svg" class="img-fluid figure-img"></p>
@@ -478,9 +440,9 @@ u(t) = \left\{  \begin{array}{cl}
 </div>
 <div class="example-container">
 <p><strong>Pure audio tone at “middle C”.</strong> A signal modeling the air pressure of a specific tone might be</p>
-<p><span class="math display">\[
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>261.6</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
   x(t) = \sin\left(2\pi (261.6) t\right)
-\]</span></p>
+</annotation></semantics></math></p>
 </div>
 </div>
 <div class="example">
@@ -489,9 +451,9 @@ u(t) = \left\{  \begin{array}{cl}
 </div>
 <div class="example-container">
 <p><strong>Chord.</strong> The chord “G”, an additive mixture of tones at G, B, and D and might be modeled as</p>
-<p><span class="math display">\[
-x(t) = \sin\left(2\pi (392) t\right) + \sin\left(2\pi (494) t\right) + \sin\left(2\pi (293) t\right)
-\]</span></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>392</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>494</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>293</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+x(t) = \sin\left(2\pi (392) t\right) + \sin\left(2\pi (494) t\right) + \sin\left(2\pi (293) t\right) 
+</annotation></semantics></math></p>
 <p>This example shows we can use addition to build-up signals to approximate real signals of interest.</p>
 </div>
 </div>
@@ -500,39 +462,39 @@ x(t) = \sin\left(2\pi (392) t\right) + \sin\left(2\pi (494) t\right) + \sin\left
 <h2 data-number="2.3" class="anchored" data-anchor-id="basic-transformations"><span class="header-section-number">2.3</span> Basic Transformations</h2>
 <p>We can also apply transformations to signals to increase their modeling flexibility.</p>
 <ul>
-<li><p>magnitude scaling <span class="math display">\[
+<li><p>magnitude scaling <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>a</mi><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 x_2(t) = a x_1(t)
-\]</span> for <span class="math inline">\(a \in \mathbb{R}\)</span>.</p></li>
-<li><p>derivatives <span class="math display">\[
+</annotation></semantics></math> for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">a \in \mathbb{R}</annotation></semantics></math>.</p></li>
+<li><p>derivatives <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msubsup><mi>x</mi><mn>1</mn><mi>′</mi></msubsup><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mrow><mi>d</mi><msub><mi>x</mi><mn>1</mn></msub></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 x_2(t) = x_1^\prime(t) = \frac{d x_1}{dt}(t)
-\]</span></p></li>
-<li><p>integrals <span class="math display">\[
+</annotation></semantics></math></p></li>
+<li><p>integrals <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><munderover><mo>∫</mo><mrow><mi>−</mi><mi>∞</mi></mrow><mi>t</mi></munderover><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>τ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mi>d</mi><mi>τ</mi></mrow><annotation encoding="application/x-tex">
 x_2(t) = \int\limits_{-\infty}^t x_1(\tau) \; d\tau
-\]</span></p></li>
-<li><p>sums <span class="math display">\[
+</annotation></semantics></math></p></li>
+<li><p>sums <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>x</mi><mi>i</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 y(t) = \sum\limits_{i} x_i(t)
-\]</span> an important example we will see is the CT Fourier series.<br>
+</annotation></semantics></math> an important example we will see is the CT Fourier series.<br>
 </p></li>
-<li><p>multiplication (modulation) <span class="math display">\[
+<li><p>multiplication (modulation) <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 y(t) = x_1(t) x_2(t)
-\]</span> For example amplitude modulation <span class="math inline">\(y(t) = x(t)\sin(\omega_0 t)\)</span></p></li>
-<li><p>time shift <span class="math display">\[
+</annotation></semantics></math> For example amplitude modulation <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">y(t) = x(t)\sin(\omega_0 t)</annotation></semantics></math></p></li>
+<li><p>time shift <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>+</mo><mi>τ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 x_2(t) = x_1(t+\tau)
-\]</span></p>
+</annotation></semantics></math></p>
 <ul>
-<li>if <span class="math inline">\(\tau &lt;0\)</span> it is called a <em>delay</em></li>
-<li>if <span class="math inline">\(\tau &gt;0\)</span> it is called an <em>advance</em></li>
+<li>if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\tau &lt;0</annotation></semantics></math> it is called a <em>delay</em></li>
+<li>if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\tau &gt;0</annotation></semantics></math> it is called an <em>advance</em></li>
 </ul></li>
-<li><p>time scaling <span class="math display">\[
+<li><p>time scaling <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>t</mi><mi>τ</mi></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
   x_2(t) = x_1\left(\frac{t}{\tau}\right)
-  \]</span></p>
+  </annotation></semantics></math></p>
 <ul>
-<li>if <span class="math inline">\(\tau &gt;1\)</span> increasing <span class="math inline">\(\tau\)</span> expands in time, slows down the signal</li>
-<li>if <span class="math inline">\(0 &lt; \tau &lt; 1\)</span> decreasing <span class="math inline">\(\tau\)</span> contracts in time, speeds up the signal</li>
-<li>if <span class="math inline">\(-1 &lt; \tau &lt;0\)</span> time reverses and increasing <span class="math inline">\(\tau\)</span> contracts in time, speeding up the signal</li>
-<li>if <span class="math inline">\(\tau &lt; -1\)</span> time reverses and decreasing <span class="math inline">\(\tau\)</span> expands in time, slows down the signal</li>
+<li>if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\tau &gt;1</annotation></semantics></math> increasing <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math> expands in time, slows down the signal</li>
+<li>if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>τ</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0 &lt; \tau &lt; 1</annotation></semantics></math> decreasing <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math> contracts in time, speeds up the signal</li>
+<li>if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn><mo>&lt;</mo><mi>τ</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">-1 &lt; \tau &lt;0</annotation></semantics></math> time reverses and increasing <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math> contracts in time, speeding up the signal</li>
+<li>if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>τ</mi><mo>&lt;</mo><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">\tau &lt; -1</annotation></semantics></math> time reverses and decreasing <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>τ</mi><annotation encoding="application/x-tex">\tau</annotation></semantics></math> expands in time, slows down the signal</li>
 </ul>
-<p>Common uses are time reversal, <span class="math inline">\(x_2(t) = x_1(-t)\)</span>, and changing the frequency of of sinusoids.</p></li>
+<p>Common uses are time reversal, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x_2(t) = x_1(-t)</annotation></semantics></math>, and changing the frequency of of sinusoids.</p></li>
 </ul>
 </section>
 <section id="characterization-of-signals" class="level2" data-number="2.4">
@@ -543,8 +505,8 @@ x_2(t) = x_1(t+\tau)
 <p>Definition</p>
 </div>
 <div class="example-container">
-<p><strong>Causal CT Signal.</strong> A CT signal is if <span class="math inline">\(x(t) = 0\)</span> <span class="math inline">\(\forall t &lt; 0\)</span>.</p>
-<p><strong>Anti-Causal CT Signal.</strong> A CT signal is or acausal if <span class="math inline">\(x(t) = 0\)</span> <span class="math inline">\(\forall t \geq 0\)</span>.</p>
+<p><strong>Causal CT Signal.</strong> A CT signal is if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x(t) = 0</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>t</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\forall t &lt; 0</annotation></semantics></math>.</p>
+<p><strong>Anti-Causal CT Signal.</strong> A CT signal is or acausal if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x(t) = 0</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>t</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\forall t \geq 0</annotation></semantics></math>.</p>
 </div>
 </div>
 <p>A signal can be written as the sum of a causal and anti-causal signal.</p>
@@ -553,7 +515,7 @@ x_2(t) = x_1(t+\tau)
 <p>Definition</p>
 </div>
 <div class="example-container">
-<p><strong>Periodic Signals.</strong> A CT signal is if <span class="math inline">\(x(t) = x(t + T)\)</span> <span class="math inline">\(\forall t\)</span> for a fixed parameter <span class="math inline">\(T \in \mathbb{R}\)</span> called the .</p>
+<p><strong>Periodic Signals.</strong> A CT signal is if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>+</mo><mi>T</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t) = x(t + T)</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">\forall t</annotation></semantics></math> for a fixed parameter <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>∈</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">T \in \mathbb{R}</annotation></semantics></math> called the .</p>
 </div>
 </div>
 <p>The simplest periodic signals are those based on the sinusoidal functions.</p>
@@ -562,27 +524,27 @@ x_2(t) = x_1(t+\tau)
 <p>Definition</p>
 </div>
 <div class="example-container">
-<p><strong>Even Signal.</strong> A CT signal is if <span class="math inline">\(x(t) = x(-t)\)</span> <span class="math inline">\(\forall t\)</span>.</p>
-<p><strong>Odd Signal. </strong> A CT signal is if <span class="math inline">\(x(t) = -x(-t)\)</span> <span class="math inline">\(\forall t\)</span>.</p>
+<p><strong>Even Signal.</strong> A CT signal is if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t) = x(-t)</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">\forall t</annotation></semantics></math>.</p>
+<p><strong>Odd Signal. </strong> A CT signal is if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>−</mi><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t) = -x(-t)</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">\forall t</annotation></semantics></math>.</p>
 </div>
 </div>
-<p>Any CT signal can be written in terms of an even and odd component <span class="math display">\[
-x(t) = x_e(t) + x_o(t)
-\]</span> where <span class="math display">\[
+<p>Any CT signal can be written in terms of an even and odd component <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>x</mi><mi>e</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>x</mi><mi>o</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+x(t) = x_e(t) + x_o(t) 
+</annotation></semantics></math> where <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="left" style="text-align: left"><msub><mi>x</mi><mi>e</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">{</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">}</mo></mrow></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"></mtd><mtd columnalign="left" style="text-align: left"></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><msub><mi>x</mi><mi>o</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">{</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">}</mo></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">
 \begin{array}{ll}
   x_e(t) &amp;= \frac{1}{2}\left\{x(t) + x(-t)\right\} \\
   &amp; \\
   x_o(t) &amp;= \frac{1}{2}\left\{x(t) - x(-t)\right\}
 \end{array}
-\]</span></p>
+</annotation></semantics></math></p>
 <div class="example">
 <div class="example-header">
 <p>Definition</p>
 </div>
 <div class="example-container">
-<p><strong>Energy of a CT Signal.</strong> The <em>energy</em> of a CT signal <span class="math inline">\(x(t)\)</span> is defined as a measure of the function <span class="math display">\[
+<p><strong>Energy of a CT Signal.</strong> The <em>energy</em> of a CT signal <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t)</annotation></semantics></math> is defined as a measure of the function <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mi>x</mi></msub><mo>=</mo><munder><mo>lim</mo><mrow><mi>T</mi><mo>→</mo><mi>∞</mi></mrow></munder><munderover><mo>∫</mo><mrow><mi>−</mi><mi>T</mi></mrow><mi>T</mi></munderover><mo stretchy="false" form="prefix">|</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><msup><mo stretchy="false" form="postfix">|</mo><mn>2</mn></msup><mi>d</mi><mi>t</mi><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">
   E_x = \lim_{T\rightarrow\infty} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
-  \]</span></p>
+  </annotation></semantics></math></p>
 </div>
 </div>
 <div class="example">
@@ -590,9 +552,9 @@ x(t) = x_e(t) + x_o(t)
 <p>Definition</p>
 </div>
 <div class="example-container">
-<p><strong>Power of a CT Signal.</strong> The <em>power</em> of a CT signal is the energy averaged over an interval as that interval tends to infinity. <span class="math display">\[
+<p><strong>Power of a CT Signal.</strong> The <em>power</em> of a CT signal is the energy averaged over an interval as that interval tends to infinity. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>x</mi></msub><mo>=</mo><munder><mo>lim</mo><mrow><mi>T</mi><mo>→</mo><mi>∞</mi></mrow></munder><mfrac><mn>1</mn><mrow><mn>2</mn><mi>T</mi></mrow></mfrac><msubsup><mo>∫</mo><mrow><mi>−</mi><mi>T</mi></mrow><mi>T</mi></msubsup><mo stretchy="false" form="prefix">|</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><msup><mo stretchy="false" form="postfix">|</mo><mn>2</mn></msup><mi>d</mi><mi>t</mi><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">
   P_x = \lim_{T\rightarrow\infty} \frac{1}{2T} \int_{-T}^T \lvert x(t)\rvert^2 dt \; .
-  \]</span></p>
+  </annotation></semantics></math></p>
 </div>
 </div>
 <p>Signals can be characterized based on their energy or power:</p>
@@ -604,34 +566,34 @@ x(t) = x_e(t) + x_o(t)
 </section>
 <section id="unit-impulse-function" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="unit-impulse-function"><span class="header-section-number">2.5</span> Unit Impulse Function</h2>
-<p>An important CT signal is the unit impulse function, also called the “delta” <span class="math inline">\(\delta\)</span> function for the symbol traditionally used to define it. Applying this signal to a system models a “kick” to that system. For example, consider striking a tuning fork. The reason this signal is so important is that it will turn out that the response of the system to this input tells us all we need to know about a linear, time-invariant system!</p>
+<p>An important CT signal is the unit impulse function, also called the “delta” <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>δ</mi><annotation encoding="application/x-tex">\delta</annotation></semantics></math> function for the symbol traditionally used to define it. Applying this signal to a system models a “kick” to that system. For example, consider striking a tuning fork. The reason this signal is so important is that it will turn out that the response of the system to this input tells us all we need to know about a linear, time-invariant system!</p>
 <div class="example">
 <div class="example-header">
 <p>Example</p>
 </div>
 <div class="example-container">
 <p><strong>CT Impulse Function.</strong> The CT impulse function is not really a function at all, but a mathematical object called a “distribution”. Some equivalent definitions:</p>
-<p><span class="math display">\[
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><munder><mo>lim</mo><mrow><mi>ϵ</mi><mo>→</mo><mn>0</mn></mrow></munder><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="left" style="text-align: left"><mfrac><mn>1</mn><mrow><mn>2</mn><mi>ϵ</mi></mrow></mfrac></mtd><mtd columnalign="left" style="text-align: left"><mrow><mo stretchy="true" form="prefix">|</mo><mi>t</mi><mo stretchy="true" form="postfix">|</mo></mrow><mo>&lt;</mo><mi>ϵ</mi></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mn>0</mn></mtd><mtd columnalign="left" style="text-align: left"><mtext mathvariant="normal">else</mtext></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
 \delta(t) = \lim_{\epsilon \rightarrow 0}\left\{
 \begin{array}{ll}
   \frac{1}{2\epsilon} &amp; |t| &lt; \epsilon\\
   0 &amp; \text{else}
 \end{array}
 \right.
-\]</span></p>
-<p><span class="math display">\[
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><munder><mo>lim</mo><mrow><mi>ϵ</mi><mo>→</mo><mn>0</mn></mrow></munder><mfrac><mn>1</mn><mrow><msqrt><mrow><mn>2</mn><mi>π</mi></mrow></msqrt><mi>ϵ</mi></mrow></mfrac><msup><mi>e</mi><mrow><mi>−</mi><mfrac><msup><mi>t</mi><mn>2</mn></msup><mrow><mn>2</mn><msup><mi>ϵ</mi><mn>2</mn></msup></mrow></mfrac></mrow></msup></mrow><annotation encoding="application/x-tex">
 \delta(t) = \lim_{\epsilon \rightarrow 0} \frac{1}{\sqrt{2\pi}\epsilon} e^{-\frac{t^2}{2\epsilon^2}}
-\]</span> Note the area under each definition is always one.</p>
+</annotation></semantics></math> Note the area under each definition is always one.</p>
 </div>
 </div>
-<p>In practice we can often use the following definition and some properties, without worrying about the distribution functions. <span class="math display">\[
+<p>In practice we can often use the following definition and some properties, without worrying about the distribution functions. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="left" style="text-align: left"><mn>0</mn></mtd><mtd columnalign="left" style="text-align: left"><mi>t</mi><mo>≠</mo><mn>0</mn></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mi>∞</mi></mtd><mtd columnalign="left" style="text-align: left"><mi>t</mi><mo>=</mo><mn>0</mn></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
 \delta(t) = \left\{
 \begin{array}{ll}
   0 &amp; t \neq 0\\
   \infty &amp; t = 0
 \end{array}
-\right.
-\]</span> which we draw as a vertical arrow in plots:</p>
+\right. 
+</annotation></semantics></math> which we draw as a vertical arrow in plots:</p>
 <div id="fig-delta-plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="02-ct-signals_files/mediabag/866ea5f3c0d0ff1be554ee0d6c236a18edd78334.svg" class="img-fluid figure-img"></p>
@@ -641,108 +603,108 @@ x(t) = x_e(t) + x_o(t)
 <p>Note the height of the arrow is arbitrary. Often in the case of a non-unit impulse function the area is written in parenthesis near the arrow tip.</p>
 <p>The following properties of the impulse function will be used often.</p>
 <ul>
-<li>The area under the unit impulse is unity since by definition <span class="math display">\[
+<li>The area under the unit impulse is unity since by definition <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munderover><mo>∫</mo><mrow><mi>−</mi><mi>∞</mi></mrow><mo accent="false">∞</mo></munderover><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mi>d</mi><mi>t</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
 \int\limits_{-\infty}^{\infty} \delta(t) \; dt = 1
-\]</span></li>
-<li>Sampling property: <span class="math inline">\(x(t)\delta(t-t_0) = x(t_0)\delta(t-t_0)\)</span></li>
-<li>Sifting Property: <span class="math display">\[
+</annotation></semantics></math></li>
+<li>Sampling property: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t)\delta(t-t_0) = x(t_0)\delta(t-t_0)</annotation></semantics></math></li>
+<li>Sifting Property: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munderover><mo>∫</mo><mi>a</mi><mi>b</mi></munderover><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mi>d</mi><mi>t</mi><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 \int\limits_{a}^{b} x(t)\delta(t-t_0) \; dt = x(t_0)
-\]</span> for any <span class="math inline">\(a &lt; t_0 &lt; b\)</span>.</li>
+</annotation></semantics></math> for any <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><msub><mi>t</mi><mn>0</mn></msub><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a &lt; t_0 &lt; b</annotation></semantics></math>.</li>
 </ul>
-<p>We previously defined the unit step function. The impulse can be defined in terms of the step: <span class="math display">\[
+<p>We previously defined the unit step function. The impulse can be defined in terms of the step: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mrow><mi>d</mi><mi>u</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">
 \delta(t) = \frac{du}{dt}
-\]</span> and vice-versa <span class="math display">\[
+</annotation></semantics></math> and vice-versa <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><munderover><mo>∫</mo><mrow><mi>−</mi><mi>∞</mi></mrow><mi>t</mi></munderover><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>τ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mi>d</mi><mi>τ</mi></mrow><annotation encoding="application/x-tex">
 u(t) = \int\limits_{-\infty}^{t} \delta(\tau) \; d\tau
-\]</span> using the notion of distributions, e.g.</p>
-<p><span class="math display">\[
+</annotation></semantics></math> using the notion of distributions, e.g.</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><munderover><mo>∫</mo><mrow><mi>−</mi><mi>∞</mi></mrow><mi>t</mi></munderover><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>τ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mi>d</mi><mi>τ</mi><mo>=</mo><munder><mo>lim</mo><mrow><mi>ϵ</mi><mo>→</mo><mn>0</mn></mrow></munder><munderover><mo>∫</mo><mrow><mi>−</mi><mi>∞</mi></mrow><mi>t</mi></munderover><mfrac><mn>1</mn><mrow><msqrt><mrow><mn>2</mn><mi>π</mi></mrow></msqrt><mi>ϵ</mi></mrow></mfrac><msup><mi>e</mi><mrow><mi>−</mi><mfrac><msup><mi>τ</mi><mn>2</mn></msup><mrow><mn>2</mn><msup><mi>ϵ</mi><mn>2</mn></msup></mrow></mfrac></mrow></msup><mspace width="0.278em"></mspace><mi>d</mi><mi>τ</mi><mo>=</mo><munder><mo>lim</mo><mrow><mi>ϵ</mi><mo>→</mo><mn>0</mn></mrow></munder><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mn>1</mn><mo>+</mo><mtext mathvariant="normal">erf</mtext><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>t</mi><mrow><msqrt><mn>2</mn></msqrt><mi>ϵ</mi></mrow></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 u(t) = \int\limits_{-\infty}^{t} \delta(\tau) \; d\tau = \lim_{\epsilon \rightarrow 0} \int\limits_{-\infty}^{t} \frac{1}{\sqrt{2\pi}\epsilon} e^{-\frac{\tau^2}{2\epsilon^2}} \; d\tau = \lim_{\epsilon \rightarrow 0} \frac{1}{2}\left(1+\text{erf}\left( \frac{t}{\sqrt{2}\epsilon}\right)\right)
-\]</span></p>
+</annotation></semantics></math></p>
 <p>The step and impulse function are related, but in many cases finding the response of a system to a step input is easier.</p>
 <p>We can apply additional transformations to the impulse and step functions to get other useful signals, e.g.</p>
 <ul>
-<li>ramp <span class="math display">\[
+<li>ramp <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><munderover><mo>∫</mo><mrow><mi>−</mi><mi>∞</mi></mrow><mi>t</mi></munderover><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>τ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mi>d</mi><mi>τ</mi><mo>=</mo><mi>t</mi><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 r(t) = \int\limits_{-\infty}^{t} u(\tau) \; d\tau = tu(t)
-\]</span></li>
-<li>causal pulse of width <span class="math inline">\(\epsilon\)</span> <span class="math display">\[
+</annotation></semantics></math></li>
+<li>causal pulse of width <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϵ</mi><annotation encoding="application/x-tex">\epsilon</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><mi>ϵ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 p(t) = u(t) - u(t-\epsilon)
-\]</span></li>
-<li>non-causal pulse of width <span class="math inline">\(2\epsilon\)</span> <span class="math display">\[
+</annotation></semantics></math></li>
+<li>non-causal pulse of width <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>ϵ</mi></mrow><annotation encoding="application/x-tex">2\epsilon</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>+</mo><mi>ϵ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>−</mo><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><mi>ϵ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
     p(t) = u(t+\epsilon) - u(t-\epsilon)
-\]</span></li>
+</annotation></semantics></math></li>
 </ul>
 </section>
 <section id="ct-complex-exponential" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="ct-complex-exponential"><span class="header-section-number">2.6</span> CT Complex Exponential</h2>
-<p>One of the most important signals in systems theory is the complex exponential: <span class="math display">\[
+<p>One of the most important signals in systems theory is the complex exponential: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>C</mi><mspace width="0.167em"></mspace><msup><mi>e</mi><mrow><mi>a</mi><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
 x(t) = C\, e^{a t}
-\]</span> where the parameters <span class="math inline">\(C, a \in \mathbb{C}\)</span> in general.</p>
-<p>When <span class="math inline">\(C\)</span> and <span class="math inline">\(a\)</span> are both real (<span class="math inline">\(\Im(C) = \Im(a) = 0\)</span>), we have the familiar exponential. When <span class="math inline">\(a &gt; 0\)</span> and <span class="math inline">\(C &gt; 0\)</span>, <span class="math inline">\(x(t) = C e^{a t}\)</span> looks like:</p>
+</annotation></semantics></math> where the parameters <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>,</mo><mi>a</mi><mo>∈</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">C, a \in \mathbb{C}</annotation></semantics></math> in general.</p>
+<p>When <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> are both real (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℑ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>C</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>ℑ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>a</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\Im(C) = \Im(a) = 0</annotation></semantics></math>), we have the familiar exponential. When <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a &gt; 0</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">C &gt; 0</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>C</mi><msup><mi>e</mi><mrow><mi>a</mi><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x(t) = C e^{a t}</annotation></semantics></math> looks like:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="02-ct-signals_files/mediabag/511fda8e490c073c5ef7eaf070858cb9abad34d4.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>When <span class="math inline">\(a &lt; 0\)</span> and <span class="math inline">\(C &gt; 0\)</span>, <span class="math inline">\(x(t) = C e^{a t}\)</span> looks like:</p>
+<p>When <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">a &lt; 0</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">C &gt; 0</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>C</mi><msup><mi>e</mi><mrow><mi>a</mi><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x(t) = C e^{a t}</annotation></semantics></math> looks like:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="02-ct-signals_files/mediabag/8899b8b18d4f3fd1b57ead2e54ddc8aabebd0aec.svg" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>If <span class="math inline">\(C &lt; 0\)</span> the signals reflect about the time axis.</p>
-<p>To get the pure sinusoidal case, let <span class="math inline">\(C \in \mathbb{R}\)</span> and <span class="math inline">\(a\)</span> be purely imaginary: <span class="math inline">\(a = j\omega_0\)</span>: <span class="math display">\[
+<p>If <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">C &lt; 0</annotation></semantics></math> the signals reflect about the time axis.</p>
+<p>To get the pure sinusoidal case, let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>∈</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">C \in \mathbb{R}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>a</mi><annotation encoding="application/x-tex">a</annotation></semantics></math> be purely imaginary: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">a = j\omega_0</annotation></semantics></math>: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>C</mi><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
 x(t) = Ce^{j\omega_0 t}
-\]</span> where <span class="math inline">\(\omega_0\)</span> is the frequency (in radians/sec). This is called the complex sinusoid.</p>
-<p>By Euler’s identity: <span class="math display">\[
+</annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ω</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\omega_0</annotation></semantics></math> is the frequency (in radians/sec). This is called the complex sinusoid.</p>
+<p>By Euler’s identity: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><mo>=</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>j</mi><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 e^{j\omega_0 t} = \cos(\omega_0 t) + j\sin(\omega_0 t)
-\]</span> and <span class="math display">\[
+</annotation></semantics></math> and <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℜ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><mo>+</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 \Re(x(t)) = \cos(\omega_0 t) = \frac{1}{2}\left( e^{j\omega_0 t} + e^{-j\omega_0 t} \right)
-\]</span></p>
-<p><span class="math display">\[
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℑ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>j</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><mo>−</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 \Im(x(t)) = \sin(\omega_0 t) = \frac{1}{2j}\left( e^{j\omega_0 t} - e^{-j\omega_0 t} \right)
-\]</span> are both real sinusoids.</p>
-<p>Note that the sinusoids are periodic. Recall a signal <span class="math inline">\(x(t)\)</span> is periodic with period <span class="math inline">\(T\)</span> if <span class="math display">\[
+</annotation></semantics></math> are both real sinusoids.</p>
+<p>Note that the sinusoids are periodic. Recall a signal <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t)</annotation></semantics></math> is periodic with period <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math> if <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>+</mo><mi>T</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mo>∀</mo><mi>t</mi></mrow><annotation encoding="application/x-tex">
 x(t) = x(t+T) \; \forall t
-\]</span> In the case of the complex sinusoid <span class="math display">\[
+</annotation></semantics></math> In the case of the complex sinusoid <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><mo>=</mo><mi>C</mi><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>+</mo><mi>T</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></msup><mo>=</mo><mi>C</mi><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><munder><munder><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>T</mi></mrow></msup><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">must be 1</mtext></munder></mrow><annotation encoding="application/x-tex">
 Ce^{j\omega_0 t} = Ce^{j\omega_0 (t+T)}= Ce^{j\omega_0 t}\underbrace{e^{j\omega_0 T}}_{\text{must be 1}}
-\]</span></p>
+</annotation></semantics></math></p>
 <ul>
-<li>if <span class="math inline">\(\omega_0 = 0\)</span> this is true for all <span class="math inline">\(T\)</span></li>
-<li>if <span class="math inline">\(\omega_0 \neq 0\)</span>, then to be periodic <span class="math inline">\(\omega_0 T = 2\pi m\)</span> for <span class="math inline">\(m = \pm 1, \pm 2, \cdots\)</span>. The smallest <span class="math inline">\(T\)</span> for which this is true is the <em>fundamental period</em> <span class="math inline">\(T_0\)</span> <span class="math display">\[
+<li>if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ω</mi><mn>0</mn></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\omega_0 = 0</annotation></semantics></math> this is true for all <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math></li>
+<li>if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ω</mi><mn>0</mn></msub><mo>≠</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\omega_0 \neq 0</annotation></semantics></math>, then to be periodic <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ω</mi><mn>0</mn></msub><mi>T</mi><mo>=</mo><mn>2</mn><mi>π</mi><mi>m</mi></mrow><annotation encoding="application/x-tex">\omega_0 T = 2\pi m</annotation></semantics></math> for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mi>±</mi><mn>1</mn><mo>,</mo><mi>±</mi><mn>2</mn><mo>,</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">m = \pm 1, \pm 2, \cdots</annotation></semantics></math>. The smallest <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math> for which this is true is the <em>fundamental period</em> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mn>0</mn></msub><annotation encoding="application/x-tex">T_0</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>T</mi><mn>0</mn></msub><mo>=</mo><mfrac><mrow><mn>2</mn><mi>π</mi></mrow><mrow><mo stretchy="true" form="prefix">|</mo><msub><mi>ω</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">|</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">
 T_0 = \frac{2\pi}{|\omega_0|}
-\]</span> or equivalently <span class="math inline">\(\omega_0 = \frac{2\pi}{T_0}\)</span></li>
+</annotation></semantics></math> or equivalently <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ω</mi><mn>0</mn></msub><mo>=</mo><mfrac><mrow><mn>2</mn><mi>π</mi></mrow><msub><mi>T</mi><mn>0</mn></msub></mfrac></mrow><annotation encoding="application/x-tex">\omega_0 = \frac{2\pi}{T_0}</annotation></semantics></math></li>
 </ul>
 <p>Some useful properties of sinusoids:</p>
 <ul>
-<li>If <span class="math inline">\(x(t)\)</span> is periodic with period <span class="math inline">\(T\)</span> and <span class="math inline">\(g\)</span> is any function then <span class="math inline">\(g(x(t))\)</span> is periodic with period <span class="math inline">\(T\)</span>.</li>
-<li>If <span class="math inline">\(x_1(t)\)</span> is periodic with period <span class="math inline">\(T_1\)</span> and <span class="math inline">\(x_2(t)\)</span> is periodic with period <span class="math inline">\(T_2\)</span>, and if there exists positive integers <span class="math inline">\(a,b\)</span> such that <span class="math display">\[
+<li>If <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t)</annotation></semantics></math> is periodic with period <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math> is any function then <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">g(x(t))</annotation></semantics></math> is periodic with period <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>T</mi><annotation encoding="application/x-tex">T</annotation></semantics></math>.</li>
+<li>If <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x_1(t)</annotation></semantics></math> is periodic with period <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mn>1</mn></msub><annotation encoding="application/x-tex">T_1</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x_2(t)</annotation></semantics></math> is periodic with period <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mn>2</mn></msub><annotation encoding="application/x-tex">T_2</annotation></semantics></math>, and if there exists positive integers <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>,</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a,b</annotation></semantics></math> such that <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><msub><mi>T</mi><mn>1</mn></msub><mo>=</mo><mi>b</mi><msub><mi>T</mi><mn>2</mn></msub><mo>=</mo><mi>P</mi></mrow><annotation encoding="application/x-tex">
 aT_1 = b T_2 = P
-\]</span> then <span class="math inline">\(x_1(t) + x_2(t)\)</span> and <span class="math inline">\(x_1(t)x_2(t)\)</span> are periodic with period <span class="math inline">\(P\)</span></li>
+</annotation></semantics></math> then <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x_1(t) + x_2(t)</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x_1(t)x_2(t)</annotation></semantics></math> are periodic with period <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>P</mi><annotation encoding="application/x-tex">P</annotation></semantics></math></li>
 </ul>
-<p>The last property implies that both <span class="math inline">\(T_1\)</span> and <span class="math inline">\(T_2\)</span> must both be rational in <span class="math inline">\(\pi\)</span> or neither should be. For example</p>
+<p>The last property implies that both <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mn>1</mn></msub><annotation encoding="application/x-tex">T_1</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mn>2</mn></msub><annotation encoding="application/x-tex">T_2</annotation></semantics></math> must both be rational in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>π</mi><annotation encoding="application/x-tex">\pi</annotation></semantics></math> or neither should be. For example</p>
 <ul>
-<li><span class="math inline">\(x(t) = \sin(2\pi t) + \cos(5\pi t)\)</span> is periodic</li>
-<li><span class="math inline">\(x(t) = \sin(2 t) + \cos(5 t)\)</span> is periodic</li>
-<li><span class="math inline">\(x(t) = \sin(2\pi t) + \cos(5 t)\)</span> is <strong>not</strong> periodic</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>5</mn><mi>π</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t) = \sin(2\pi t) + \cos(5\pi t)</annotation></semantics></math> is periodic</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>5</mn><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t) = \sin(2 t) + \cos(5 t)</annotation></semantics></math> is periodic</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>5</mn><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t) = \sin(2\pi t) + \cos(5 t)</annotation></semantics></math> is <strong>not</strong> periodic</li>
 </ul>
-<p>When the parameter <span class="math inline">\(C\)</span> is complex we get a phase shift. Again let <span class="math inline">\(a = j\omega_0\)</span>. When <span class="math inline">\(C\)</span> is complex we can write it as <span class="math inline">\(C = Ae^{j\phi}\)</span> where <span class="math inline">\(A = |C|\)</span> and <span class="math inline">\(\phi = \angle C\)</span>. Then</p>
-<p><span class="math display">\[
-x(t) = Ae^{j\phi} e^{j\omega_0 t} = Ae^{j(\omega_0 t+\phi)}
-\]</span> and <span class="math display">\[
-\Re(x(t)) = A\cos(\omega_0 t+\phi)
-\]</span></p>
-<p><span class="math display">\[
-\Im(x(t)) = A\sin(\omega_0 t+\phi)
-\]</span></p>
-<p>Since <span class="math inline">\(\sin\)</span> is a special case of <span class="math inline">\(\cos\)</span>, i.e.&nbsp;<span class="math inline">\(\cos(\theta) = \sin(\theta + \frac{\pi}{2})\)</span>, the general real sinusoid is</p>
-<p><span class="math display">\[
+<p>When the parameter <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> is complex we get a phase shift. Again let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">a = j\omega_0</annotation></semantics></math>. When <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> is complex we can write it as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>A</mi><msup><mi>e</mi><mrow><mi>j</mi><mi>ϕ</mi></mrow></msup></mrow><annotation encoding="application/x-tex">C = Ae^{j\phi}</annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mrow><mo stretchy="true" form="prefix">|</mo><mi>C</mi><mo stretchy="true" form="postfix">|</mo></mrow></mrow><annotation encoding="application/x-tex">A = |C|</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>=</mo><mi>∠</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">\phi = \angle C</annotation></semantics></math>. Then</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>A</mi><msup><mi>e</mi><mrow><mi>j</mi><mi>ϕ</mi></mrow></msup><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><mo>=</mo><mi>A</mi><msup><mi>e</mi><mrow><mi>j</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo>+</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></msup></mrow><annotation encoding="application/x-tex">
+x(t) = Ae^{j\phi} e^{j\omega_0 t} = Ae^{j(\omega_0 t+\phi)} 
+</annotation></semantics></math> and <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℜ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>A</mi><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo>+</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+\Re(x(t)) = A\cos(\omega_0 t+\phi) 
+</annotation></semantics></math></p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℑ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>A</mi><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo>+</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
+\Im(x(t)) = A\sin(\omega_0 t+\phi) 
+</annotation></semantics></math></p>
+<p>Since <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>sin</mo><annotation encoding="application/x-tex">\sin</annotation></semantics></math> is a special case of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>cos</mo><annotation encoding="application/x-tex">\cos</annotation></semantics></math>, i.e.&nbsp;<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo>+</mo><mfrac><mi>π</mi><mn>2</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\cos(\theta) = \sin(\theta + \frac{\pi}{2})</annotation></semantics></math>, the general real sinusoid is</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo>+</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 A\cos(\omega_0 t + \phi)
-\]</span></p>
+</annotation></semantics></math></p>
 <ul>
-<li><span class="math inline">\(A\)</span> is called the amplitude</li>
-<li><span class="math inline">\(\omega_0\)</span> is again the frequency in radians/sec.</li>
-<li><span class="math inline">\(\phi\)</span> is called the phase shift and is related to a time shift <span class="math inline">\(T_s\)</span> by <span class="math display">\[
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> is called the amplitude</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ω</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\omega_0</annotation></semantics></math> is again the frequency in radians/sec.</li>
+<li><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math> is called the phase shift and is related to a time shift <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mi>s</mi></msub><annotation encoding="application/x-tex">T_s</annotation></semantics></math> by <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ϕ</mi><mo>=</mo><msub><mi>ω</mi><mn>0</mn></msub><msub><mi>T</mi><mi>s</mi></msub></mrow><annotation encoding="application/x-tex">
 \phi = \omega_0T_s
-\]</span></li>
+</annotation></semantics></math></li>
 </ul>
 <p>For example the signal graphically represented as follows</p>
 <div id="cell-fig-sinusoidal-plot" class="cell" data-execution_count="3">
@@ -778,71 +740,71 @@ Figure&nbsp;2.3: Example plot of sinusoidal signal.
 </div>
 </div>
 <p>has the functional representation</p>
-<p><span class="math display">\[
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>2</mn><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>π</mi><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>+</mo><mfrac displaystyle="false"><mn>1</mn><mn>2</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>2</mn><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mi>π</mi><mn>2</mn></mfrac><mi>t</mi><mo>+</mo><mfrac><mi>π</mi><mn>4</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
 x(t) = 2\cos\left(\frac{\pi}{2} (t+\tfrac{1}{2}) \right) =  2\cos\left(\frac{\pi}{2} t +\frac{\pi}{4} \right)
-\]</span></p>
+</annotation></semantics></math></p>
 <section id="energy-of-ct-complex-sinusoid" class="level3" data-number="2.6.1">
 <h3 data-number="2.6.1" class="anchored" data-anchor-id="energy-of-ct-complex-sinusoid"><span class="header-section-number">2.6.1</span> Energy of CT complex sinusoid</h3>
-<p>Recall the energy of a CT signal <span class="math inline">\(x(t)\)</span> is<br>
-<span class="math display">\[
+<p>Recall the energy of a CT signal <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t)</annotation></semantics></math> is<br>
+<math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mi>x</mi></msub><mo>=</mo><munder><mo>lim</mo><mrow><mi>T</mi><mo>→</mo><mi>∞</mi></mrow></munder><munderover><mo>∫</mo><mrow><mi>−</mi><mi>T</mi></mrow><mi>T</mi></munderover><mo stretchy="false" form="prefix">|</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><msup><mo stretchy="false" form="postfix">|</mo><mn>2</mn></msup><mi>d</mi><mi>t</mi><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">
   E_x = \lim_{T\rightarrow\infty} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
-\]</span> Substituting <span class="math inline">\(x(t) = e^{j\omega_0 t}\)</span> and letting <span class="math inline">\(T = N T_0\)</span> <span class="math display">\[
+</annotation></semantics></math> Substituting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x(t) = e^{j\omega_0 t}</annotation></semantics></math> and letting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><mi>N</mi><msub><mi>T</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">T = N T_0</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mi>x</mi></msub><mo>=</mo><munder><mo>lim</mo><mrow><mi>N</mi><mo>→</mo><mi>∞</mi></mrow></munder><munderover><mo>∫</mo><mrow><mi>−</mi><mi>N</mi><msub><mi>T</mi><mn>0</mn></msub></mrow><mrow><mi>N</mi><msub><mi>T</mi><mn>0</mn></msub></mrow></munderover><munder><munder><mrow><mo stretchy="false" form="prefix">|</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><msup><mo stretchy="false" form="postfix">|</mo><mn>2</mn></msup></mrow><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">always 1</mtext></munder><mspace width="0.278em"></mspace><mi>d</mi><mi>t</mi><mo>=</mo><munder><mo>lim</mo><mrow><mi>N</mi><mo>→</mo><mi>∞</mi></mrow></munder><mn>2</mn><mi>N</mi><msub><mi>T</mi><mn>0</mn></msub><mo>=</mo><mi>∞</mi></mrow><annotation encoding="application/x-tex">
     E_x = \lim_{N\rightarrow\infty} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} 2NT_0 = \infty
-\]</span></p>
+</annotation></semantics></math></p>
 </section>
 <section id="power-of-ct-complex-sinusoid" class="level3" data-number="2.6.2">
 <h3 data-number="2.6.2" class="anchored" data-anchor-id="power-of-ct-complex-sinusoid"><span class="header-section-number">2.6.2</span> Power of CT complex sinusoid</h3>
-<p>Recall the power of a CT signal <span class="math inline">\(x(t)\)</span> is <span class="math display">\[
+<p>Recall the power of a CT signal <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t)</annotation></semantics></math> is <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>x</mi></msub><mo>=</mo><munder><mo>lim</mo><mrow><mi>T</mi><mo>→</mo><mi>∞</mi></mrow></munder><mfrac><mn>1</mn><mrow><mn>2</mn><mi>T</mi></mrow></mfrac><munderover><mo>∫</mo><mrow><mi>−</mi><mi>T</mi></mrow><mi>T</mi></munderover><mo stretchy="false" form="prefix">|</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><msup><mo stretchy="false" form="postfix">|</mo><mn>2</mn></msup><mi>d</mi><mi>t</mi><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">
   P_x = \lim_{T\rightarrow\infty} \frac{1}{2T} \int\limits_{-T}^T \lvert x(t) \rvert^2 dt \; .
-\]</span> Again, substituting <span class="math inline">\(x(t) = e^{j\omega_0 t}\)</span> and letting <span class="math inline">\(T = N T_0\)</span> <span class="math display">\[
+</annotation></semantics></math> Again, substituting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x(t) = e^{j\omega_0 t}</annotation></semantics></math> and letting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>T</mi><mo>=</mo><mi>N</mi><msub><mi>T</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">T = N T_0</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>x</mi></msub><mo>=</mo><munder><mo>lim</mo><mrow><mi>N</mi><mo>→</mo><mi>∞</mi></mrow></munder><mfrac><mn>1</mn><mrow><mn>2</mn><mi>N</mi><msub><mi>T</mi><mn>0</mn></msub></mrow></mfrac><munderover><mo>∫</mo><mrow><mi>−</mi><mi>N</mi><msub><mi>T</mi><mn>0</mn></msub></mrow><mrow><mi>N</mi><msub><mi>T</mi><mn>0</mn></msub></mrow></munderover><munder><munder><mrow><mo stretchy="false" form="prefix">|</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><msup><mo stretchy="false" form="postfix">|</mo><mn>2</mn></msup></mrow><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">always 1</mtext></munder><mspace width="0.278em"></mspace><mi>d</mi><mi>t</mi><mo>=</mo><munder><mo>lim</mo><mrow><mi>N</mi><mo>→</mo><mi>∞</mi></mrow></munder><mfrac><mn>1</mn><mrow><mn>2</mn><mi>N</mi><msub><mi>T</mi><mn>0</mn></msub></mrow></mfrac><mn>2</mn><mi>N</mi><msub><mi>T</mi><mn>0</mn></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
   P_x = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} \int\limits_{-N T_0}^{N T_0} \underbrace{\lvert e^{j\omega_0 t} \rvert^2}_{\text{always 1}} \; dt = \lim_{N\rightarrow\infty} \frac{1}{2NT_0} 2NT_0 = 1
-\]</span></p>
+</annotation></semantics></math></p>
 </section>
 <section id="harmonics" class="level3" data-number="2.6.3">
 <h3 data-number="2.6.3" class="anchored" data-anchor-id="harmonics"><span class="header-section-number">2.6.3</span> Harmonics</h3>
-<p>Two CT complex sinusoids are <em>harmonics</em> of one another is both are periodic in <span class="math inline">\(T_0\)</span>. This occurs when</p>
-<p><span class="math display">\[
+<p>Two CT complex sinusoids are <em>harmonics</em> of one another is both are periodic in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>T</mi><mn>0</mn></msub><annotation encoding="application/x-tex">T_0</annotation></semantics></math>. This occurs when</p>
+<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>k</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi></mrow></msup><mspace width="0.278em"></mspace><mtext mathvariant="normal">for</mtext><mspace width="0.278em"></mspace><mi>k</mi><mo>=</mo><mn>0</mn><mo>,</mo><mi>±</mi><mn>1</mn><mo>,</mo><mi>±</mi><mn>2</mn><mo>,</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">
     x_k(t) = e^{jk\omega_0 t} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots
-\]</span></p>
+</annotation></semantics></math></p>
 <p>The term comes from music where the vibrations of a string instrument are modeled as a weighted combination of harmonic tones.</p>
 </section>
 <section id="geometric-interpretation-of-the-complex-exponential" class="level3" data-number="2.6.4">
 <h3 data-number="2.6.4" class="anchored" data-anchor-id="geometric-interpretation-of-the-complex-exponential"><span class="header-section-number">2.6.4</span> Geometric interpretation of the Complex Exponential</h3>
-<p>In the general case we get a sinusoid signal modulated by an exponential. Let <span class="math inline">\(C = Ae^{j\phi}\)</span> and <span class="math inline">\(a = r + j\omega_0\)</span>, then <span class="math display">\[
+<p>In the general case we get a sinusoid signal modulated by an exponential. Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>A</mi><msup><mi>e</mi><mrow><mi>j</mi><mi>ϕ</mi></mrow></msup></mrow><annotation encoding="application/x-tex">C = Ae^{j\phi}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>=</mo><mi>r</mi><mo>+</mo><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">a = r + j\omega_0</annotation></semantics></math>, then <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>C</mi><msup><mi>e</mi><mrow><mi>a</mi><mi>t</mi></mrow></msup><mo>=</mo><mi>A</mi><msup><mi>e</mi><mrow><mi>j</mi><mi>ϕ</mi></mrow></msup><msup><mi>e</mi><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo>+</mo><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
   x(t) = C e^{a t} =  Ae^{j\phi} e^{(r+j\omega_0)t}
-\]</span> Expanding the terms and using Euler’s identity gives: <span class="math display">\[
+</annotation></semantics></math> Expanding the terms and using Euler’s identity gives: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><munder><munder><mrow><mi>A</mi><msup><mi>e</mi><mrow><mi>r</mi><mi>t</mi></mrow></msup><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo>+</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mo accent="true">⏟</mo></munder><mrow><mi>ℜ</mi><mtext mathvariant="normal">part</mtext></mrow></munder><mo>+</mo><mi>j</mi><munder><munder><mrow><mi>A</mi><msup><mi>e</mi><mrow><mi>r</mi><mi>t</mi></mrow></msup><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>t</mi><mo>+</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mo accent="true">⏟</mo></munder><mrow><mi>ℑ</mi><mtext mathvariant="normal">part</mtext></mrow></munder></mrow><annotation encoding="application/x-tex">
 x(t) = \underbrace{Ae^{rt}\cos(\omega_0 t+\phi)}_{\Re \text{part}} + j \underbrace{Ae^{rt}\sin(\omega_0 t+\phi)}_{\Im \text{part}}
-\]</span> Each part is a real sinusoid whose amplitude is modulated by a real exponential.</p>
-<p>An important visualization of the general case is to view the signal <span class="math inline">\(x(t)\)</span> as a vector rotating counter-clockwise in the complex plane for positive <span class="math inline">\(t\)</span>.</p>
+</annotation></semantics></math> Each part is a real sinusoid whose amplitude is modulated by a real exponential.</p>
+<p>An important visualization of the general case is to view the signal <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t)</annotation></semantics></math> as a vector rotating counter-clockwise in the complex plane for positive <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="graphics/CT_complexsinusoid_visual.svg" class="img-fluid figure-img" alt="A figure visualizing the CT complex sinusoid at a specific point in time."></p>
 <figcaption>The CT complex sinusoid at a specific point in time.</figcaption>
 </figure>
 </div>
-<p>For <span class="math inline">\(r &lt; 0\)</span> the tip of the arrow traces out an inward spiral, whereas for <span class="math inline">\(r &gt; 0\)</span> it traces out an outward spiral. For <span class="math inline">\(r = 0\)</span> it traces out the unit circle.</p>
+<p>For <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">r &lt; 0</annotation></semantics></math> the tip of the arrow traces out an inward spiral, whereas for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">r &gt; 0</annotation></semantics></math> it traces out an outward spiral. For <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>r</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">r = 0</annotation></semantics></math> it traces out the unit circle.</p>
 </section>
 </section>
 <section id="example-problems" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="example-problems"><span class="header-section-number">2.7</span> Example Problems</h2>
 <section id="section" class="level3" data-number="2.7.1">
 <h3 data-number="2.7.1" class="anchored" data-anchor-id="section"><span class="header-section-number">2.7.1</span> </h3>
-<p>Consider a signal described by the function <span class="math display">\[
+<p>Consider a signal described by the function <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mn>3</mn><mi>t</mi></mrow></msup><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>10</mn><mi>π</mi><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
   x(t) = e^{-3t}\sin(10\pi t)u(t)
-   \]</span></p>
+   </annotation></semantics></math></p>
 <ol type="a">
-<li>Determine the magnitude and phase of <span class="math inline">\(x\left( \frac{1}{20}\right)\)</span></li>
+<li>Determine the magnitude and phase of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><mn>20</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x\left( \frac{1}{20}\right)</annotation></semantics></math></li>
 </ol>
 <p><strong>Solution:</strong></p>
-<p>Substituting <span class="math inline">\(t = \frac{1}{20}\)</span> gives <span class="math display">\[
+<p>Substituting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>=</mo><mfrac><mn>1</mn><mn>20</mn></mfrac></mrow><annotation encoding="application/x-tex">t = \frac{1}{20}</annotation></semantics></math> gives <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><mn>20</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mn>3</mn><mfrac><mn>1</mn><mn>20</mn></mfrac></mrow></msup><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>10</mn><mi>π</mi><mfrac><mn>1</mn><mn>20</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mi>u</mi><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><mn>20</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mfrac><mn>3</mn><mn>20</mn></mfrac></mrow></msup><mo>≈</mo><mn>0.86</mn></mrow><annotation encoding="application/x-tex">
   x\left( \frac{1}{20}\right) = e^{-3\frac{1}{20}}\sin\left(10\pi \frac{1}{20}\right)u\left( \frac{1}{20}\right) = e^{-\frac{3}{20}} \approx 0.86
-  \]</span> Since the signal is purely real and exponential is always positive, the magnitude is <span class="math display">\[
+  </annotation></semantics></math> Since the signal is purely real and exponential is always positive, the magnitude is <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mrow><mo stretchy="true" form="prefix">|</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><mn>20</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">|</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">|</mo><msup><mi>e</mi><mrow><mi>−</mi><mfrac><mn>3</mn><mn>20</mn></mfrac></mrow></msup><mo stretchy="true" form="postfix">|</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mfrac><mn>3</mn><mn>20</mn></mfrac></mrow></msup><mo>≈</mo><mn>0.86</mn></mrow><annotation encoding="application/x-tex">
   \left|x\left( \frac{1}{20}\right)\right| = \left| e^{-\frac{3}{20}}\right| =  e^{-\frac{3}{20}}  \approx 0.86
-  \]</span> and the phase is <span class="math display">\[
+  </annotation></semantics></math> and the phase is <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>∠</mi><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mfrac><mn>1</mn><mn>20</mn></mfrac><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
   \angle x\left( \frac{1}{20}\right) = 0
-  \]</span></p>
+  </annotation></semantics></math></p>
 <ol start="2" type="a">
-<li>Using Matlab, plot the signal <span class="math inline">\(|x(t)|\)</span> between <span class="math inline">\([-2, 2]\)</span>. Give your code and embed the plot.</li>
+<li>Using Matlab, plot the signal <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">|</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo stretchy="true" form="postfix">|</mo></mrow><annotation encoding="application/x-tex">|x(t)|</annotation></semantics></math> between <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="true" form="prefix">[</mo><mi>−</mi><mn>2</mn><mo>,</mo><mn>2</mn><mo stretchy="true" form="postfix">]</mo></mrow><annotation encoding="application/x-tex">[-2, 2]</annotation></semantics></math>. Give your code and embed the plot.</li>
 </ol>
 <p><strong>Solution:</strong></p>
 <div class="sourceCode" id="annotated-cell-2"><pre class="sourceCode octave code-annotation-code code-with-copy code-annotated"><code class="sourceCode octave"><span id="annotated-cell-2-1"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Solution to Example Problem 2.7.1b</span></span>
@@ -878,53 +840,53 @@ x(t) = \underbrace{Ae^{rt}\cos(\omega_0 t+\phi)}_{\Re \text{part}} + j \underbra
 </section>
 <section id="section-1" class="level3" data-number="2.7.2">
 <h3 data-number="2.7.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">2.7.2</span> </h3>
-<p>Find a solution to the differential equation <span class="math display">\[
+<p>Find a solution to the differential equation <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mn>9</mn><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
   \frac{dy}{dt}(t) + 9y(t) = e^{-t}
-  \]</span> for <span class="math inline">\(t \geq 0\)</span>, when <span class="math inline">\(y(0) = 1\)</span>.</p>
-<p><strong>Solution:</strong> The homogeneous equation is <span class="math display">\[
+  </annotation></semantics></math> for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">t \geq 0</annotation></semantics></math>, when <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y(0) = 1</annotation></semantics></math>.</p>
+<p><strong>Solution:</strong> The homogeneous equation is <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><msub><mi>y</mi><mi>h</mi></msub></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mn>9</mn><msub><mi>y</mi><mi>h</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
   \frac{dy_h}{dt}(t) + 9y_h(t) = 0
-  \]</span> with initial condition <span class="math inline">\(y_h(0) = 1\)</span>. Its solution is of the form <span class="math display">\[
-  y_h(t) = C\, e^{-9t}
-  \]</span> for constant <span class="math inline">\(C\)</span>. Using the initial condition <span class="math display">\[
+  </annotation></semantics></math> with initial condition <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>h</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y_h(0) = 1</annotation></semantics></math>. Its solution is of the form <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>h</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>C</mi><mspace width="0.167em"></mspace><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+  y_h(t) = C\, e^{-9t} 
+  </annotation></semantics></math> for constant <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>. Using the initial condition <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>h</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>C</mi><mspace width="0.167em"></mspace><msup><mi>e</mi><mrow><mi>−</mi><mn>0</mn></mrow></msup><mo>=</mo><mi>C</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
   y_h(0) = C\, e^{-0} = C = 1
-  \]</span> gives <span class="math display">\[
-  y_h(t) = e^{-9t}
-  \]</span> The particular solution is of the form <span class="math display">\[
+  </annotation></semantics></math> gives <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>h</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+  y_h(t) = e^{-9t} 
+  </annotation></semantics></math> The particular solution is of the form <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>p</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>C</mi><mn>1</mn></msub><msup><mi>e</mi><mrow><mi>−</mi><mi>t</mi></mrow></msup><mo>+</mo><msub><mi>C</mi><mn>2</mn></msub><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
   y_p(t) = C_1 e^{-t} + C_2 e^{-9t}
-  \]</span> Substitution and equating coefficients gives <span class="math inline">\(C_1 = \frac{1}{8}\)</span> and <span class="math inline">\(C_2 = -\frac{1}{8}\)</span>. The total solution is the sum of the two solutions or <span class="math display">\[
+  </annotation></semantics></math> Substitution and equating coefficients gives <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>=</mo><mfrac><mn>1</mn><mn>8</mn></mfrac></mrow><annotation encoding="application/x-tex">C_1 = \frac{1}{8}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>2</mn></msub><mo>=</mo><mi>−</mi><mfrac><mn>1</mn><mn>8</mn></mfrac></mrow><annotation encoding="application/x-tex">C_2 = -\frac{1}{8}</annotation></semantics></math>. The total solution is the sum of the two solutions or <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mn>8</mn></mfrac><msup><mi>e</mi><mrow><mi>−</mi><mi>t</mi></mrow></msup><mo>−</mo><mfrac><mn>1</mn><mn>8</mn></mfrac><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup><mo>+</mo><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup><mo>=</mo><mfrac><mn>1</mn><mn>8</mn></mfrac><msup><mi>e</mi><mrow><mi>−</mi><mi>t</mi></mrow></msup><mo>+</mo><mfrac><mn>7</mn><mn>8</mn></mfrac><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
   y(t) = \frac{1}{8} e^{-t} - \frac{1}{8} e^{-9t} + e^{-9t} = \frac{1}{8} e^{-t} + \frac{7}{8} e^{-9t}
-  \]</span></p>
+  </annotation></semantics></math></p>
 </section>
 <section id="section-2" class="level3" data-number="2.7.3">
 <h3 data-number="2.7.3" class="anchored" data-anchor-id="section-2"><span class="header-section-number">2.7.3</span> </h3>
-<p>Find a solution to the differential equation <span class="math display">\[
+<p>Find a solution to the differential equation <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mn>9</mn><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
   \frac{dy}{dt}(t) + 9y(t) = e^{-t}
-  \]</span> for <span class="math inline">\(t \geq 0\)</span>, when <span class="math inline">\(y(0) = 1\)</span>.</p>
-<p><strong>Solution:</strong> The homogeneous equation is <span class="math display">\[
+  </annotation></semantics></math> for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">t \geq 0</annotation></semantics></math>, when <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y(0) = 1</annotation></semantics></math>.</p>
+<p><strong>Solution:</strong> The homogeneous equation is <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>d</mi><msub><mi>y</mi><mi>h</mi></msub></mrow><mrow><mi>d</mi><mi>t</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mn>9</mn><msub><mi>y</mi><mi>h</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
   \frac{dy_h}{dt}(t) + 9y_h(t) = 0
-  \]</span> with initial condition <span class="math inline">\(y_h(0) = 1\)</span>. Its solution is of the form <span class="math display">\[
-  y_h(t) = C\, e^{-9t}
-  \]</span> for constant <span class="math inline">\(C\)</span>. Using the initial condition <span class="math display">\[
+  </annotation></semantics></math> with initial condition <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>h</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">y_h(0) = 1</annotation></semantics></math>. Its solution is of the form <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>h</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>C</mi><mspace width="0.167em"></mspace><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+  y_h(t) = C\, e^{-9t} 
+  </annotation></semantics></math> for constant <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math>. Using the initial condition <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>h</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mn>0</mn><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mi>C</mi><mspace width="0.167em"></mspace><msup><mi>e</mi><mrow><mi>−</mi><mn>0</mn></mrow></msup><mo>=</mo><mi>C</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">
   y_h(0) = C\, e^{-0} = C = 1
-  \]</span> gives <span class="math display">\[
-  y_h(t) = e^{-9t}
-  \]</span> The particular solution is of the form <span class="math display">\[
+  </annotation></semantics></math> gives <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>h</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
+  y_h(t) = e^{-9t} 
+  </annotation></semantics></math> The particular solution is of the form <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>y</mi><mi>p</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msub><mi>C</mi><mn>1</mn></msub><msup><mi>e</mi><mrow><mi>−</mi><mi>t</mi></mrow></msup><mo>+</mo><msub><mi>C</mi><mn>2</mn></msub><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
   y_p(t) = C_1 e^{-t} + C_2 e^{-9t}
-  \]</span> Substitution and equating coefficients gives <span class="math inline">\(C_1 = \frac{1}{8}\)</span> and <span class="math inline">\(C_2 = -\frac{1}{8}\)</span>. The total solution is the sum of the two solutions or <span class="math display">\[
+  </annotation></semantics></math> Substitution and equating coefficients gives <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>1</mn></msub><mo>=</mo><mfrac><mn>1</mn><mn>8</mn></mfrac></mrow><annotation encoding="application/x-tex">C_1 = \frac{1}{8}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>C</mi><mn>2</mn></msub><mo>=</mo><mi>−</mi><mfrac><mn>1</mn><mn>8</mn></mfrac></mrow><annotation encoding="application/x-tex">C_2 = -\frac{1}{8}</annotation></semantics></math>. The total solution is the sum of the two solutions or <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mn>8</mn></mfrac><msup><mi>e</mi><mrow><mi>−</mi><mi>t</mi></mrow></msup><mo>−</mo><mfrac><mn>1</mn><mn>8</mn></mfrac><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup><mo>+</mo><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup><mo>=</mo><mfrac><mn>1</mn><mn>8</mn></mfrac><msup><mi>e</mi><mrow><mi>−</mi><mi>t</mi></mrow></msup><mo>+</mo><mfrac><mn>7</mn><mn>8</mn></mfrac><msup><mi>e</mi><mrow><mi>−</mi><mn>9</mn><mi>t</mi></mrow></msup></mrow><annotation encoding="application/x-tex">
   y(t) = \frac{1}{8} e^{-t} - \frac{1}{8} e^{-9t} + e^{-9t} = \frac{1}{8} e^{-t} + \frac{7}{8} e^{-9t}
-  \]</span></p>
+  </annotation></semantics></math></p>
 </section>
 <section id="section-3" class="level3" data-number="2.7.4">
 <h3 data-number="2.7.4" class="anchored" data-anchor-id="section-3"><span class="header-section-number">2.7.4</span> </h3>
-<p>Compute the integral <span class="math display">\[
+<p>Compute the integral <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munderover><mo>∫</mo><mrow><mi>−</mi><mi>∞</mi></mrow><mo accent="false">∞</mo></munderover><msup><mi>e</mi><mrow><mi>−</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></msup><mspace width="0.167em"></mspace><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><mn>10</mn><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mi>d</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">
     \int\limits_{-\infty}^{\infty} e^{-t^2} \, \delta(t-10)\; dt
-    \]</span> where <span class="math inline">\(\delta(t)\)</span> is the delta function.</p>
+    </annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\delta(t)</annotation></semantics></math> is the delta function.</p>
 <p><strong>Solution:</strong></p>
-<p>Using the sifting property of the delta function <span class="math display">\[
+<p>Using the sifting property of the delta function <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munderover><mo>∫</mo><mi>a</mi><mi>b</mi></munderover><mi>f</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.167em"></mspace><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mi>d</mi><mi>t</mi><mo>=</mo><mi>f</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>t</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">
   \int\limits_{a}^{b} f(t) \, \delta(t-t_0)\; dt = f(t_0)
-  \]</span> for <span class="math inline">\(a &lt; t_0 &lt; b\)</span>, we get <span class="math display">\[
+  </annotation></semantics></math> for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>&lt;</mo><msub><mi>t</mi><mn>0</mn></msub><mo>&lt;</mo><mi>b</mi></mrow><annotation encoding="application/x-tex">a &lt; t_0 &lt; b</annotation></semantics></math>, we get <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munderover><mo>∫</mo><mrow><mi>−</mi><mi>∞</mi></mrow><mo accent="false">∞</mo></munderover><msup><mi>e</mi><mrow><mi>−</mi><msup><mi>t</mi><mn>2</mn></msup></mrow></msup><mspace width="0.167em"></mspace><mi>δ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo>−</mo><mn>10</mn><mo stretchy="true" form="postfix">)</mo></mrow><mspace width="0.278em"></mspace><mi>d</mi><mi>t</mi><mo>=</mo><msup><mi>e</mi><mrow><mi>−</mi><mn>100</mn></mrow></msup><mo>≈</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">
   \int\limits_{-\infty}^{\infty} e^{-t^2} \, \delta(t-10)\; dt = e^{-100} \approx 0
-  \]</span></p>
+  </annotation></semantics></math></p>
 
 
 </section>
