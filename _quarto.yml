@@ -7,7 +7,7 @@ book:
   author: "C.L. Wyatt"
   date: last-modified
   sidebar:
-    style: docked
+    style: floating
     search: false
   chapters:
     - index.qmd
