@@ -17,6 +17,7 @@ book:
     - 03-dt-signals.qmd
     - 04-ct-lccde.qmd
     - 05-dt-lccde.qmd
+    - 06-ct-lti.qmd
     - references.qmd
   
 bibliography: references.bib
@@ -30,7 +31,12 @@ format:
     theme: simplex
     toc: true
     code-fold: true
-
+  pdf:
+    pdf-engine: pdflatex
+    default-image-extension: pdf
+  docx: default
+  odt: default
+  epub: default
 
 
 

@@ -1,12 +1,5 @@
 ---
 title: "DT systems as linear constant coefficient difference equations"
-
-diagram:
-  engine:
-    tikz:
-      execpath: pdflatex
-      header-includes:
-        - '\usepackage{circuitikz,pgfplots}'
 ---
 
 A *difference equation* is a relation among combinations of two DT

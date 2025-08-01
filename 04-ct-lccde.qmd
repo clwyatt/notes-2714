@@ -1,12 +1,5 @@
 ---
 title: "CT Systems as Linear Constant Coefficient Differential Equations"
-
-diagram:
-  engine:
-    tikz:
-      execpath: pdflatex
-      header-includes:
-        - '\usepackage{circuitikz,pgfplots}'
 ---
 
 Recall a system is a transformation of signals, turning the input signal

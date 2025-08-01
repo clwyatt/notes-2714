@@ -1,14 +1,5 @@
 ---
 title: "Continuous-Time Signals"
-
-diagram:
-  engine:
-    tikz:
-      execpath: pdflatex
-      header-includes:
-        - '\usepackage{circuitikz,pgfplots}'
-
-code-annotations: true
 ---
 
 A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.

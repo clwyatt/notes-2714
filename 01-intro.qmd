@@ -1,13 +1,6 @@
 ---
-diagram:
-  engine:
-    tikz:
-      execpath: pdflatex
-      header-includes:
-        - '\usepackage{circuitikz}'
+title: "Course Introduction"
 ---
-
-# Course Introduction
 
 The concepts and techniques in this course are probably the most useful
 in engineering. A *signal* is a function of one or more independent

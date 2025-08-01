@@ -1,12 +1,5 @@
 ---
 title: "Discrete-Time Signals"
-
-diagram:
-  engine:
-    tikz:
-      execpath: pdflatex
-      header-includes:
-        - '\usepackage{circuitikz,pgfplots}'
 ---
 
 Recall from the previous chapter that a discrete-time (DT) signal is modeled as a function $f: \mathbb{Z} \rightarrow \mathbb{C}$. We will write these as $x[n]$, $y[n]$, etc. Note $n$ is dimensionless. These are graphically plotted as stem or "lollipop" plots, as demonstrated in Chapter 2.
