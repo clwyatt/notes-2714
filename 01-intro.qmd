@@ -8,28 +8,7 @@ variables conveying information about a physical (or virtual) phenomena.
 A *system* may respond to signals to produce other signals, or produce
 signals directly.
 
-```{.tikz}
-%%| filename: figure1-1
-%%| fig-align: center
-%%| alt: Diagram showing how the input of a sytem is related to the output.
-
-\usetikzlibrary{shapes,arrows,decorations.pathreplacing}
-\tikzstyle{block} = [draw, fill=gray!20, rectangle, 
-    minimum height=3em, minimum width=6em]
-\tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
-\tikzstyle{input} = [coordinate]
-\tikzstyle{output} = [coordinate]
-\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
-
-  \begin{tikzpicture}[auto, node distance=3cm,>=latex']
-    \node [input, name=input] {};
-    \node [block, right of=input] (system) {System $T$};
-    \node [output, right of=system] (output) {};
-
-    \draw [draw,->] (input) -- node {Input $x$} (system);
-    \draw [->] (system) -- node {Output $y$} (output);
-  \end{tikzpicture}
-```
+![A block diagram representing a system.](figures/fig1_1){fig-align="center" fig-alt="Diagram showing how the input of a sytem is related to the output."}
 
 This course is about the mathematical models and related techniques for
 the design and understanding of systems as signal transformations. We
@@ -52,31 +31,7 @@ Example
 **Electrical Circuits.** This is a Sallen-Key filter, a second-order system
 commonly use to select frequencies from a signal:
 
-```{.tikz}
-%%| filename: figure1-2
-%%| fig-align: center
-%%| alt: Diagram showing a circuit corresponding to a Sallen-Key filter.
-
-\begin{circuitikz}[american voltages,scale=1.0, every node/.style={transform shape}]
-      \draw
-      (7,3.5) node[op amp] (opamp1) {}
-      (0,4) to[R,l=$R_1$,o-] (2,4)
-      (2,4) to[short] (2,5)
-      (2,5) to[C,l=$C_1$] (8.2,5)
-      (8.2,5) to[short] (opamp1.out) 
-      (2,4) to[R, l=$R_2$] (4,4)
-      (4,4) to[C, l=$C_2$] (4,0)
-      (0,0) to[short,o-o] (12,0)
-      (4,4) to[short] (opamp1.-)
-      (opamp1.+) to[short] (5.8,1.75)
-      (5.8,1.75) to[short] (8.2,1.75)
-      (opamp1.out) to[R, l=$(1-\beta)R$] (8.2,1.75)
-      (8.2,1.75) to[R, l=$\beta R$] (8.2,0)
-      (opamp1.out) to[short, -o] (12,3.5)
-      (0,4) to[open, v=$x(t)$] (0,0)
-      (12,3.5) to[open, v=$y(t)$] (12,0);
-\end{circuitikz}
-```
+![A circuit that implements a Sallen-Key filter.](figures/fig1_2){fig-align="center" fig-alt="Diagram showing a circuit corresponding to a Sallen-Key filter."}
 
 There are two signals we can easily identify, the input signal as the
 voltage applied across $x(t)$, and the output voltage measured across

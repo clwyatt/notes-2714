@@ -22,20 +22,17 @@ book:
   
 bibliography: references.bib
 
-filters:
-  - diagram
-
 format:
   html:
     html-math-method: mathml
+    default-image-extension: svg
     theme: simplex
     toc: true
     code-fold: true
-  pdf:
-    pdf-engine: pdflatex
-    default-image-extension: pdf
+  # pdf:
+  #   pdf-engine: pdflatex
+  #   default-image-extension: pdf
   docx: default
-  odt: default
   epub: default
 
 

@@ -1,0 +1,11 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+
+\begin{tikzpicture}[]
+
+\end{tikzpicture}
+
+\end{document}
