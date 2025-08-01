@@ -1,0 +1,24 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing}
+     \tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+      minimum height=3em, minimum width=3em]
+    \tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+    \tikzstyle{input} = [coordinate]
+    \tikzstyle{output} = [coordinate]
+    \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+  \begin{tikzpicture}[auto, scale=1.2, node distance=3cm,>=latex']
+    \node [input, name=input] {};
+    \node [block, right of=input] (system) {System?};
+    \node [output, right of=system] (output) {};
+
+    \draw [draw,->] (input) -- node {Input $x$} (system);
+    \draw [->] (system) -- node {Output $y$} (output);
+  \end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,36 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+
+    \tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+      minimum height=3em, minimum width=3em]
+    \tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+    \tikzstyle{input} = [coordinate]
+    \tikzstyle{output} = [coordinate]
+    \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+    \begin{tikzpicture}[auto, node distance=2cm,>=latex, scale=1.0, every node/.style={transform shape}]
+
+      \node [sum] at (2.5,0) (vsum) {$\Sigma$};
+      \node [block] at (4,0) (arm) {$\frac{1}{R_a + L_a s}$};
+      \node [block] at (6,0) (torque) {$K_i$};
+      \node [sum] at (8,0) (tsum) {$\Sigma$};
+      \node [block] at (9.5,0) (motor) {$\frac{1}{B_m + J_m s}$};
+      \node [block] at (12,0) (int) {$\frac{1}{s}$};
+      \node [block] at (6,-2) (backemf) {$K_b$};
+
+      \draw [->] (1.5,0) node [left] {$e_a$} -- node[pos=0.8] {$+$} (vsum);
+      \draw [->] (vsum) -- (arm);
+      \draw [->] (arm) -- (torque) node [midway,above] {$i_a$};
+      \draw [->] (torque) -- node[pos=0.8] {$+$} (tsum) node [midway,above] {$\tau_m$};
+      \draw [->] (tsum) -- (motor);
+      \draw [->] (8,1) node[above] {$\tau_L$} -- node[pos=0.8] {$-$} (tsum);
+      \draw [->] (motor) -- (int) node [midway,above] {$\omega_m$};
+      \draw [->] (11,0) |- (backemf);
+      \draw [->] (backemf) -| node[midway] {$e_b$} node[pos=0.95] {$-$} (vsum);
+      \draw [->] (int) -- (13,0) node[right] {$\theta_m$};
+    \end{tikzpicture}
+
+\end{document}
