@@ -10,5 +10,10 @@
 notes-2714.pdf
 version.tex
 
+figures/*.dvi
+figures/*.png
+figures/*.pdf
+figures/*.svg
+
 /.quarto/
 /*_files/
