@@ -1,0 +1,66 @@
+---
+title: "6. Linear Time Invariant CT Systems"
+
+abstract: |
+   Today's topic is our introduction to CT systems and the important case of CT Linear, Time-Invariant Systems.
+   
+format:
+  html:
+    toc: true
+    default-image-extension: svg
+    html-math-method: mathml
+    theme: simplex
+    code-fold: true
+  pdf:
+    pdf-engine: pdflatex
+    default-image-extension: pdf
+  docx: default
+  odt: default
+  epub: default
+---
+
+## System types
+
+A system is an interconncted set of components or sub-systems. Mathematically a system is a transformation between one or more signals, a rule that maps functions to functions.
+
+* single input - single output (SISO) system.
+
+  ![SISO Block Diagram ](figures/fig6_1){fig-align="center" fig-alt="diagram showing the block diagram of a single-input single-output system"}
+
+* single input - multiple output (SIMO) system
+
+  ![SIMO Block Diagram ](figures/fig6_2){fig-align="center" fig-alt="diagram showing the block diagram of a single-input multiple-output system"}
+
+* general case, multiple input - multiple output (MIMO)
+
+```{.tikz}
+%%| filename: figure6-3
+%%| fig-align: center
+%%| alt: diagram showing the block diagram of a single-input single-output system
+
+\usetikzlibrary{shapes,arrows}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing}
+\tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+    minimum height=3em, minimum width=6em]
+\tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+
+    \begin{tikzpicture}[auto, node distance=3cm,>=latex']
+      \node [input, name=input] {};
+      \node [block, right of=input] (system) {System $T$};
+      \node [output, right of=system] (output) {};
+      
+      \draw [draw,->] (input) -- node {Input $\vec x$} (system);
+      \draw [->] (system) -- node {Output $\vec y$} (output);
+    \end{tikzpicture}
+
+```
+
+We will focus on single input - single output, CT and DT systems.
+
+
