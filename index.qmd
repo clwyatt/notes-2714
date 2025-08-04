@@ -1,20 +1,21 @@
 
 {{< include _version.qmd >}}
 
-# About the Notes {.unnumbered}
+## About the Notes {.unnumbered}
 
 This is a set of supplementary notes and examples for ECE 2714 in the Bradley Department of Electrical and Computer Engineering at Virginia Tech.
 
 See a mistake? [file an issue](https://github.com/clwyatt/notes-2714/issues). This helps improve the notes.
 
-## License {.unnumbered}
+### License {.unnumbered}
 
 This work is licensed under a Creative Commons Attribution 4.0 International License.
 
-## Update History {.unnumbered}
+### Update History {.unnumbered}
 
 This book is continually updated as new content becomes available and errata corrected.
 
+* July 2025: Conversion of Chapters 2-5 complete.
 * June 2025: Conversion of Chapter 1 complete.
 * Feb 2025: Conversion from LaTeX pdf to accessible html started.
 
