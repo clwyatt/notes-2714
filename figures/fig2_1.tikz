@@ -1,0 +1,18 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+
+  \begin{circuitikz}[american voltages,scale=1.0, every node/.style={transform shape}]
+    \draw
+    (0,2.3) to[battery, l=$V$] (0,0)
+    (3,2) node[spdt,xscale=-1,yscale=-1,anchor=in] (Sw) {}
+    (0,2.3) to[short] (Sw.out 2)
+    (Sw.out 1) to[short] (1.8,0)
+    (0,0) to[short, -o] (4,0)
+    (3,2) to[short, -o] (4,2)
+    (4,2) to[open, v=$x(t)$] (4,0);
+  \end{circuitikz}
+
+\end{document}

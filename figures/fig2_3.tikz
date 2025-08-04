@@ -1,0 +1,14 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+
+  \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+    \begin{axis}[ xlabel=$t$, axis x line=center, axis y line = center, 
+        xmin=-2, xmax=2, ymin=0, ymax=1.1, x label style={at={(axis cs:2,0)},anchor=west}]
+      \addplot+[ycomb,mark=triangle,style={ultra thick}] plot coordinates {(0,1)};
+    \end{axis}
+  \end{tikzpicture}
+  
+\end{document}

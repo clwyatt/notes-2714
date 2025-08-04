@@ -27,7 +27,7 @@ book:
 
 format:
   html:
-    html-math-method: mathml
+    html-math-method: mathjax
     default-image-extension: svg
     theme: simplex
     css: style.css
@@ -38,7 +38,5 @@ format:
 # pdf:
 #   pdf-engine: pdflatex
 #   default-image-extension: pdf
-
-
 
 bibliography: references.bib

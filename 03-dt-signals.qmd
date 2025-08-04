@@ -1,5 +1,7 @@
 ---
 title: "Discrete-Time Signals"
+execute:
+  echo: false
 ---
 
 Recall from the previous chapter that a discrete-time (DT) signal is modeled as a function $f: \mathbb{Z} \rightarrow \mathbb{C}$. We will write these as $x[n]$, $y[n]$, etc. Note $n$ is dimensionless. These are graphically plotted as stem or "lollipop" plots, as demonstrated in Chapter 2.
@@ -402,5 +404,5 @@ exponential.
 The visualization of the general case is to view the signal $x[n]$ as a
 vector rotating through fixed angles in the complex plane.
 
-![The DT complex sinusoid at a specific point in time.](graphics/DT_complexsinusoid_visual.svg){fig-alt="A figure visualizing the DT complex sinusoid at a specific point in time."}
+![The DT complex sinusoid at a specific point in time.](images/DT_complexsinusoid_visual.svg){fig-alt="A figure visualizing the DT complex sinusoid at a specific point in time." #fig-dt-complex-sinusoid}
 

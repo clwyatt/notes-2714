@@ -1,0 +1,22 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+
+\begin{circuitikz}[american voltages, every node/.style={transform shape}]
+    \draw
+    (0,2.3) to[battery, l=$1\mbox{ VDC}$] (0,0)
+    (3,2) node[spdt,xscale=-1,yscale=-1,anchor=in] (Sw) {}
+    (0,2.3) to[short] (Sw.out 2)
+    (Sw.out 1) to[short] (1.8,0)
+    (0,0) to[short, -o] (8,0)
+    (3,2) to[short] (4,2)
+    (4,2) to[open, v=$x(t)$] (4,0)
+    (4,2) to[R, l=$R$] (6,2)
+    (6,2) to[short, -o] (8,2)
+    (6,0) to[C, l=$C$] (6,2)
+    (8,2) to[open, v=$V_C(t)$] (8,0);
+\end{circuitikz}
+
+\end{document}

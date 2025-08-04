@@ -1,5 +1,7 @@
 ---
 title: "Continuous-Time Signals"
+execute:
+      echo: false
 ---
 
 A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.
@@ -179,23 +181,7 @@ Example
 ::::{.example-container}
 **Modeling a Switch:** Consider a mathematical model of a switch, which moves positions at time $t = 0$.
 
-```{.tikz}
-%%| filename: figure2-1
-%%| fig-align: center
-%%| fig-cap: 
-%%| alt: Circuit showing a single pole, single throw switch connected to a unit DC source.
-
-  \begin{circuitikz}[american voltages,scale=1.0, every node/.style={transform shape}]
-    \draw
-    (0,0) to[battery, l=$V$] (0,2.3)
-    (3,2) node[spdt,xscale=-1,yscale=-1,anchor=in] (Sw) {}
-    (0,2.3) to[short] (Sw.out 2)
-    (Sw.out 1) to[short] (1.8,0)
-    (0,0) to[short, -o] (4,0)
-    (3,2) to[short, -o] (4,2)
-    (4,2) to[open, v=$x(t)$] (4,0);
-  \end{circuitikz}
-```
+![Single pole, single throw switch connected to a unit DC source.](figures/fig2_1){fig-align="center" fig-alt="Diagram showing a single pole, single throw switch connected to a unit DC source." #fig-spst-switch}
 
 We use this model so much we give it it's own name and symbol: Unit Step, $u(t)$
 
@@ -207,22 +193,9 @@ u(t) = \left\{  \begin{array}{cl}
 $$
 so a mathematical model of the switch circuit above would be $x(t) = V u(t)$.
 
-  Note: some texts define the step function at $t=0$ to be $1$ or $\frac{1}{2}$. It is typically plotted like so:
+Note: some texts define the step function at $t=0$ to be $1$ or $\frac{1}{2}$. It is typically plotted like so:
 
-```{.tikz}
-%%| filename: figure2-2
-%%| fig-align: center
-%%| fig-cap: 
-%%| alt: Plot of the unit step function.
-
-    \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
-  \begin{axis}[ xlabel=$t$, axis x line=center, axis y line = center, 
-    xmin=-2, xmax=2, ymin=0, ymax=1.1, x label style={at={(axis cs:2,0)},anchor=west}]
-    \draw[-,blue,style={ultra thick}] (axis cs:-2,0) -- (axis cs:0,0);
-    \draw[-latex,blue,style={ultra thick}] (axis cs:0,1) -- (axis cs:2,1);
-  \end{axis}
-\end{tikzpicture}
-```
+![Plot of the unit step function. It turns on at the time origin and stays on forever.](figures/fig2_2){fig-align="center" fig-alt="plot showing a unit step function. See caption." #fig-step-function}
 
 ::::
 :::
@@ -430,19 +403,7 @@ $$
 $$
 which we draw as a vertical arrow in plots:
 
-```{.tikz}
-%%| label: fig-delta-plot
-%%| fig-align: "center"
-%%| fig-cap: The delta function shown as a graph.
-%%| alt: Plot of the delta function.
-
-  \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
-    \begin{axis}[ xlabel=$t$, axis x line=center, axis y line = center, 
-        xmin=-2, xmax=2, ymin=0, ymax=1.1, x label style={at={(axis cs:2,0)},anchor=west}]
-      \addplot+[ycomb,mark=triangle,style={ultra thick}] plot coordinates {(0,1)};
-    \end{axis}
-  \end{tikzpicture}
-```
+![Plot of the CT delta function.](figures/fig2_3){fig-align="center" fig-alt="vertical arrow centered at time origin" #fig-delta-function}
 
 Note the height of the arrow is arbitrary. Often in the case of a non-unit impulse function the area is written in parenthesis near the arrow tip.
 
@@ -501,37 +462,13 @@ where the parameters $C, a \in \mathbb{C}$ in general.
 
 When $C$ and $a$ are both real ($\Im(C) = \Im(a) = 0$), we have the familiar exponential. When $a > 0$ and $C > 0$, $x(t) = C e^{a t}$ looks like:
 
-```{.tikz}
-%%| fig-align: center
-%%| fig-cap: 
-%%| alt: Plot of the expoential function with real, positive parameter.
+![Plot of the expoential function with real, positive parameter.](figures/fig2_4){fig-align="center" fig-alt="plot. refer to caption." #fig-real-pos-exp}
 
-  \begin{tikzpicture}
-    \begin{axis}[xmin=-2, xmax=2, ymin = 0, ymax=7, samples=50, xlabel=$t$, xticklabels={,,}, yticklabels={,,}]
-      \addplot[blue, thick] (x,e^x);
-      \addplot[mark=none, black] coordinates {(0,0) (0,7)};
-      \addplot[mark=none, black] coordinates {(-2,1) (2,1)};
-      \node at (axis cs:0,2) [anchor=north east] {$C$};
-    \end{axis}
-  \end{tikzpicture}
-```
 
 When $a < 0$ and $C > 0$, $x(t) = C e^{a t}$ looks like:
 
-```{.tikz}
-%%| fig-align: center
-%%| fig-cap: 
-%%| alt: Plot of the expoential function with real, negative parameter.
+![Plot of the expoential function with real, negative parameter.](figures/fig2_5){fig-align="center" fig-alt="plot. refer to caption." #fig-real-neg-exp}
 
-  \begin{tikzpicture}
-    \begin{axis}[xmin=-2, xmax=2, ymin = 0, ymax=7, samples=50, xlabel=$t$, xticklabels={,,}, yticklabels={,,}]
-      \addplot[blue, thick] (x,e^-x);
-      \addplot[mark=none, black] coordinates {(0,0) (0,7)};
-      \addplot[mark=none, black] coordinates {(-2,1) (2,1)};
-      \node at (axis cs:0,2) [anchor=north east] {$C$};
-    \end{axis}
-  \end{tikzpicture}
-```
 
 If $C < 0$ the signals reflect about the time axis.
 
@@ -692,7 +629,7 @@ Each part is a real sinusoid whose amplitude is modulated by a real exponential.
 
 An important visualization of the general case is to view the signal $x(t)$ as a vector rotating counter-clockwise in the complex plane for positive $t$.
 
-![The CT complex sinusoid at a specific point in time.](graphics/CT_complexsinusoid_visual.svg){fig-alt="A figure visualizing the CT complex sinusoid at a specific point in time."}
+![The CT complex sinusoid at a specific point in time.](images/CT_complexsinusoid_visual.svg){fig-alt="A figure visualizing the CT complex sinusoid at a specific point in time." #fig-ct-complex-sinusoid}
 
 For $r < 0$ the tip of the arrow traces out an inward spiral, whereas for $r > 0$ it traces out an outward spiral. For $r = 0$ it traces out the unit circle.
 

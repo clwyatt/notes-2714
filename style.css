@@ -28,9 +28,10 @@
   border-bottom-right-radius: 10px;
 }
 
-/* increase the padding around math blocks */
+/* increase the padding around math blocks and center */
 math[display="block"] {
   display: block;
   padding-top: 1em;
   padding-bottom: 1em;
+  margin: 0 auto;
 }
