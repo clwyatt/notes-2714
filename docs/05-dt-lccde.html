@@ -120,15 +120,15 @@ window.Quarto = {
       <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
-            <a class="dropdown-item quarto-navbar-tools-item" href="./Supplementary-Notes-for-ECE-2714--Signals-and-Systems.epub">
-              <i class="bi bi-journal pe-1"></i>
-            Download ePub
+            <a class="dropdown-item quarto-navbar-tools-item" href="./Supplementary-Notes-for-ECE-2714--Signals-and-Systems.pdf">
+              <i class="bi bi-file-pdf pe-1"></i>
+            Download PDF
             </a>
           </li>
           <li>
-            <a class="dropdown-item quarto-navbar-tools-item" href="./Supplementary-Notes-for-ECE-2714--Signals-and-Systems.docx">
-              <i class="bi bi-file-word pe-1"></i>
-            Download Docx
+            <a class="dropdown-item quarto-navbar-tools-item" href="./Supplementary-Notes-for-ECE-2714--Signals-and-Systems.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
             </a>
           </li>
       </ul>
@@ -288,13 +288,12 @@ The delay form would be: <span class="math display">\[3y[n] + 4y[n-1] + 5y[n-2] 
 </div>
 <div class="example-container">
 <p>Consider the first-order difference equation <span class="math display">\[y[n+1] + y[n] = x[n+1]\]</span> where <span class="math inline">\(y[-1] = 1\)</span> and <span class="math inline">\(x[n] = u[n]\)</span>. We first convert this to delay form <span class="math display">\[y[n] = -y[n-1] + x[n]\; .\]</span> Then we can compute <span class="math inline">\(y[0]\)</span> as <span class="math display">\[y[0] = -y[-1] + x[0] = -1 + 1 = 0\]</span> and continuing</p>
-<span class="math display">\[\begin{aligned}
+<span class="math display">\[\begin{align*}
   y[1] &amp;= -y[0] + x[1] = 0 + 1 = 1\\
   y[2] &amp;= -y[1] + x[2] = -1 + 1 = 0\\
   y[3] &amp;= -y[2] + x[3] = 0 + 1 = 1\\
-  \mbox{etc.}
-  
-\end{aligned}\]</span>
+  \mbox{etc.} &amp;
+\end{align*}\]</span>
 <p>We can see that this will continue to give the alternating sequence <span class="math inline">\(1,0,1,0,1,\cdots\)</span>.</p>
 </div>
 </div>
@@ -352,12 +351,11 @@ The delay form would be: <span class="math display">\[3y[n] + 4y[n-1] + 5y[n-2] 
 <div class="example-container">
 <p>Find the impulse response of the system given by <span class="math display">\[y[n+1] - \frac{1}{2}y[n] = x[n+1] + x[n]\]</span></p>
 <p>In step 1 we note the solution to <span class="math inline">\(Q(E)y[n] = 0\)</span> is of the form <span class="math display">\[y_h[n] = C\left( \frac{1}{2}\right)^n\]</span> From step 2 we note <span class="math inline">\(b_N = 1\)</span> and <span class="math inline">\(a_N = -\frac{1}{2}\)</span>, so that <span class="math display">\[h[n] = -2\delta[n]  +  C\left( \frac{1}{2}\right)^n\, u[n]\]</span> In step 3 we manually find <span class="math inline">\(h[0]\)</span></p>
-<span class="math display">\[\begin{aligned}
+<span class="math display">\[\begin{align*}
     y[n] &amp;= \frac{1}{2}y[n-1] + x[n] + x[n-1]\\
     h[n] &amp;= \frac{1}{2}y[n-1] + \delta[n] + \delta[n-1]\\
-    h[0] &amp;= 0 + 1 + 0 = 1
-  
-\end{aligned}\]</span>
+    h[0] &amp;= 0 + 1 + 0 = 1  
+\end{align*}\]</span>
 <p>And in step 4 we solve for <span class="math inline">\(C\)</span> <span class="math display">\[h[0] = -2  +  C = 1 \mbox{ implies } C = 3\]</span> to give <span class="math display">\[h[n] = -2\delta[n]  +  3\left( \frac{1}{2}\right)^n\, u[n]\]</span></p>
 </div>
 </div>
