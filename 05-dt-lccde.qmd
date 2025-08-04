@@ -121,13 +121,12 @@ $$y[0] = -y[-1] + x[0] = -1 + 1 = 0$$ and continuing
 
 
 ```{=latex}
-\begin{aligned}
+\begin{align*}
   y[1] &= -y[0] + x[1] = 0 + 1 = 1\\
   y[2] &= -y[1] + x[2] = -1 + 1 = 0\\
   y[3] &= -y[2] + x[3] = 0 + 1 = 1\\
-  \mbox{etc.}
-  
-\end{aligned}
+  \mbox{etc.} &
+\end{align*}
 ```
 
 We can see that this will continue to give the
@@ -292,12 +291,11 @@ $$h[n] = -2\delta[n]  +  C\left( \frac{1}{2}\right)^n\, u[n]$$ In step 3
 we manually find $h[0]$
 
 ```{=latex}
-\begin{aligned}
+\begin{align*}
     y[n] &= \frac{1}{2}y[n-1] + x[n] + x[n-1]\\
     h[n] &= \frac{1}{2}y[n-1] + \delta[n] + \delta[n-1]\\
-    h[0] &= 0 + 1 + 0 = 1
-  
-\end{aligned}
+    h[0] &= 0 + 1 + 0 = 1  
+\end{align*}
 ```
 
 And in step 4 we solve for $C$

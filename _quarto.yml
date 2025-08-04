@@ -7,7 +7,7 @@ book:
   author: "C.L. Wyatt"
   date: last-modified
   repo-url: https://github.com/clwyatt/notes-2714
-  downloads: [epub,docx]
+  downloads: [pdf, epub]
   navbar:
     title: "Supplementary Notes for ECE 2714: Signals and Systems"
   sidebar:
@@ -33,10 +33,9 @@ format:
     css: style.css
     toc: true
     code-fold: true
-  docx: default
   epub: default
-# pdf:
-#   pdf-engine: pdflatex
-#   default-image-extension: pdf
+  pdf:
+    pdf-engine: pdflatex
+    default-image-extension: pdf
 
 bibliography: references.bib
