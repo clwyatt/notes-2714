@@ -33,6 +33,7 @@ format:
     css: style.css
     toc: true
     code-fold: true
+    highlight-style: a11y-light
   epub: default
   pdf:
     pdf-engine: pdflatex
