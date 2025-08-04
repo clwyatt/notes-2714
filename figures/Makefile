@@ -1,6 +1,6 @@
 # build pdf, svg, and png versions of tikz figures
 
-SOURCES=$(wildcard *.tikz)
+SOURCES=$(wildcard fig*.tikz)
 PDFTARGETS= $(SOURCES:%.tikz=%.pdf)
 SVGTARGETS= $(SOURCES:%.tikz=%.svg)
 PNGTARGETS= $(SOURCES:%.tikz=%.png)
