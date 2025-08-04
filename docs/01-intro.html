@@ -41,13 +41,13 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d9599027ee90100a95cbb1a4f3462695.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0f13de7f0c3257c4791f694a312a3f14.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -70,13 +70,73 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Supplementary Notes for ECE 2714: Signals and Systems</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="https://github.com/clwyatt/notes-2714" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="./Supplementary-Notes-for-ECE-2714--Signals-and-Systems.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="./Supplementary-Notes-for-ECE-2714--Signals-and-Systems.docx">
+              <i class="bi bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -89,14 +149,9 @@ ul.task-list li input[type="checkbox"] {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Supplementary Notes for ECE 2714: Signals and Systems</a> 
-    </div>
-      </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -139,6 +194,12 @@ ul.task-list li input[type="checkbox"] {
   <div class="sidebar-item-container"> 
   <a href="./05-dt-lccde.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ct-lti.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">6. Linear Time Invariant CT Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -187,7 +248,12 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>The concepts and techniques in this course are probably the most useful in engineering. A <em>signal</em> is a function of one or more independent variables conveying information about a physical (or virtual) phenomena. A <em>system</em> may respond to signals to produce other signals, or produce signals directly.</p>
-<img src="01-intro_files/mediabag/figure1-1.svg" class="img-fluid" alt="Diagram showing how the input of a sytem is related to the output.">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig1_1.svg" class="img-fluid figure-img" alt="Diagram showing how the input of a sytem is related to the output."></p>
+<figcaption>A block diagram representing a system.</figcaption>
+</figure>
+</div>
 <p>This course is about the mathematical models and related techniques for the design and understanding of systems as signal transformations. We focus on a broadly useful class of systems, known as <em>linear, time-invariant systems</em>. You will learn about:</p>
 <ul>
 <li><p>the representation and analysis of signals as information carrying channels</p></li>
@@ -201,8 +267,13 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="example-container">
 <p><strong>Electrical Circuits.</strong> This is a Sallen-Key filter, a second-order system commonly use to select frequencies from a signal:</p>
-<img src="01-intro_files/mediabag/figure1-2.svg" class="img-fluid" alt="Diagram showing a circuit corresponding to a Sallen-Key filter.">
-<p>There are two signals we can easily identify, the input signal as the voltage applied across <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x(t)</annotation></semantics></math>, and the output voltage measured across <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">y(t)</annotation></semantics></math>. We build on your circuits course by viewing this circuit as an implementation of a more abstract linear system. We see how it can be viewed as a frequency selective filter. We will see how to answer questions such as: how do we choose the values of the resistors and capacitors to select the frequencies we are interested in? and how do we determine what those frequencies are?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig1_2.svg" class="img-fluid figure-img" alt="Diagram showing a circuit corresponding to a Sallen-Key filter."></p>
+<figcaption>A circuit that implements a Sallen-Key filter.</figcaption>
+</figure>
+</div>
+<p>There are two signals we can easily identify, the input signal as the voltage applied across <span class="math inline">\(x(t)\)</span>, and the output voltage measured across <span class="math inline">\(y(t)\)</span>. We build on your circuits course by viewing this circuit as an implementation of a more abstract linear system. We see how it can be viewed as a frequency selective filter. We will see how to answer questions such as: how do we choose the values of the resistors and capacitors to select the frequencies we are interested in? and how do we determine what those frequencies are?</p>
 </div>
 </div>
 <div class="example">
@@ -211,7 +282,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="example-container">
 <p><strong>Robotic Joint.</strong> This is a Linear, Time-Invariant model of a DC motor, a mixture of electrical and mechanical components.</p>
-<img src="01-intro_files/mediabag/figure1-3.svg" class="img-fluid" alt="Diagram showing a circuit corresponding to a Sallen-Key filter.">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig1_3.svg" class="img-fluid figure-img" alt="Diagram showing a model of a DC motor."></p>
+<figcaption>A model of a DC motor.</figcaption>
+</figure>
+</div>
 <p>How do we convert the motor into a servo for use in a robotic joint? What are its characteristics (e.g.&nbsp;how fast can it move)?</p>
 </div>
 </div>
@@ -221,7 +297,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="example-container">
 <p><strong>Audio Processing.</strong> Suppose you record an interview for a podcast, but during an important part of the discussion, the HVAC turns on and there is an annoying noise in the background.</p>
-<p><img src="graphics/noisysignal.svg" class="img-fluid" alt="A plot of a noisy signal in the time domain."></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/noisysignal.svg" class="img-fluid figure-img" alt="A plot of a noisy signal in the time domain."></p>
+<figcaption>A plot of a noisy signal in the time domain.</figcaption>
+</figure>
+</div>
 <p>How could you remove the noise minimizing distortion to the rest of the audio?</p>
 </div>
 </div>
@@ -231,7 +312,12 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <div class="example-container">
 <p><strong>Communications.</strong> Consider a wireless sensor, that needs to transmit to a base station, e.g.&nbsp;a wireless mic system.</p>
-<img src="01-intro_files/mediabag/figure1-4.svg" class="img-fluid" alt="Diagram illustrating a wireless transmitter and reciever.">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig1_4.svg" class="img-fluid figure-img" alt="Diagram illustrating a wireless transmitter and reciever."></p>
+<figcaption>Diagram illustrating a wireless transmitter and reciever.</figcaption>
+</figure>
+</div>
 <p>How should the signal be processed so it can be transmitted? How should the received signal be processed?</p>
 </div>
 </div>
@@ -239,16 +325,36 @@ ul.task-list li input[type="checkbox"] {
 <section id="types-of-problems" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="types-of-problems"><span class="header-section-number">1.2</span> Types of Problems</h2>
 <p>Applications of this material occur in all areas of science and engineering. When we have a measured output but are unsure what combination of inputs and system components could have produced it, we have a <em>modeling</em> problem.</p>
-<img src="01-intro_files/mediabag/figure1-5.svg" class="img-fluid" alt="Block diagram showing an unknown system and input, but known output y">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig1_5.svg" class="img-fluid figure-img" alt="a block diagram showing an unknown system and input, but known output y"></p>
+<figcaption>A Modeling Problem</figcaption>
+</figure>
+</div>
 <p>Models are the bedrock of the scientific method and are required to apply the concepts of this course to engineering problems.</p>
 <p>When we know the input and the system description and desire to know the output we have an <em>analysis</em> problem.</p>
-<img src="01-intro_files/mediabag/figure1-6.svg" class="img-fluid" alt="Block diagram showing a known input and system, but unknown label.">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig1_6.svg" class="img-fluid figure-img" alt="a block diagram showing a known input and system, but unknown label"></p>
+<figcaption>An Analysis Problem</figcaption>
+</figure>
+</div>
 <p>Analysis problems are the kind you have encountered most often already. For example, given an electrical circuit and an applied voltage or current, what are the voltages and currents across and through the various components.</p>
 <p>When we know either the input and desired output and seek the system to perform this transformation,</p>
-<img src="01-intro_files/mediabag/figure1-7.svg" class="img-fluid" alt="Block diagram showing unknown system, but known input and output.">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig1_7.svg" class="img-fluid figure-img" alt="a block diagram showing unknown system, but known input and output"></p>
+<figcaption>An System Identification Problem</figcaption>
+</figure>
+</div>
 <p>or we know the system description and output and desire the input that would generate the output,</p>
-<img src="01-intro_files/mediabag/figure1-8.svg" class="img-fluid" alt="Block diagram showing unknown input, but known system and output.">
-<p>we have a <em>design problem</em>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig1_8.svg" class="img-fluid figure-img" alt="a block diagram showing unknown input, but known system and output."></p>
+<figcaption>An Input Identification Problem</figcaption>
+</figure>
+</div>
+<p>we have a <em>design problem</em> or <em>identification problem</em>.</p>
 <p>This course focuses on modeling and analysis with applications to electrical circuits and devices for measurement and control of the physical world and is broadly applicable to all ECE majors. Some Examples:</p>
 <ul>
 <li><p>Controls, Robotics, &amp; Autonomy: LTI systems theory forms the basis of perception and control of machines.</p></li>
@@ -269,286 +375,35 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Communicate solutions to problems and document projects within the domain of signals and systems through formal written documents.</p></li>
 </ol>
 <p>These are broken down further into the following topic learning objectives (TLOs). The TLOs generally map onto one class meeting but are used extensively in later TLOs.</p>
-<ol type="1">
-<li><p>Course introduction (OW Forward and §1.0)</p>
-<ol type="1">
-<li><p>Signals as models</p></li>
-<li><p>Systems as transformation of signals</p></li>
-<li><p>Prerequisites</p></li>
-</ol></li>
-<li><p>Continuous-time (CT) signals (OW §1.1 through 1.4 and 2.5): A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.</p>
-<ol type="1">
-<li><p>Continuous-time signals as functions <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℝ</mi><mo>↦</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{R}\mapsto\mathbb{C}</annotation></semantics></math></p></li>
-<li><p>Transformations of time</p></li>
-<li><p>Characterizing signals</p>
-<ol type="1">
-<li><p>periodic/aperiodic</p></li>
-<li><p>even/odd</p></li>
-<li><p>energy or/nor power</p></li>
-</ol></li>
-<li><p>Impulse function</p></li>
-<li><p>Step function</p></li>
-<li><p>Complex exponential</p></li>
-</ol></li>
-<li><p>Discrete-time (DT) signals (OW §1.1 through 1.4)</p>
-<ol type="1">
-<li><p>Discrete-time signals as functions <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℤ</mi><mo>↦</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\mathbb{Z}\mapsto\mathbb{C}</annotation></semantics></math></p></li>
-<li><p>Transformations of time index</p></li>
-<li><p>Characterizing signals</p>
-<ol type="1">
-<li><p>periodic/aperiodic</p></li>
-<li><p>even/odd</p></li>
-<li><p>energy or/nor power</p></li>
-</ol></li>
-<li><p>Impulse function</p></li>
-<li><p>Step function</p></li>
-<li><p>Complex exponential</p></li>
-</ol></li>
-<li><p>CT systems as linear constant coefficient differential equations (OW §2.4.1)</p>
-<ol type="1">
-<li><p>LCCDE and their solution (1st and 2nd order)</p></li>
-<li><p>impulse response from LCCDE</p></li>
-</ol></li>
-<li><p>DT systems as linear constant coefficient difference equations (OW §2.4.2)</p>
-<ol type="1">
-<li><p>LCCDE and their solution (1st and 2nd order)</p></li>
-<li><p>impulse response from LCCDE</p></li>
-</ol></li>
-<li><p>Linear time invariant CT systems (OW §1.5, 1.6, 2.3)</p>
-<ol type="1">
-<li><p>Memory</p></li>
-<li><p>Invertability</p></li>
-<li><p>Causality</p></li>
-<li><p>Stability</p></li>
-<li><p>Time-invariance</p></li>
-<li><p>Linearity</p></li>
-<li><p>Define LTI system</p></li>
-</ol></li>
-<li><p>Linear time invariant DT systems (OW §1.5, 1.6, 2.3)</p>
-<ol type="1">
-<li><p>Memory</p></li>
-<li><p>Invertability</p></li>
-<li><p>Causality</p></li>
-<li><p>Stability</p></li>
-<li><p>Time-invariance</p></li>
-<li><p>Linearity</p></li>
-<li><p>Define LTI system</p></li>
-</ol></li>
-<li><p>CT convolution (OW §2.2)</p>
-<ol type="1">
-<li><p>Review CT LTI systems and superposition property</p></li>
-<li><p>CT Convolution Integral</p></li>
-<li><p>Properties of convolution</p>
-<ol type="1">
-<li><p>communative</p></li>
-<li><p>distributive</p></li>
-<li><p>associative</p></li>
-</ol></li>
-<li><p>Determining system response using convolution with impulse response</p></li>
-</ol></li>
-<li><p>DT convolution (OW §2.1)</p>
-<ol type="1">
-<li><p>Review DT LTI systems and superposition property</p></li>
-<li><p>DT Convolution Sum</p></li>
-<li><p>Properties of convolution</p>
-<ol type="1">
-<li><p>communative</p></li>
-<li><p>distributive</p></li>
-<li><p>associative</p></li>
-</ol></li>
-<li><p>Determining system response using convolution with impulse response</p></li>
-</ol></li>
-<li><p>CT block diagrams (OW §1.5.2 and 2.4.3)</p>
-<ol type="1">
-<li><p>blocks represented by impulse response</p></li>
-<li><p>series and parallel connections, reductions</p></li>
-<li><p>scale, sum, and integrator blocks</p></li>
-<li><p>equivalence of LCCDE’s and block diagrams</p></li>
-<li><p>first-order differential equation as feedback motif</p></li>
-<li><p>second-order differential equation as a feedback motif</p></li>
-<li><p>implementing a LCCDE using adders, multipliers, and integrators</p></li>
-</ol></li>
-<li><p>DT block diagrams (OW §1.5.2 and 2.4.3)</p>
-<ol type="1">
-<li><p>blocks represented by impulse response</p></li>
-<li><p>series and parallel connections, reductions</p></li>
-<li><p>scale, sum, and unit delay blocks</p></li>
-<li><p>equivalence of LCCDE’s and block diagrams</p></li>
-<li><p>first-order difference equation as feedback motif</p></li>
-<li><p>second-order difference equation as a feedback motif</p></li>
-<li><p>implementing a LCCDE using adders, multipliers, and delays</p></li>
-</ol></li>
-<li><p>Eigenfunctions of CT systems (OW §3.2 and 3.8)</p>
-<ol type="1">
-<li><p>Eigenfunction <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>e</mi><mrow><mi>s</mi><mi>t</mi></mrow></msup><annotation encoding="application/x-tex">e^{st}</annotation></semantics></math></p></li>
-<li><p>Transfer Function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>s</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">H(s)</annotation></semantics></math></p></li>
-<li><p>Stability and Frequency Response (FR) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>j</mi><mi>ω</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">H(j\omega)</annotation></semantics></math></p></li>
-<li><p>How this is useful - decomposition of input signal into complex exp</p></li>
-<li><p>What signals can be decomposed this way, foreshadow Fourier Analysis</p></li>
-</ol></li>
-<li><p>Eigenfunctions of DT systems (OW §3.2 and 3.8)</p>
-<ol type="1">
-<li><p>Eigenfunction <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>z</mi><mi>n</mi></msup><annotation encoding="application/x-tex">z^{n}</annotation></semantics></math></p></li>
-<li><p>Transfer Function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>z</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">H(z)</annotation></semantics></math></p></li>
-<li><p>Stability and Frequency Response (FR) <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>H</mi><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>ω</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">H\left(e^{j\omega}\right)</annotation></semantics></math></p></li>
-<li><p>How this is useful - decomposition of input signal into complex exp</p></li>
-<li><p>What signals can be decomposed this way, foreshadow Fourier Analysis</p></li>
-</ol></li>
-<li><p>CT Fourier Series representation of signals (OW §3.3 through 3.5)</p>
-<ol type="1">
-<li><p>review CT periodic functions</p></li>
-<li><p>harmonic sums</p></li>
-<li><p>derive synthesis equation</p></li>
-<li><p>derive analysis equation</p></li>
-<li><p>spectrum plots</p></li>
-<li><p>define mean-square convergence</p></li>
-<li><p>truncated CT FS</p></li>
-<li><p>stable LTI system response using CTFS</p></li>
-<li><p>example of the impulse train (for sampling theory later)</p></li>
-<li><p>formal Dirichlet conditions</p></li>
-<li><p>properties of CT FS</p></li>
-</ol></li>
-<li><p>DT Fourier Series representation of signals (OW §3.6 and 3.7)</p>
-<ol type="1">
-<li><p>review DT periodic functions</p></li>
-<li><p>harmonic sums</p></li>
-<li><p>derive synthesis equation</p></li>
-<li><p>derive analysis equation</p></li>
-<li><p>spectrum plots</p></li>
-<li><p>stable LTI system response using DTFS</p></li>
-<li><p>properties of DT FS</p></li>
-</ol></li>
-<li><p>CT Fourier Transform (OW §4.0 through 4.7)</p>
-<ol type="1">
-<li><p>derive the CTFT pair from the CTFS</p></li>
-<li><p>Dirichlet existence conditions</p></li>
-<li><p>CTFT of the CTFS</p></li>
-<li><p>Properties of the CT Fourier Transform</p>
-<ol type="1">
-<li><p>linearity</p></li>
-<li><p>time shift</p></li>
-<li><p>conjugacy</p></li>
-<li><p>integration and differentiation: application to LCCDE <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>↦</mo><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> CTFR</p></li>
-<li><p>time scaling</p></li>
-<li><p>duality</p></li>
-<li><p>convolution: stable LTI system response using CTFT</p></li>
-<li><p>multiplication/modulation</p></li>
-<li><p>application of the properties in combination</p></li>
-</ol></li>
-</ol></li>
-<li><p>DT Fourier Transform (OW §5.0 though 5.8)</p>
-<ol type="1">
-<li><p>derive the DTFT from DTFS</p></li>
-<li><p>DTFT of DTFS</p></li>
-<li><p>Properties of the DT Fourier Transform</p>
-<ol type="1">
-<li><p>periodicity</p></li>
-<li><p>linearity</p></li>
-<li><p>index-shift: application to LCCDE <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mo>↦</mo><annotation encoding="application/x-tex">\mapsto</annotation></semantics></math> DTFR</p></li>
-<li><p>frequency shift</p></li>
-<li><p>conjugation</p></li>
-<li><p>finite difference and accumulation</p></li>
-<li><p>interpolation /index expansion</p></li>
-<li><p>frequency differentiation</p></li>
-<li><p>Parseval’s</p></li>
-<li><p>convolution: stable LTI system response using DTFT</p></li>
-<li><p>multiplication/modulation</p></li>
-<li><p>application of the properties in combination</p></li>
-</ol></li>
-</ol></li>
-<li><p>CT Frequency Response (OW §6.1, 6.2, 6.5)</p>
-<ol type="1">
-<li><p>review CTFR as CTFT of impulse response</p></li>
-<li><p>review CTFR to/from LCCDE</p></li>
-<li><p>review CTFR to/from block diagram</p></li>
-<li><p>magnitude-phase representation of the frequency response</p></li>
-<li><p>frequency response acting on sinusoids</p></li>
-<li><p>Bode plots</p>
-<ol type="1">
-<li><p>why plot it this way: dB units and log time axis</p></li>
-<li><p>how to read them (<strong>not</strong> construct them manually)</p></li>
-<li><p>Bode plots in software, e.g.&nbsp;Matlab/Python/Julia</p></li>
-</ol></li>
-<li><p>CTFR of first and second order systems</p></li>
-</ol></li>
-<li><p>DT Frequency Response (OW §6.1, 6.2, 6.6)</p>
-<ol type="1">
-<li><p>review DTFR as DTFT of impulse response</p></li>
-<li><p>review DTFR to/from LCCDE</p></li>
-<li><p>review DTFR to/from block diagram</p></li>
-<li><p>magnitude-phase representation of the frequency response</p></li>
-<li><p>frequency response acting on sinusoids</p></li>
-<li><p>DTFR plots</p>
-<ol type="1">
-<li><p>periodicity</p></li>
-<li><p>dB units</p></li>
-<li><p>DTFR plots in software, e.g.&nbsp;Matlab/Python/Julia</p></li>
-</ol></li>
-<li><p>DTFR of first and second order systems</p></li>
-</ol></li>
-<li><p>Frequency Selective Filters in CT (OW §3.9, 3.10, 6.3, 6.4)</p>
-<ol type="1">
-<li><p>ideal low-pass</p></li>
-<li><p>ideal high-pass</p></li>
-<li><p>ideal bandpass</p></li>
-<li><p>ideal notch/bandstop</p></li>
-<li><p>practical filters</p></li>
-<li><p>transformations</p></li>
-<li><p>first and second order systems as building blocks</p>
-<ol type="1">
-<li><p>review LCCDE representation</p></li>
-<li><p>review block diagram representation</p></li>
-<li><p>review CTFR representation</p></li>
-<li><p>CT 1st order RC+buffer</p></li>
-<li><p>CT Sallen-key</p></li>
-</ol></li>
-</ol></li>
-<li><p>Frequency Selective Filters in DT (OW §3.11, 6.3, 6.4)</p>
-<ol type="1">
-<li><p>ideal low-pass</p></li>
-<li><p>ideal high-pass</p></li>
-<li><p>ideal bandpass</p></li>
-<li><p>ideal notch/bandstop</p></li>
-<li><p>practical filters</p></li>
-<li><p>transformations</p></li>
-<li><p>first and second order systems as building blocks</p>
-<ol type="1">
-<li><p>review LCCDE representation</p></li>
-<li><p>review block diagram representation</p></li>
-<li><p>review DTFR representation</p></li>
-<li><p>DT 1st order implementation in code</p></li>
-<li><p>DT 2nd order implementation in code</p></li>
-</ol></li>
-</ol></li>
-<li><p>The Discrete Fourier Transform</p>
-<ol type="1">
-<li><p>time window the DTFT to get the DFT</p></li>
-<li><p>interpreting the index axis as DT and CT frequency</p></li>
-<li><p>zero-padding</p></li>
-<li><p>offline or batched filtering using the DFT</p></li>
-<li><p>briefly mention fast algorithms to compute the DFT = FFT</p></li>
-</ol></li>
-<li><p>Sampling (OW §7.1, 7.3, 7.4)</p>
-<ol type="1">
-<li><p>sampling using the impulse train</p></li>
-<li><p>derive the Nyquist rate</p></li>
-<li><p>effects of aliasing</p></li>
-<li><p>practical ADC (sample and hold, SAR, bit-width)</p></li>
-<li><p>designing anti-aliasing filters</p></li>
-</ol></li>
-<li><p>Reconstruction (OW §7.2)</p>
-<ol type="1">
-<li><p>reconstruction as removal of images</p></li>
-<li><p>reconstruction as interpolation</p></li>
-<li><p>practical DAC: R-2R ladder</p></li>
-<li><p>designing reconstruction filters</p></li>
-</ol></li>
-</ol>
+<p>TLO 1: Course introduction (OW Forward and §1.0)</p>
+<p>TLO 2: Continuous-time (CT) signals (OW §1.1 through 1.4 and 2.5): A continuous-time (CT) signal is a function of one or more independent variables conveying information about a physical phenomena. This lecture gives an introduction to continuous-time signals as functions. You learn how to characterize such signals in a number of ways and are introduced to two very important signals: the unit impulse and the complex exponential.</p>
+<p>TLO 3: Discrete-time (DT) signals (OW §1.1 through 1.4)</p>
+<p>TLO 4: CT systems as linear constant coefficient differential equations (OW §2.4.1)</p>
+<p>TLO 5: DT systems as linear constant coefficient difference equations (OW §2.4.2)</p>
+<p>TLO 6: Linear time invariant CT systems (OW §1.5, 1.6, 2.3)</p>
+<p>TLO 7: Linear time invariant DT systems (OW §1.5, 1.6, 2.3)</p>
+<p>TLO 8: CT convolution (OW §2.2)</p>
+<p>TLO 9: DT convolution (OW §2.1)</p>
+<p>TLO 10: CT block diagrams (OW §1.5.2 and 2.4.3)</p>
+<p>TLO 11: DT block diagrams (OW §1.5.2 and 2.4.3)</p>
+<p>TLO 12: Eigenfunctions of CT systems (OW §3.2 and 3.8)</p>
+<p>TLO 13: Eigenfunctions of DT systems (OW §3.2 and 3.8)</p>
+<p>TLO 14: CT Fourier Series representation of signals (OW §3.3 through 3.5)</p>
+<p>TLO 15: DT Fourier Series representation of signals (OW §3.6 and 3.7)</p>
+<p>TLO 16: CT Fourier Transform (OW §4.0 through 4.7)</p>
+<p>TLO 17: DT Fourier Transform (OW §5.0 though 5.8)</p>
+<p>TLO 18: CT Frequency Response (OW §6.1, 6.2, 6.5)</p>
+<p>TLO 19: DT Frequency Response (OW §6.1, 6.2, 6.6)</p>
+<p>TLO 20: Frequency Selective Filters in CT (OW §3.9, 3.10, 6.3, 6.4)</p>
+<p>TLO 21: Frequency Selective Filters in DT (OW §3.11, 6.3, 6.4)</p>
+<p>TLO 22: The Discrete Fourier Transform</p>
+<p>TLO 23: Sampling (OW §7.1, 7.3, 7.4)</p>
+<p>TLO 24: Reconstruction (OW §7.2)</p>
 </section>
 <section id="graphical-outline" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="graphical-outline"><span class="header-section-number">1.4</span> Graphical Outline</h2>
-<p><img src="graphics/system-representations-fig.svg" class="img-fluid" alt="A hierarchical diagram showing the two main types of system representations, those in the time domain and those in the frequency domain. Under the time domain are differential and difference equations, impulse response, and circuit or block diagrams. Under frequency domain methods are the frequency response and the Eigenvalue or Transfer function representation."></p>
-<p><img src="graphics/analysis-methods-fig.svg" class="img-fluid" alt="A hierarchical diagram showing the corresponding analysis methods in the previous figure. For time domain we have solving differential or difference equations, or using convolution. For the frequency domain we have the Fourier series, Fourier transform, or the Eigenvalue analysis (for sinusoidal inputs)"></p>
+<p><img src="images/system-representations-fig.svg" class="img-fluid" alt="A hierarchical diagram showing the two main types of system representations, those in the time domain and those in the frequency domain. Under the time domain are differential and difference equations, impulse response, and circuit or block diagrams. Under frequency domain methods are the frequency response and the Eigenvalue or Transfer function representation."></p>
+<p><img src="images/analysis-methods-fig.svg" class="img-fluid" alt="A hierarchical diagram showing the corresponding analysis methods in the previous figure. For time domain we have solving differential or difference equations, or using convolution. For the frequency domain we have the Fourier series, Fourier transform, or the Eigenvalue analysis (for sinusoidal inputs)"></p>
 
 
 </section>

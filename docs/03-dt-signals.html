@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -76,13 +41,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-226bd0f977fa82dfae4534cac220d79a.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d9599027ee90100a95cbb1a4f3462695.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0f13de7f0c3257c4791f694a312a3f14.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
+  "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
+  "panel-placement": "end",
+  "type": "overlay",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -105,13 +70,73 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar floating nav-fixed quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Supplementary Notes for ECE 2714: Signals and Systems</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="https://github.com/clwyatt/notes-2714" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Download" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Download"><i class="bi bi-download"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="./Supplementary-Notes-for-ECE-2714--Signals-and-Systems.epub">
+              <i class="bi bi-journal pe-1"></i>
+            Download ePub
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="./Supplementary-Notes-for-ECE-2714--Signals-and-Systems.docx">
+              <i class="bi bi-file-word pe-1"></i>
+            Download Docx
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+          <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
@@ -124,14 +149,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Supplementary Notes for ECE 2714: Signals and Systems</a> 
-    </div>
-      </div>
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -174,6 +194,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./05-dt-lccde.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ct-lti.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">6. Linear Time Invariant CT Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -229,30 +255,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Recall from the previous chapter that a discrete-time (DT) signal is modeled as a function <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>f</mi><mo>:</mo><mi>ℤ</mi><mo>→</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">f: \mathbb{Z} \rightarrow \mathbb{C}</annotation></semantics></math>. We will write these as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x[n]</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">y[n]</annotation></semantics></math>, etc. Note <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> is dimensionless. These are graphically plotted as stem or “lollipop” plots, as demonstrated in Chapter 2.</p>
-<p>Since the domain <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℤ</mi><annotation encoding="application/x-tex">\mathbb{Z}</annotation></semantics></math> is usually interpreted as a time index, we will still call these {} signals. In the time-domain, when the co-domain is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ℝ</mi><annotation encoding="application/x-tex">\mathbb{R}</annotation></semantics></math> we call these real DT signals. Unlike with CT signals there are no physical limitations requiring DT signals to be real, since in discrete hardware, a value at a given index can be a complex number, i.e.&nbsp;just a pair of numbers. However it is computationally advantageous to restrict ourselves to real arithmetic and such signals are often converted to or from CT signals, which do have to be real. For this reason, real DT signals dominate in models.</p>
+<p>Recall from the previous chapter that a discrete-time (DT) signal is modeled as a function <span class="math inline">\(f: \mathbb{Z} \rightarrow \mathbb{C}\)</span>. We will write these as <span class="math inline">\(x[n]\)</span>, <span class="math inline">\(y[n]\)</span>, etc. Note <span class="math inline">\(n\)</span> is dimensionless. These are graphically plotted as stem or “lollipop” plots, as demonstrated in Chapter 2.</p>
+<p>Since the domain <span class="math inline">\(\mathbb{Z}\)</span> is usually interpreted as a time index, we will still call these <em>time-domain</em> signals. In the time-domain, when the co-domain is <span class="math inline">\(\mathbb{R}\)</span> we call these real DT signals. Unlike with CT signals there are no physical limitations requiring DT signals to be real, since in discrete hardware, a value at a given index can be a complex number, i.e.&nbsp;just a pair of numbers. However it is computationally advantageous to restrict ourselves to real arithmetic and such signals are often converted to or from CT signals, which do have to be real. For this reason, real DT signals dominate in models.</p>
 <section id="primitive-models" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="primitive-models"><span class="header-section-number">3.1</span> Primitive Models</h2>
 <p>As with CT signals, we mathematically model DT signals by combining elementary/primitive functions, for example:</p>
 <ul>
-<li>polynomials: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">x[n] = n</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msup><mi>n</mi><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">x[n] = n^2</annotation></semantics></math>, etc.</li>
-<li>transendental functions: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msup><mi>e</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">x[n] = e^n</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x[n] = \sin(n)</annotation></semantics></math>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x[n] = \cos(n)</annotation></semantics></math>, etc.</li>
-<li>piecewise functions, e.g. <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>f</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mi>n</mi><mo>&lt;</mo><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><msub><mi>f</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mi>n</mi><mo>≥</mo><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">
+<li>polynomials: <span class="math inline">\(x[n] = n\)</span>, <span class="math inline">\(x[n] = n^2\)</span>, etc.</li>
+<li>transendental functions: <span class="math inline">\(x[n] = e^n\)</span>, <span class="math inline">\(x[n] = \sin(n)\)</span>, <span class="math inline">\(x[n] = \cos(n)\)</span>, etc.</li>
+<li>piecewise functions, e.g. <span class="math display">\[
 x[n] = \left\{  \begin{array}{cl}
 f_1[n] &amp; n &lt; 0\\
 f_2[n] &amp; n \geq 0\\
 \end{array}\right.
-</annotation></semantics></math></li>
+\]</span></li>
 </ul>
 <div class="example">
 <div class="example-header">
 <p>Definition</p>
 </div>
 <div class="example-container">
-<p>The DT counterpart of the CT step function is the <em>DT Unit Step</em>, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">u[n]</annotation></semantics></math>: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="left" style="text-align: left"><mi>n</mi><mo>&lt;</mo><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>1</mn></mtd><mtd columnalign="left" style="text-align: left"><mi>n</mi><mo>≥</mo><mn>0</mn></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">u[n] = \left\{  \begin{array}{cl}
+<p>The DT counterpart of the CT step function is the <em>DT Unit Step</em>, <span class="math inline">\(u[n]\)</span>: <span class="math display">\[u[n] = \left\{  \begin{array}{cl}
     0 &amp; n &lt; 0\\
     1 &amp; n \geq 0\\
-  \end{array}\right.</annotation></semantics></math> Note, there are not continuity issues at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">n=0</annotation></semantics></math> as DT functions have discrete domains.</p>
+  \end{array}\right.\]</span> Note, there are not continuity issues at <span class="math inline">\(n=0\)</span> as DT functions have discrete domains.</p>
 </div>
 </div>
 <div class="example">
@@ -260,7 +286,7 @@ f_2[n] &amp; n \geq 0\\
 <p>Example</p>
 </div>
 <div class="example-container">
-<p>A <em>sampled</em> signal modeling the air pressure of a specific tone, sampled at 8kHz, might be <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>261.6</mn><mo stretchy="true" form="postfix">)</mo></mrow><mfrac displaystyle="false"><mn>1</mn><mn>8000</mn></mfrac><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x[n] = \sin\left(2\pi (261.6) \tfrac{1}{8000} n\right)</annotation></semantics></math> Such DT signals are commonly used in digital music generation, storage, and playback.</p>
+<p>A <em>sampled</em> signal modeling the air pressure of a specific tone, sampled at 8kHz, might be <span class="math display">\[x[n] = \sin\left(2\pi (261.6) \tfrac{1}{8000} n\right)\]</span> Such DT signals are commonly used in digital music generation, storage, and playback.</p>
 </div>
 </div>
 <div class="example">
@@ -268,7 +294,7 @@ f_2[n] &amp; n \geq 0\\
 <p>Example</p>
 </div>
 <div class="example-container">
-<p>Similarly, the sampled chord "G", an additive mixture of tones at G, B, and D and might be modeled as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>392</mn><mo stretchy="true" form="postfix">)</mo></mrow><mfrac displaystyle="false"><mn>1</mn><mn>8000</mn></mfrac><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>494</mn><mo stretchy="true" form="postfix">)</mo></mrow><mfrac displaystyle="false"><mn>1</mn><mn>8000</mn></mfrac><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mn>2</mn><mi>π</mi><mrow><mo stretchy="true" form="prefix">(</mo><mn>293</mn><mo stretchy="true" form="postfix">)</mo></mrow><mfrac displaystyle="false"><mn>1</mn><mn>8000</mn></mfrac><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x[n] = \sin\left(2\pi (392) \tfrac{1}{8000} n\right) + \sin\left(2\pi (494) \tfrac{1}{8000} n\right) + \sin\left(2\pi (293) \tfrac{1}{8000} n\right)</annotation></semantics></math> again sampled at 8kHz. This example shows we can use addition to build-up signals to approximate real signals of interest.</p>
+<p>Similarly, the sampled chord "G", an additive mixture of tones at G, B, and D and might be modeled as <span class="math display">\[x[n] = \sin\left(2\pi (392) \tfrac{1}{8000} n\right) + \sin\left(2\pi (494) \tfrac{1}{8000} n\right) + \sin\left(2\pi (293) \tfrac{1}{8000} n\right)\]</span> again sampled at 8kHz. This example shows we can use addition to build-up signals to approximate real signals of interest.</p>
 </div>
 </div>
 </section>
@@ -276,27 +302,27 @@ f_2[n] &amp; n \geq 0\\
 <h2 data-number="3.2" class="anchored" data-anchor-id="basic-transformations"><span class="header-section-number">3.2</span> Basic Transformations</h2>
 <p>Similar to CT signals, we can also apply transformations to DT signals to increase their modeling flexibility.</p>
 <ul>
-<li><p>magnitude scaling <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>a</mi><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x_2[n] = a x_1[n]</annotation></semantics></math> for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi><mo>∈</mo><mi>ℝ</mi></mrow><annotation encoding="application/x-tex">a \in \mathbb{R}</annotation></semantics></math>.</p></li>
-<li><p>time differences <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>−</mo><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x_2[n] = x_1[n] - x_1[n-1]</annotation></semantics></math></p></li>
-<li><p>running sums <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><munderover><mo>∑</mo><mrow><mi>m</mi><mo>=</mo><mi>−</mi><mi>∞</mi></mrow><mi>n</mi></munderover><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>m</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x_2[n] = \sum\limits_{m = -\infty}^{n} x_1[m]</annotation></semantics></math></p></li>
-<li><p>sums <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>x</mi><mi>i</mi></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">y[n] = \sum\limits_{i} x_i[n]</annotation></semantics></math> an important example we will see is the DT Fourier series.</p></li>
-<li><p>multiplication (modulation) <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">y[n] = x_1[n] x_2[n]</annotation></semantics></math></p></li>
-<li><p>time index shift <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo>+</mo><mi>m</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x_2[n] = x_1[n+m]</annotation></semantics></math></p>
+<li><p>magnitude scaling <span class="math display">\[x_2[n] = a x_1[n]\]</span> for <span class="math inline">\(a \in \mathbb{R}\)</span>.</p></li>
+<li><p>time differences <span class="math display">\[x_2[n] = x_1[n] - x_1[n-1]\]</span></p></li>
+<li><p>running sums <span class="math display">\[x_2[n] = \sum\limits_{m = -\infty}^{n} x_1[m]\]</span></p></li>
+<li><p>sums <span class="math display">\[y[n] = \sum\limits_{i} x_i[n]\]</span> an important example we will see is the DT Fourier series.</p></li>
+<li><p>multiplication (modulation) <span class="math display">\[y[n] = x_1[n] x_2[n]\]</span></p></li>
+<li><p>time index shift <span class="math display">\[x_2[n] = x_1[n+m]\]</span></p>
 <ul>
-<li><p>if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">m &lt; 0</annotation></semantics></math> it is called a <em>delay</em></p></li>
-<li><p>if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>&gt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">m &gt; 0</annotation></semantics></math> it is called an <em>advance</em></p></li>
+<li><p>if <span class="math inline">\(m &lt; 0\)</span> it is called a <em>delay</em></p></li>
+<li><p>if <span class="math inline">\(m &gt; 0\)</span> it is called an <em>advance</em></p></li>
 </ul></li>
-<li><p>time reversal <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mn>2</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msub><mi>x</mi><mn>1</mn></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>−</mi><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x_2[n] = x_1[-n]</annotation></semantics></math></p></li>
-<li><p>decimation <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>m</mi><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">y[n] = x[m n]</annotation></semantics></math> for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>∈</mo><msup><mi>ℤ</mi><mo>+</mo></msup></mrow><annotation encoding="application/x-tex">m \in \mathbb{Z}^+</annotation></semantics></math>.</p>
+<li><p>time reversal <span class="math display">\[x_2[n] = x_1[-n]\]</span></p></li>
+<li><p>decimation <span class="math display">\[y[n] = x[m n]\]</span> for <span class="math inline">\(m \in \mathbb{Z}^+\)</span>.</p>
 <ul>
-<li><p>e.g.&nbsp;for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">m=2</annotation></semantics></math> only keep every other sample</p></li>
-<li><p>e.g.&nbsp;for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">m=3</annotation></semantics></math> only keep every third sample</p></li>
+<li><p>e.g.&nbsp;for <span class="math inline">\(m=2\)</span> only keep every other sample</p></li>
+<li><p>e.g.&nbsp;for <span class="math inline">\(m=3\)</span> only keep every third sample</p></li>
 <li><p>etc.</p></li>
 </ul></li>
-<li><p>interpolation <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>y</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="center" style="text-align: center"><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mfrac><mi>n</mi><mi>m</mi></mfrac><mo stretchy="true" form="postfix">]</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mi>n</mi><mo>=</mo><mn>0</mn><mspace width="0.278em"></mspace><mo>,</mo><mspace width="0.278em"></mspace><mo>±</mo><mi>m</mi><mo>,</mo><mo>,</mo><mspace width="0.278em"></mspace><mo>±</mo><mn>2</mn><mi>m</mi><mi>⋯</mi></mtd></mtr><mtr><mtd columnalign="center" style="text-align: center"><mn>0</mn></mtd><mtd columnalign="left" style="text-align: left"><mtext mathvariant="normal">else</mtext></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">y[n] = \left\{  \begin{array}{cl}
+<li><p>interpolation <span class="math display">\[y[n] = \left\{  \begin{array}{cl}
 x\left[ \frac{n}{m}\right] &amp; n = 0\; , \; \pm m, , \; \pm 2m \cdots\\
 0 &amp; \mbox{else}
-\end{array}\right.</annotation></semantics></math> When <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi><mo>=</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">m = 2</annotation></semantics></math> this inserts a zero sample between every sample of the signal.</p></li>
+\end{array}\right.\]</span> When <span class="math inline">\(m = 2\)</span> this inserts a zero sample between every sample of the signal.</p></li>
 </ul>
 </section>
 <section id="characterization-of-signals" class="level2" data-number="3.3">
@@ -307,7 +333,7 @@ x\left[ \frac{n}{m}\right] &amp; n = 0\; , \; \pm m, , \; \pm 2m \cdots\\
 <p>Definition</p>
 </div>
 <div class="example-container">
-<p>A DT signal is <em>causal</em> if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x[n] = 0</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>n</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\forall n &lt; 0</annotation></semantics></math>.</p>
+<p>A DT signal is <em>causal</em> if <span class="math inline">\(x[n] = 0\)</span> <span class="math inline">\(\forall n &lt; 0\)</span>.</p>
 </div>
 </div>
 <div class="example">
@@ -315,55 +341,32 @@ x\left[ \frac{n}{m}\right] &amp; n = 0\; , \; \pm m, , \; \pm 2m \cdots\\
 <p>Definition</p>
 </div>
 <div class="example-container">
-<p>A DT signal is <em>anti-causal</em> or acausal if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">x[n] = 0</annotation></semantics></math> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>∀</mo><mi>n</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\forall n \geq 0</annotation></semantics></math>.</p>
+<p>A DT signal is <em>anti-causal</em> or acausal if <span class="math inline">\(x[n] = 0\)</span> <span class="math inline">\(\forall n \geq 0\)</span>.</p>
 </div>
 </div>
 <p>A DT signal can be written as the sum of a causal and anti-causal signal.</p>
-<p>A DT signal is periodic if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo>+</mo><mi>N</mi><mo stretchy="true" form="postfix">]</mo></mrow><mspace width="0.278em"></mspace><mo>∀</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">x[n] = x[n + N] \; \forall n</annotation></semantics></math> for a fixed period <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>∈</mo><mi>ℤ</mi></mrow><annotation encoding="application/x-tex">N \in \mathbb{Z}</annotation></semantics></math>.</p>
-<p>A DT signal is even if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>−</mi><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mspace width="0.278em"></mspace><mo>∀</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">x[n] = x[-n] \; \forall n</annotation></semantics></math>.</p>
-<p>A DT signal is odd if <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>−</mi><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>−</mi><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mspace width="0.278em"></mspace><mo>∀</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">x[n] = -x[-n] \; \forall n</annotation></semantics></math>.</p>
-<p>Any DT signal can be written in terms of an even and odd component <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msub><mi>x</mi><mi>e</mi></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>+</mo><msub><mi>x</mi><mi>o</mi></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x[n] = x_e[n] + x_o[n]</annotation></semantics></math> where <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="left" style="text-align: left"><msub><mi>x</mi><mi>e</mi></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">{</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>+</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>−</mi><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo stretchy="true" form="postfix">}</mo></mrow></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"></mtd><mtd columnalign="left" style="text-align: left"></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><msub><mi>x</mi><mi>o</mi></msub><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">{</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>−</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>−</mi><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo stretchy="true" form="postfix">}</mo></mrow></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ll}
+<p>A DT signal is periodic if <span class="math inline">\(x[n] = x[n + N] \; \forall n\)</span> for a fixed period <span class="math inline">\(N \in \mathbb{Z}\)</span>.</p>
+<p>A DT signal is even if <span class="math inline">\(x[n] = x[-n] \; \forall n\)</span>.</p>
+<p>A DT signal is odd if <span class="math inline">\(x[n] = -x[-n] \; \forall n\)</span>.</p>
+<p>Any DT signal can be written in terms of an even and odd component <span class="math display">\[x[n] = x_e[n] + x_o[n]\]</span> where <span class="math display">\[\begin{array}{ll}
 x_e[n] &amp;= \frac{1}{2}\left\{x[n] + x[-n]\right\} \\
 &amp; \\
 x_o[n] &amp;= \frac{1}{2}\left\{x[n] - x[-n]\right\}
-\end{array}</annotation></semantics></math></p>
-<p>Analogous to CT signals, the energy of a DT signal is <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mi>x</mi></msub><mo>=</mo><munder><mo>lim</mo><mrow><mi>N</mi><mo>→</mo><mi>∞</mi></mrow></munder><munderover><mo>∑</mo><mrow><mi>−</mi><mi>N</mi></mrow><mi>N</mi></munderover><mo stretchy="false" form="prefix">|</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><msup><mo stretchy="false" form="postfix">|</mo><mn>2</mn></msup><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">E_x = \lim_{N\rightarrow\infty} \sum\limits_{-N}^N \lvert x[n]\rvert^2 \; .</annotation></semantics></math></p>
+\end{array}\]</span></p>
+<p>Analogous to CT signals, the energy of a DT signal is <span class="math display">\[E_x = \lim_{N\rightarrow\infty} \sum\limits_{-N}^N \lvert x[n]\rvert^2 \; .\]</span></p>
 <p>And the power of a DT signal is the energy averaged over an interval as that interval tends to infinity.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>x</mi></msub><mo>=</mo><munder><mo>lim</mo><mrow><mi>N</mi><mo>→</mo><mi>∞</mi></mrow></munder><mfrac><mn>1</mn><mrow><mn>2</mn><mi>N</mi><mo>+</mo><mn>1</mn></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>−</mi><mi>N</mi></mrow><mi>N</mi></munderover><mo stretchy="false" form="prefix">|</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><msup><mo stretchy="false" form="postfix">|</mo><mn>2</mn></msup><mspace width="0.278em"></mspace><mi>.</mi></mrow><annotation encoding="application/x-tex">P_x = \lim_{N\rightarrow\infty} \frac{1}{2N+1} \sum\limits_{-N}^N \lvert x[n]\rvert^2 \; .</annotation></semantics></math></p>
+<p><span class="math display">\[P_x = \lim_{N\rightarrow\infty} \frac{1}{2N+1} \sum\limits_{-N}^N \lvert x[n]\rvert^2 \; .\]</span></p>
 <p>DT Signals with finite, non-zero energy and zero power are called <em>energy signals</em>. DT Signals with finite, non-zero power (and by implication infinite energy) are called <em>power signals</em>. These categories are non-exclusive, some signals are neither energy or power signals.</p>
 </section>
 <section id="dt-unit-impulse-function" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="dt-unit-impulse-function"><span class="header-section-number">3.4</span> DT Unit Impulse Function</h2>
-<p>In DT the unit impulse function, denoted <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\delta[n]</annotation></semantics></math> is defined as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mrow><mo stretchy="true" form="prefix">{</mo><mtable><mtr><mtd columnalign="left" style="text-align: left"><mn>1</mn></mtd><mtd columnalign="left" style="text-align: left"><mi>n</mi><mo>=</mo><mn>0</mn></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"><mn>0</mn></mtd><mtd columnalign="left" style="text-align: left"><mtext mathvariant="normal">else</mtext></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">\delta[n] = \left\{
+<p>In DT the unit impulse function, denoted <span class="math inline">\(\delta[n]\)</span> is defined as <span class="math display">\[\delta[n] = \left\{
 \begin{array}{ll}
   1 &amp; n = 0\\
   0 &amp; \text{else}
 \end{array}
-\right.</annotation></semantics></math> Note this definition is straightforward compared to the CT impulse as there are no continuity issues and it is not defined in terms of a distribution. It is typically drawn as</p>
+\right.\]</span> Note this definition is straightforward compared to the CT impulse as there are no continuity issues and it is not defined in terms of a distribution. It is typically drawn as</p>
 <div id="cell-fig-dtdelta-plot" class="cell" data-execution_count="1">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>matplotlib.rcParams.update({<span class="st">'font.size'</span>: <span class="dv">12</span>})</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">11</span>)<span class="op">;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.zeros(<span class="dv">11</span>)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">5</span>] <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure()</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.stem(n, x)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$</span><span class="er">\</span><span class="st">delta[n]$'</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-dtdelta-plot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="a plot of the discrete-time delta function.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -379,69 +382,27 @@ Figure&nbsp;3.1: Plot of discrete-time delta function.
 </div>
 <p>Some useful properties of the DT impulse function are:</p>
 <ul>
-<li><p>Energy is 1: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mi>−</mi><mi>∞</mi></mrow><mo accent="false">∞</mo></munderover><mi>δ</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\sum\limits_{n=-\infty}^{\infty} \delta[n] = 1</annotation></semantics></math></p></li>
-<li><p>Sampling: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo>−</mo><msub><mi>n</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>n</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">]</mo></mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo>−</mo><msub><mi>n</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x[n]\delta[n-n_0] = x[n_0]\delta[n-n_0]</annotation></semantics></math></p></li>
-<li><p>Sifting: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><munderover><mo>∑</mo><mrow><mi>n</mi><mo>=</mo><mi>−</mi><mi>∞</mi></mrow><mo accent="false">∞</mo></munderover><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo>−</mo><msub><mi>n</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><msub><mi>n</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\sum\limits_{n=-\infty}^{\infty} x[n]\delta[n-n_0] = x[n_0]</annotation></semantics></math></p></li>
+<li><p>Energy is 1: <span class="math inline">\(\sum\limits_{n=-\infty}^{\infty} \delta[n] = 1\)</span></p></li>
+<li><p>Sampling: <span class="math inline">\(x[n]\delta[n-n_0] = x[n_0]\delta[n-n_0]\)</span></p></li>
+<li><p>Sifting: <span class="math inline">\(\sum\limits_{n=-\infty}^{\infty} x[n]\delta[n-n_0] = x[n_0]\)</span></p></li>
 </ul>
-<p>The impulse can be defined in terms of the step: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>δ</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>u</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>−</mo><mi>u</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">\delta[n] = u[n] - u[n-1]</annotation></semantics></math> and vice-versa <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><munderover><mo>∑</mo><mrow><mi>m</mi><mo>=</mo><mi>−</mi><mi>∞</mi></mrow><mi>n</mi></munderover><mi>δ</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>m</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">u[n] = \sum\limits_{m=-\infty}^{n} \delta[m]</annotation></semantics></math> or <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>u</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mo accent="false">∞</mo></munderover><mi>δ</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo>−</mo><mi>k</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">u[n] = \sum\limits_{k=0}^{\infty} \delta[n-k]</annotation></semantics></math></p>
+<p>The impulse can be defined in terms of the step: <span class="math display">\[\delta[n] = u[n] - u[n-1]\]</span> and vice-versa <span class="math display">\[u[n] = \sum\limits_{m=-\infty}^{n} \delta[m]\]</span> or <span class="math display">\[u[n] = \sum\limits_{k=0}^{\infty} \delta[n-k]\]</span></p>
 </section>
 <section id="dt-complex-exponential" class="level2" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="dt-complex-exponential"><span class="header-section-number">3.5</span> DT Complex Exponential</h2>
-<p>The DT Complex Exponential is defined in a similar fashion the the CT version, but with some important differences. The general DT complex exponential is given by the expression: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>C</mi><msup><mi>e</mi><mrow><mi>β</mi><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x[n] = Ce^{\beta n}</annotation></semantics></math> where in general <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>∈</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">C \in \mathbb{C}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>∈</mo><mi>ℂ</mi></mrow><annotation encoding="application/x-tex">\beta \in \mathbb{C}</annotation></semantics></math>. It is sometimes convenient (for reasons we will see later) to write this as <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>C</mi><msup><mi>α</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">x[n] = C \alpha^n</annotation></semantics></math> where <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>θ</mi></mrow></msup></mrow><annotation encoding="application/x-tex">\alpha = e^{j\theta}</annotation></semantics></math> is a complex number <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>=</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>j</mi><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><mi>θ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\alpha = \cos(\theta) + j\sin(\theta)</annotation></semantics></math>.</p>
+<p>The DT Complex Exponential is defined in a similar fashion the the CT version, but with some important differences. The general DT complex exponential is given by the expression: <span class="math display">\[x[n] = Ce^{\beta n}\]</span> where in general <span class="math inline">\(C \in \mathbb{C}\)</span> and <span class="math inline">\(\beta \in \mathbb{C}\)</span>. It is sometimes convenient (for reasons we will see later) to write this as <span class="math display">\[x[n] = C \alpha^n\]</span> where <span class="math inline">\(\alpha = e^{j\theta}\)</span> is a complex number <span class="math inline">\(\alpha = \cos(\theta) + j\sin(\theta)\)</span>.</p>
 <p>We now examine several special cases.</p>
 <section id="dt-complex-exponential-real-case" class="level3" data-number="3.5.1">
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="dt-complex-exponential-real-case"><span class="header-section-number">3.5.1</span> DT Complex Exponential: real case</h3>
-<p>Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>C</mi><annotation encoding="application/x-tex">C</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>α</mi><annotation encoding="application/x-tex">\alpha</annotation></semantics></math> be real, then there are four intervals of interest:</p>
+<p>Let <span class="math inline">\(C\)</span> and <span class="math inline">\(\alpha\)</span> be real, then there are four intervals of interest:</p>
 <ul>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\alpha &gt; 1</annotation></semantics></math></p></li>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0</mn><mo>&lt;</mo><mi>α</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0 &lt; \alpha &lt; 1</annotation></semantics></math></p></li>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>−</mi><mn>1</mn><mo>&lt;</mo><mi>α</mi><mo>&lt;</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">-1 &lt; \alpha &lt; 0</annotation></semantics></math></p></li>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>α</mi><mo>&lt;</mo><mi>−</mi><mn>1</mn></mrow><annotation encoding="application/x-tex">\alpha &lt; -1</annotation></semantics></math></p></li>
+<li><p><span class="math inline">\(\alpha &gt; 1\)</span></p></li>
+<li><p><span class="math inline">\(0 &lt; \alpha &lt; 1\)</span></p></li>
+<li><p><span class="math inline">\(-1 &lt; \alpha &lt; 0\)</span></p></li>
+<li><p><span class="math inline">\(\alpha &lt; -1\)</span></p></li>
 </ul>
 <p>Each of these are shown in <a href="#fig-dtexpreal" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>.</p>
 <div id="cell-fig-dtexpreal" class="cell" data-execution_count="2">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">13</span>)<span class="op">;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure()</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="dv">2</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.stem(n, np.power(alpha, n))</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>)</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.5</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.stem(n, np.power(alpha, n))</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.stem(n, np.power(alpha, n))</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>plt.stem(n, np.power(alpha, n))</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-display">
 <div id="fig-dtexpreal" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Example plots of real exponential signals.">
 <figure class="quarto-float quarto-float-fig figure">
@@ -458,41 +419,20 @@ Figure&nbsp;3.2: DT Complex Exponential: real case, four intervals of interest.
 </section>
 <section id="dt-complex-exponential-sinusoidal-case" class="level3" data-number="3.5.2">
 <h3 data-number="3.5.2" class="anchored" data-anchor-id="dt-complex-exponential-sinusoidal-case"><span class="header-section-number">3.5.2</span> DT Complex Exponential: sinusoidal case</h3>
-<p>Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">C = 1</annotation></semantics></math>. When <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>β</mi><annotation encoding="application/x-tex">\beta</annotation></semantics></math> is purely imaginary, <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>=</mo><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\beta = j\omega_0</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x[n] = e^{j\omega_0 n}</annotation></semantics></math></p>
-<p>As in CT, by Euler’s identity: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup><mo>=</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>+</mo><mi>j</mi><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">e^{j\omega_0 n} = \cos(\omega_0 n) + j\sin(\omega_0 n)</annotation></semantics></math> and <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℜ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup><mo>+</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\Re(x[n]) = \cos(\omega_0 n) = \frac{1}{2}\left( e^{j\omega_0 n} + e^{-j\omega_0 n} \right)</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ℑ</mi><mrow><mo stretchy="true" form="prefix">(</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><mfrac><mn>1</mn><mrow><mn>2</mn><mi>j</mi></mrow></mfrac><mrow><mo stretchy="true" form="prefix">(</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup><mo>−</mo><msup><mi>e</mi><mrow><mi>−</mi><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">\Im(x[n]) = \sin(\omega_0 n) = \frac{1}{2j}\left( e^{j\omega_0 n} - e^{-j\omega_0 n} \right)</annotation></semantics></math></p>
-<p>The energy and power are the same as for the CT complex sinusoid: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>E</mi><mi>x</mi></msub><mo>=</mo><mi>∞</mi></mrow><annotation encoding="application/x-tex">E_x = \infty</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>P</mi><mi>x</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">P_x = 1</annotation></semantics></math>.</p>
+<p>Let <span class="math inline">\(C = 1\)</span>. When <span class="math inline">\(\beta\)</span> is purely imaginary, <span class="math inline">\(\beta = j\omega_0\)</span> <span class="math display">\[x[n] = e^{j\omega_0 n}\]</span></p>
+<p>As in CT, by Euler’s identity: <span class="math display">\[e^{j\omega_0 n} = \cos(\omega_0 n) + j\sin(\omega_0 n)\]</span> and <span class="math display">\[\Re(x[n]) = \cos(\omega_0 n) = \frac{1}{2}\left( e^{j\omega_0 n} + e^{-j\omega_0 n} \right)\]</span> <span class="math display">\[\Im(x[n]) = \sin(\omega_0 n) = \frac{1}{2j}\left( e^{j\omega_0 n} - e^{-j\omega_0 n} \right)\]</span></p>
+<p>The energy and power are the same as for the CT complex sinusoid: <span class="math inline">\(E_x = \infty\)</span> and <span class="math inline">\(P_x = 1\)</span>.</p>
 </section>
 <section id="dt-complex-exponential-sinusoidal-case-with-phase-shift" class="level3" data-number="3.5.3">
 <h3 data-number="3.5.3" class="anchored" data-anchor-id="dt-complex-exponential-sinusoidal-case-with-phase-shift"><span class="header-section-number">3.5.3</span> DT Complex Exponential: sinusoidal case with phase shift</h3>
 <p>The general DT sinusoid is</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>A</mi><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi><mo>+</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><annotation encoding="application/x-tex">x[n] = A\cos(\omega_0 n + \phi)</annotation></semantics></math></p>
+<p><span class="math display">\[x[n] = A\cos(\omega_0 n + \phi)\]</span></p>
 <ul>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>A</mi><annotation encoding="application/x-tex">A</annotation></semantics></math> is called the amplitude</p></li>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>ϕ</mi><annotation encoding="application/x-tex">\phi</annotation></semantics></math> is called the phase shift</p></li>
-<li><p><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ω</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\omega_0</annotation></semantics></math> is now in radians (assuming <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math> is dimensionless)</p></li>
+<li><p><span class="math inline">\(A\)</span> is called the amplitude</p></li>
+<li><p><span class="math inline">\(\phi\)</span> is called the phase shift</p></li>
+<li><p><span class="math inline">\(\omega_0\)</span> is now in radians (assuming <span class="math inline">\(n\)</span> is dimensionless)</p></li>
 </ul>
-<div id="7e19f5f5" class="cell" data-execution_count="3">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">21</span>)<span class="op">;</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.cos(<span class="dv">2</span><span class="op">*</span>np.pi<span class="op">/</span><span class="dv">10</span><span class="op">*</span>n <span class="op">+</span> np.pi<span class="op">/</span><span class="dv">8</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure()</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plt.stem(n, x)</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div id="426c72cb" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -501,30 +441,9 @@ Figure&nbsp;3.2: DT Complex Exponential: real case, four intervals of interest.
 </div>
 </div>
 </div>
-<p>For CT sinusoids as <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ω</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\omega_0</annotation></semantics></math> increases the signal oscillates faster and faster. However for DT sinusoids there is a "fastest" oscillation.</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup><msub><mo stretchy="false" form="postfix">|</mo><mrow><msub><mi>ω</mi><mn>0</mn></msub><mo>=</mo><mi>π</mi></mrow></msub><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>π</mi><mi>n</mi></mrow></msup><mo>=</mo><msup><mrow><mo stretchy="true" form="prefix">(</mo><mi>−</mi><mn>1</mn><mo stretchy="true" form="postfix">)</mo></mrow><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">e^{j\omega_0 n}\rvert_{\omega_0 = \pi} = e^{j\pi n} = (-1)^n</annotation></semantics></math></p>
-<div id="c9b06a5b" class="cell" data-execution_count="4">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="dv">11</span>)<span class="op">;</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.power(<span class="op">-</span><span class="dv">1</span>, n)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> plt.figure()</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>plt.stem(n, x)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$n$'</span>)</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$x[n]$'</span>)</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>plt.autoscale(enable<span class="op">=</span><span class="va">True</span>, axis<span class="op">=</span><span class="st">'x'</span>, tight<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<p>For CT sinusoids as <span class="math inline">\(\omega_0\)</span> increases the signal oscillates faster and faster. However for DT sinusoids there is a "fastest" oscillation.</p>
+<p><span class="math display">\[e^{j\omega_0 n}\rvert_{\omega_0 = \pi} = e^{j\pi n} = (-1)^n\]</span></p>
+<div id="9df18464" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -536,26 +455,30 @@ Figure&nbsp;3.2: DT Complex Exponential: real case, four intervals of interest.
 </section>
 <section id="properties-of-dt-complex-sinusoid" class="level3" data-number="3.5.4">
 <h3 data-number="3.5.4" class="anchored" data-anchor-id="properties-of-dt-complex-sinusoid"><span class="header-section-number">3.5.4</span> Properties of DT complex sinusoid</h3>
-<p>If we consider two frequencies: <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ω</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\omega_0</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ω</mi><mn>0</mn></msub><mo>+</mo><mn>2</mn><mi>π</mi></mrow><annotation encoding="application/x-tex">\omega_0+2\pi</annotation></semantics></math>. In the first case: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x[n] = e^{j\omega_0 n}</annotation></semantics></math> In the second case: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mtable><mtr><mtd columnalign="left" style="text-align: left"><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mo>+</mo><mn>2</mn><mi>π</mi><mo stretchy="true" form="postfix">)</mo></mrow><mi>n</mi></mrow></msup></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><munder><munder><msup><mi>e</mi><mrow><mi>j</mi><mn>2</mn><mi>π</mi><mi>n</mi></mrow></msup><mo accent="true">⏟</mo></munder><mtext mathvariant="normal">always 1</mtext></munder><mspace width="0.278em"></mspace><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup></mtd></mtr><mtr><mtd columnalign="left" style="text-align: left"></mtd><mtd columnalign="left" style="text-align: left"><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{array}{ll}
+<p>If we consider two frequencies: <span class="math inline">\(\omega_0\)</span> and <span class="math inline">\(\omega_0+2\pi\)</span>. In the first case: <span class="math display">\[x[n] = e^{j\omega_0 n}\]</span> In the second case: <span class="math display">\[\begin{array}{ll}
 x[n] &amp;= e^{j(\omega_0+2\pi) n} \\
 &amp;= \underbrace{e^{j2\pi n}}_{\text{always 1}}\; e^{j\omega_0 n} \\
 &amp;= e^{j\omega_0 n}
-\end{array}</annotation></semantics></math></p>
+\end{array}\]</span></p>
 <p>Thus the two are the same signal. This has important implications later in the course.</p>
-<p>Another difference between CT and DT complex sinusoids is periodicity. Recall for a DT signal to be periodic with period <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo>+</mo><mi>N</mi><mo stretchy="true" form="postfix">]</mo></mrow><mspace width="0.278em"></mspace><mo>∀</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">x[n] = x[n+N] \; \forall n</annotation></semantics></math> Substituting the complex sinusoid <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>n</mi><mo>+</mo><mi>N</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow></msup><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi></mrow></msup><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>N</mi></mrow></msup></mrow><annotation encoding="application/x-tex">e^{j\omega_0 n} = e^{j\omega_0 (n+N)} = e^{j\omega_0 n}e^{j\omega_0 N}</annotation></semantics></math> requires <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>e</mi><mrow><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mi>N</mi></mrow></msup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">e^{j\omega_0 N} = 1</annotation></semantics></math>, which implies <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ω</mi><mn>0</mn></msub><mi>N</mi></mrow><annotation encoding="application/x-tex">\omega_0 N</annotation></semantics></math> is a multiple of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>2</mn><mi>π</mi></mrow><annotation encoding="application/x-tex">2\pi</annotation></semantics></math>: <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>ω</mi><mn>0</mn></msub><mi>N</mi><mo>=</mo><mn>2</mn><mi>π</mi><mi>m</mi><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace><mspace width="0.278em"></mspace><mi>m</mi><mo>=</mo><mi>±</mi><mn>1</mn><mo>,</mo><mi>±</mi><mn>2</mn><mo>,</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">\omega_0 N = 2\pi m \;\;\; m = \pm 1, \pm 2, \cdots</annotation></semantics></math> or equivalently <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mo stretchy="true" form="prefix">|</mo><msub><mi>ω</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">|</mo></mrow><mrow><mn>2</mn><mi>π</mi></mrow></mfrac><mo>=</mo><mfrac><mi>m</mi><mi>N</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{|\omega_0|}{2\pi} = \frac{m}{N}</annotation></semantics></math> thus <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>ω</mi><mn>0</mn></msub><annotation encoding="application/x-tex">\omega_0</annotation></semantics></math> must be a rational multiple of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>π</mi><annotation encoding="application/x-tex">\pi</annotation></semantics></math>.</p>
-<p>Two DT complex sinusoids are harmonics of one another is both are periodic in <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>, i.e when</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mi>k</mi></msub><mrow><mo stretchy="true" form="prefix">(</mo><mi>t</mi><mo stretchy="true" form="postfix">)</mo></mrow><mo>=</mo><msup><mi>e</mi><mrow><mi>j</mi><mi>k</mi><mfrac><mrow><mn>2</mn><mi>π</mi></mrow><mi>N</mi></mfrac><mi>n</mi></mrow></msup><mspace width="0.278em"></mspace><mtext mathvariant="normal">for</mtext><mspace width="0.278em"></mspace><mi>k</mi><mo>=</mo><mn>0</mn><mo>,</mo><mi>±</mi><mn>1</mn><mo>,</mo><mi>±</mi><mn>2</mn><mo>,</mo><mi>⋯</mi></mrow><annotation encoding="application/x-tex">x_k(t) = e^{jk\frac{2\pi}{N} n} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots</annotation></semantics></math></p>
-<p>This implies there are only <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math> distinct harmonics in DT.</p>
+<p>Another difference between CT and DT complex sinusoids is periodicity. Recall for a DT signal to be periodic with period <span class="math inline">\(N\)</span> <span class="math display">\[x[n] = x[n+N] \; \forall n\]</span> Substituting the complex sinusoid <span class="math display">\[e^{j\omega_0 n} = e^{j\omega_0 (n+N)} = e^{j\omega_0 n}e^{j\omega_0 N}\]</span> requires <span class="math inline">\(e^{j\omega_0 N} = 1\)</span>, which implies <span class="math inline">\(\omega_0 N\)</span> is a multiple of <span class="math inline">\(2\pi\)</span>: <span class="math display">\[\omega_0 N = 2\pi m \;\;\; m = \pm 1, \pm 2, \cdots\]</span> or equivalently <span class="math display">\[\frac{|\omega_0|}{2\pi} = \frac{m}{N}\]</span> thus <span class="math inline">\(\omega_0\)</span> must be a rational multiple of <span class="math inline">\(\pi\)</span>.</p>
+<p>Two DT complex sinusoids are harmonics of one another is both are periodic in <span class="math inline">\(N\)</span>, i.e when</p>
+<p><span class="math display">\[x_k(t) = e^{jk\frac{2\pi}{N} n} \; \text{for} \; k = 0, \pm 1, \pm 2, \cdots\]</span></p>
+<p>This implies there are only <span class="math inline">\(N\)</span> distinct harmonics in DT.</p>
 </section>
 <section id="dt-complex-exponential-general-case" class="level3" data-number="3.5.5">
 <h3 data-number="3.5.5" class="anchored" data-anchor-id="dt-complex-exponential-general-case"><span class="header-section-number">3.5.5</span> DT Complex Exponential: general case</h3>
-<p>In the general case we get a sinusoid signal modulated by an exponential. Let <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>C</mi><mo>=</mo><mi>A</mi><msup><mi>e</mi><mrow><mi>j</mi><mi>ϕ</mi></mrow></msup></mrow><annotation encoding="application/x-tex">C = Ae^{j\phi}</annotation></semantics></math> and <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>β</mi><mo>=</mo><mi>r</mi><mo>+</mo><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub></mrow><annotation encoding="application/x-tex">\beta = r + j\omega_0</annotation></semantics></math>, then <math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><mi>C</mi><msup><mi>e</mi><mrow><mi>β</mi><mi>n</mi></mrow></msup><mo>=</mo><mi>A</mi><msup><mi>e</mi><mrow><mi>j</mi><mi>ϕ</mi></mrow></msup><msup><mi>e</mi><mrow><mrow><mo stretchy="true" form="prefix">(</mo><mi>r</mi><mo>+</mo><mi>j</mi><msub><mi>ω</mi><mn>0</mn></msub><mo stretchy="true" form="postfix">)</mo></mrow><mi>n</mi></mrow></msup></mrow><annotation encoding="application/x-tex">x[n] = C e^{\beta n} =  Ae^{j\phi} e^{(r+j\omega_0)n}</annotation></semantics></math> Expanding the terms and using Euler’s identity gives:</p>
-<p><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow><mo>=</mo><munder><munder><mrow><mi>A</mi><msup><mi>e</mi><mrow><mi>r</mi><mi>n</mi></mrow></msup><mo>cos</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi><mo>+</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mo accent="true">⏟</mo></munder><mrow><mi>ℜ</mi><mtext mathvariant="normal">part</mtext></mrow></munder><mo>+</mo><mi>j</mi><munder><munder><mrow><mi>A</mi><msup><mi>e</mi><mrow><mi>r</mi><mi>n</mi></mrow></msup><mo>sin</mo><mrow><mo stretchy="true" form="prefix">(</mo><msub><mi>ω</mi><mn>0</mn></msub><mi>n</mi><mo>+</mo><mi>ϕ</mi><mo stretchy="true" form="postfix">)</mo></mrow></mrow><mo accent="true">⏟</mo></munder><mrow><mi>ℑ</mi><mtext mathvariant="normal">part</mtext></mrow></munder></mrow><annotation encoding="application/x-tex">x[n] = \underbrace{Ae^{rn}\cos(\omega_0 n+\phi)}_{\Re \text{part}} + j \underbrace{Ae^{rn}\sin(\omega_0 n+\phi)}_{\Im \text{part}}</annotation></semantics></math> Each part is a real sinusoid whose amplitude is modulated by a real exponential.</p>
-<p>The visualization of the general case is to view the signal <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>x</mi><mrow><mo stretchy="true" form="prefix">[</mo><mi>n</mi><mo stretchy="true" form="postfix">]</mo></mrow></mrow><annotation encoding="application/x-tex">x[n]</annotation></semantics></math> as a vector rotating through fixed angles in the complex plane.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="graphics/DT_complexsinusoid_visual.svg" class="img-fluid figure-img" alt="A figure visualizing the DT complex sinusoid at a specific point in time."></p>
-<figcaption>The DT complex sinusoid at a specific point in time.</figcaption>
+<p>In the general case we get a sinusoid signal modulated by an exponential. Let <span class="math inline">\(C = Ae^{j\phi}\)</span> and <span class="math inline">\(\beta = r + j\omega_0\)</span>, then <span class="math display">\[x[n] = C e^{\beta n} =  Ae^{j\phi} e^{(r+j\omega_0)n}\]</span> Expanding the terms and using Euler’s identity gives:</p>
+<p><span class="math display">\[x[n] = \underbrace{Ae^{rn}\cos(\omega_0 n+\phi)}_{\Re \text{part}} + j \underbrace{Ae^{rn}\sin(\omega_0 n+\phi)}_{\Im \text{part}}\]</span> Each part is a real sinusoid whose amplitude is modulated by a real exponential.</p>
+<p>The visualization of the general case is to view the signal <span class="math inline">\(x[n]\)</span> as a vector rotating through fixed angles in the complex plane.</p>
+<div id="fig-dt-complex-sinusoid" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A figure visualizing the DT complex sinusoid at a specific point in time.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dt-complex-sinusoid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/DT_complexsinusoid_visual.svg" class="img-fluid figure-img" alt="A figure visualizing the DT complex sinusoid at a specific point in time.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dt-complex-sinusoid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.3: The DT complex sinusoid at a specific point in time.
+</figcaption>
 </figure>
 </div>
 

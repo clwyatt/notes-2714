@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; DT systems as linear constant coefficient difference equations – Supplementary Notes for ECE 2714: Signals and Systems</title>
+<title>6&nbsp; 6. Linear Time Invariant CT Systems – Supplementary Notes for ECE 2714: Signals and Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./06-ct-lti.html" rel="next">
-<link href="./04-ct-lccde.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./05-dt-lccde.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,35 +70,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -142,7 +113,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-dt-lccde.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-ct-lti.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">6. Linear Time Invariant CT Systems</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -192,13 +163,13 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-dt-lccde.html" class="sidebar-item-text sidebar-link active">
+  <a href="./05-dt-lccde.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./06-ct-lti.html" class="sidebar-item-text sidebar-link">
+  <a href="./06-ct-lti.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">6. Linear Time Invariant CT Systems</span></span></a>
   </div>
 </li>
@@ -218,10 +189,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#definition-of-linear-constant-coefficient-difference-equation" id="toc-definition-of-linear-constant-coefficient-difference-equation" class="nav-link active" data-scroll-target="#definition-of-linear-constant-coefficient-difference-equation"><span class="header-section-number">5.1</span> Definition of linear constant coefficient difference equation</a></li>
-  <li><a href="#iterative-solution-of-lccdes" id="toc-iterative-solution-of-lccdes" class="nav-link" data-scroll-target="#iterative-solution-of-lccdes"><span class="header-section-number">5.2</span> Iterative solution of LCCDEs</a></li>
-  <li><a href="#solution-of-the-homogeneous-lccde" id="toc-solution-of-the-homogeneous-lccde" class="nav-link" data-scroll-target="#solution-of-the-homogeneous-lccde"><span class="header-section-number">5.3</span> Solution of the homogeneous LCCDE</a></li>
-  <li><a href="#impulse-response-from-lccde" id="toc-impulse-response-from-lccde" class="nav-link" data-scroll-target="#impulse-response-from-lccde"><span class="header-section-number">5.4</span> Impulse response from LCCDE</a></li>
+  <li><a href="#system-types" id="toc-system-types" class="nav-link active" data-scroll-target="#system-types"><span class="header-section-number">6.1</span> System types</a></li>
   </ul>
 </nav>
     </div>
@@ -230,7 +198,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">6. Linear Time Invariant CT Systems</span></h1>
 </div>
 
 
@@ -242,125 +210,44 @@ window.Quarto = {
     
   </div>
   
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    <p>Today’s topic is our introduction to CT systems and the important case of CT Linear, Time-Invariant Systems.</p>
+  </div>
+</div>
 
 
 </header>
 
 
-<p>A <em>difference equation</em> is a relation among combinations of two DT functions and shifted versions of them. Similar to differential equations where the solution is a CT function, the solution to a difference equation is a DT function. For example: <span class="math display">\[y[n+1] + \frac{1}{2}y[n] = x[n]\]</span> is a first order, linear, constant-coefficient difference equation. Given <span class="math inline">\(x[n]\)</span> the solution is a function <span class="math inline">\(y[n]\)</span>. We can view this as a representation of a DT system, where <span class="math inline">\(x[n]\)</span> is the input signal and <span class="math inline">\(y[n]\)</span> is the output.</p>
-<p>There is a parallel theory to differential equations for solving difference equations. However in this lecture we will focus specifically on the iterative solution of linear, constant-coefficient difference equations and the case when the input is a delta function, as this is all we need for this course.</p>
-<section id="definition-of-linear-constant-coefficient-difference-equation" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="definition-of-linear-constant-coefficient-difference-equation"><span class="header-section-number">5.1</span> Definition of linear constant coefficient difference equation</h2>
-<p>A <em>linear</em>, <em>constant-coefficient</em>, difference equation (LCCDE) comes in one of two forms.</p>
+<section id="system-types" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="system-types"><span class="header-section-number">6.1</span> System types</h2>
+<p>A system is an interconncted set of components or sub-systems. Mathematically a system is a transformation between one or more signals, a rule that maps functions to functions.</p>
 <ul>
-<li><p>Delay form. <span class="math display">\[\sum\limits_{k = 0}^N a_k y[n-k] = \sum\limits_{k = 0}^M b_k x[n-k]\]</span> or <span class="math display">\[a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]\]</span></p></li>
-<li><p>Advance form. Let <span class="math inline">\(n\rightarrow n+N\)</span>, then the delay form becomes <span class="math display">\[\sum\limits_{k = 0}^N a_k y[n+N-k] = \sum\limits_{k = 0}^M b_k x[n+N-k]\]</span> or <span class="math display">\[a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = b_0 x[n+N] + \cdots b_Mx[n+N-M]\]</span></p></li>
+<li><p>single input - single output (SISO) system.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_1.svg" class="img-fluid figure-img" alt="diagram showing the block diagram of a single-input, single-output system"></p>
+<figcaption>SISO Block Diagram</figcaption>
+</figure>
+</div></li>
+<li><p>single input - multiple output (SIMO) system</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_2.svg" class="img-fluid figure-img" alt="diagram showing the block diagram of a single-input, multiple-output system"></p>
+<figcaption>SIMO Block Diagram</figcaption>
+</figure>
+</div></li>
+<li><p>general case, multiple input - multiple output (MIMO)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_3.svg" class="img-fluid figure-img" alt="diagram showing the block diagram of a multiple-input, multiple-output system"></p>
+<figcaption>MIMO Block Diagram</figcaption>
+</figure>
+</div></li>
 </ul>
-<p>The <em>order</em> of the system is given by <span class="math inline">\(N\)</span>. The delay and advance forms are equivalent because the equation holds for any <span class="math inline">\(n\)</span>, and we can move back and forth between them as needed by a constant index-shift.</p>
-<div class="example">
-<div class="example-header">
-<p>Example</p>
-</div>
-<div class="example-container">
-<p>The delay form is <span class="math display">\[a_0y[n] + a_1 y[n-1] + a_2 y[n-2] = b_0 x[n] + b_1 x[n-1]\]</span> Replacing <span class="math inline">\(n \rightarrow n+2\)</span>, the advance form is <span class="math display">\[a_0 y[n+2] + a_1 y[n+1] + a_2 y[n] = b_0 x[n+2] + b_1 x[n+1]\]</span></p>
-</div>
-</div>
-<p>It will be convenient to define the operator <span class="math inline">\(E^m\)</span> as shifting a DT function by positive <span class="math inline">\(m\)</span>, i.e.&nbsp;<span class="math inline">\(E^m x[n] = x[n+m]\)</span>, and the operator <span class="math inline">\(D^m\)</span> as shifting a DT function by negative <span class="math inline">\(m\)</span>, i.e. <span class="math inline">\(D^m x[n] = x[n-m]\)</span>. These are called the advance and delay operators respectively. Then, the advance form of the difference equation using this operator notation is <span class="math display">\[a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = b_0 x[n+N] + \cdots b_Mx[n+N-M]\]</span> <span class="math display">\[a_0 E^Ny + a_1E^{N-1}y + \cdots a_N y = b_0 E^{N}x + \cdots b_M E^{N-M}x\]</span> Factoring out the advance operators gives <span class="math display">\[\underbrace{\left(a_0E^N + a_1E^{N-1} + \cdots a_N\right)}_{Q(E)} y = \underbrace{\left(b_0 E^{N} + \cdots b_M E^{N-M}\right)}_{P(E)} x\]</span> or <span class="math display">\[Q(E)y[n] = P(E)x[n]\]</span></p>
-<p>Similarly, the delay form of the difference equation using this operator notation is <span class="math display">\[a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]\]</span> <span class="math display">\[a_0y[n] + a_1 Dy + \cdots a_N D^N y = b_0 x + \cdots b_MD^M x\]</span> Note: The DT delay operator <span class="math inline">\(D\)</span> is similar, but <em>not</em> identical to the derivative operator <span class="math inline">\(D\)</span> in CT.</p>
-<div class="example">
-<div class="example-header">
-<p>Example</p>
-</div>
-<div class="example-container">
-<p>Consider the difference equation <span class="math display">\[3y[n+1] + 4y[n] + 5y[n-1] = 2x[n+1]\]</span> The advance form would be: <span class="math display">\[3y[n+2] + 4y[n+1] + 5y[n] = 2x[n+2]\]</span> or using the advance operator <span class="math display">\[\left(3E^2 + 4E + 5\right)y = 2E^2x\]</span> with <span class="math inline">\(Q(E) = 3E^2 + 4E + 5\)</span> and <span class="math inline">\(P(E) = 2E^2\)</span>.<br>
-The delay form would be: <span class="math display">\[3y[n] + 4y[n-1] + 5y[n-2] = 2x[n]\]</span> or using the delay operator <span class="math display">\[\left(5D^2 + 4D + 3\right)y = 2x\]</span> with <span class="math inline">\(Q(D) = 5D^2 + 4D + 3\)</span> and <span class="math inline">\(P(D) = 2\)</span>.</p>
-</div>
-</div>
-</section>
-<section id="iterative-solution-of-lccdes" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="iterative-solution-of-lccdes"><span class="header-section-number">5.2</span> Iterative solution of LCCDEs</h2>
-<p>Difference equations are different (pun!) from differential equations in that they can be solved by manually running the equation forward using previous values of the output and current and previous values of the input, given some initial conditions. This is called an <em>iterative</em> solution for this reason.</p>
-<p>To perform an iterative solution we need the difference equation in delay form <span class="math display">\[a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]\]</span> We then solve for the current output <span class="math inline">\(y[n]\)</span> <span class="math display">\[y[n] =  - \left(\frac{a_1}{a_0}y[n-1] + \cdots \frac{a_N}{a_0} y[n-N]\right) + \frac{b_0}{a_0} x[n] + \cdots \frac{b_M}{a_0}x[n-M]\]</span></p>
-<p>Now lets examine what this expression says in words. To compute the current output <span class="math inline">\(y[n]\)</span> we need the value of the <em>previous</em> <span class="math inline">\(N-1\)</span> outputs, the value of the <em>current</em> input <span class="math inline">\(x[n]\)</span> and <span class="math inline">\(M-1\)</span> <em>previous</em> inputs (and the coefficients). Then we can compute the next output <span class="math inline">\(y[n+1]\)</span> by adding the previous computation result for <span class="math inline">\(y[n]\)</span> to our list of things to remember, and forgetting one previous value of <span class="math inline">\(y\)</span>. This can continue as long as we like.</p>
-<div class="example">
-<div class="example-header">
-<p>Example</p>
-</div>
-<div class="example-container">
-<p>Consider the first-order difference equation <span class="math display">\[y[n+1] + y[n] = x[n+1]\]</span> where <span class="math inline">\(y[-1] = 1\)</span> and <span class="math inline">\(x[n] = u[n]\)</span>. We first convert this to delay form <span class="math display">\[y[n] = -y[n-1] + x[n]\; .\]</span> Then we can compute <span class="math inline">\(y[0]\)</span> as <span class="math display">\[y[0] = -y[-1] + x[0] = -1 + 1 = 0\]</span> and continuing</p>
-<span class="math display">\[\begin{aligned}
-  y[1] &amp;= -y[0] + x[1] = 0 + 1 = 1\\
-  y[2] &amp;= -y[1] + x[2] = -1 + 1 = 0\\
-  y[3] &amp;= -y[2] + x[3] = 0 + 1 = 1\\
-  \mbox{etc.}
-  
-\end{aligned}\]</span>
-<p>We can see that this will continue to give the alternating sequence <span class="math inline">\(1,0,1,0,1,\cdots\)</span>.</p>
-</div>
-</div>
-</section>
-<section id="solution-of-the-homogeneous-lccde" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="solution-of-the-homogeneous-lccde"><span class="header-section-number">5.3</span> Solution of the homogeneous LCCDE</h2>
-<p>Note the iterative solution does not give us (directly) and analytical expression for the output at arbitrary <span class="math inline">\(n\)</span>. We have to start at the initial conditions and compute our way up to <span class="math inline">\(n\)</span>. We now consider an analytical solution when the input is zero, the solution to the <em>homogeneous</em> difference equation <span class="math display">\[Q(E)\, y = a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = 0 \; .\]</span> given <span class="math inline">\(N\)</span> sequential auxiliary conditions on <span class="math inline">\(y\)</span>.</p>
-<p>Similar to differential equations, the homogeneous solution depends on the roots of the characteristic equation <span class="math inline">\(Q(E)=0\)</span> whose roots are either real or occur in complex conjugate pairs. Let <span class="math inline">\(\lambda_i\)</span> be the <span class="math inline">\(i\)</span>-th root of <span class="math inline">\(Q(E) = 0\)</span>, then the solution is of the form <span class="math display">\[y[n] = \sum\limits_{i=1}^N C_i \lambda_i^{n}\]</span> where the parameters <span class="math inline">\(C_i\)</span> are determined from the auxiliary conditions.</p>
-<p>For a real system (when the coefficients of the difference equation are real) and when the roots are complex <span class="math inline">\(\lambda_{1,2} = |\lambda|e^{\pm j\beta}\)</span>, it is cleaner to assume a form for those terms as <span class="math display">\[y[n] = C |\lambda|^n\cos(\beta n + \theta)\]</span> for constants <span class="math inline">\(C\)</span> and <span class="math inline">\(\theta\)</span>.</p>
-<div class="example">
-<div class="example-header">
-<p>Example</p>
-</div>
-<div class="example-container">
-<p>Find the solution to the first-order homogeneous LCCDE <span class="math display">\[y[n+1] + \frac{1}{2}y[n] = 0 \mbox{ with } y[0] = 5 \; .\]</span> Note <span class="math inline">\(Q(E) = E + \frac{1}{2}\)</span> has a single root <span class="math inline">\(\lambda_1 = -\frac{1}{2}\)</span>. Thus the solution is of the form <span class="math display">\[y[n] = C\left( -\frac{1}{2}\right)^n\]</span> where the parameter <span class="math inline">\(C\)</span> is found using <span class="math display">\[y[0] = C = 5\]</span> to give the final solution <span class="math display">\[y[n] = 5\left( -\frac{1}{2}\right)^n\]</span></p>
-</div>
-</div>
-<div class="example">
-<div class="example-header">
-<p>Example</p>
-</div>
-<div class="example-container">
-<p>Find the solution to the second-order homogeneous LCCDE <span class="math display">\[y[n+2] + y[n+1] + \frac{1}{2}y[n] = 0 \mbox{ with } y[0] = 1 \mbox{ and } y[1] = 0\; .\]</span> Note <span class="math inline">\(Q(E) = E^2 + E + \frac{1}{2}\)</span> has a pair of complex roots <span class="math inline">\(\lambda_{1,2} = -\frac{1}{2} \pm j\frac{1}{2}\)</span>. Thus the solution is of the form <span class="math display">\[y[n] = C \left|\frac{1}{\sqrt{2}}\right|^n\cos\left(\frac{3\pi}{4} n + \theta\right)\]</span> where the parameters are found using <span class="math display">\[y[0] = C\cos\left(\theta\right) = 1\]</span> <span class="math display">\[y[1] = C\frac{1}{\sqrt{2}}\cos\left(\frac{3\pi}{4} + \theta\right) = 0\]</span> This is true when <span class="math display">\[C = \sqrt{2} \mbox{ and } \theta = -\frac{\pi}{4} + 2\pi m\]</span> for any <span class="math inline">\(m\in \mathbb{Z}\)</span> since <span class="math inline">\(\cos\)</span> is periodic in <span class="math inline">\(2\pi\)</span>. A final solution is then <span class="math display">\[y[n] = \sqrt{2} \left|\frac{1}{\sqrt{2}}\right|^n\cos\left(\frac{3\pi}{4} n - \frac{\pi}{4}\right)\]</span></p>
-</div>
-</div>
-<p>See the appendix for a general technique to solve for these constants.</p>
-</section>
-<section id="impulse-response-from-lccde" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="impulse-response-from-lccde"><span class="header-section-number">5.4</span> Impulse response from LCCDE</h2>
-<p>Today our goal is to find the solution to <span class="math inline">\(Q(E)y=P(E)x\)</span> when <span class="math inline">\(x[n] = \delta[n]\)</span> assuming <span class="math inline">\(y[n] = 0\)</span> for <span class="math inline">\(n &lt; 0\)</span>, giving the <em>impulse response</em> <span class="math inline">\(y[n] = h[n]\)</span>. We skip the derivation here and just give a procedure.</p>
-<p><strong>Step 1:</strong> Let <span class="math inline">\(y_h\)</span> be the homogeneous solution to <span class="math inline">\(Q(E)y_h=0\)</span> for <span class="math inline">\(n &gt; N\)</span>.</p>
-<p><strong>Step 2:</strong> Assume a form for <span class="math inline">\(h[n]\)</span> given by <span class="math display">\[h[n] = \frac{b_N}{a_N}\delta[n] + y_h[n]u[n]\]</span></p>
-<p><strong>Step 3:</strong> Using the iterative procedure above find the <span class="math inline">\(N\)</span> auxiliary conditions we need by,</p>
-<ul>
-<li><p>first, rewrite the equation in delay form and solve for <span class="math inline">\(y[n]\)</span>,</p></li>
-<li><p>then let <span class="math inline">\(x[n] = \delta[n]\)</span> and manually compute <span class="math inline">\(h[0]\)</span> assuming <span class="math inline">\(h[n] = 0\)</span> for <span class="math inline">\(n &lt; 0\)</span>,</p></li>
-<li><p>repeating the previous step for <span class="math inline">\(h[1]\)</span>, continuing up to <span class="math inline">\(h[N-1]\)</span>.</p></li>
-</ul>
-<p><strong>Step 4:</strong> Using the auxillary conditions in step 3, solve for the constants in the solution <span class="math inline">\(h[n]\)</span> from step 2.</p>
-<div class="example">
-<div class="example-header">
-<p>Example</p>
-</div>
-<div class="example-container">
-<p>Find the impulse response of the system given by <span class="math display">\[y[n+2] -\frac{1}{4}y[n+1] -\frac{1}{8}y[n]= 2x[n+1]\]</span></p>
-<p>For step 1 we solve the equation <span class="math display">\[y_h[n+2] -\frac{1}{4}y_h[n+1] -\frac{1}{8}y_h[n] = 0\]</span> which is of the form <span class="math display">\[y_h[n] = C_1 \left( -\frac{1}{4}\right)^n + C_2 \left( \frac{1}{2}\right)^n\]</span> since the roots of <span class="math inline">\(Q(E) = E^2 - \frac{1}{4}E - \frac{1}{8}\)</span> are <span class="math inline">\(-\frac{1}{4}\)</span> and <span class="math inline">\(\frac{1}{2}\)</span>.</p>
-<p>For step 3, we find the auxiliary conditions needed to find <span class="math inline">\(C_1\)</span> and <span class="math inline">\(C_2\)</span> by rewriting the original equation in delay form and solving for <span class="math inline">\(y[0]\)</span> and <span class="math inline">\(y[1]\)</span> when <span class="math inline">\(x[n] = \delta[n]\)</span>. <span class="math display">\[y[n] = \frac{1}{4}y[n-1] + \frac{1}{8}y[n-2] + 2x[n-1]\]</span> Let <span class="math inline">\(x[n] = \delta[n]\)</span> and manually compute <span class="math inline">\(y[0]\)</span> assuming <span class="math inline">\(y[n] = 0\)</span> for <span class="math inline">\(n &lt; 0\)</span> <span class="math display">\[y[0] = \frac{1}{4}\underbrace{y[0-1]}_{0} + \frac{1}{8}\underbrace{y[0-2]}_{0} + 2\underbrace{\delta[0-1]}_{0} = 0\]</span> Repeat for <span class="math inline">\(y[1]\)</span> <span class="math display">\[y[1] = \frac{1}{4}\underbrace{y[1-1]}_{0} + \frac{1}{8}\underbrace{y[1-2]}_{0} + 2\underbrace{\delta[1-1]}_{1} = 2\]</span> Now we find the constants using step 4 <span class="math display">\[h[0] = C_1  + C_2  = 0\]</span> <span class="math display">\[h[1] = C_1 \left( -\frac{1}{4}\right) + C_2 \left( \frac{1}{2}\right) = 2\]</span> which gives <span class="math inline">\(C_1 = -\frac{8}{3}\)</span> and <span class="math inline">\(C_2 = \frac{8}{3}\)</span>. Thus the final impulse response is <span class="math display">\[h[n] = \frac{b_N}{a_N}\delta[n] + y_h[n]u[n] = -\frac{8}{3}\left( -\frac{1}{4}\right)^nu[n] + \frac{8}{3}\left( \frac{1}{2}\right)^n u[n]\]</span> since <span class="math inline">\(b_N = 0\)</span>.</p>
-</div>
-</div>
-<p>Note we can confirm our closed-form result in the previous example, for a few values of <span class="math inline">\(n\)</span>, by iteratively solving the difference equation <span class="math display">\[h[0] = \frac{1}{4}\underbrace{h[0-1]}_{0} + \frac{1}{8}\underbrace{h[0-2]}_{0} + 2\underbrace{\delta[0-1]}_{0} = 0\]</span> <span class="math display">\[h[1] = \frac{1}{4}\underbrace{h[1-1]}_{0} + \frac{1}{8}\underbrace{h[1-2]}_{0} + 2\underbrace{\delta[1-1]}_{1} = 2\]</span> <span class="math display">\[h[2] = \frac{1}{4}\underbrace{h[2-1]}_{2} + \frac{1}{8}\underbrace{h[2-2]}_{0} + 2\underbrace{\delta[2-1]}_{0} = \frac{1}{2}\]</span> <span class="math display">\[h[3] = \frac{1}{4}\underbrace{h[3-1]}_{\frac{1}{2}} + \frac{1}{8}\underbrace{h[3-2]}_{2} + 2\underbrace{\delta[2-1]}_{0} = \frac{3}{8}\]</span> and comparing to our closed-form solution a the same values of <span class="math inline">\(n\)</span> <span class="math display">\[h[0] = -\frac{8}{3} + \frac{8}{3} = 0\]</span> <span class="math display">\[h[1] = -\frac{8}{3}\left( -\frac{1}{4}\right) + \frac{8}{3}\left( \frac{1}{2}\right) = 2\]</span> <span class="math display">\[h[2] = -\frac{8}{3}\left( -\frac{1}{4}\right)^2 + \frac{8}{3}\left( \frac{1}{2}\right)^2 = \frac{1}{2}\]</span> <span class="math display">\[h[3] = -\frac{8}{3}\left( -\frac{1}{4}\right)^3 + \frac{8}{3}\left( \frac{1}{2}\right)^3 = \frac{3}{8}\]</span></p>
-<div class="example">
-<div class="example-header">
-<p>Example</p>
-</div>
-<div class="example-container">
-<p>Find the impulse response of the system given by <span class="math display">\[y[n+1] - \frac{1}{2}y[n] = x[n+1] + x[n]\]</span></p>
-<p>In step 1 we note the solution to <span class="math inline">\(Q(E)y[n] = 0\)</span> is of the form <span class="math display">\[y_h[n] = C\left( \frac{1}{2}\right)^n\]</span> From step 2 we note <span class="math inline">\(b_N = 1\)</span> and <span class="math inline">\(a_N = -\frac{1}{2}\)</span>, so that <span class="math display">\[h[n] = -2\delta[n]  +  C\left( \frac{1}{2}\right)^n\, u[n]\]</span> In step 3 we manually find <span class="math inline">\(h[0]\)</span></p>
-<span class="math display">\[\begin{aligned}
-    y[n] &amp;= \frac{1}{2}y[n-1] + x[n] + x[n-1]\\
-    h[n] &amp;= \frac{1}{2}y[n-1] + \delta[n] + \delta[n-1]\\
-    h[0] &amp;= 0 + 1 + 0 = 1
-  
-\end{aligned}\]</span>
-<p>And in step 4 we solve for <span class="math inline">\(C\)</span> <span class="math display">\[h[0] = -2  +  C = 1 \mbox{ implies } C = 3\]</span> to give <span class="math display">\[h[n] = -2\delta[n]  +  3\left( \frac{1}{2}\right)^n\, u[n]\]</span></p>
-</div>
-</div>
+<p>We will focus on single input - single output, CT and DT systems.</p>
 
 
 </section>
@@ -767,13 +654,13 @@ The delay form would be: <span class="math display">\[3y[n] + 4y[n-1] + 5y[n-2] 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./04-ct-lccde.html" class="pagination-link" aria-label="CT Systems as Linear Constant Coefficient Differential Equations">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CT Systems as Linear Constant Coefficient Differential Equations</span></span>
+      <a href="./05-dt-lccde.html" class="pagination-link" aria-label="DT systems as linear constant coefficient difference equations">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./06-ct-lti.html" class="pagination-link" aria-label="6. Linear Time Invariant CT Systems">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">6. Linear Time Invariant CT Systems</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
