@@ -27,3 +27,10 @@
   background-color: white;
   border-bottom-right-radius: 10px;
 }
+
+/* increase the padding around math blocks */
+math[display="block"] {
+  display: block;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
