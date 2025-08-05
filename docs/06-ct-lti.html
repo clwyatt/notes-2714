@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>6&nbsp; 6. Linear Time Invariant CT Systems – Supplementary Notes for ECE 2714: Signals and Systems</title>
+<title>6&nbsp; Linear Time Invariant CT Systems – Supplementary Notes for ECE 2714: Signals and Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -113,7 +142,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-ct-lti.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">6. Linear Time Invariant CT Systems</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./06-ct-lti.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear Time Invariant CT Systems</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -170,7 +199,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./06-ct-lti.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">6. Linear Time Invariant CT Systems</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear Time Invariant CT Systems</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -190,6 +219,17 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#system-types" id="toc-system-types" class="nav-link active" data-scroll-target="#system-types"><span class="header-section-number">6.1</span> System types</a></li>
+  <li><a href="#ct-system-representations" id="toc-ct-system-representations" class="nav-link" data-scroll-target="#ct-system-representations"><span class="header-section-number">6.2</span> CT system representations</a></li>
+  <li><a href="#system-properties-and-classification" id="toc-system-properties-and-classification" class="nav-link" data-scroll-target="#system-properties-and-classification"><span class="header-section-number">6.3</span> System properties and classification</a>
+  <ul class="collapse">
+  <li><a href="#memory" id="toc-memory" class="nav-link" data-scroll-target="#memory"><span class="header-section-number">6.3.1</span> Memory</a></li>
+  <li><a href="#invertability" id="toc-invertability" class="nav-link" data-scroll-target="#invertability"><span class="header-section-number">6.3.2</span> Invertability</a></li>
+  <li><a href="#causality" id="toc-causality" class="nav-link" data-scroll-target="#causality"><span class="header-section-number">6.3.3</span> Causality</a></li>
+  <li><a href="#stability" id="toc-stability" class="nav-link" data-scroll-target="#stability"><span class="header-section-number">6.3.4</span> Stability</a></li>
+  <li><a href="#time-invariance" id="toc-time-invariance" class="nav-link" data-scroll-target="#time-invariance"><span class="header-section-number">6.3.5</span> Time-invariance</a></li>
+  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">6.3.6</span> Linearity</a></li>
+  </ul></li>
+  <li><a href="#stable-lti-systems" id="toc-stable-lti-systems" class="nav-link" data-scroll-target="#stable-lti-systems"><span class="header-section-number">6.4</span> Stable LTI Systems</a></li>
   </ul>
 </nav>
     </div>
@@ -198,7 +238,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">6. Linear Time Invariant CT Systems</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear Time Invariant CT Systems</span></h1>
 </div>
 
 
@@ -210,20 +250,15 @@ ul.task-list li input[type="checkbox"] {
     
   </div>
   
-<div>
-  <div class="abstract">
-    <div class="block-title">Abstract</div>
-    <p>Today’s topic is our introduction to CT systems and the important case of CT Linear, Time-Invariant Systems.</p>
-  </div>
-</div>
 
 
 </header>
 
 
+<p>Today’s topic is our introduction to CT systems and the important case of CT Linear, Time-Invariant Systems.</p>
 <section id="system-types" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="system-types"><span class="header-section-number">6.1</span> System types</h2>
-<p>A system is an interconncted set of components or sub-systems. Mathematically a system is a transformation between one or more signals, a rule that maps functions to functions.</p>
+<p>A system is an interconncted set of components or sub-systems. Mathematically a system is a transformation, <span class="math inline">\(T\)</span>, between one or more signals, a rule that maps functions to functions.</p>
 <ul>
 <li><p>single input - single output (SISO) system.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -248,6 +283,209 @@ ul.task-list li input[type="checkbox"] {
 </div></li>
 </ul>
 <p>We will focus on single input - single output, CT and DT systems.</p>
+<ul>
+<li><p>If both input and output are CT signals, it is a CT system.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_4.svg" class="img-fluid figure-img" alt="diagram showing the block diagram of a CT system"></p>
+<figcaption>Generic Block Diagram of CT System</figcaption>
+</figure>
+</div></li>
+<li><p>If both input and output are DT signals, it is a DT system.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_5.svg" class="img-fluid figure-img" alt="diagram showing the block diagram of a DT system"></p>
+<figcaption>Generic Block Diagram of a DT System</figcaption>
+</figure>
+</div></li>
+<li><p>If input and output are not both CT or DT signals, it is a hybrid CT-DT system.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_6.svg" class="img-fluid figure-img" alt="diagram showing the block diagram of a hybrid system with DT input and CT output"></p>
+<figcaption>Generic Block Diagram of a Hybrid DT/CT System</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_7.svg" class="img-fluid figure-img" alt="diagram showing the block diagram of a hybrid system with CT input and DT output"></p>
+<figcaption>Generic Block Diagram of a Hybrid CT/DT System</figcaption>
+</figure>
+</div></li>
+</ul>
+<p>As a shorthand notation for the graphical description above we can use <span class="math inline">\(x \mapsto y\)</span>. A system maps a function <span class="math inline">\(x\)</span> to a function <span class="math inline">\(y\)</span>:</p>
+<ul>
+<li><p>CT system <span class="math display">\[x(t) \mapsto y(t)\]</span></p></li>
+<li><p>DT system <span class="math display">\[x[n] \mapsto y[n]\]</span></p></li>
+<li><p>Hybrid CT-DT system <span class="math display">\[x[n] \mapsto y(t)\]</span></p>
+<p>or</p>
+<p><span class="math display">\[x(t) \mapsto y[n]\]</span></p></li>
+</ul>
+<p>When a system has no input, the system is <em>autonomous</em>. An autonomous system just produces output: <span class="math inline">\(\mapsto y\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_8.svg" class="img-fluid figure-img" alt="diagram showing the block diagram of an autonomous system"></p>
+<figcaption>Generic Block Diagram of an Autonomous System</figcaption>
+</figure>
+</div>
+<p>We can think of an autonomous system as a function generator, producing signals for use, or as modeling a measurement process.</p>
+</section>
+<section id="ct-system-representations" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="ct-system-representations"><span class="header-section-number">6.2</span> CT system representations</h2>
+<p>We can mathematically represent, or model, systems multiple ways.</p>
+<ul>
+<li><p>purely mathematically - in time domain we will use</p>
+<ul>
+<li><p>for CT systems: linear, constant coefficient differential equations. e.g.&nbsp;<span class="math display">\[y^{\prime\prime} + ay^\prime + by = x\]</span></p></li>
+<li><p>for DT systems: linear, constant coefficient difference equation, e.g.&nbsp;<span class="math display">\[y[n] = a y[n-1] + b y[n-2] + x[n]\]</span></p></li>
+</ul>
+<p>or</p>
+<ul>
+<li><p>for CT systems: CT impulse response</p></li>
+<li><p>for DT systems: DT impulse response</p></li>
+</ul></li>
+<li><p>purely mathematically - in frequency domain we will use</p>
+<ul>
+<li><p>frequency response</p></li>
+<li><p>transfer function (complex frequency, covered in ECE 3704)</p></li>
+</ul></li>
+<li><p>graphically, using a mixture of math and block diagrams</p></li>
+</ul>
+<p>Mathematical models:</p>
+<ul>
+<li><p>provide abstraction, removing (often) irrelevant detail.</p></li>
+<li><p>can be more or less detailed, an <em>internal</em> v.s. <em>external</em> (block box) description</p></li>
+<li><p>are not unique with respect to instantiation (implementation)</p></li>
+<li><p>are limited to the regime they were designed for</p></li>
+</ul>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p>Consider the RC circuit. It is a single input - single output system. We will be able to represent it mathematically or graphically and internally or externally.</p>
+<ul>
+<li><p>External - Graphical</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_10.svg" class="img-fluid figure-img" alt="of a block diagram annotated with an impulse response"></p>
+<figcaption>External Model</figcaption>
+</figure>
+</div></li>
+<li><p>External - Symbolic</p>
+<p><span class="math inline">\(y(t) = h(t)*x(t)\)</span></p></li>
+<li><p>Internal - Graphical</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_9.svg" class="img-fluid figure-img" alt="of a simple Series RC circuit"></p>
+<figcaption>Internal Model</figcaption>
+</figure>
+</div></li>
+<li><p>Internal - Symbolic</p>
+<p><span class="math inline">\(y^\prime + \frac{1}{RC} y = \frac{1}{RC} x(t)\)</span></p></li>
+</ul>
+</div>
+</div>
+<p>Note: internal models usually have several paramters (the resistor and capacitor values in the example above), while the external model does not. Thus another term for external model is a <em>lumped parameter</em> model.</p>
+<p>It does not matter what the underlying system implementation is. For example, consider a mechanical system, described by a second-order ODE:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/mechanical_system.svg" class="img-fluid figure-img" alt="of a simple mass-spring-damper system"></p>
+<figcaption>Mechanical Diagram</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(y\)</span> = position</td>
+<td style="text-align: left;"><span class="math inline">\(M\)</span> = mass</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(y^\prime\)</span> = velocity</td>
+<td style="text-align: left;"><span class="math inline">\(K\)</span> = spring constant</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(y^{\prime\prime}\)</span> = acceleration</td>
+<td style="text-align: left;"><span class="math inline">\(B\)</span> = coefficient of friction</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[y^{\prime\prime} + \frac{B}{M} y^\prime + \frac{K}{M}y = \frac{1}{M}f(t)\]</span></p>
+<p>Compare this to the parallel RLC circuit, described by the second-order ODE:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig6_11.svg" class="img-fluid figure-img" alt="of a circuit diagram for a parallel RLC circuit"></p>
+<figcaption>Circuit Diagram</figcaption>
+</figure>
+</div>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(y\)</span> = voltage</td>
+<td style="text-align: left;"><span class="math inline">\(R\)</span> = resistance</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(Cy^\prime\)</span> = capacitor current</td>
+<td style="text-align: left;"><span class="math inline">\(L\)</span> = inductance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><span class="math inline">\(C\)</span> = capacitance</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[y^{\prime\prime} + \frac{1}{RC} y^\prime + \frac{1}{LC}y = \frac{1}{LC}f(t)\]</span></p>
+<p>Comparing these systems, if <span class="math inline">\(R = \frac{1}{B}\)</span>, <span class="math inline">\(L = \frac{1}{K}\)</span>, and <span class="math inline">\(C = M\)</span>, they are mathematically identical.</p>
+</section>
+<section id="system-properties-and-classification" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="system-properties-and-classification"><span class="header-section-number">6.3</span> System properties and classification</h2>
+<p>Choosing the right kind of system model is important. Here are some important properties that allow us to broadly classify systems.</p>
+<ul>
+<li><p>Memory</p></li>
+<li><p>Invertability</p></li>
+<li><p>Causality</p></li>
+<li><p>Stability</p></li>
+<li><p>Time-invariance</p></li>
+<li><p>Linearity</p></li>
+</ul>
+<p>Let’s define each it turn.</p>
+<section id="memory" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="memory"><span class="header-section-number">6.3.1</span> Memory</h3>
+<p>The output of a system with memory depends on previous or future inputs and is said to be <em>dynamic</em>. Otherwise the system is memoryless or <em>instantaneous</em>, and the output <span class="math inline">\(y(t)\)</span> at time <span class="math inline">\(t\)</span> depends only on <span class="math inline">\(x(t)\)</span>. For example in CT: <span class="math display">\[y(t) = 2x(t)\]</span> is a memoryless system, while <span class="math display">\[y(t) = \int\limits_{-\infty}^{t} x(\tau) \; dt\]</span> has memory.</p>
+</section>
+<section id="invertability" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="invertability"><span class="header-section-number">6.3.2</span> Invertability</h3>
+<p>A system is invertable if there exists a system that when placed in series with the original recovers the input. <span class="math display">\[x(t) \mapsto{T} y(t) \mapsto{T^{-1}} x(t)\]</span> where <span class="math inline">\(T^{-1}\)</span> is the inverse system of <span class="math inline">\(T\)</span>. For example, consider a system <span class="math display">\[x(t) \mapsto y(t) = \int\limits_{-\infty}^t x(\tau) \; d\tau\]</span> and a system <span class="math display">\[y(t) \mapsto z(t) = \frac{dy}{dt}\]</span> The combination in series <span class="math inline">\(x(t) \mapsto y(t) \mapsto z(t) = x(t)\)</span>, i.e.&nbsp;the derivative undoes the integral.</p>
+</section>
+<section id="causality" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="causality"><span class="header-section-number">6.3.3</span> Causality</h3>
+<p>A CT system is causal if the output at time <span class="math inline">\(t\)</span> depends on the input for time values at or before <span class="math inline">\(t\)</span>: <span class="math display">\[y(t) \;\text{depends on}\; x(\tau) \;\text{for} \; \tau \leq t\]</span> All physical CT systems are causal, even if all continuous systems are not (e.g.&nbsp;continuous 2D images <span class="math inline">\(f(u,v)\)</span>, have no "before" and "after").</p>
+<p>For example, consider a CT system whose impulse response is <span class="math inline">\(h(t) = e^{-t^2}\)</span>. This implies the system produces output <em>before</em> (i.e.&nbsp;for <span class="math inline">\(t &lt; 0\)</span>) the impulse is applied at <span class="math inline">\(t=0\)</span>, somehow anticipating the arrival of the impulse. Barring time-travel, this is physically impossible.</p>
+</section>
+<section id="stability" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="stability"><span class="header-section-number">6.3.4</span> Stability</h3>
+<p>A CT system is (BIBO) stable if applying a bounded-input (BI) <span class="math display">\[\left|x(t)\right| &lt; \infty \; \forall \; t\]</span> results in a bounded-output (BO) <span class="math inline">\(x(t) \mapsto y(t)\)</span> and <span class="math display">\[\left|y(t)\right| &lt; \infty \; \forall \; t\]</span> Note, bounded in practice is limited by the physical situation, e.g.&nbsp;positive and negative rails in a physical circuit.</p>
+<p>For example, a CT system described by the LCCDE <span class="math display">\[\frac{dy}{dt}(t) - 2y(t) = x(t)\]</span> is unstable because the solution <span class="math inline">\(y(t)\)</span> will have one term of the form <span class="math inline">\(Ce^{2t}\)</span>, for most non-zero inputs <span class="math inline">\(x(t)\)</span> or any non-zero initial condition, that grows unbounded as time increases.</p>
+</section>
+<section id="time-invariance" class="level3" data-number="6.3.5">
+<h3 data-number="6.3.5" class="anchored" data-anchor-id="time-invariance"><span class="header-section-number">6.3.5</span> Time-invariance</h3>
+<p>A CT system is time-invariant if, given <span class="math display">\[x(t) \mapsto y(t)\]</span> then a time-shift of the input leads to the same time-shift in the output <span class="math display">\[x(t-\tau) \mapsto y(t-\tau)\]</span></p>
+<p>An important counterexample is a CT system described by a LCCDE, e.g. <span class="math display">\[\frac{dy}{dt}(t) + y(t) = x(t)\]</span> but non-zero auxillary conditions at some <span class="math inline">\(t_0\)</span>, <span class="math inline">\(y(t_0) = y_0 \neq 0\)</span>. Such systems will have a term in its solution that depends on <span class="math inline">\(y_0\)</span>. However if I time shift the input, the term that depends on <span class="math inline">\(y_0\)</span> does not shift (since it is anchored to <span class="math inline">\(t_0\)</span>) and the total output does not shift identically with the input. Thus the system cannot be time-invariant.</p>
+</section>
+<section id="linearity" class="level3" data-number="6.3.6">
+<h3 data-number="6.3.6" class="anchored" data-anchor-id="linearity"><span class="header-section-number">6.3.6</span> Linearity</h3>
+<p>A CT system is linear if the output due to a sum of scaled individual inputs is the same as the scaled sum of the individual outputs with respect to those inputs. In other words given <span class="math display">\[x_1(t) \mapsto y_1(t) \;\text{and}\; x_2(t) \mapsto y_2(t)\]</span> then <span class="math display">\[a x_1(t) + b x_2(t) \mapsto a y_1(t) + b y_2(t)\]</span> for constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>. Note this property extends to sums of arbitrary signals, e.g. if <span class="math display">\[x_i(t) \mapsto y_i(t) \; \forall\; i \in [1 \cdots N]\]</span> then given <span class="math inline">\(N\)</span> constants <span class="math inline">\(a_i\)</span>, if the system is linear <span class="math display">\[\sum\limits_{i = 1}^N a_i x_i(t) \mapsto \sum\limits_{i = 1}^N a_i y_i(t)\]</span> This is a very important property, called <em>superposition</em>, and it simplifies the analysis of systems greatly.</p>
+<p>Similar to time-invariance an important non-linear system is that is described by a LCCDE with non-zero auxillary conditions at some <span class="math inline">\(t_0\)</span>, <span class="math inline">\(y(t_0) = y_0\)</span>. Again such systems will have a term in it’s solution that depends on <span class="math inline">\(y_0\)</span>. Given two inputs, each individual response will have that term in it, so thier sum has double that term. However the response due to the sum of the inputs would again only have one and the sum of the responses would not be the same as the response of the sum. Such a system cannot be linear.</p>
+</section>
+</section>
+<section id="stable-lti-systems" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="stable-lti-systems"><span class="header-section-number">6.4</span> Stable LTI Systems</h2>
+<p>The remainder of this course is about stable, linear, time-invariant (LTI) systems. As we have seen in CT such systems can be described by a LCCDE with zero auxillary (initial) conditions (the system is <em>at rest</em>).</p>
+<p>We have seen previously how to find the impulse response, <span class="math inline">\(h(t)\)</span>, of such systems. We now note some relationships between the impulse response and the system properties described above.</p>
+<ul>
+<li><p>If a system is memoryless then <span class="math inline">\(h(t) = C \delta(t)\)</span> for some constant <span class="math inline">\(C\)</span>.</p></li>
+<li><p>If a system is causal then <span class="math inline">\(h(t) = 0\)</span> for <span class="math inline">\(t &lt; 0\)</span>.</p></li>
+<li><p>If a system is BIBO stable then <span class="math display">\[\int\limits_{-\infty}^{\infty} |h(t)| \; dt &lt; \infty\]</span></p></li>
+</ul>
 
 
 </section>
