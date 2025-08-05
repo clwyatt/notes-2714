@@ -404,5 +404,5 @@ exponential.
 The visualization of the general case is to view the signal $x[n]$ as a
 vector rotating through fixed angles in the complex plane.
 
-![The DT complex sinusoid at a specific point in time.](images/DT_complexsinusoid_visual.svg){fig-alt="A figure visualizing the DT complex sinusoid at a specific point in time." #fig-dt-complex-sinusoid}
+![The DT complex sinusoid at a specific point in time.](images/DT_complexsinusoid_visual){fig-alt="A figure visualizing the DT complex sinusoid at a specific point in time." #fig-dt-complex-sinusoid}
 
