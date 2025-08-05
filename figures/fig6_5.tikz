@@ -1,0 +1,16 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+
+\begin{tikzpicture}[auto, node distance=4cm,>=latex']
+      \node [input, name=input] {};
+      \node [block, right of=input] (system) {System $T$};
+      \node [output, right of=system] (output) {};
+
+      \draw [draw,->] (input) -- node {Input $x[n]$} (system);
+      \draw [->] (system) -- node {Output $y[n]$} (output);
+    \end{tikzpicture}
+
+\end{document}
