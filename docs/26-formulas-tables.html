@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – Supplementary Notes for ECE 2714: Signals and Systems</title>
+<title>Useful Mathematical Definitions and Tables – Supplementary Notes for ECE 2714: Signals and Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./26-formulas-tables.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./08-ct-conv.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -88,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -131,7 +142,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./26-formulas-tables.html">Appendices</a></li><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./26-formulas-tables.html">Appendices</a></li><li class="breadcrumb-item"><a href="./26-formulas-tables.html">Useful Mathematical Definitions and Tables</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -214,13 +225,13 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./26-formulas-tables.html" class="sidebar-item-text sidebar-link">
+  <a href="./26-formulas-tables.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Useful Mathematical Definitions and Tables</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -231,15 +242,25 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#definition-of-modulus-for-integers" id="toc-definition-of-modulus-for-integers" class="nav-link active" data-scroll-target="#definition-of-modulus-for-integers">Definition of modulus for integers</a></li>
+  <li><a href="#table:ctconv" id="toc-table:ctconv" class="nav-link" data-scroll-target="#table\:ctconv">Table of Representative Convolution Integrals</a></li>
+  <li><a href="#table:dtconv" id="toc-table:dtconv" class="nav-link" data-scroll-target="#table\:dtconv">Table of Representative Convolution Sums</a></li>
+  <li><a href="#table:ctft" id="toc-table:ctft" class="nav-link" data-scroll-target="#table\:ctft">Table of Representative CT Fourier Transform Pairs</a></li>
+  <li><a href="#table:dtft" id="toc-table:dtft" class="nav-link" data-scroll-target="#table\:dtft">Table of Representative DT Fourier Transform Pairs</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./26-formulas-tables.html">Appendices</a></li><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./26-formulas-tables.html">Appendices</a></li><li class="breadcrumb-item"><a href="./26-formulas-tables.html">Useful Mathematical Definitions and Tables</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title">Useful Mathematical Definitions and Tables</h1>
 </div>
 
 
@@ -256,11 +277,272 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
+<section id="definition-of-modulus-for-integers" class="level2">
+<h2 class="anchored" data-anchor-id="definition-of-modulus-for-integers">Definition of modulus for integers</h2>
+<p>Let <span class="math inline">\(n\in\mathbb{Z}\)</span> and <span class="math inline">\(N \in \mathbb{N}\)</span>. The mod operator <span class="math display">\[n \% N = \left\{ \begin{array}{cc}
+  \text{remainder}\left(\frac{n}{N}\right) &amp; n \geq 0\\
+  N - \text{remainder}\left(\frac{|n|}{N}\right) &amp; n &lt; 0
+  \end{array}
+\right.\]</span> where <span class="math inline">\(\text{remainder}\)</span> is the remainder after dividing <span class="math inline">\(n\)</span> by <span class="math inline">\(N\)</span>.</p>
+</section>
+<section id="table:ctconv" class="level2">
+<h2 class="anchored" data-anchor-id="table:ctconv">Table of Representative Convolution Integrals</h2>
+<table class="caption-top table">
+<caption>CT Convolution Table</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(x_1(t)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_2(t)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_1(t) * x_2(t)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^{a t}u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1-e^{a t}}{-a}u(t)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(tu(t)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(e^{a_1 t}u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^{a_2 t}u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{e^{a_1 t}-e^{a_2 t}}{a_1 - a_2}u(t)\)</span> for <span class="math inline">\(a_1 \neq a_2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(e^{a t}u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^{a t}u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(te^{a t}u(t)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(te^{a_1 t}u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^{a_2 t}u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{e^{a_2 t}-e^{a_1 t} + (a_1-a_2)te^{a_1 t}}{(a_1 - a_2)^2}u(t)\)</span> for <span class="math inline">\(a_1 \neq a_2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(e^{a_1 t}\cos(\beta t + \theta)u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^{a_2 t}u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\cos(\theta - \phi)e^{a_2 t} - e^{a_1 t}\cos(\beta t + \theta - \phi)}{\sqrt{(a_1 + a_2)^2 + \beta^2}}u(t)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\phi = \arctan\left( \frac{-\beta}{a_1 + a_2}\right)\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table:dtconv" class="level2">
+<h2 class="anchored" data-anchor-id="table:dtconv">Table of Representative Convolution Sums</h2>
+<table class="caption-top table">
+<caption>DT Convolution Table</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(x_1[n]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_2[n]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x_1[n] * x_2[n]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((n+1)u[n]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\gamma^{n}u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1-\gamma^{n+1}}{1-\gamma}u[n]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\gamma_1^{n}u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\gamma_2^{n}u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\gamma_1^{n+1}-\gamma_2^{n+1}}{\gamma_1-\gamma_2}u[n]\)</span> for <span class="math inline">\(\gamma_1 \neq \gamma_2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\gamma^{n}u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\gamma^{n}u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((n+1)\gamma^{n}u[n]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(|\gamma_1|^{n}\cos\left(\beta n + \theta \right)u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(|\gamma_2|^{n}u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{R}\left[ |\gamma_1|^{n+1}\cos\left( \beta (n+1) + \theta - \phi\right) - |\gamma_2|^{n+1}\cos\left( \theta - \phi\right)\right]u[n]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(R = \left[ |\gamma_1|^2 + |\gamma_2|^2 -2|\gamma_1||\gamma_2|\cos(\beta)\right]^{\frac{1}{2}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\phi = \arctan\left( \frac{|\gamma_1|\sin(\beta)}{|\gamma_1|\cos(\beta) - |\gamma_2|} \right)\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table:ctft" class="level2">
+<h2 class="anchored" data-anchor-id="table:ctft">Table of Representative CT Fourier Transform Pairs</h2>
+<table class="caption-top table">
+<caption>CT Fourier Transform Table</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(x(t)\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(X(j\omega)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\pi\delta(\omega)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\delta(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\pi\delta(\omega) + \frac{1}{j\omega}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(e^{-at}u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{a + j\omega}\)</span> for <span class="math inline">\(Re\{a\} &gt; 0\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(te^{-at}u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{\left(a + j\omega\right)^2}\)</span> for <span class="math inline">\(Re\{a\} &gt; 0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(e^{j\omega_0 t}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\pi\delta(\omega-\omega_0)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\cos(\omega_0 t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\pi\left[ \delta(\omega-\omega_0) + \delta(\omega+\omega_0)\right]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\sin(\omega_0 t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(j\pi\left[ \delta(\omega+\omega_0) - \delta(\omega-\omega_0)\right]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(e^{-at}\cos(\omega_0 t)u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{a+j\omega}{(a+j\omega)^2 + \omega_0^2}\)</span> for <span class="math inline">\(Re\{a\} &gt; 0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(e^{-at}\sin(\omega_0 t)u(t)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\omega_0}{(a+j\omega)^2 + \omega_0^2}\)</span> for <span class="math inline">\(Re\{a\} &gt; 0\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\delta(t - t_0)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^{-j t_0 \omega}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(K_0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2 K_0 \pi \delta(\omega)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(e^{-a|t|}\)</span>, <span class="math inline">\(\text{Re}\{a\} &gt; 0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{2a}{a^2 + \omega^2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(u(t + T) - u(t - T)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2T \frac{\sin{(\omega T)}}{\omega T}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\frac{\sin{({W}t)}}{W t}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\pi}{W} [u(\omega + W) - u(\omega - W)]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(e^{-\frac{t^2}{2 \sigma^2}}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sigma \sqrt{2 \pi} e^{-\frac{\sigma^2 \omega^2}{2}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\sum\limits_{k=-\infty}^{\infty} a_k e^{j k \omega_0 t}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2 \pi \sum\limits_{k=-\infty}^{\infty} a_k \delta{(\omega - k \omega_0)}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\sum\limits_{n=-\infty}^{\infty} \delta(t - nT)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\omega_0 \sum\limits_{k=-\infty}^{\infty} \delta{(\omega - k \omega_0)}\)</span>, <span class="math inline">\(\omega_0 = \frac{2 \pi}{T}\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table:dtft" class="level2">
+<h2 class="anchored" data-anchor-id="table:dtft">Table of Representative DT Fourier Transform Pairs</h2>
+<table class="caption-top table">
+<caption>DT Fourier Transform Table</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(x[n]\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(X(e^{j\omega})\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\delta[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\delta[n - n_0]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(e^{-j \omega n_0}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(u[n]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{1 - e^{-j \omega}} + \pi \sum\limits_{k = - \infty}^{\infty} \delta(\omega - 2 k \pi)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(K_0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2 K_0 \pi \sum\limits_{k = - \infty}^{\infty} \delta(\omega - 2 k \pi)\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(a^n u[n]\)</span>, <span class="math inline">\(|a| &lt; 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1}{(1 - ae^{-j \omega)}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(n a^n u[n]\)</span>, <span class="math inline">\(|a| &lt; 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{a e^{-j \omega}}{(1 - a e^{-j \omega})^2}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(a^{|n|}\)</span>, <span class="math inline">\(|a| &lt; 1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{1-a^2}{1 - 2 a \cos{\omega} + a^2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(e^{j \omega_0 n}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2 \pi \sum\limits_{k = - \infty}^{\infty} \delta{(\omega - \omega_0 - 2 k \pi)}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\cos{(\omega_0 n)}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\pi \sum\limits_{k = - \infty}^{\infty} [\delta(\omega + \omega_0 - 2 k \pi) + \delta(\omega - \omega_0 - 2 k \pi)]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\sin{(\omega_0 n)}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(j \pi \sum\limits_{k = - \infty}^{\infty} [\delta(\omega + \omega_0 - 2 k \pi) - \delta(\omega - \omega_0 - 2 k \pi)]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(u[n + n_0] - u[n - n_0]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\frac{\sin{(\omega (n_0 + 0.5))}}{\sin{0.5 \omega}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\frac{\sin{({W}n)}}{\pi n}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sum\limits_{k = - \infty}^{\infty} X_1(\omega - 2 k \pi), X_1(\omega) = \begin{array}{cc} 1 &amp; 0 \le |\omega| \le W, 0 &lt; W &lt; \pi\\ 0 &amp; W &lt; |\omega| \le \pi,  0 &lt; W &lt; \pi \end{array}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\sum\limits_{k=n_0}^{n_0+N-1} a_k e^{j k \omega_0 n}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2 \pi \sum\limits_{k=-\infty}^{\infty} a_k \delta{(\omega - k \omega_0)}\)</span>, <span class="math inline">\(\omega_0 = \frac{2 \pi}{N}\)</span>,</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\sum\limits_{k=-\infty}^{\infty} \delta[n - kN]\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\omega_0 \sum\limits_{k=-\infty}^{\infty} \delta{(n - k \omega_0)}\)</span>, <span class="math inline">\(\omega_0 = \frac{2 \pi}{N}\)</span>,</td>
+</tr>
+</tbody>
+</table>
 
-</div>
 
-
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -664,11 +946,14 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./26-formulas-tables.html" class="pagination-link" aria-label="Useful Mathematical Definitions and Tables">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Useful Mathematical Definitions and Tables</span>
+      <a href="./08-ct-conv.html" class="pagination-link" aria-label="CT Convolution">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">CT Convolution</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

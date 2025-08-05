@@ -368,5 +368,160 @@
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Linear Time Invariant CT Systems</span>"
     ]
+  },
+  {
+    "objectID": "07-dt-lti.html",
+    "href": "07-dt-lti.html",
+    "title": "7  Linear Time Invariant DT Systems",
+    "section": "",
+    "text": "7.1 DT system representations\nToday’s topic is our introduction to systems and the important case of DT Linear, Time-Invariant Systems.\nWe can mathematically represent, or model, DT systems multiple ways.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Linear Time Invariant DT Systems</span>"
+    ]
+  },
+  {
+    "objectID": "07-dt-lti.html#dt-system-representations",
+    "href": "07-dt-lti.html#dt-system-representations",
+    "title": "7  Linear Time Invariant DT Systems",
+    "section": "",
+    "text": "purely mathematically - in time domain we will use\n\nlinear, constant coefficient difference equations, e.g. \\[y[n] = a y[n-1] + b y[n-2] + x[n]\\]\nDT impulse response \\(h[n]\\)\n\npurely mathematically - in frequency domain we will use\n\nfrequency response\ntransfer function (complex frequency, covered in ECE 3704)\n\ngraphically, using a mixture of math and block diagrams",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Linear Time Invariant DT Systems</span>"
+    ]
+  },
+  {
+    "objectID": "07-dt-lti.html#system-properties-and-classification",
+    "href": "07-dt-lti.html#system-properties-and-classification",
+    "title": "7  Linear Time Invariant DT Systems",
+    "section": "7.2 System properties and classification",
+    "text": "7.2 System properties and classification\nChoosing the right kind of system model is important. Here are some important properties that allow us to broadly classify systems.\n\nMemory\nInvertability\nCausality\nStability\nTime-invariance\nLinearity\n\nLet’s define each it turn.\n\n7.2.1 Memory\nThe output of a DT system with memory depends on previous or future inputs and is said to be dynamic. Otherwise the system is memoryless or instantaneous, and the output \\(y[n]\\) at index \\(n\\) depends only on \\(x[n]\\). For example: \\[y[n] = 2x[n]\\] is a memoryless system, while \\[y[n+1] + y[n] = x[n]\\] has memory. To see this, write the difference equation in recursive form \\[y[n] = -y[n-1] + x[n-1]\\] and we see explicitly the current output \\(y[n]\\) depends on past values of output and input.\n\n\n7.2.2 Invertability\nA system is invertible if there exists a system that when placed in series with the original recovers the input. \\[x[n] \\mapsto{T} y[n] \\mapsto{T^{-1}} x[n]\\] where \\(T^{-1}\\) is the inverse system of \\(T\\). For example, consider a system \\[x[n] \\mapsto y[n] = \\sum\\limits_{m=-\\infty}^{n} x[m]\\] and a system \\[y[n] \\mapsto z[n] = y[n] - y[n-1]\\] The combination in series \\(x[n] \\mapsto y[n] \\mapsto z[n] = x[n]\\), since \\[z[n] = y[n] - y[n-1] = \\sum\\limits_{m=-\\infty}^{n} x[m] - \\sum\\limits_{m=-\\infty}^{n-1} x[m] = x[n]\\] i.e. the difference undoes the accumulation.\n\n\n7.2.3 Causality\nA DT system is causal if the output at index \\(n\\) depends on the input for index values at or before \\(n\\): \\[y[n] \\;\\text{depends on}\\; x[m] \\;\\text{for} \\; m \\leq n\\] While all physical CT systems are causal, practical DT systems may not be since we can use memory to \"shift time\". For CT systems we cannot store the infinite number of values between two time points \\(t_1\\) and \\(t_2\\), but we can store the \\(n_2-n_1\\) values of a DT system between between two indices \\(n_1\\) and \\(n_2\\) (assuming infinite precision).\n\n\nExample\n\n\nConsider a DT system whose difference equation is \\[y[n] = -x[n-1] + 2x[n] - x[n+1]\\] We see the current output \\(y[n]\\) depends on a \"future\" value of the input \\(x[n+1]\\). Thus the system is not causal. In practice we can shift the difference equation to \\[y[n-1] = -x[n-2] + 2x[n-1] - x[n]\\] and then delay the output by one sample to get \\(y[n]\\).\n\n\n\n\nExample\n\n\nConsider a DT system whose difference equation is \\[y[n] = -y[n-1] + 2x[n]\\] We see the current output \\(y[n]\\) depends on a \"past\" value of the output \\(y[n-1]\\) and the current input \\(x[n]\\). Thus the system is causal. In practice we can immediately compute \\(y[n]\\) with no delay.\n\n\n\n\n7.2.4 Stability\nA DT system is (BIBO) stable if applying a bounded-input (BI) \\[\\left|x[n]\\right| &lt; \\infty \\; \\forall \\; n\\] results in a bounded-output (BO) \\(x[n] \\mapsto y[n]\\) and \\[\\left|y[n]\\right| &lt; \\infty \\; \\forall \\; n\\] Note, bounded in practice is limited by the physical situation, e.g. the number of bits used to store values.\nFor example, a DT system described by the LCCDE \\[y[n+1] - 2 y[n] = x[n+1]\\] is unstable because the solution \\(y[n]\\) will have one term of the form \\(\\left( 2\\right)^n\\), for most non-zero inputs \\(x[n]\\) or any non-zero initial condition, that grows unbounded as \\(n\\) increases.\n\n\n7.2.5 Time-invariance\nA DT system is time(index)-invariant if, given \\[x[n] \\mapsto y[n]\\] then an index-shift of the input leads to the same index-shift in the output \\[x[n-m] \\mapsto y[n-m]\\]\nAn important example is a DT system described by a LCCDE, e.g. \\[y[n+1] - \\frac{1}{2} y[n] = x[n+1]\\] or in recursive form \\[y[n] = \\frac{1}{2} y[n-1] + x[n]\\]\nIf we index shift the input \\(x[n - m]\\) we replace \\(n\\) by \\(n-m\\) and the difference equation becomes \\[y[n-m+1] - \\frac{1}{2} y[n-m] = x[n-m+1]\\] which has the same solution shifted by \\(m\\) \\[y[n-m] = \\frac{1}{2} y[n-m -1] + x[n-m]\\]\nIf a coefficient depends on \\(n\\) however, e.g \\[y[n+1] - \\frac{n}{2} y[n] = x[n+1]\\] so that it is no longer LCC then the solution depends on \\(m\\) and the system is no longer time-invariant.\n\n\n7.2.6 Linearity\nA DT system is linear if the output due to a sum of scaled individual inputs is the same as the scaled sum of the individual outputs with respect to those inputs. In other words given \\[x_1[n] \\mapsto y_1[n] \\;\\text{and}\\; x_2[n] \\mapsto y_2[n]\\] then \\[a x_1[n] + b x_2[n] \\mapsto a y_1[n] + b y_2[n]\\] for constants \\(a\\) and \\(b\\). Note this property extends to sums of arbitrary signals, e.g. if \\[x_i[n] \\mapsto y_i[n] \\; \\forall\\; i \\in [1 \\cdots N]\\] then given \\(N\\) constants \\(a_i\\), if the system is linear \\[\\sum\\limits_{i = 1}^N a_i x_i[n] \\mapsto \\sum\\limits_{i = 1}^N a_i y_i[n]\\] This is a very important property, called superposition, and it simplifies the analysis of systems greatly.\nAn important non-linear system is that is described by a LCCDE with non-zero auxiliary conditions at some \\(n_0\\), \\(y[n_0] = y_0\\). As in CT, such systems will have a term in it’s solution that depends on \\(y_0\\). Given two inputs, each individual response will have that term in it, so their sum has double that term. However the response due to the sum of the inputs would again only have one and the sum of the responses would not be the same as the response of the sum. Such a system cannot be linear. Thus the system must be \"at rest\" before applying the input in order to be a linear system.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Linear Time Invariant DT Systems</span>"
+    ]
+  },
+  {
+    "objectID": "07-dt-lti.html#stable-lti-systems",
+    "href": "07-dt-lti.html#stable-lti-systems",
+    "title": "7  Linear Time Invariant DT Systems",
+    "section": "7.3 Stable LTI Systems",
+    "text": "7.3 Stable LTI Systems\nThe remainder of this course is about stable, linear, time-invariant (LTI) systems. As we have seen in DT such systems can be described by a LCCDE with zero auxiliary (initial) conditions (the system is at rest).\nWe have seen previously how to find the impulse response, \\(h[n]\\), of such systems. We now note some relationships between the impulse response and the system properties described above.\n\nIf a system is memoryless then \\(h[n] = C \\delta[n]\\) for some constant \\(C\\).\nIf a system is causal then \\(h[n] = 0\\) for \\(n &lt; 0\\).\nIf a system is BIBO stable then \\[\\sum\\limits_{-\\infty}^{\\infty} |h[n]| &lt; \\infty\\]",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Linear Time Invariant DT Systems</span>"
+    ]
+  },
+  {
+    "objectID": "08-ct-conv.html",
+    "href": "08-ct-conv.html",
+    "title": "8  CT Convolution",
+    "section": "",
+    "text": "8.1 Review CT LTI systems and superposition property\nRecall the superposition property of LTI systems. If a CT system is LTI then the superposition property holds. Given a system where \\[x_i(t) \\mapsto y_i(t) \\; \\forall\\; i\\] then \\[\\sum\\limits_{i} a_i x_i(t) \\mapsto \\sum\\limits_{i} a_i y_i(t)\\]\nSuperposition enables a powerful problem reduction strategy. The overall idea for is that if:\nThis will be a recurring pattern in this course. In this lecture, the simple signals are weighted, time shifts of one signal, the delta function, \\(\\delta(t)\\).",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>CT Convolution</span>"
+    ]
+  },
+  {
+    "objectID": "08-ct-conv.html#review-ct-lti-systems-and-superposition-property",
+    "href": "08-ct-conv.html#review-ct-lti-systems-and-superposition-property",
+    "title": "8  CT Convolution",
+    "section": "",
+    "text": "we can write an arbitrary signal as a sum of simple signals, and\nwe can determine the response to the simple signals, then\nwe can easily express the output due to the input using superposition",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>CT Convolution</span>"
+    ]
+  },
+  {
+    "objectID": "08-ct-conv.html#convolution-integral",
+    "href": "08-ct-conv.html#convolution-integral",
+    "title": "8  CT Convolution",
+    "section": "8.2 Convolution Integral",
+    "text": "8.2 Convolution Integral\nTo derive this we start with the sifting property of the CT impulse function (from chapter 2) \\[\\int\\limits_{a}^{b} x(t)\\delta(t-t_0) \\; dt = x(t_0)\\] for any \\(a &lt; t_0 &lt; b\\). A slight change of variables (\\(t_0 \\rightarrow \\tau\\)) and limits (\\(a \\rightarrow -\\infty\\) and \\(b \\rightarrow \\infty\\)) gives: \\[x(t) = \\int\\limits_{-\\infty}^{\\infty} x(\\tau)\\delta(t-\\tau) \\; d\\tau\\] showing that we can write any CT signal as an infinite sum (integral) of weighted and time-shifted impluse functions.\nLet \\(h(t)\\) be the CT impulse response, the output due to the input \\(\\delta(t)\\), i.e. \\(\\delta(t) \\mapsto h(t)\\). Then if the system is time-invariant: \\(\\delta(t-\\tau) \\mapsto h(t-\\tau)\\) and by superposition if the input is writen as \\[x(t) = \\int\\limits_{-\\infty}^{\\infty} x(\\tau)\\delta(t-\\tau) \\; d\\tau\\] then the output is given by \\[y(t) = \\int\\limits_{-\\infty}^{\\infty} x(\\tau)h(t-\\tau) \\; d\\tau = x(t) * h(t)\\] This is called the convolution integral .\nIt is worth pausing here to see the signifigance. For a LTI CT system, if I know its impulse response \\(h(t)\\), I can find the response due to any input using convolution. For this reason the impulse response is another way to represent an LTI system.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>CT Convolution</span>"
+    ]
+  },
+  {
+    "objectID": "08-ct-conv.html#graphical-view-of-the-convolution-integral.",
+    "href": "08-ct-conv.html#graphical-view-of-the-convolution-integral.",
+    "title": "8  CT Convolution",
+    "section": "8.3 Graphical View of the Convolution Integral.",
+    "text": "8.3 Graphical View of the Convolution Integral.\nLet us break the convolution expression down into pieces. In its general form the convolution of two signals \\(x_1(t)\\) and \\(x_2(t)\\) is \\[x_1(t) * x_2(t) = \\int\\limits_{-\\infty}^{\\infty} x_1(\\tau)x_2(t-\\tau) \\; d\\tau\\]\nSuppose \\(x_1(t)\\) and \\(x_2(t)\\) are signals that look like\n\n\n\nThe two signals being convolved.\n\n\nThen \\(x_1(\\tau)\\) and \\(x_2(-\\tau)\\) look like\n\n\n\nThe second signal reflected.\n\n\nThe signal \\(x_2(t-\\tau)\\) is \\(x_2(-\\tau)\\) shifted by \\(t\\) (since \\(x_2(-\\tau+t)= x_2(t-\\tau)\\)) and then looks like\n\n\n\nThe second reflected signal, shifted.\n\n\nThen the integrand of convolution is the product \\(x_1(\\tau)x_2(t-\\tau)\\) whose plot depends of the value of \\(t\\). Some examples, where the individual signals are dashed and their product is in bold:\n\n\n\nThe product of the two signals under the convolution integrand.\n\n\nThen convolution is the total integral of the product (bold curves above) for that value of \\(t\\). For the example above we see the integral will be zero for \\(t\\) less than \\(t_0\\) since the two signals do not overlap and their product is zero. For \\(t_0 &lt; t &lt; t_1\\) the signals overap and the product is non-zero, and the effective bounds of integration are \\([t_0,t]\\). For \\(t &gt; t_1\\) the signals again overap and the product is non-zero, but the effective bounds of integration are \\([t_0,t_1]\\).",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>CT Convolution</span>"
+    ]
+  },
+  {
+    "objectID": "08-ct-conv.html#examples-of-ct-convolution",
+    "href": "08-ct-conv.html#examples-of-ct-convolution",
+    "title": "8  CT Convolution",
+    "section": "8.4 Examples of CT Convolution",
+    "text": "8.4 Examples of CT Convolution\n\n\nExample\n\n\nConsider the convolution of two unit step functions. \\[u(t) * u(t) = \\int\\limits_{-\\infty}^{\\infty} u(\\tau)u(t-\\tau) \\; d\\tau\\] The product \\(u(\\tau) u(t-\\tau)\\) is non-zero only when \\(t\\geq 0\\) as illustrated here\n\n\n\nThe product of the two step signals under the convolution integrand.\n\n\nThe convolution integral is then the shaded area \\[u(t) * u(t) = \\left\\{ \\begin{array}{lc}\n  0 & t&lt; 0\\\\\n  \\int\\limits_{0}^{t} d\\tau = t  & t \\geq 0\\\\\n\\end{array}\\right.\\] Combining this back into a single expression gives: \\[u(t) * u(t) = tu(t)\\] Thus the convolution of two step signals is a ramp signal.\n\n\n\n\nExample\n\n\nLet \\(x_1(t) = u(t)\\) and \\(x_2(t) = e^{-at}u(t)\\) for constant \\(a\\in\\mathbb{C}\\), then \\[u(t) * e^{-at}u(t) = \\int\\limits_{-\\infty}^{\\infty} u(\\tau)e^{-a(t-\\tau)}u(t-\\tau) \\; d\\tau\\] Similar to the previous example, the product \\(u(\\tau) e^{-a(t-\\tau)} u(t-\\tau)\\) is non-zero only when \\(t\\geq 0\\)\n\n\n\nThe product of the two step signals under the convolution integrand.\n\n\nThe convolution integral is then the shaded area \\[u(t) * e^{-at}u(t) = \\left\\{ \\begin{array}{lc}\n  0 & t&lt; 0\\\\\n  \\int\\limits_{0}^{t} e^{-a(t-\\tau)} d\\tau = \\frac{1-e^{-at}}{a}  & t \\geq 0\\\\\n\\end{array}\\right.\\] Combining this back into a single expression gives: \\[u(t) * e^{-at}u(t) = \\frac{1-e^{-at}}{a}u(t)\\]\n\n\n\n\nExample\n\n\nLet \\(x_1(t) = \\delta(t)\\) and \\(x_2(t)\\) be an arbitrary signal. Then \\[\\delta(t) * x_2(t) = \\int\\limits_{-\\infty}^{\\infty} \\delta(\\tau)x_2(t-\\tau) \\; d\\tau\\] By the sifting property of the delta function this evaluates to \\[\\delta(t) * x_2(t) = x_2(t)\\] or in other words convolution with a delta function just results in the signal it was convolved with. That is it acts like the identity function, with respect to convolution.\n\n\nThe appendix lists several CT convolution results.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>CT Convolution</span>"
+    ]
+  },
+  {
+    "objectID": "08-ct-conv.html#properties-of-ct-convolution",
+    "href": "08-ct-conv.html#properties-of-ct-convolution",
+    "title": "8  CT Convolution",
+    "section": "8.5 Properties of CT Convolution",
+    "text": "8.5 Properties of CT Convolution\nThere are several useful properties of convolution. We do not prove these here, but it is not terribly difficult to do so. Given signals \\(x_1(t)\\), \\(x_2(t)\\), and \\(x_3(t)\\):\n\nCommunative Property\n\nThe ordering of the signals does not matter. \\[x_1(t) * x_2(t) = x_2(t) * x_1(t)\\]\n\nDistributive Property\n\nConvolution is distributed over addition. \\[x_1(t) * \\left[x_2(t) + x_3(t)\\right] = \\left[x_1(t) * x_2(t) \\right] + \\left[x_1(t) * x_3(t) \\right]\\]\n\nAssociative Property\n\nThe order of convolution does not matter. \\[x_1(t) * \\left[x_2(t) * x_3(t)\\right] = \\left[x_1(t) * x_2(t) \\right] * x_3(t)\\]\n\nTime Shift\n\nGiven \\(x_3(t) = x_1(t) * x_2(t)\\) then for time shifts \\(\\tau_1, \\tau_2 \\in \\mathbb{R}\\) \\[x_1(t-\\tau_1) * x_2(t-\\tau_2) = x_3(t-\\tau_1 - \\tau_2)\\]\n\nMultiplicative Scaling\n\nGiven \\(x_3(t) = x_1(t) * x_2(t)\\) then for constants \\(a,b \\in \\mathbb{C}\\) \\[\\left[a\\, x_1(t)\\right] * \\left[b\\, x_2(t)\\right] = a\\, b\\, x_3(t)\\]\n\n\nThese properties can be used in combination with a table like that above to compute the convolution of a wide variety of signals without evaluating the integrals.\n\n\nExample\n\n\nHere is a simple example. Let \\(x_1(t) = e^tu(t)\\) and \\(x_2(t) = 2\\delta(t) + 5e^{-3t}u(t)\\). \\[x_1(t) * x_2(t) =  e^tu(t) * \\left[2\\delta(t) + 5e^{-3t}u(t)\\right]\\] Using the distributive property \\[x_1(t) * x_2(t) =  2\\left[\\delta(t) * e^tu(t)\\right]  + 5\\left[e^tu(t) * e^{-3t}u(t)\\right]\\] Using previously derived results involving the delta function and the table row 3 \\[x_1(t) * x_2(t) = 2 e^t\\, u(t) + 5\\left[ \\frac{e^t-e^{-3t}}{4}\\right]u(t)\\] Doing some simplification gives the result \\[x_1(t) * x_2(t) = \\left[ \\frac{13}{4}e^t-\\frac{5}{4}e^{-3t}\\right]u(t)\\]\n\n\n\n\nExample\n\n\nHere is a more complicated example. Let \\(x_1(t) = 2e^{-5t}u(t-1)\\) and \\(x_2(t) = \\left(1-e^{-t}\\right)u(t)\\). \\[x_1(t) * x_2(t) = \\left[2e^{-5t}u(t-1)\\right] * \\left[\\left(1-e^{-t}\\right)u(t)\\right]\\] We first rewrite \\(e^{-5t}u(t-1)=e^{-5}e^{-5(t-1)}u(t-1) = e^{-5}e^{-5t}u(t)\\Big|_{t=t-1}\\) so that we can remove the time shift \\[x_1(t) * x_2(t) = 2e^{-5}\\left[e^{-5t}u(t)\\right] * \\left[\\left(1-e^{-t}\\right)u(t)\\right]\\Big|_{t=t-1}\\] We now apply the distributive property \\[x_1(t) * x_2(t) = 2e^{-5}\\left[\\left(e^{-5t}u(t) * u(t)\\right) - \\left(e^{-5t}u(t)* e^{-t}u(t)\\right)\\right]\\Big|_{t=t-1}\\] Using the table rows 1 and 3 we get \\[x_1(t) * x_2(t) = 2e^{-5}\\left[\\frac{1}{5}\\left(1-e^{-5t}\\right)u(t) + \\frac{1}{4}\\left(e^{-5t} - e^{-t}\\right)u(t)\\right]\\Big|_{t=t-1}\\] Combining terms we simplify to \\[x_1(t) * x_2(t) = 2e^{-5}\\left[\\frac{1}{5} - \\frac{1}{4}e^{-t} + \\frac{1}{20}e^{-5t} \\right]u(t)\\Big|_{t=t-1}\\] Replacing the time shift gives the final result \\[x_1(t) * x_2(t) = 2e^{-5}\\left[\\frac{1}{5} - \\frac{1}{4}e^{-(t-1)} + \\frac{1}{20}e^{-5(t-1)} \\right]u(t-1)\\] which can be cleaned up a bit more by distributing the leading term \\[x_1(t) * x_2(t) =\\left[\\frac{2}{5}e^{-5} -\\frac{1}{2}e^{-(t+4)} +\\frac{1}{10}e^{-5t}\\right]u(t-1)\\]",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>CT Convolution</span>"
+    ]
+  },
+  {
+    "objectID": "26-formulas-tables.html",
+    "href": "26-formulas-tables.html",
+    "title": "Useful Mathematical Definitions and Tables",
+    "section": "",
+    "text": "Definition of modulus for integers\nLet \\(n\\in\\mathbb{Z}\\) and \\(N \\in \\mathbb{N}\\). The mod operator \\[n \\% N = \\left\\{ \\begin{array}{cc}\n  \\text{remainder}\\left(\\frac{n}{N}\\right) & n \\geq 0\\\\\n  N - \\text{remainder}\\left(\\frac{|n|}{N}\\right) & n &lt; 0\n  \\end{array}\n\\right.\\] where \\(\\text{remainder}\\) is the remainder after dividing \\(n\\) by \\(N\\).",
+    "crumbs": [
+      "Appendices",
+      "Useful Mathematical Definitions and Tables"
+    ]
+  },
+  {
+    "objectID": "26-formulas-tables.html#table:ctconv",
+    "href": "26-formulas-tables.html#table:ctconv",
+    "title": "Useful Mathematical Definitions and Tables",
+    "section": "Table of Representative Convolution Integrals",
+    "text": "Table of Representative Convolution Integrals\n\nCT Convolution Table\n\n\n\\(x_1(t)\\)\n\\(x_2(t)\\)\n\\(x_1(t) * x_2(t)\\)\n\n\n\n\n\\(u(t)\\)\n\\(e^{a t}u(t)\\)\n\\(\\frac{1-e^{a t}}{-a}u(t)\\)\n\n\n\\(u(t)\\)\n\\(u(t)\\)\n\\(tu(t)\\)\n\n\n\\(e^{a_1 t}u(t)\\)\n\\(e^{a_2 t}u(t)\\)\n\\(\\frac{e^{a_1 t}-e^{a_2 t}}{a_1 - a_2}u(t)\\) for \\(a_1 \\neq a_2\\)\n\n\n\\(e^{a t}u(t)\\)\n\\(e^{a t}u(t)\\)\n\\(te^{a t}u(t)\\)\n\n\n\\(te^{a_1 t}u(t)\\)\n\\(e^{a_2 t}u(t)\\)\n\\(\\frac{e^{a_2 t}-e^{a_1 t} + (a_1-a_2)te^{a_1 t}}{(a_1 - a_2)^2}u(t)\\) for \\(a_1 \\neq a_2\\)\n\n\n\\(e^{a_1 t}\\cos(\\beta t + \\theta)u(t)\\)\n\\(e^{a_2 t}u(t)\\)\n\\(\\frac{\\cos(\\theta - \\phi)e^{a_2 t} - e^{a_1 t}\\cos(\\beta t + \\theta - \\phi)}{\\sqrt{(a_1 + a_2)^2 + \\beta^2}}u(t)\\)\n\n\n\n\n\\(\\phi = \\arctan\\left( \\frac{-\\beta}{a_1 + a_2}\\right)\\)",
+    "crumbs": [
+      "Appendices",
+      "Useful Mathematical Definitions and Tables"
+    ]
+  },
+  {
+    "objectID": "26-formulas-tables.html#table:dtconv",
+    "href": "26-formulas-tables.html#table:dtconv",
+    "title": "Useful Mathematical Definitions and Tables",
+    "section": "Table of Representative Convolution Sums",
+    "text": "Table of Representative Convolution Sums\n\nDT Convolution Table\n\n\n\\(x_1[n]\\)\n\\(x_2[n]\\)\n\\(x_1[n] * x_2[n]\\)\n\n\n\n\n\\(u[n]\\)\n\\(u[n]\\)\n\\((n+1)u[n]\\)\n\n\n\\(\\gamma^{n}u[n]\\)\n\\(u[n]\\)\n\\(\\frac{1-\\gamma^{n+1}}{1-\\gamma}u[n]\\)\n\n\n\\(\\gamma_1^{n}u[n]\\)\n\\(\\gamma_2^{n}u[n]\\)\n\\(\\frac{\\gamma_1^{n+1}-\\gamma_2^{n+1}}{\\gamma_1-\\gamma_2}u[n]\\) for \\(\\gamma_1 \\neq \\gamma_2\\)\n\n\n\\(\\gamma^{n}u[n]\\)\n\\(\\gamma^{n}u[n]\\)\n\\((n+1)\\gamma^{n}u[n]\\)\n\n\n\\(|\\gamma_1|^{n}\\cos\\left(\\beta n + \\theta \\right)u[n]\\)\n\\(|\\gamma_2|^{n}u[n]\\)\n\\(\\frac{1}{R}\\left[ |\\gamma_1|^{n+1}\\cos\\left( \\beta (n+1) + \\theta - \\phi\\right) - |\\gamma_2|^{n+1}\\cos\\left( \\theta - \\phi\\right)\\right]u[n]\\)\n\n\n\n\n\\(R = \\left[ |\\gamma_1|^2 + |\\gamma_2|^2 -2|\\gamma_1||\\gamma_2|\\cos(\\beta)\\right]^{\\frac{1}{2}}\\)\n\n\n\n\n\\(\\phi = \\arctan\\left( \\frac{|\\gamma_1|\\sin(\\beta)}{|\\gamma_1|\\cos(\\beta) - |\\gamma_2|} \\right)\\)",
+    "crumbs": [
+      "Appendices",
+      "Useful Mathematical Definitions and Tables"
+    ]
+  },
+  {
+    "objectID": "26-formulas-tables.html#table:ctft",
+    "href": "26-formulas-tables.html#table:ctft",
+    "title": "Useful Mathematical Definitions and Tables",
+    "section": "Table of Representative CT Fourier Transform Pairs",
+    "text": "Table of Representative CT Fourier Transform Pairs\n\nCT Fourier Transform Table\n\n\n\\(x(t)\\)\n\\(X(j\\omega)\\)\n\n\n\n\n\\(1\\)\n\\(2\\pi\\delta(\\omega)\\)\n\n\n\\(\\delta(t)\\)\n\\(1\\)\n\n\n\\(u(t)\\)\n\\(\\pi\\delta(\\omega) + \\frac{1}{j\\omega}\\)\n\n\n\\(e^{-at}u(t)\\)\n\\(\\frac{1}{a + j\\omega}\\) for \\(Re\\{a\\} &gt; 0\\)\n\n\n\\(te^{-at}u(t)\\)\n\\(\\frac{1}{\\left(a + j\\omega\\right)^2}\\) for \\(Re\\{a\\} &gt; 0\\)\n\n\n\\(e^{j\\omega_0 t}\\)\n\\(2\\pi\\delta(\\omega-\\omega_0)\\)\n\n\n\\(\\cos(\\omega_0 t)\\)\n\\(\\pi\\left[ \\delta(\\omega-\\omega_0) + \\delta(\\omega+\\omega_0)\\right]\\)\n\n\n\\(\\sin(\\omega_0 t)\\)\n\\(j\\pi\\left[ \\delta(\\omega+\\omega_0) - \\delta(\\omega-\\omega_0)\\right]\\)\n\n\n\\(e^{-at}\\cos(\\omega_0 t)u(t)\\)\n\\(\\frac{a+j\\omega}{(a+j\\omega)^2 + \\omega_0^2}\\) for \\(Re\\{a\\} &gt; 0\\)\n\n\n\\(e^{-at}\\sin(\\omega_0 t)u(t)\\)\n\\(\\frac{\\omega_0}{(a+j\\omega)^2 + \\omega_0^2}\\) for \\(Re\\{a\\} &gt; 0\\)\n\n\n\\(\\delta(t - t_0)\\)\n\\(e^{-j t_0 \\omega}\\)\n\n\n\\(K_0\\)\n\\(2 K_0 \\pi \\delta(\\omega)\\)\n\n\n\\(e^{-a|t|}\\), \\(\\text{Re}\\{a\\} &gt; 0\\)\n\\(\\frac{2a}{a^2 + \\omega^2}\\)\n\n\n\\(u(t + T) - u(t - T)\\)\n\\(2T \\frac{\\sin{(\\omega T)}}{\\omega T}\\)\n\n\n\\(\\frac{\\sin{({W}t)}}{W t}\\)\n\\(\\frac{\\pi}{W} [u(\\omega + W) - u(\\omega - W)]\\)\n\n\n\\(e^{-\\frac{t^2}{2 \\sigma^2}}\\)\n\\(\\sigma \\sqrt{2 \\pi} e^{-\\frac{\\sigma^2 \\omega^2}{2}}\\)\n\n\n\\(\\sum\\limits_{k=-\\infty}^{\\infty} a_k e^{j k \\omega_0 t}\\)\n\\(2 \\pi \\sum\\limits_{k=-\\infty}^{\\infty} a_k \\delta{(\\omega - k \\omega_0)}\\)\n\n\n\\(\\sum\\limits_{n=-\\infty}^{\\infty} \\delta(t - nT)\\)\n\\(\\omega_0 \\sum\\limits_{k=-\\infty}^{\\infty} \\delta{(\\omega - k \\omega_0)}\\), \\(\\omega_0 = \\frac{2 \\pi}{T}\\)",
+    "crumbs": [
+      "Appendices",
+      "Useful Mathematical Definitions and Tables"
+    ]
+  },
+  {
+    "objectID": "26-formulas-tables.html#table:dtft",
+    "href": "26-formulas-tables.html#table:dtft",
+    "title": "Useful Mathematical Definitions and Tables",
+    "section": "Table of Representative DT Fourier Transform Pairs",
+    "text": "Table of Representative DT Fourier Transform Pairs\n\nDT Fourier Transform Table\n\n\n\\(x[n]\\)\n\\(X(e^{j\\omega})\\)\n\n\n\n\n\\(\\delta[n]\\)\n\\(1\\)\n\n\n\\(\\delta[n - n_0]\\)\n\\(e^{-j \\omega n_0}\\)\n\n\n\\(u[n]\\)\n\\(\\frac{1}{1 - e^{-j \\omega}} + \\pi \\sum\\limits_{k = - \\infty}^{\\infty} \\delta(\\omega - 2 k \\pi)\\)\n\n\n\\(K_0\\)\n\\(2 K_0 \\pi \\sum\\limits_{k = - \\infty}^{\\infty} \\delta(\\omega - 2 k \\pi)\\)\n\n\n\\(a^n u[n]\\), \\(|a| &lt; 1\\)\n\\(\\frac{1}{(1 - ae^{-j \\omega)}}\\)\n\n\n\\(n a^n u[n]\\), \\(|a| &lt; 1\\)\n\\(\\frac{a e^{-j \\omega}}{(1 - a e^{-j \\omega})^2}\\)\n\n\n\\(a^{|n|}\\), \\(|a| &lt; 1\\)\n\\(\\frac{1-a^2}{1 - 2 a \\cos{\\omega} + a^2}\\)\n\n\n\\(e^{j \\omega_0 n}\\)\n\\(2 \\pi \\sum\\limits_{k = - \\infty}^{\\infty} \\delta{(\\omega - \\omega_0 - 2 k \\pi)}\\)\n\n\n\\(\\cos{(\\omega_0 n)}\\)\n\\(\\pi \\sum\\limits_{k = - \\infty}^{\\infty} [\\delta(\\omega + \\omega_0 - 2 k \\pi) + \\delta(\\omega - \\omega_0 - 2 k \\pi)]\\)\n\n\n\\(\\sin{(\\omega_0 n)}\\)\n\\(j \\pi \\sum\\limits_{k = - \\infty}^{\\infty} [\\delta(\\omega + \\omega_0 - 2 k \\pi) - \\delta(\\omega - \\omega_0 - 2 k \\pi)]\\)\n\n\n\\(u[n + n_0] - u[n - n_0]\\)\n\\(\\frac{\\sin{(\\omega (n_0 + 0.5))}}{\\sin{0.5 \\omega}}\\)\n\n\n\\(\\frac{\\sin{({W}n)}}{\\pi n}\\)\n\\(\\sum\\limits_{k = - \\infty}^{\\infty} X_1(\\omega - 2 k \\pi), X_1(\\omega) = \\begin{array}{cc} 1 & 0 \\le |\\omega| \\le W, 0 &lt; W &lt; \\pi\\\\ 0 & W &lt; |\\omega| \\le \\pi,  0 &lt; W &lt; \\pi \\end{array}\\)\n\n\n\\(\\sum\\limits_{k=n_0}^{n_0+N-1} a_k e^{j k \\omega_0 n}\\)\n\\(2 \\pi \\sum\\limits_{k=-\\infty}^{\\infty} a_k \\delta{(\\omega - k \\omega_0)}\\), \\(\\omega_0 = \\frac{2 \\pi}{N}\\),\n\n\n\\(\\sum\\limits_{k=-\\infty}^{\\infty} \\delta[n - kN]\\)\n\\(\\omega_0 \\sum\\limits_{k=-\\infty}^{\\infty} \\delta{(n - k \\omega_0)}\\), \\(\\omega_0 = \\frac{2 \\pi}{N}\\),",
+    "crumbs": [
+      "Appendices",
+      "Useful Mathematical Definitions and Tables"
+    ]
   }
 ]
