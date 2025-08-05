@@ -1,0 +1,188 @@
+---
+title: "Linear Time Invariant DT Systems"
+---
+
+Today's topic is our introduction to  systems and the important case of DT Linear, Time-Invariant Systems.
+
+## DT system representations
+
+We can mathematically represent, or model, DT systems multiple ways.
+
+- purely mathematically - in time domain we will use
+
+  - linear, constant coefficient difference equations, e.g.
+    $$y[n] = a y[n-1] + b y[n-2] + x[n]$$
+
+  - DT impulse response $h[n]$
+
+- purely mathematically - in frequency domain we will use
+
+  - frequency response
+
+  - transfer function (complex frequency, covered in ECE 3704)
+
+- graphically, using a mixture of math and block diagrams
+
+## System properties and classification
+
+Choosing the right kind of system model is important. Here are some
+important properties that allow us to broadly classify systems.
+
+- Memory
+
+- Invertability
+
+- Causality
+
+- Stability
+
+- Time-invariance
+
+- Linearity
+
+Let's define each it turn.
+
+### Memory
+
+The output of a DT system with memory depends on previous or future
+inputs and is said to be *dynamic*. Otherwise the system is memoryless
+or *instantaneous*, and the output $y[n]$ at index $n$ depends only on
+$x[n]$. For example: $$y[n] = 2x[n]$$ is a memoryless system, while
+$$y[n+1] + y[n] = x[n]$$ has memory. To see this, write the difference
+equation in recursive form $$y[n] = -y[n-1] + x[n-1]$$ and we see
+explicitly the current output $y[n]$ depends on past values of output
+and input.
+
+### Invertability
+
+A system is invertible if there exists a system that when placed in
+series with the original recovers the input.
+$$x[n] \mapsto{T} y[n] \mapsto{T^{-1}} x[n]$$ where $T^{-1}$ is the
+inverse system of $T$. For example, consider a system
+$$x[n] \mapsto y[n] = \sum\limits_{m=-\infty}^{n} x[m]$$ and a system
+$$y[n] \mapsto z[n] = y[n] - y[n-1]$$ The combination in series
+$x[n] \mapsto y[n] \mapsto z[n] = x[n]$, since
+$$z[n] = y[n] - y[n-1] = \sum\limits_{m=-\infty}^{n} x[m] - \sum\limits_{m=-\infty}^{n-1} x[m] = x[n]$$
+i.e. the difference undoes the accumulation.
+
+### Causality
+
+A DT system is causal if the output at index $n$ depends on the input
+for index values at or before $n$:
+$$y[n] \;\text{depends on}\; x[m] \;\text{for} \; m \leq n$$ While all
+physical CT systems are causal, practical DT systems may not be since we
+can use memory to \"shift time\". For CT systems we cannot store the
+infinite number of values between two time points $t_1$ and $t_2$, but
+we can store the $n_2-n_1$ values of a DT system between between two
+indices $n_1$ and $n_2$ (assuming infinite precision).
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+
+Consider a DT system whose difference equation is
+$$y[n] = -x[n-1] + 2x[n] - x[n+1]$$ We see the current output $y[n]$
+depends on a \"future\" value of the input $x[n+1]$. Thus the system
+**is not** causal. In practice we can shift the difference equation to
+$$y[n-1] = -x[n-2] + 2x[n-1] - x[n]$$ and then delay the output by one
+sample to get $y[n]$.
+
+::::
+:::
+
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
+
+Consider a DT system whose difference equation is
+$$y[n] = -y[n-1] + 2x[n]$$ We see the current output $y[n]$ depends on a
+\"past\" value of the output $y[n-1]$ and the current input $x[n]$. Thus
+the system **is** causal. In practice we can immediately compute $y[n]$
+with no delay.
+
+::::
+:::
+
+
+### Stability
+
+A DT system is (BIBO) stable if applying a bounded-input (BI)
+$$\left|x[n]\right| < \infty \; \forall \; n$$ results in a
+bounded-output (BO) $x[n] \mapsto y[n]$ and
+$$\left|y[n]\right| < \infty \; \forall \; n$$ Note, bounded in practice
+is limited by the physical situation, e.g. the number of bits used to
+store values.
+
+For example, a DT system described by the LCCDE
+$$y[n+1] - 2 y[n] = x[n+1]$$ is unstable because the solution $y[n]$
+will have one term of the form $\left( 2\right)^n$, for most non-zero
+inputs $x[n]$ or any non-zero initial condition, that grows unbounded as
+$n$ increases.
+
+### Time-invariance
+
+A DT system is time(index)-invariant if, given $$x[n] \mapsto y[n]$$
+then an index-shift of the input leads to the same index-shift in the
+output $$x[n-m] \mapsto y[n-m]$$
+
+An important example is a DT system described by a LCCDE, e.g.
+$$y[n+1] - \frac{1}{2} y[n] = x[n+1]$$ or in recursive form
+$$y[n] = \frac{1}{2} y[n-1] + x[n]$$
+
+If we index shift the input $x[n - m]$ we replace $n$ by $n-m$ and the
+difference equation becomes $$y[n-m+1] - \frac{1}{2} y[n-m] = x[n-m+1]$$
+which has the same solution shifted by $m$
+$$y[n-m] = \frac{1}{2} y[n-m -1] + x[n-m]$$
+
+If a coefficient depends on $n$ however, e.g
+$$y[n+1] - \frac{n}{2} y[n] = x[n+1]$$ so that it is no longer LCC then
+the solution depends on $m$ and the system is no longer time-invariant.
+
+### Linearity
+
+A DT system is linear if the output due to a sum of scaled individual
+inputs is the same as the scaled sum of the individual outputs with
+respect to those inputs. In other words given
+$$x_1[n] \mapsto y_1[n] \;\text{and}\; x_2[n] \mapsto y_2[n]$$ then
+$$a x_1[n] + b x_2[n] \mapsto a y_1[n] + b y_2[n]$$ for constants $a$
+and $b$. Note this property extends to sums of arbitrary signals, e.g.
+if $$x_i[n] \mapsto y_i[n] \; \forall\; i \in [1 \cdots N]$$ then given
+$N$ constants $a_i$, if the system is linear
+$$\sum\limits_{i = 1}^N a_i x_i[n] \mapsto \sum\limits_{i = 1}^N a_i y_i[n]$$
+This is a very important property, called *superposition*, and it
+simplifies the analysis of systems greatly.
+
+An important non-linear system is that is described by a LCCDE with
+non-zero auxiliary conditions at some $n_0$, $y[n_0] = y_0$. As in CT,
+such systems will have a term in it's solution that depends on $y_0$.
+Given two inputs, each individual response will have that term in it, so
+their sum has double that term. However the response due to the sum of
+the inputs would again only have one and the sum of the responses would
+not be the same as the response of the sum. Such a system cannot be
+linear. Thus the system must be \"at rest\" before applying the input in
+order to be a linear system.
+
+## Stable LTI Systems
+
+The remainder of this course is about stable, linear, time-invariant
+(LTI) systems. As we have seen in DT such systems can be described by a
+LCCDE with zero auxiliary (initial) conditions (the system is *at
+rest*).
+
+We have seen previously how to find the impulse response, $h[n]$, of
+such systems. We now note some relationships between the impulse
+response and the system properties described above.
+
+- If a system is memoryless then $h[n] = C \delta[n]$ for some constant
+  $C$.
+
+- If a system is causal then $h[n] = 0$ for $n < 0$.
+
+- If a system is BIBO stable then
+  $$\sum\limits_{-\infty}^{\infty} |h[n]| < \infty$$
+
+

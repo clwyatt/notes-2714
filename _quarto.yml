@@ -23,6 +23,10 @@ book:
     - 04-ct-lccde.qmd
     - 05-dt-lccde.qmd
     - 06-ct-lti.qmd
+    - 07-dt-lti.qmd
+    - 08-ct-conv.qmd
+  appendices:
+    - 26-formulas-tables.qmd
     - references.qmd
 
 format:

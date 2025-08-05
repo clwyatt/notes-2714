@@ -1,0 +1,87 @@
+# Useful Mathematical Definitions and Tables {.unnumbered}
+
+## Definition of modulus for integers
+
+Let $n\in\mathbb{Z}$ and $N \in \mathbb{N}$. The mod operator
+$$n \% N = \left\{ \begin{array}{cc}
+  \text{remainder}\left(\frac{n}{N}\right) & n \geq 0\\
+  N - \text{remainder}\left(\frac{|n|}{N}\right) & n < 0
+  \end{array}
+\right.$$ where $\text{remainder}$ is the remainder after dividing $n$
+by $N$.
+
+## Table of Representative Convolution Integrals {#table:ctconv}
+
+                 $x_1(t)$                     $x_2(t)$                                                       $x_1(t) * x_2(t)$
+  --------------------------------------- ----------------- --------------------------------------------------------------------------------------------------------------------
+                  $u(t)$                    $e^{a t}u(t)$                                                $\frac{1-e^{a t}}{-a}u(t)$
+                  $u(t)$                       $u(t)$                                                             $tu(t)$
+              $e^{a_1 t}u(t)$              $e^{a_2 t}u(t)$                             $\frac{e^{a_1 t}-e^{a_2 t}}{a_1 - a_2}u(t)$ for $a_1 \neq a_2$
+               $e^{a t}u(t)$                $e^{a t}u(t)$                                                      $te^{a t}u(t)$
+             $te^{a_1 t}u(t)$              $e^{a_2 t}u(t)$                $\frac{e^{a_2 t}-e^{a_1 t} + (a_1-a_2)te^{a_1 t}}{(a_1 - a_2)^2}u(t)$ for $a_1 \neq a_2$
+   $e^{a_1 t}\cos(\beta t + \theta)u(t)$   $e^{a_2 t}u(t)$   $\frac{\cos(\theta - \phi)e^{a_2 t} - e^{a_1 t}\cos(\beta t + \theta - \phi)}{\sqrt{(a_1 + a_2)^2 + \beta^2}}u(t)$
+                                                                                           $\phi = \arctan\left( \frac{-\beta}{a_1 + a_2}\right)$
+
+  : CT Convolution Table
+
+## Table of Representative Convolution Sums {#table:dtconv}
+
+                          $x_1[n]$                                $x_2[n]$                                                                       $x_1[n] * x_2[n]$
+  -------------------------------------------------------- ---------------------- ------------------------------------------------------------------------------------------------------------------------------------------------
+                           $u[n]$                                  $u[n]$                                                                           $(n+1)u[n]$
+                      $\gamma^{n}u[n]$                             $u[n]$                                                              $\frac{1-\gamma^{n+1}}{1-\gamma}u[n]$
+                     $\gamma_1^{n}u[n]$                      $\gamma_2^{n}u[n]$                              $\frac{\gamma_1^{n+1}-\gamma_2^{n+1}}{\gamma_1-\gamma_2}u[n]$ for $\gamma_1 \neq \gamma_2$
+                      $\gamma^{n}u[n]$                        $\gamma^{n}u[n]$                                                                 $(n+1)\gamma^{n}u[n]$
+   $|\gamma_1|^{n}\cos\left(\beta n + \theta \right)u[n]$   $|\gamma_2|^{n}u[n]$   $\frac{1}{R}\left[ |\gamma_1|^{n+1}\cos\left( \beta (n+1) + \theta - \phi\right) - |\gamma_2|^{n+1}\cos\left( \theta - \phi\right)\right]u[n]$
+                                                                                                          $R = \left[ |\gamma_1|^2 + |\gamma_2|^2 -2|\gamma_1||\gamma_2|\cos(\beta)\right]^{\frac{1}{2}}$
+                                                                                                          $\phi = \arctan\left( \frac{|\gamma_1|\sin(\beta)}{|\gamma_1|\cos(\beta) - |\gamma_2|} \right)$
+
+  : DT Convolution Table
+
+## Table of Representative CT Fourier Transform Pairs {#table:ctft}
+
+
+                            $x(t)$                                                                          $X(j\omega)$
+  ----------------------------------------------------------- ---------------------------------------------------------------------------------------------------------
+                              $1$                                                                       $2\pi\delta(\omega)$
+                          $\delta(t)$                                                                            $1$
+                            $u(t)$                                                             $\pi\delta(\omega) + \frac{1}{j\omega}$
+                         $e^{-at}u(t)$                                                        $\frac{1}{a + j\omega}$ for $Re\{a\} > 0$
+                        $te^{-at}u(t)$                                                $\frac{1}{\left(a + j\omega\right)^2}$ for $Re\{a\} > 0$
+                       $e^{j\omega_0 t}$                                                            $2\pi\delta(\omega-\omega_0)$
+                      $\cos(\omega_0 t)$                                        $\pi\left[ \delta(\omega-\omega_0) + \delta(\omega+\omega_0)\right]$
+                      $\sin(\omega_0 t)$                                        $j\pi\left[ \delta(\omega+\omega_0) - \delta(\omega-\omega_0)\right]$
+                 $e^{-at}\cos(\omega_0 t)u(t)$                                    $\frac{a+j\omega}{(a+j\omega)^2 + \omega_0^2}$ for $Re\{a\} > 0$
+                 $e^{-at}\sin(\omega_0 t)u(t)$                                     $\frac{\omega_0}{(a+j\omega)^2 + \omega_0^2}$ for $Re\{a\} > 0$
+                       $\delta(t - t_0)$                                                                 $e^{-j t_0 \omega}$
+                             $K_0$                                                                   $2 K_0 \pi \delta(\omega)$
+               $e^{-a|t|}$, $\text{Re}\{a\} > 0$                                                     $\frac{2a}{a^2 + \omega^2}$
+                     $u(t + T) - u(t - T)$                                                     $2T \frac{\sin{(\omega T)}}{\omega T}$
+                  $\frac{\sin{({W}t)}}{W t}$                                               $\frac{\pi}{W} [u(\omega + W) - u(\omega - W)]$
+                 $e^{-\frac{t^2}{2 \sigma^2}}$                                         $\sigma \sqrt{2 \pi} e^{-\frac{\sigma^2 \omega^2}{2}}$
+   $\sum\limits_{k=-\infty}^{\infty} a_k e^{j k \omega_0 t}$                 $2 \pi \sum\limits_{k=-\infty}^{\infty} a_k \delta{(\omega - k \omega_0)}$
+       $\sum\limits_{n=-\infty}^{\infty} \delta(t - nT)$       $\omega_0 \sum\limits_{k=-\infty}^{\infty} \delta{(\omega - k \omega_0)}$, $\omega_0 = \frac{2 \pi}{T}$
+
+  : CT Fourier Transform Table
+
+## Table of Representative DT Fourier Transform Pairs {#table:dtft}
+
+                           $x[n]$                                                                              $X(e^{j\omega})$
+  -------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------
+                        $\delta[n]$                                                                                   $1$
+                     $\delta[n - n_0]$                                                                        $e^{-j \omega n_0}$
+                           $u[n]$                                      $\frac{1}{1 - e^{-j \omega}} + \pi \sum\limits_{k = - \infty}^{\infty} \delta(\omega - 2 k \pi)$
+                           $K_0$                                                   $2 K_0 \pi \sum\limits_{k = - \infty}^{\infty} \delta(\omega - 2 k \pi)$
+                   $a^n u[n]$, $|a| < 1$                                                               $\frac{1}{(1 - ae^{-j \omega)}}$
+                  $n a^n u[n]$, $|a| < 1$                                                      $\frac{a e^{-j \omega}}{(1 - a e^{-j \omega})^2}$
+                    $a^{|n|}$, $|a| < 1$                                                          $\frac{1-a^2}{1 - 2 a \cos{\omega} + a^2}$
+                     $e^{j \omega_0 n}$                                        $2 \pi \sum\limits_{k = - \infty}^{\infty} \delta{(\omega - \omega_0 - 2 k \pi)}$
+                    $\cos{(\omega_0 n)}$                     $\pi \sum\limits_{k = - \infty}^{\infty} [\delta(\omega + \omega_0 - 2 k \pi) + \delta(\omega - \omega_0 - 2 k \pi)]$
+                    $\sin{(\omega_0 n)}$                    $j \pi \sum\limits_{k = - \infty}^{\infty} [\delta(\omega + \omega_0 - 2 k \pi) - \delta(\omega - \omega_0 - 2 k \pi)]$
+                 $u[n + n_0] - u[n - n_0]$                                                   $\frac{\sin{(\omega (n_0 + 0.5))}}{\sin{0.5 \omega}}$
+                $\frac{\sin{({W}n)}}{\pi n}$                                $\sum\limits_{k = - \infty}^{\infty} X_1(\omega - 2 k \pi), X_1(\omega) = \begin{array}{cc} 1 & 0 \le |\omega| \le W, 0 < W < \pi\\ 0 & W < |\omega| \le \pi,  0 < W < \pi \end{array}$
+   $\sum\limits_{k=n_0}^{n_0+N-1} a_k e^{j k \omega_0 n}$          $2 \pi \sum\limits_{k=-\infty}^{\infty} a_k \delta{(\omega - k \omega_0)}$, $\omega_0 = \frac{2 \pi}{N}$,
+     $\sum\limits_{k=-\infty}^{\infty} \delta[n - kN]$                $\omega_0 \sum\limits_{k=-\infty}^{\infty} \delta{(n - k \omega_0)}$, $\omega_0 = \frac{2 \pi}{N}$,
+
+  : DT Fourier Transform Table
+
