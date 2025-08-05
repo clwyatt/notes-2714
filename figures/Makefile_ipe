@@ -13,7 +13,8 @@ all: $(PDFTARGETS) $(SVGTARGETS) $(PNGTARGETS)
 
 %.pdf: %.ipe
 	@echo Converting to $@
-
+	iperender -pdf $< $@
+	
 %.png: %.ipe
 	@echo Converting to $@
 	iperender -png $< $@

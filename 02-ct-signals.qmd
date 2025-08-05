@@ -629,7 +629,7 @@ Each part is a real sinusoid whose amplitude is modulated by a real exponential.
 
 An important visualization of the general case is to view the signal $x(t)$ as a vector rotating counter-clockwise in the complex plane for positive $t$.
 
-![The CT complex sinusoid at a specific point in time.](images/CT_complexsinusoid_visual){fig-alt="A figure visualizing the CT complex sinusoid at a specific point in time." #fig-ct-complex-sinusoid}
+![The CT complex sinusoid at a specific point in time.](figures/CT_complexsinusoid_visual){fig-alt="A figure visualizing the CT complex sinusoid at a specific point in time." #fig-ct-complex-sinusoid}
 
 For $r < 0$ the tip of the arrow traces out an inward spiral, whereas for $r > 0$ it traces out an outward spiral. For $r = 0$ it traces out the unit circle.
 

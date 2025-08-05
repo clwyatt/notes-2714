@@ -55,18 +55,18 @@ $$x_1(t) * x_2(t) = \int\limits_{-\infty}^{\infty} x_1(\tau)x_2(t-\tau) \; d\tau
 
 Suppose $x_1(t)$ and $x_2(t)$ are signals that look like
 
-![The two signals being convolved.](images/convolution-explain1){fig-align="center" fig-alt="diagram showing the signals being used for convolution"}
+![The two signals being convolved.](figures/convolution-explain1){fig-align="center" fig-alt="diagram showing the signals being used for convolution"}
 
 Then $x_1(\tau)$ and $x_2(-\tau)$ look like
 
-![The second signal reflected.](images/convolution-explain2){fig-align="center" fig-alt="diagram showing the signals being used for convolution, see caption"}
+![The second signal reflected.](figures/convolution-explain2){fig-align="center" fig-alt="diagram showing the signals being used for convolution, see caption"}
 
 
 The signal $x_2(t-\tau)$ is $x_2(-\tau)$ shifted by $t$ (since
 $x_2(-\tau+t)= x_2(t-\tau)$) and then looks like
 
 
-![The second reflected signal, shifted.](images/convolution-explain3){fig-align="center" fig-alt="diagram showing the signals being used for convolution, see caption"}
+![The second reflected signal, shifted.](figures/convolution-explain3){fig-align="center" fig-alt="diagram showing the signals being used for convolution, see caption"}
 
 
 Then the integrand of convolution is the product $x_1(\tau)x_2(t-\tau)$
@@ -74,7 +74,7 @@ whose plot depends of the value of $t$. Some examples, where the
 individual signals are dashed and their product is in bold:
 
 
-![The product of the two signals under the convolution integrand.](images/convolution-explain4){fig-align="center" fig-alt="diagram showing the signals being used for convolution, see caption"}
+![The product of the two signals under the convolution integrand.](figures/convolution-explain4){fig-align="center" fig-alt="diagram showing the signals being used for convolution, see caption"}
 
 
 Then convolution is the total integral of the product (bold curves
@@ -100,7 +100,7 @@ The product $u(\tau) u(t-\tau)$ is non-zero only when $t\geq 0$ as
 illustrated here
 
 
-![The product of the two step signals under the convolution integrand.](images/convolution-step){fig-align="center" fig-alt="diagram showing the signals being used for convolution, see caption"}
+![The product of the two step signals under the convolution integrand.](figures/convolution-step){fig-align="center" fig-alt="diagram showing the signals being used for convolution, see caption"}
 
 
 The convolution integral is then the shaded area
@@ -127,7 +127,7 @@ Similar to the previous example, the product
 $u(\tau) e^{-a(t-\tau)} u(t-\tau)$ is non-zero only when $t\geq 0$
 
 
-![The product of the two step signals under the convolution integrand.](images/convolution-expstep){fig-align="center" fig-alt="diagram showing the signals being used for convolution, see caption"}
+![The product of the two step signals under the convolution integrand.](figures/convolution-expstep){fig-align="center" fig-alt="diagram showing the signals being used for convolution, see caption"}
 
 
 The convolution integral is then the shaded area

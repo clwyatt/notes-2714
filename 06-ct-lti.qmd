@@ -130,7 +130,7 @@ Note: internal models usually have several paramters (the resistor and capacitor
 It does not matter what the underlying system implementation is. For
 example, consider a mechanical system, described by a second-order ODE:
 
-![Mechanical Diagram](images/mechanical_system){fig-alt="of a simple mass-spring-damper system"}
+![Mechanical Diagram](figures/mechanical_system){fig-alt="of a simple mass-spring-damper system"}
 
   ----------------------------------- -------------------------------
   $y$ = position                      $M$ = mass

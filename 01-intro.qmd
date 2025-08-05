@@ -229,6 +229,6 @@ TLO 24: Reconstruction (OW §7.2)
 
 ## Graphical Outline
 
-![](images/system-representations-fig){fig-alt="A hierarchical diagram showing the two main types of system representations, those in the time domain and those in the frequency domain. Under the time domain are differential and difference equations, impulse response, and circuit or block diagrams. Under frequency domain methods are the frequency response and the Eigenvalue or Transfer function representation."}
+![](figures/system-representations-fig){fig-alt="A hierarchical diagram showing the two main types of system representations, those in the time domain and those in the frequency domain. Under the time domain are differential and difference equations, impulse response, and circuit or block diagrams. Under frequency domain methods are the frequency response and the Eigenvalue or Transfer function representation."}
 
-![](images/analysis-methods-fig){fig-alt="A hierarchical diagram showing the corresponding analysis methods in the previous figure. For time domain we have solving differential or difference equations, or using convolution. For the frequency domain we have the Fourier series, Fourier transform, or the Eigenvalue analysis (for sinusoidal inputs)"}
+![](figures/analysis-methods-fig){fig-alt="A hierarchical diagram showing the corresponding analysis methods in the previous figure. For time domain we have solving differential or difference equations, or using convolution. For the frequency domain we have the Fourier series, Fourier transform, or the Eigenvalue analysis (for sinusoidal inputs)"}
