@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>20&nbsp; Frequency Selective Filters in CT – Supplementary Notes for ECE 2714: Signals and Systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./21-dt-filters.html" rel="next">
+<link href="./19-dt-fr.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7743ab93549fe57e350af7b50d1de34c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-dd3f867a8242fdb793e0ec01cb489490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Supplementary Notes for ECE 2714: Signals and Systems</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="https://github.com/clwyatt/notes-2714" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Supplementary-Notes-for-ECE-2714--Signals-and-Systems.epub" title="Download ePub" class="quarto-navigation-tool px-1" aria-label="Download ePub"><i class="bi bi-journal"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20-ct-filters.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Frequency Selective Filters in CT</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Notes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-ct-signals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Continuous-Time Signals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-dt-signals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Discrete-Time Signals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-ct-lccde.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CT Systems as Linear Constant Coefficient Differential Equations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-dt-lccde.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ct-lti.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear Time Invariant CT Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-dt-lti.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Linear Time Invariant DT Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-ct-conv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">CT Convolution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-dt-conv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">DT Convolution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-ct-block.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">CT Block Diagrams</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-dt-block.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">DT Block Diagrams</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-ct-tf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Eigenfunctions of CT Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-dt-tf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Eigenfunctions of DT Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-ctfs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">CT Fourier Series</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-dtfs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">DT Fourier Series</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-ctft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CT Fourier Transform</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-dtft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">DT Fourier Transform</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-ct-fr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">CT Frequency Response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-dt-fr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">DT Frequency Response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-ct-filters.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Frequency Selective Filters in CT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-dt-filters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Frequency Selective Filters in DT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-dft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Discrete Fourier Transform</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Sampling CT Signals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-recon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Reconstructing CT Signals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26-formulas-tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Mathematical Definitions and Tables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./image-descriptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Detailed Image Descriptions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#ideal-filters" id="toc-ideal-filters" class="nav-link active" data-scroll-target="#ideal-filters"><span class="header-section-number">20.1</span> Ideal Filters</a></li>
+  <li><a href="#practical-filters" id="toc-practical-filters" class="nav-link" data-scroll-target="#practical-filters"><span class="header-section-number">20.2</span> Practical Filters</a></li>
+  <li><a href="#first-order-and-second-order-systems-as-filters" id="toc-first-order-and-second-order-systems-as-filters" class="nav-link" data-scroll-target="#first-order-and-second-order-systems-as-filters"><span class="header-section-number">20.3</span> First-order and second-order systems as filters</a></li>
+  <li><a href="#higher-order-filters" id="toc-higher-order-filters" class="nav-link" data-scroll-target="#higher-order-filters"><span class="header-section-number">20.4</span> Higher-Order Filters</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Frequency Selective Filters in CT</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Recall the response of stable CT LTI systems to periodic inputs. Given a stable LTI system with frequency response <span class="math inline">\(H(j\omega)\)</span> <span class="math display">\[x(t) = \sum\limits_{k = -\infty}^{\infty} a_k e^{jk\omega_0 t} \longrightarrow y(t) = \sum\limits_{k = -\infty}^{\infty} a_k H(jk\omega_0) e^{jk\omega_0 t}\]</span></p>
+<p>Note the output is equivalent to a signal with Fourier series coefficients <span class="math inline">\(b_k = a_k H(jk\omega_0)\)</span>. That is the Fourier coefficients are scaled by the frequency response at the harmonic frequency <span class="math inline">\(k\omega_0\)</span>.</p>
+<p>Similarly for aperiodic signals, given a stable LTI system with frequency response <span class="math inline">\(H(j\omega)\)</span> <span class="math display">\[x(t) = \frac{1}{2\pi} \int\limits_{-\infty}^{\infty} X(j\omega) e^{j\omega t}\; d\omega \longrightarrow y(t) = \frac{1}{2\pi} \int\limits_{-\infty}^{\infty} X(j\omega) H(j\omega) e^{j\omega t}\; d\omega\]</span></p>
+<p>Note the output is equivalent to a signal with Fourier Transform <span class="math inline">\(Y(j\omega) = X(j\omega) H(jk\omega_0)\)</span>. That is the Fourier transform at each continuous frequency <span class="math inline">\(\omega\)</span> is scaled by the frequency response at that frequency.</p>
+<p>We can use this behavior to our advantage. In many applications we want to modify the values of <span class="math inline">\(a_k\)</span> or <span class="math inline">\(X(j\omega)\)</span> selectively, passing them unmodified, increasing (amplifying) them, or decreasing (attenuating) them. This is accomplished by designing a frequency response. Such systems are called frequency selective <em>filters</em> and come in 4 basic types:</p>
+<ul>
+<li><p>Low-pass Filters attenuate high frequencies while passing through lower frequencies. They are often used to reduce the effects of high-frequency noise in a signal and to prepare it for sampling (so-called anti-aliasing filters). They are the most common filter.</p></li>
+<li><p>High-pass Filters attenuate lower frequencies while passing through higher frequencies. While less common, they are often used to remove the DC component (<span class="math inline">\(\omega\)</span> = 0) of a signal and to compute the derivative of a signal.</p></li>
+<li><p>Bandpass Filters attenuate frequencies outside a band of frequencies. They can be viewed as a combination of a high-pass and low-pass filter. They are commonly used to select a range of frequencies for further processing and are central to many communication technologies.</p></li>
+<li><p>Notch or Bandstop Filters attenuate frequencies inside an often narrow band of frequencies. Common applications are the removal of one or more corrupting signals mixed into another signal.</p></li>
+</ul>
+<p>While the design of such filters is outside the scope of this course, you are now equipped to understand and apply them based on your knowledge of the Fourier methods covered over the past several weeks.</p>
+<section id="ideal-filters" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="ideal-filters"><span class="header-section-number">20.1</span> Ideal Filters</h2>
+<p>The above filter types each have an ideal (although unrealizable) form.</p>
+<p>Low-pass filters remove frequency content above a threshold, <span class="math inline">\(\omega_c\)</span>, called the <em>cutoff frequency</em>. They have an ideal frequency response <span class="math display">\[H(j\omega) = \left\{ \begin{array}{lc}
+  1 &amp; -\omega_c &lt; \omega &lt; \omega_c\\
+  0 &amp; \text{else}
+\end{array}
+\right.\]</span> with magnitude and phase plot</p>
+<p>TODO lowpass-ideal.pdf</p>
+<p>The range of frequencies below <span class="math inline">\(|\omega_c|\)</span> are called the pass-band. The range of frequencies above <span class="math inline">\(|\omega_c|\)</span> are called the stop-band.</p>
+<p>High-pass filters remove frequency content below the cutoff frequency <span class="math inline">\(\omega_c\)</span>. They have an ideal frequency response <span class="math display">\[H(j\omega) = \left\{ \begin{array}{lc}
+  0 &amp; -\omega_c &lt; \omega &lt; \omega_c\\
+  1 &amp; \text{else}
+\end{array}
+\right.\]</span> with magnitude and phase plot</p>
+<p>TODO highpass-ideal.pdf</p>
+<p>The range of frequencies above <span class="math inline">\(|\omega_c|\)</span> are called the pass-band. The range of frequencies below <span class="math inline">\(|\omega_c|\)</span> are called the stop-band.</p>
+<p>Bandpass filters remove frequency content outside a band of frequencies called the pass-band. They have an ideal frequency response <span class="math display">\[H(j\omega) = \left\{ \begin{array}{lc}
+  1 &amp; -\omega_0 - \frac{B}{2} &lt; \omega &lt; -\omega_0+\frac{B}{2}\\[1em]
+  1 &amp; \omega_0 -\frac{B}{2} &lt; \omega &lt; \omega_0+\frac{B}{2}\\[1em]
+  0 &amp; \text{else}
+\end{array}
+\right.\]</span> where <span class="math inline">\(\omega_0\)</span> is the <em>center frequency</em> and <span class="math inline">\(B\)</span> is the <em>bandwidth</em>. The frequencies outside this range are in the stop-band. The magnitude and phase plot looks like</p>
+<p>TODO bandpass-ideal.pdf</p>
+<p>Finally, notch or bandstop filters remove frequency content inside a band of frequencies (the stop band) defined by the center frequency <span class="math inline">\(\omega_0\)</span> and bandwidth <span class="math inline">\(B\)</span>. The ideal frequency response is <span class="math display">\[H(j\omega) = \left\{ \begin{array}{lc}
+  0 &amp; -\omega_0 - \frac{B}{2} &lt; \omega &lt; -\omega_0+\frac{B}{2}\\[1em]
+  0 &amp; \omega_0 -\frac{B}{2} &lt; \omega &lt; \omega_0+\frac{B}{2}\\[1em]
+  1 &amp; \text{else}
+\end{array}
+\right.\]</span> with magnitude and phase plot</p>
+<p>TODO bandstop-ideal.pdf</p>
+<p>Often the bandstop filter has a very narrow bandwidth, thus it "notches" out a frequency component of the input signal. A related filter with many notches at multiple frequencies (often harmonics) is called a <em>comb</em> filter.</p>
+</section>
+<section id="practical-filters" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="practical-filters"><span class="header-section-number">20.2</span> Practical Filters</h2>
+<p>Ideal CT filters cannot be implemented in practice because they are non-causal and thus physically impossible. To see why consider the impulse response of the ideal low-pass filter:</p>
+<p><span class="math display">\[h(t) = \mathcal{F}^{-1} \left\{ H(j\omega) \right\} = \frac{1}{2\pi} \int\limits_{\-\omega_c}^{\omega_c} e^{j\omega t} \; d\omega = \frac{1}{\pi t}\sin(\omega_c t)\]</span> which has nonzero values for <span class="math inline">\(t &lt; 0\)</span>, and thus corresponds to a non-casual system. Ideal filters also have zero phase which cannot be achieved in practice.</p>
+<p>Practical filters are described by a frequency response that is a ratio of two polynomials in <span class="math inline">\(j\omega\)</span>, i.e. <span class="math display">\[H(j\omega) = \frac{K \cdot(j\omega - \beta_1)\cdot(j\omega - \beta_2)\cdots (j\omega - \beta_M)}{(j\omega - \alpha_1)\cdot(j\omega - \alpha_2)\cdots (j\omega - \alpha_N)}\]</span> where <span class="math inline">\(K\)</span> is a constant that controls the gain at DC, and the zero or more complex coefficients <span class="math inline">\(\beta_k\)</span> and the one or more complex coefficients <span class="math inline">\(\alpha_k\)</span> are called the <em>zeros</em> and <em>poles</em> of the filter respectively. Such systems correspond to differential equations as we have covered before and are physically realizable as circuits if all poles and zeros are real or come in conjugate pairs. The processes of designing filters consists of choosing the poles and zeros, or equivalently choosing the coefficients of the numerator and dominator polynomials. This is covered in ECE 3704, ECE 4624, and other upper-level courses.</p>
+<p>Practical filters differ from ideal filters in that they cannot be zero over any finite range of frequencies and cannot transition discontinuously between stop and pass bands. Instead they must vary over the bands and transition smoothly, with a degree of variation and sharpness that is a function of the order of the filter and the exact form of the frequency response polynomials. Thus practical filters are described by additional parameters that define the stop and pass-bands.</p>
+<p>The overall gain of the filter is the magnitude of the frequency response at a frequency that depends on the filter type, zero for a low-pass filter and the center frequency for a band-pass filter. The pass-band is defined by the frequency at which the magnitude of the frequency response drops below the overall gain, often -3dB = <span class="math inline">\(\frac{\sqrt{2}}{2}\)</span>. The stop-band is defined similarly, as the frequency at which the magnitude of the frequency response drops further below the overall gain, often -20dB = 0.1 or -40dB = 0.01. The <em>transition bandwidth</em> is defined as the difference in the stop-band and pass-band frequencies. The <em>pass-band ripple</em> is defined as the maximum deviation from the overall gain, over the pass-band.</p>
+</section>
+<section id="first-order-and-second-order-systems-as-filters" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="first-order-and-second-order-systems-as-filters"><span class="header-section-number">20.3</span> First-order and second-order systems as filters</h2>
+<p>Given the equivalence of LTI systems and linear, constant-coefficient differential equations, block diagrams, impulse responses, and frequency responses, filters can be represented in any of these ways.</p>
+<p>We have covered extensively first-order and second-order CT systems and seen how they can be represented variously as circuits, differential equations, block diagrams, and as frequency responses. We now see how they can describe simple filters and serve as building blocks for higher-order filters.</p>
+<div class="example">
+<p>Consider a low-pass filter with the desired characteristics of having a pass-band of -3dB at 1kHz, and a stop-band of -20dB at 10kHz. Suppose this is implemented as a first-order "Butterworth" filter, which can be realized by an RC circuit.</p>
+<div class="center">
+<div class="circuitikz">
+<p>(5,2.5) node[op amp, yscale=-1] (opamp1) (0,3) to[R,l=<span class="math inline">\(R\)</span>,o-] (opamp1.+) (3,0) to[C, l=<span class="math inline">\(C\)</span>] (3,3) (0,0) to[short,o-o] (7,0) (0,3) to[open, v=<span class="math inline">\(x(t)\)</span>] (0,0) (7.5,2.5) to[open, v=<span class="math inline">\(y(t)\)</span>] (7.5,0) (opamp1.-) |- (5,1) -| (opamp1.out) (opamp1.out) to[short,-o] (7,2.5);</p>
+</div>
+</div>
+<p>where <span class="math inline">\(R=99.2k\Omega\)</span> and <span class="math inline">\(C=1.6\)</span>nF. This is equivalent to the differential equation <span class="math display">\[\frac{dy}{dt}(t) + a y(t) = a x(t)\]</span> where <span class="math inline">\(a=\frac{1}{RC}\)</span>, or the block diagram</p>
+<div class="center">
+<p>= [draw, fill=gray!20, rectangle, minimum height=2em, minimum width=2em] = [draw, fill=gray!20, circle, node distance=1cm] = [coordinate] = [coordinate] = [pin edge=to-,thin,black]</p>
+</div>
+<p>This system has the impulse response <span class="math display">\[h(t) = ae^{-at}u(t)\]</span> and the frequency response <span class="math display">\[H(j\omega) = \frac{a}{j\omega + a}\]</span> If we plot the frequency response as a Bode plot, we see the DC gain is 0dB, and the response passes through -3dB and -20dB at the expected frequencies <span class="math inline">\(2\pi*1000 \approx 6.3\times 10^3\)</span> rad/s and <span class="math inline">\(2\pi*10000 \approx 6.3\times 10^4\)</span> rad/s. Thus the transition bandwidth is 9kHz.</p>
+<div class="center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="graphics/lecture24_1.png" class="img-fluid figure-img"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="example">
+<p>Suppose we wish to sharpen the transition band for the previous example so that has a pass-band of -3dB at 1kHz, and a narrower stop-band of -20dB at 5kHz. This requires a second-order filter, and can be realized by a circuit called the Sallen-Key.</p>
+<div class="center">
+<div class="circuitikz">
+<p>(7,3.5) node[op amp] (opamp1) (0,4) to[R,l=<span class="math inline">\(R_1\)</span>,o-] (2,4) (2,4) to[short] (2,5) (2,5) to[C,l=<span class="math inline">\(C_1\)</span>] (8.2,5) (8.2,5) to[short] (opamp1.out) (2,4) to[R, l=<span class="math inline">\(R_2\)</span>] (4,4) (4,4) to[C, l=<span class="math inline">\(C_2\)</span>] (4,0) (0,0) to[short,o-o] (12,0) (4,4) to[short] (opamp1.-) (opamp1.+) to[short] (5.8,1.75) (5.8,1.75) to[short] (8.2,1.75) (opamp1.out) to[short] (8.2,1.75) (opamp1.out) to[short, -o] (12,3.5) (0,4) to[open, v=<span class="math inline">\(x(t)\)</span>] (0,0) (12,3.5) to[open, v=<span class="math inline">\(y(t)\)</span>] (12,0);</p>
+</div>
+</div>
+<p>where <span class="math inline">\(R_1=74.2k\Omega\)</span>, <span class="math inline">\(R_2=91.3M\Omega\)</span>, <span class="math inline">\(C_1=1.6\)</span>nF and <span class="math inline">\(C_2=160\)</span>pF. This is equivalent to the differential equation <span class="math display">\[\frac{d^2y}{dt^2}(t) + 2\alpha \frac{dy}{dt}(t) + \omega_0^2 y(t) = \omega_0^2 x(t)\]</span> where <span class="math display">\[\alpha = \frac{R_1+R_2}{2R_1 R_2 C_1} \;\text{ and }\; \omega_0^2 = \frac{1}{R_1 R_2 C_1 C_2}\]</span> or the block diagram</p>
+<div class="center">
+<p>= [draw, fill=gray!20, rectangle, minimum height=2em, minimum width=2em] = [draw, fill=gray!20, circle, node distance=1cm] = [coordinate] = [coordinate] = [pin edge=to-,thin,black]</p>
+</div>
+<p>This system has the frequency response <span class="math display">\[H(j\omega) = \frac{\omega_0^2}{\omega_0^2-\omega^2 + j2\alpha\omega}\]</span></p>
+<p>If we plot the frequency response as a Bode plot using the resistor and capacitor values above, we see the DC gain is 0dB, and the response passes through -3dB at the expected frequency <span class="math inline">\(2\pi*1000 \approx 6.3\times 10^3\)</span> rad/s. At the frequency <span class="math inline">\(2\pi*5000 \approx 3.14\times 10^4\)</span> rad/s the response passes through about -28dB. Thus this circuit has a transition bandwidth even narrower than that designed (it is slightly better).</p>
+<div class="center">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="graphics/lecture24_2.png" class="img-fluid figure-img"></p>
+<figcaption>image</figcaption>
+</figure>
+</div>
+</div>
+<p>Note the price we pay for this decreased transition bandwidth is a larger phase shift (and two more components).</p>
+</div>
+</section>
+<section id="higher-order-filters" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="higher-order-filters"><span class="header-section-number">20.4</span> Higher-Order Filters</h2>
+<p>We can continue to increase the steepness of the passband to stop-band transitions by increasing the order of the filter. This is typically accomplished using a serial connection of systems, called <em>stages</em> in filter parlance, where each stage is a first-order or second-order system.</p>
+<p>Recall in a series connection of systems the overall impulse response is the convolution of the individual responses. If we assume each stage is stable then, by the convolution property, the overall frequency response is given by the product of their individual frequency responses.</p>
+<div class="center">
+
+</div>
+<p><span class="math display">\[H(j\omega) = \frac{Y(j\omega)}{X(j\omega)} = H_1(j\omega)\cdot H_2(j\omega)\]</span></p>
+<p>Writing each response in polar form <span class="math display">\[H_1(j\omega)\cdot H_2(j\omega) = |H_1(j\omega)|\cdot |H_2(j\omega)| e^{\angle H_1(j\omega)+ \angle H_2(j\omega)}\]</span> we note that the magnitudes multiply and the phases add. That means we can use additional stages to reinforce the attenuation of previous stages. Note this requires in the circuit that the stages be impedance isolated, thus the use of the opamps at the end of CT filters. Again the price we pay for increasing the order of the filter and decreasing the transition frequency is increased phase shift in the signal.</p>
+<p>Matlab code for plotting the first-order example Bode plot:</p>
+<pre><code>R = 99.2e3;
+C = 1.6e-9;
+a = 1/(R*C);
+
+H = tf([a],[1,a]);
+[mag,ph,w] = bode(H);
+
+% Create a nice bode plot 
+hFig = figure();
+hold on;
+
+subplot(2,1,1);
+hm = semilogx(w,20*log10(squeeze(mag)));
+grid on;
+hTitle  = title ('Frequency Response - first order');
+hYLabel1 = ylabel('Magnitude (dB)');
+set(gca, 'FontSize', 14, 'YTick', -60:10:20, ...
+    'Box', 'off', 'LineWidth', 2);
+
+subplot(2,1,2);
+hp = semilogx(w,squeeze(ph*(pi/180)));
+grid on;
+hYLabel2 = ylabel('Phase (radians)');
+hXLabel = xlabel('Frequency (rad/s)');
+set(gca, 'FontSize', 14, 'Box', 'off', 'LineWidth', 2);
+
+set(hm, 'linewidth', 2);
+set(hp, 'linewidth', 2);
+set([hXLabel, hYLabel1, hYLabel2]  , ...
+     'FontSize'   , 14          );
+set( hTitle                    , ...
+     'FontSize'   , 14          , ...
+     'FontWeight' , 'bold'      );</code></pre>
+<p>Matlab code for plotting the second-order example Bode plot:</p>
+<pre><code>R1 = 74.2e3;
+R2 = 1.33e6;
+C1 = 1.6e-9;
+C2 = 160e-12;
+
+a = (R1+R2)/(R1*R2*C1);
+b = 1/(R1*R2*C1*C2);
+
+H = tf([b],[1,a,b]);
+[mag,ph,w] = bode(H);
+
+% Create a nice bode plot 
+hFig = figure();
+hold on;
+
+subplot(2,1,1);
+hm = semilogx(w,20*log10(squeeze(mag)));
+grid on;
+hTitle  = title ('Frequency Response - second order');
+hYLabel1 = ylabel('Magnitude (dB)');
+set(gca, 'FontSize', 14, 'YTick', -90:10:20, ...
+    'Box', 'off', 'LineWidth', 2);
+
+subplot(2,1,2);
+hp = semilogx(w,squeeze(ph*(pi/180)));
+grid on;
+hYLabel2 = ylabel('Phase (radians)');
+hXLabel = xlabel('Frequency (rad/s)');
+set(gca, 'FontSize', 14, 'Box', 'off', 'LineWidth', 2);
+
+set(hm, 'linewidth', 2);
+set(hp, 'linewidth', 2);
+
+set([hXLabel, hYLabel1, hYLabel2]  , ...
+     'FontSize'   , 14          );
+set( hTitle                    , ...
+     'FontSize'   , 14          , ...
+     'FontWeight' , 'bold'      );</code></pre>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./19-dt-fr.html" class="pagination-link" aria-label="DT Frequency Response">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">DT Frequency Response</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./21-dt-filters.html" class="pagination-link" aria-label="Frequency Selective Filters in DT">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Frequency Selective Filters in DT</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

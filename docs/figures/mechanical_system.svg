@@ -150,16 +150,16 @@
 <path style="stroke:none;" d="M 4.046875 -3.578125 C 4.046875 -4.65625 3.90625 -6.4375 3.09375 -8.109375 C 2.25 -9.828125 1.078125 -10.75 0.921875 -10.75 C 0.859375 -10.75 0.78125 -10.734375 0.78125 -10.640625 C 0.78125 -10.59375 0.78125 -10.578125 1.03125 -10.328125 C 2.46875 -8.875 3.265625 -6.515625 3.265625 -3.578125 C 3.265625 -0.796875 2.59375 1.59375 0.9375 3.28125 C 0.78125 3.40625 0.78125 3.4375 0.78125 3.484375 C 0.78125 3.578125 0.859375 3.59375 0.921875 3.59375 C 1.109375 3.59375 2.28125 2.5625 2.984375 1.15625 C 3.71875 -0.296875 4.046875 -1.84375 4.046875 -3.578125 Z M 4.046875 -3.578125 "/>
 </symbol>
 </g>
-<image id="image2065" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAKElEQVRYhe3OMQEAMAzDsKz8MYXaCqOPRMB+bX8OzWXcgAEDAAAASbLXhANJZZah5wAAAABJRU5ErkJggg=="/>
+<image id="image5" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAKElEQVRYhe3OMQEAMAzDsKz8MYXaCqOPRMB+bX8OzWXcgAEDAAAASbLXhANJZZah5wAAAABJRU5ErkJggg=="/>
 <pattern id="pattern0" patternUnits="userSpaceOnUse" width="32" height="32"  patternTransform="matrix(0.5,0.866025,0.108253,-0.0625,-63,705)">
-  <use xlink:href="#image2065"/>
+  <use xlink:href="#image5"/>
 </pattern>
-<image id="image2068" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAKElEQVRYhe3OMQEAMAzDsKz8MYXaCqOPRMB+bX8OzWXcgAEDAAAASbLXhANJZZah5wAAAABJRU5ErkJggg=="/>
+<image id="image8" width="32" height="32" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABmJLR0QA/wD/AP+gvaeTAAAAKElEQVRYhe3OMQEAMAzDsKz8MYXaCqOPRMB+bX8OzWXcgAEDAAAASbLXhANJZZah5wAAAABJRU5ErkJggg=="/>
 <pattern id="pattern1" patternUnits="userSpaceOnUse" width="32" height="32"  patternTransform="matrix(0.5,0.866025,0.108253,-0.0625,-63,705)">
-  <use xlink:href="#image2068"/>
+  <use xlink:href="#image8"/>
 </pattern>
 </defs>
-<g id="surface2061">
+<g id="surface1">
 <path style=" stroke:none;fill-rule:evenodd;fill:url(#pattern0);" d="M 1 1 L 1 161 L 65 161 L 65 1 Z M 1 1 "/>
 <path style=" stroke:none;fill-rule:evenodd;fill:url(#pattern1);" d="M 65 129 L 65 161 L 385 161 L 385 129 Z M 65 129 "/>
 <path style="fill:none;stroke-width:1.2;stroke-linecap:butt;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:10;" d="M 64 704 L 128 704 L 128 576 L 448 576 " transform="matrix(1,0,0,-1,-63,705)"/>

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.23">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>16&nbsp; CT Fourier Transform – Supplementary Notes for ECE 2714: Signals and Systems</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./17-dtft.html" rel="next">
+<link href="./15-dtfs.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7743ab93549fe57e350af7b50d1de34c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-dd3f867a8242fdb793e0ec01cb489490.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Supplementary Notes for ECE 2714: Signals and Systems</span>
+    </a>
+  </div>
+        <div class="quarto-navbar-tools tools-end">
+    <a href="https://github.com/clwyatt/notes-2714" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+    <a href="./Supplementary-Notes-for-ECE-2714--Signals-and-Systems.epub" title="Download ePub" class="quarto-navigation-tool px-1" aria-label="Download ePub"><i class="bi bi-journal"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16-ctft.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CT Fourier Transform</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About the Notes</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Course Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-ct-signals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Continuous-Time Signals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-dt-signals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Discrete-Time Signals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-ct-lccde.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">CT Systems as Linear Constant Coefficient Differential Equations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-dt-lccde.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">DT systems as linear constant coefficient difference equations</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ct-lti.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Linear Time Invariant CT Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-dt-lti.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Linear Time Invariant DT Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-ct-conv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">CT Convolution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-dt-conv.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">DT Convolution</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-ct-block.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">CT Block Diagrams</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-dt-block.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">DT Block Diagrams</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-ct-tf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Eigenfunctions of CT Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-dt-tf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Eigenfunctions of DT Systems</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-ctfs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">CT Fourier Series</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-dtfs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">DT Fourier Series</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-ctft.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CT Fourier Transform</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-dtft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">DT Fourier Transform</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-ct-fr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">CT Frequency Response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-dt-fr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">DT Frequency Response</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-ct-filters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Frequency Selective Filters in CT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-dt-filters.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Frequency Selective Filters in DT</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-dft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Discrete Fourier Transform</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-sampling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Sampling CT Signals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-recon.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Reconstructing CT Signals</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./26-formulas-tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Mathematical Definitions and Tables</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./image-descriptions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Detailed Image Descriptions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#synthesis-and-analysis-equation" id="toc-synthesis-and-analysis-equation" class="nav-link active" data-scroll-target="#synthesis-and-analysis-equation"><span class="header-section-number">16.1</span> Synthesis and Analysis Equation</a></li>
+  <li><a href="#examples-of-the-ct-fourier-transform" id="toc-examples-of-the-ct-fourier-transform" class="nav-link" data-scroll-target="#examples-of-the-ct-fourier-transform"><span class="header-section-number">16.2</span> Examples of the CT Fourier Transform</a></li>
+  <li><a href="#existence-of-the-ct-fourier-transform" id="toc-existence-of-the-ct-fourier-transform" class="nav-link" data-scroll-target="#existence-of-the-ct-fourier-transform"><span class="header-section-number">16.3</span> Existence of the CT Fourier Transform</a></li>
+  <li><a href="#properties-of-the-ct-fourier-transform" id="toc-properties-of-the-ct-fourier-transform" class="nav-link" data-scroll-target="#properties-of-the-ct-fourier-transform"><span class="header-section-number">16.4</span> Properties of the CT Fourier Transform</a></li>
+  <li><a href="#ct-fourier-transform-of-a-periodic-signal" id="toc-ct-fourier-transform-of-a-periodic-signal" class="nav-link" data-scroll-target="#ct-fourier-transform-of-a-periodic-signal"><span class="header-section-number">16.5</span> CT Fourier Transform of a Periodic Signal</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">CT Fourier Transform</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Recall the complex exponential <span class="math inline">\(e^{st}\)</span> for <span class="math inline">\(s\in\mathbb{C}\)</span> is the Eigenfunction of CT LTI systems. If we can decompose an input into a (possibly infinite) sum of such signals, we can easily determine the output using the superposition principle. In this section we consider the decomposition when the input is aperiodic, called the CT <em>Fourier Transform</em> (CTFT).</p>
+<p>In contrast to the CT Fourier series, in this case the complex exponent of the Eigenfunction becomes <span class="math inline">\(s = j\omega\)</span> a continuous variable, and the decomposition is an uncountably infinite sum (integral). This gives the input-output relationship for a stable LTI system as <span class="math display">\[x(t) = \frac{1}{2\pi}\int\limits_{-\infty}^{\infty} X(j\omega) \, e^{j \omega t}\; d\omega \;\longrightarrow\; y(t) = \frac{1}{2\pi}\int\limits_{-\infty}^{\infty} H(j\omega) X(j\omega) \, e^{j \omega t}\; d\omega\]</span> where <span class="math inline">\(H(j \omega)\)</span> are the Eigenvalues, again called the <em>frequency response</em>. We now turn to determining under what circumstances the decomposition exists and how to find the function <span class="math inline">\(X(j\omega)\)</span>.</p>
+<p><strong>Note:</strong> The difference in notation between <span class="math inline">\(X(\omega)\)</span> and <span class="math inline">\(X(j\omega)\)</span> is superficial. They generally are the same function. The latter just emphasizes that <span class="math inline">\(s \rightarrow j\omega\)</span>. For example <span class="math display">\[H(j\omega) = \frac{1}{1+(j\omega)^2} = \frac{1}{1-\omega^2} = H(\omega)\]</span> are the same function since <span class="math inline">\(j^2 = -1\)</span>.</p>
+<section id="synthesis-and-analysis-equation" class="level2" data-number="16.1">
+<h2 data-number="16.1" class="anchored" data-anchor-id="synthesis-and-analysis-equation"><span class="header-section-number">16.1</span> Synthesis and Analysis Equation</h2>
+<p>Consider the aperiodic signal <span class="math display">\[x(t) = \begin{cases}
+  p(t) &amp; A &lt; t &lt; B\\
+  0 &amp; \text{else}
+\end{cases}\]</span> and it’s periodic extension with fundamental frequency <span class="math inline">\(\omega_0 = \frac{2\pi}{T_0}\)</span> <span class="math display">\[x_p(t) = \sum\limits_{m = -\infty}^{\infty} x(t-mT_0)\]</span> where <span class="math inline">\(T_0 &gt; B-A\)</span>. For example:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig16_1.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Example of a finite-length signal and its periodic extension.</figcaption>
+</figure>
+</div>
+<p>The CT Fourier series coefficients are <span class="math display">\[\begin{aligned}
+  a_k &amp;= \frac{1}{T_0} \int\limits_{T_0} x_p(t) e^{-jk\omega_0 t}\; dt\\
+  &amp;= \frac{1}{T_0} \int\limits_{-\infty}^{\infty} x(t) e^{-jk\omega_0 t}\; dt \mbox{ since } x(t) = 0 \mbox{ outside the interval } (A,B)\\
+\end{aligned}\]</span> Define the <em>CT Fourier Transform</em> of <span class="math inline">\(x(t)\)</span> as <span class="math display">\[\boxed{X(\omega) = \int\limits_{-\infty}^{\infty} x(t) e^{-j\omega t}\; dt}\]</span> so that <span class="math display">\[a_k = \frac{1}{T_0} X(k\omega_0)\]</span> are samples of <span class="math inline">\(X(\omega)\)</span> spaced at frequencies <span class="math inline">\(\omega_0\)</span>. By the CT Fourier series synthesis equation <span class="math display">\[x(t) = \sum\limits_{k = -\infty}^{\infty} \frac{1}{T_0} X(k\omega_0) e^{jk\omega_0 t}\]</span> Now, let <span class="math inline">\(T_0 \rightarrow \infty\)</span> so that the periodic copies move toward <span class="math inline">\(\infty\)</span> and <span class="math inline">\(x_p(t) \rightarrow x(t)\)</span>. At the same time the frequency sample spacing becomes infinitesimal and <span class="math display">\[X(k\omega_0) e^{jk\omega_0 t} \rightarrow X(\omega) e^{j\omega t}\; d\omega\]</span> To give the <em>Inverse Fourier Transform</em> <span class="math display">\[\boxed{x(t) = \frac{1}{2\pi} \int\limits_{-\infty}^{\infty} X(\omega)e^{j\omega t}\; d\omega}\]</span> This gives the <em>Fourier Transform Pair</em>: <span class="math display">\[\underbrace{X(\omega) = \mathcal{F}\{x(t)\} = \int\limits_{-\infty}^{\infty} x(t) e^{-j\omega t}\; dt}_{\text{Forward Transform / Analysis Equation}}
+\hspace{3em}
+\underbrace{x(t) = \mathcal{F}^{-1}\{X(\omega)\} = \frac{1}{2\pi} \int\limits_{-\infty}^{\infty} X(\omega)e^{j\omega t}\; d\omega}_{\text{Inverse Transform / Synthesis Equation}}\]</span> The forward transform decomposes <span class="math inline">\(x(t)\)</span> into an infinite number of complex sinusoids. The inverse transform synthesizes a signal as an infinite sum of the sinusoids. It is an example of an <em>Integral Transform</em>. Note the signal <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(X(\omega)\)</span> are the same signal, just represented in different <em>domains</em>, the time-domain and frequency-domain respectively.</p>
+<p>Similar to the CT Fourier series, the function <span class="math inline">\(X(\omega)\)</span> is called the <em>spectrum</em> of the signal <span class="math inline">\(x(t)\)</span>. The magnitude spectrum is the function <span class="math inline">\(|X(\omega)|\)</span> and the phase spectrum is the function <span class="math inline">\(\angle X(\omega)\)</span>. It is common to plot the spectrum as the combination of the magnitude and phase spectrum.</p>
+</section>
+<section id="examples-of-the-ct-fourier-transform" class="level2" data-number="16.2">
+<h2 data-number="16.2" class="anchored" data-anchor-id="examples-of-the-ct-fourier-transform"><span class="header-section-number">16.2</span> Examples of the CT Fourier Transform</h2>
+<div class="example">
+<section id="fourier-transform-of-the-impulse." class="level3 example-header" data-number="16.2.1">
+<h3 data-number="16.2.1" class="anchored" data-anchor-id="fourier-transform-of-the-impulse."><span class="header-section-number">16.2.1</span> Fourier Transform of the impulse.</h3>
+</section>
+<div class="example-container">
+Consider the signal <span class="math inline">\(x(t) = \delta(t)\)</span>. The Fourier transform is
+<span class="math display">\[\begin{aligned}
+    X(\omega) &amp;= \int\limits_{-\infty}^{\infty} x(t) e^{-j\omega t}\; dt\\
+    &amp;= \int\limits_{-\infty}^{\infty} \delta(t) e^{-j\omega t}\; dt\\
+    &amp;= e^{-j\omega (0)} \mbox{ by the sifting property}\\
+    &amp;= 1
+  
+\end{aligned}\]</span>
+</div>
+</div>
+<div class="example">
+<section id="fourier-transform-of-the-causal-real-exponential." class="level3 example-header" data-number="16.2.2">
+<h3 data-number="16.2.2" class="anchored" data-anchor-id="fourier-transform-of-the-causal-real-exponential."><span class="header-section-number">16.2.2</span> Fourier transform of the causal real exponential.</h3>
+</section>
+<div class="example-container">
+Consider the signal <span class="math inline">\(x(t) = e^{at}u(t)\)</span> for <span class="math inline">\(a\in \mathbb{R}\)</span>. The Fourier transform is
+<span class="math display">\[\begin{aligned}
+    X(\omega) &amp;= \int\limits_{-\infty}^{\infty} x(t) e^{-j\omega t}\; dt\\
+    &amp;= \int\limits_{0}^{\infty}  e^{at} \, e^{-j\omega t}\; dt\\
+    &amp;= \int\limits_{0}^{\infty}  e^{(a-j\omega) t}\; dt\\
+    &amp;= \frac{1}{a-j\omega } e^{(a-j\omega) t} \Big|_{0}^{\infty}\\
+    &amp;= \frac{1}{a-j\omega } \left[ \lim_{T\rightarrow\infty} e^{(a-j\omega) T} - \underbrace{e^{(a-j\omega) (0)}}_{1}\right]
+  
+\end{aligned}\]</span>
+<p>This example raises the question, of when does the Fourier Transform exist? Note if <span class="math inline">\(a &lt; 0\)</span> then the limit above converges to zero, otherwise the integral diverges. In the former case we say the Fourier transform exists, and in the latter that it does not. Thus</p>
+<p><span class="math display">\[X(\omega) = \frac{-1}{a-j\omega } = \frac{1}{j\omega-a} \mbox{ for } a &lt; 0\;.\]</span></p>
+<p>Note when <span class="math inline">\(a &lt; 0\)</span>, <span class="math inline">\(x(t)\)</span> is an energy signal. A sufficient, but not necessary condition for the Fourier transform to exist is that the signal be an energy signal.</p>
+<p>For this example, let’s examine the spectrum, noting <span class="math display">\[|X(\omega)| = \frac{1}{(a^2 + \omega^2)^\frac{1}{2}} \hspace{2em}\mbox{and}\hspace{2em} \angle X(\omega) = -\arctan\left( \frac{\omega}{-a}\right)\]</span> plotted below for <span class="math inline">\(a = -1\)</span>.</p>
+<p>TODO</p>
+</div>
+</div>
+<div class="example">
+<section id="fourier-transform-of-a-complex-sinusoid." class="level3 example-header" data-number="16.2.3">
+<h3 data-number="16.2.3" class="anchored" data-anchor-id="fourier-transform-of-a-complex-sinusoid."><span class="header-section-number">16.2.3</span> Fourier transform of a complex sinusoid.</h3>
+</section>
+<div class="example-container">
+<p>Consider the signal <span class="math inline">\(x(t) = e^{j\omega_0 t}\)</span> for <span class="math inline">\(\omega_0\in \mathbb{R}\)</span>. The Fourier transform is</p>
+<span class="math display">\[\begin{aligned}
+    X(\omega) &amp;= \int\limits_{-\infty}^{\infty} x(t) e^{-j\omega t}\; dt\\
+    &amp;= \int\limits_{-\infty}^{\infty}  e^{j\omega_0 t} \, e^{-j\omega t}\; dt\\
+    &amp;= \int\limits_{-\infty}^{\infty}  e^{-j(\omega_0-\omega) t}\; dt
+  
+\end{aligned}\]</span>
+<p>For <span class="math inline">\(\omega \neq \omega_0\)</span> this integral evaluates to</p>
+<span class="math display">\[\begin{aligned}
+    X(\omega) &amp;= \int\limits_{-\infty}^{\infty}  \cos((\omega-\omega_0) t)\; dt + j \int\limits_{-\infty}^{\infty}  \sin((\omega-\omega_0) t)\; dt\\
+    &amp;= 0  
+\end{aligned}\]</span>
+<p>since the average value of a sinusoid is zero. When <span class="math inline">\(\omega = \omega_0\)</span> this integral diverges <span class="math display">\[\int\limits_{-\infty}^{\infty}  e^{-j(\omega_0-\omega) t}dt = \int\limits_{-\infty}^{\infty}  e^{-j(0) t} dt= \int\limits_{-\infty}^{\infty} dt = \infty\]</span> What signal is zero everywhere, but infinite at one point (I am hand-waving a bit here)? The delta function <span class="math display">\[X(\omega) = A\delta(\omega-\omega_0) \mbox{ for some constant } A.\]</span> To find the constant we can use the inverse transform</p>
+<span class="math display">\[\begin{aligned}
+    x(t) &amp;= \frac{1}{2\pi} \int\limits_{-\infty}^{\infty} X(\omega)e^{j\omega t}\; d\omega\\
+    &amp;= \frac{1}{2\pi} \int\limits_{-\infty}^{\infty}  A\delta(\omega-\omega_0) e^{j\omega t}\; d\omega\\
+    &amp;= \frac{1}{2\pi} A e^{j\omega_0 t}\\
+    &amp;= e^{j\omega_0 t}
+  
+\end{aligned}\]</span>
+<p>which implies <span class="math inline">\(A = 2\pi\)</span>.</p>
+</div>
+</div>
+<div class="example">
+<section id="fourier-transform-of-a-real-sinusoid." class="level3 example-header" data-number="16.2.4">
+<h3 data-number="16.2.4" class="anchored" data-anchor-id="fourier-transform-of-a-real-sinusoid."><span class="header-section-number">16.2.4</span> Fourier transform of a real sinusoid.</h3>
+</section>
+<div class="example-container">
+<p>Consider the signal <span class="math inline">\(x(t) = \cos(\omega_0 t)\)</span> for <span class="math inline">\(\omega_0\in \mathbb{R}\)</span>. The Fourier transform can be found using the result in the previous example by noting</p>
+<span class="math display">\[\begin{aligned}
+    X(\omega) &amp;= \int\limits_{-\infty}^{\infty} x(t) e^{-j\omega t}\; dt\\
+    &amp;= \int\limits_{-\infty}^{\infty}  \cos(\omega_0 t) \, e^{-j\omega t}\; dt\\
+    &amp;= \frac{1}{2}\int\limits_{-\infty}^{\infty}   e^{j\omega_0 t} \, e^{-j\omega t}\; dt + \frac{1}{2}\int\limits_{-\infty}^{\infty} e^{-j\omega_0 t} \, e^{-j\omega t}\; dt\\
+    &amp;= \frac{1}{2} 2\pi \delta(\omega-\omega_0) + \frac{1}{2} 2\pi \delta(\omega+\omega_0)\\
+    &amp;= \pi \delta(\omega-\omega_0) + \pi \delta(\omega+\omega_0)
+  
+\end{aligned}\]</span>
+<p>This example highlights that the cosine signal is composed of exactly two frequencies.</p>
+</div>
+</div>
+<div class="example">
+<section id="inverse-fourier-transform-of-a-band-limited-signal." class="level3 example-header" data-number="16.2.5">
+<h3 data-number="16.2.5" class="anchored" data-anchor-id="inverse-fourier-transform-of-a-band-limited-signal."><span class="header-section-number">16.2.5</span> Inverse Fourier transform of a band-limited signal.</h3>
+</section>
+<div class="example-container">
+<p>Consider the signal <span class="math display">\[X(\omega) = \begin{cases}
+    1 &amp; |\omega| &lt; \omega_0\\
+    0 &amp; \text{else}
+  \end{cases}\]</span> The Inverse Fourier transform is</p>
+<span class="math display">\[\begin{aligned}
+    x(t) &amp; = \frac{1}{2\pi} \int\limits_{-\infty}^{\infty} X(\omega)e^{j\omega t}\; d\omega\\
+    &amp;= \frac{1}{2\pi} \int\limits_{-\omega_0}^{\omega_0} e^{j\omega t}\; d\omega\\
+    &amp;= \frac{1}{2\pi} \frac{1}{jt} \left[ e^{j\omega_0 t} - e^{-j\omega_0 t}\right]\\
+    &amp;= \frac{1}{\pi t} \left[ \frac{1}{2j}e^{j\omega_0 t} - \frac{1}{2j} e^{-j\omega_0 t}\right]\\
+    &amp;= \frac{1}{\pi t} \sin(\omega_0 t)\\
+    &amp;= \frac{\omega_0}{\pi} \frac{\sin(\omega_0 t)}{\omega_0 t}\\
+    &amp;= \frac{\omega_0}{\pi} \mbox{sinc}(\omega_0 t)
+  
+\end{aligned}\]</span>
+<p>where <span class="math inline">\(\mbox{sinc}()\)</span> is the (unnormalized) <em>sinc function</em>.</p>
+</div>
+</div>
+<p><a href="26-formulas-tables.html#tbl-ctft" class="quarto-xref">Table&nbsp;<span>A.1</span></a> lists several CT Fourier transform results.</p>
+</section>
+<section id="existence-of-the-ct-fourier-transform" class="level2" data-number="16.3">
+<h2 data-number="16.3" class="anchored" data-anchor-id="existence-of-the-ct-fourier-transform"><span class="header-section-number">16.3</span> Existence of the CT Fourier Transform</h2>
+<p>The example of the real exponential above showed that for the Fourier transform to exist, the Fourier (analysis) integral must exist. Similar to the Fourier series some mild conditions, called the Dirichlet conditions, are a sufficient prerequisite for the Fourier transform of a signal <span class="math inline">\(x(t)\)</span> to exist:</p>
+<ul>
+<li><p><span class="math inline">\(x(t)\)</span> is absolutely integrable <span class="math display">\[x(t) = \int\limits_{-\infty}^{\infty} |x(t)|\; dt &lt; \infty\]</span></p></li>
+<li><p><span class="math inline">\(x(t)\)</span> has a finite number of minima and maxima over any finite interval</p></li>
+<li><p><span class="math inline">\(x(t)\)</span> has a finite number of finite-valued discontinuities over any finite interval</p></li>
+</ul>
+<p>These conditions are not necessary however, and we can extend the Fourier transform to a broader class of signals, if we allow delta functions in the transform, as in the cosine example above.</p>
+</section>
+<section id="properties-of-the-ct-fourier-transform" class="level2" data-number="16.4">
+<h2 data-number="16.4" class="anchored" data-anchor-id="properties-of-the-ct-fourier-transform"><span class="header-section-number">16.4</span> Properties of the CT Fourier Transform</h2>
+<p>There are several useful properties of the CT Fourier Transform that, when combined with a table of transforms (see Table 4.2, page 329 of OW), allow us to take the Fourier transform of wide array of signals, and one, the convolution property, that allows us to determine the output of a system in the frequency domain easily. We state these here without proof in rough order of usefulness. See the course text for detailed derivations.</p>
+<p>We use the notation <span class="math inline">\(x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)\)</span> to indicate the signals are related by a Fourier Transform pair.</p>
+<ul>
+<li><p><strong>Linearity:</strong> if <span class="math inline">\(x_1(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)\)</span> and <span class="math inline">\(x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(\omega)\)</span> then <span class="math display">\[ax_1(t) + bx_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} aX_1(\omega) + bX_2(\omega)\]</span></p></li>
+<li><p><strong>Convolution:</strong> if <span class="math inline">\(x_1(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)\)</span> and <span class="math inline">\(x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(\omega)\)</span> then <span class="math display">\[x_1(t) * x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)X_2(\omega)\]</span> Note in particular if one signal is the system input and the other is the impulse response, the output is the product of the Fourier transforms of each, where the Fourier transform of <span class="math inline">\(h(t)\)</span> is <span class="math inline">\(H(\omega)\)</span>, the Eigenvalue or frequency response.</p></li>
+<li><p><strong>Differentiation:</strong> if <span class="math inline">\(x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)\)</span> then <span class="math display">\[\frac{dx}{dt}(t) \stackrel{\mathcal{F}}{\longleftrightarrow} j\omega X(\omega)\]</span> This allows us to easily determine the Eigenvalues/Frequency Response from a stable differential equation.</p></li>
+<li><p><strong>Multiplication:</strong> if <span class="math inline">\(x_1(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)\)</span> and <span class="math inline">\(x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(\omega)\)</span> then <span class="math display">\[x_1(t) \cdot x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{2\pi} X_1(\omega)*X_2(\omega)\]</span> where <span class="math inline">\(X_1(\omega)*X_2(\omega)\)</span> is convolution in the frequency domain <span class="math display">\[X_1(\omega)*X_2(\omega) = \int\limits_{-\infty}^{\infty} X_1(\gamma)\cdot X_2(\omega-\gamma)\;d\gamma\]</span></p></li>
+<li><p><strong>Time-Shift:</strong> if <span class="math inline">\(x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)\)</span> then <span class="math display">\[x(t-t_0) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)e^{-j\omega t_0}\]</span></p></li>
+<li><p><strong>Frequency-Shift:</strong> if <span class="math inline">\(x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)\)</span> then <span class="math display">\[e^{j\omega_0 t}x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega-\omega_o)\]</span></p></li>
+<li><p><strong>Conjugate Symmetry:</strong> if <span class="math inline">\(x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)\)</span> then <span class="math display">\[x^*(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X^*(-\omega)\]</span> This implies that if <span class="math inline">\(x(t)\)</span> is real, then the magnitude spectrum is an even function, and the phase spectrum is an odd function.</p></li>
+<li><p><strong>Integration:</strong> if <span class="math inline">\(x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)\)</span> then <span class="math display">\[\int\limits_{-\infty}^t x(\tau)\; d\tau \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{j\omega} X(\omega) + \pi X(0) \delta(\omega)\]</span></p></li>
+<li><p><strong>Time and Frequency Scaling:</strong> if <span class="math inline">\(x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)\)</span> then if <span class="math inline">\(a\)</span> is a real constant <span class="math display">\[x(at) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{|a|} X\left(\frac{\omega}{a}\right)\]</span></p></li>
+<li><p><strong>Parseval’s Relation:</strong> if <span class="math inline">\(x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)\)</span> then <span class="math display">\[\int\limits_{0-\infty}^{\infty} |x(t)|^2\; dt =  \frac{1}{2\pi}\int\limits_{0-\infty}^{\infty} |X(\omega)|^2\;d\omega\]</span></p></li>
+</ul>
+</section>
+<section id="ct-fourier-transform-of-a-periodic-signal" class="level2" data-number="16.5">
+<h2 data-number="16.5" class="anchored" data-anchor-id="ct-fourier-transform-of-a-periodic-signal"><span class="header-section-number">16.5</span> CT Fourier Transform of a Periodic Signal</h2>
+<p>Even though the Fourier transform was derived in the case of an a-periodic signal, the linearity property of the transform, combined with one of our examples above shows us that we can take the Fourier Transform of a periodic signal. Consider a periodic signal with Fourier series expansion <span class="math display">\[x(t) = \sum\limits_{k = -\infty}^{\infty} a_k e^{jk\omega_0 t}\]</span> Taking the Fourier Transform <span class="math display">\[\mathcal{F}\{x(t)\} = \mathcal{F}\left\{\sum\limits_{k = -\infty}^{\infty} a_k e^{jk\omega_0 t}\right\} = \sum\limits_{k = -\infty}^{\infty} a_k \mathcal{F}\{e^{jk\omega_0 t}\} = \sum\limits_{k = -\infty}^{\infty} a_k 2\pi \delta(\omega-k\omega_0)\]</span> Thus the discrete Fourier series coefficients become the weights of the corresponding delta functions centered at the harmonic frequency.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./15-dtfs.html" class="pagination-link" aria-label="DT Fourier Series">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">DT Fourier Series</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./17-dtft.html" class="pagination-link" aria-label="DT Fourier Transform">
+        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">DT Fourier Transform</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
