@@ -57,8 +57,5 @@ format:
     code-fold: true
     highlight-style: a11y-light
   epub: default
-  pdf:
-    pdf-engine: pdflatex
-    default-image-extension: pdf
 
 bibliography: references.bib
