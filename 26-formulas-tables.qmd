@@ -1,4 +1,4 @@
-# Useful Mathematical Definitions and Tables {.unnumbered}
+# Useful Mathematical Definitions and Tables
 
 ## Definition of modulus for integers
 
@@ -62,7 +62,7 @@ by $N$.
    $\sum\limits_{k=-\infty}^{\infty} a_k e^{j k \omega_0 t}$                 $2 \pi \sum\limits_{k=-\infty}^{\infty} a_k \delta{(\omega - k \omega_0)}$
        $\sum\limits_{n=-\infty}^{\infty} \delta(t - nT)$       $\omega_0 \sum\limits_{k=-\infty}^{\infty} \delta{(\omega - k \omega_0)}$, $\omega_0 = \frac{2 \pi}{T}$
 
-  : CT Fourier Transform Table
+  : CT Fourier Transform Table {#tbl-ctft}
 
 ## Table of Representative DT Fourier Transform Pairs {#table:dtft}
 

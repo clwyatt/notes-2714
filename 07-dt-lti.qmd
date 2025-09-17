@@ -186,3 +186,62 @@ response and the system properties described above.
   $$\sum\limits_{-\infty}^{\infty} |h[n]| < \infty$$
 
 
+## Difference Equations {.t}
+
+* A *difference equation* is a relation among combinations of two DT
+functions and shifted versions of them.
+* Similar to differential equations where the solution is a CT function, the solution to a
+difference equation is a DT function.
+
+## Definition of LCCDE
+
+A *linear*, *constant-coefficient*, difference equation (LCCDE) comes in
+one of two forms.
+
+- Delay form.
+  $$\sum\limits_{k = 0}^N a_k y[n-k] = \sum\limits_{k = 0}^M b_k x[n-k]$$
+  or
+  $$a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]$$
+
+- Advance form. Let $n\rightarrow n+N$, then the delay form becomes
+  $$\sum\limits_{k = 0}^N a_k y[n+N-k] = \sum\limits_{k = 0}^M b_k x[n+N-k]$$
+  or
+  $$a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = b_0 x[n+N] + \cdots b_Mx[n+N-M]$$
+
+- The *order* of the system is given by $N$.
+- The delay and advance forms are equivalent because the equation holds for any $n$, and we can move
+back and forth between them as needed by a constant index-shift.
+
+## Delay and Advance Operators
+
+- The advance operator $E^m$ shifts a DT function by positive $m$, i.e. $E^m x[n] = x[n+m]$
+- The delat operator $D^m$ shifts a DT function by negative $m$, i.e.
+$D^m x[n] = x[n-m]$.
+- The advance form of the difference equation using
+this operator notation is
+$$a_0y[n+N] + a_1y[n+N-1] + \cdots a_N y[n] = b_0 x[n+N] + \cdots b_Mx[n+N-M]$$
+$$a_0 E^Ny + a_1E^{N-1}y + \cdots a_N y = b_0 E^{N}x + \cdots b_M E^{N-M}x$$
+Factoring out the advance operators gives
+$$\underbrace{\left(a_0E^N + a_1E^{N-1} + \cdots a_N\right)}_{Q(E)} y = \underbrace{\left(b_0 E^{N} + \cdots b_M E^{N-M}\right)}_{P(E)} x$$
+or $$Q(E)y[n] = P(E)x[n]$$
+
+- The delay form of the difference equation using this operator
+notation is
+$$a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]$$
+$$a_0y[n] + a_1 Dy + \cdots a_N D^N y = b_0 x + \cdots b_MD^M x$$
+
+
+## Iterative solution of LCCDEs {.t}
+
+- Difference equations can be solved by manually running the equation forward using
+previous values of the output and current and previous values of the
+input, given some initial conditions.
+- This is called an *iterative* solution for this reason.
+
+- To perform an iterative solution we need the difference equation in
+delay form
+$$a_0y[n] + a_1y[n-1] + \cdots a_N y[n-N] = b_0 x[n] + \cdots b_Mx[n-M]$$
+along with the previous output values and the previous and current input values.
+- We then solve for the current output $y[n]$
+$$y[n] =  - \left(\frac{a_1}{a_0}y[n-1] + \cdots \frac{a_N}{a_0} y[n-N]\right) + \frac{b_0}{a_0} x[n] + \cdots \frac{b_M}{a_0}x[n-M]$$
+

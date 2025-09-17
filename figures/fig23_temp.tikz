@@ -1,0 +1,50 @@
+\documentclass[border=5pt]{standalone}
+\usepackage{circuitikz}
+\usetikzlibrary{positioning,arrows.meta,shapes.geometric}
+
+\begin{document}
+\begin{circuitikz}[
+  >=Latex,
+  block/.style={draw,very thick,rounded corners,minimum width=2.8cm,minimum height=1.5cm,align=center},
+  line/.style={-Latex,very thick}
+]
+
+% Track/Hold block
+\node[block] (th) at (-5,0.5) {Track/Hold};
+
+% Comparator from circuitikz
+\node[draw,thick,op amp,yscale=-1] (cmp) at (0,0) {};
+
+% SAR Logic block
+\node[block,right=1.0in of cmp] (sar) {SAR Logic};
+
+% N-bit Register block
+\node[block,below=1.5in of sar] (reg) {N-bit Register};
+
+% DAC block
+\node[block,left=1.38in of reg] (dac) {N-bit DAC};
+
+% Analog input
+\draw[line] (-9,0.5) -- node[above]{Analog In} (th.west);
+\draw (th.east) -- (cmp.+);
+
+% DAC feedback to comparator (- input)
+\draw (dac.north) -- ++(0,0.55) -| (cmp.-);
+
+% Comparator output to SAR logic
+\draw[line] (cmp.out) -- (sar.west);
+
+% SAR logic to Register
+\draw[line] (sar.south) -- node[right]{Update} (reg.north);
+
+% Register to DAC
+\draw[line] (reg.west) -- node[above]{N-bit code} (dac.east);
+
+% Reference voltage into DAC
+\draw[line] ($(dac.south)+(0,-1.0)$) -- node[right]{$V_{\mathrm{REF}}$} (dac.south);
+
+% Digital data output from Register
+\draw[line] (reg.east) -- ++(3.0,0) node[right]{Digital Data Out};
+
+\end{circuitikz}
+\end{document}

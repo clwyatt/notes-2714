@@ -2,9 +2,12 @@
 status:
    git status . -- ':!docs'
 
-render:
+figures:
    make -C figures -f Makefile_tikz
    make -C figures -f Makefile_ipe
+
+
+render: figures
    quarto render
 
 # Note: this may result in source out of sync with the site

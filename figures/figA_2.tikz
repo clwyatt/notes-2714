@@ -1,0 +1,16 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+
+\begin{tikzpicture}[auto, node distance=3cm,>=latex']
+  \node [input, name=input] {};
+  \node [block, right of=input] (system) {System $T$};
+  \node [output, right of=system] (output) {};
+
+  \draw [draw,->] (input) -- node {$\delta[n]$} (system);
+  \draw [->] (system) -- node {$h[n]$} (output);
+\end{tikzpicture}
+
+\end{document}

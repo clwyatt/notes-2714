@@ -7,9 +7,10 @@ book:
   author: "C.L. Wyatt"
   date: last-modified
   repo-url: https://github.com/clwyatt/notes-2714
-  downloads: [pdf, epub]
+  downloads: [epub]
   navbar:
     title: "Supplementary Notes for ECE 2714: Signals and Systems"
+    search: false
   sidebar:
     title: false
     style: floating
@@ -25,8 +26,25 @@ book:
     - 06-ct-lti.qmd
     - 07-dt-lti.qmd
     - 08-ct-conv.qmd
+    - 09-dt-conv.qmd
+    - 10-ct-block.qmd
+    - 11-dt-block.qmd
+    - 12-ct-tf.qmd
+    - 13-dt-tf.qmd
+    - 14-ctfs.qmd
+    - 15-dtfs.qmd
+    - 16-ctft.qmd
+    - 17-dtft.qmd
+    - 18-ct-fr.qmd
+    - 19-dt-fr.qmd
+    - 20-ct-filters.qmd
+    - 21-dt-filters.qmd
+    - 22-dft.qmd
+    - 23-sampling.qmd
+    - 24-recon.qmd
   appendices:
     - 26-formulas-tables.qmd
+    - image-descriptions.qmd
     - references.qmd
 
 format:

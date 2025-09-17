@@ -1,0 +1,14 @@
+# Detailed Image Descriptions
+
+## Figure 14.1  {#sec-14-1}
+
+Description of @fig-14-example1
+
+This figure contains two vertically arranged stem plots sharing the same discrete horizontal axis k from -10 to 10. Top plot — Amplitude Spectrum: Largest value at k=0 (≈0.333), with decreasing symmetric values for larger |k|. Bottom plot — Phase Spectrum: All phases are zero radians.
+
+## Figure 14.2  {#sec-14-2}
+
+Description of @fig-14-example2
+
+This figure shows TODO
+
