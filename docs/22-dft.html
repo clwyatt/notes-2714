@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -70,6 +105,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -298,8 +362,18 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#numerically-approximating-the-ct-fourier-transform" id="toc-numerically-approximating-the-ct-fourier-transform" class="nav-link active" data-scroll-target="#numerically-approximating-the-ct-fourier-transform"><span class="header-section-number">22.1</span> Numerically Approximating the CT Fourier Transform</a></li>
+  <li><a href="#efficient-computation-of-dft-fft" id="toc-efficient-computation-of-dft-fft" class="nav-link" data-scroll-target="#efficient-computation-of-dft-fft"><span class="header-section-number">22.2</span> Efficient Computation of DFT (FFT)</a></li>
+  <li><a href="#dftfft-in-matlab" id="toc-dftfft-in-matlab" class="nav-link" data-scroll-target="#dftfft-in-matlab"><span class="header-section-number">22.3</span> DFT/FFT in Matlab</a></li>
+  <li><a href="#summary-of-fourier-transforms" id="toc-summary-of-fourier-transforms" class="nav-link" data-scroll-target="#summary-of-fourier-transforms"><span class="header-section-number">22.4</span> Summary of Fourier Transforms</a></li>
+  <li><a href="#applications-of-the-dft" id="toc-applications-of-the-dft" class="nav-link" data-scroll-target="#applications-of-the-dft"><span class="header-section-number">22.5</span> Applications of the DFT</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -323,9 +397,174 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>TODO</p>
+<p>The Discrete Fourier Transform or DFT is the Fourier Transform of a finite length DT signal. As we shall see, the DFT/FFT is mathematically equivalent to the Discrete-Time Fourier Series. It can be viewed as a way to numerically approximate the CT Fourier transform. Lets first just state the transform and then derive it and see how to interpret and apply it.</p>
+<p>Given a finite-length sequence of real or complex numbers <span class="math inline">\(x[n]\)</span>, indexed from <span class="math inline">\(0\)</span> to <span class="math inline">\(N-1\)</span>, the <em>Discrete Fourier Transform</em> or DFT is given by <span class="math display">\[X[k] = \sum_{n = 0}^{N-1}  x[n] e^{-j \frac{2\pi}{N}k n}\]</span> for <span class="math inline">\(k = 0, 1, 2, \cdots, N-1\)</span>. When <span class="math inline">\(N\)</span> is a power of 2, an efficient algorithm to compute this result exists and is called the <em>Fast Fourier Transform</em> or FFT.</p>
+<section id="numerically-approximating-the-ct-fourier-transform" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="numerically-approximating-the-ct-fourier-transform"><span class="header-section-number">22.1</span> Numerically Approximating the CT Fourier Transform</h2>
+<p>Recall the CT Fourier transform pair <span class="math inline">\(x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(j\omega)\)</span>: <span class="math display">\[X(j\omega) = \int\limits_{-\infty}^{\infty} x(t) e^{-j\omega t} \; dt\]</span></p>
+<p><span class="math display">\[x(t) = \frac{1}{2\pi} \int\limits_{-\infty}^{\infty} X(j\omega) e^{j\omega t} \; d\omega\]</span></p>
+<p>How could we compute these when we have a physical signal, rather than just a mathematical model?</p>
+<p>Recall from calculus the (left) Riemann sum approximation of a definite integral <span class="math display">\[\int\limits_{t_1}^{t_2} f(t) \; dt = \lim_{N \rightarrow \infty} \sum_{n = 0}^{N-1} \frac{t_2-t_1}{N} f\left(t_1 + n\frac{t_2-t_1}{N}\right)\]</span></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig22_1.svg" class="img-fluid figure-img" alt="see caption"></p>
+<figcaption>Illustration of the Riemann sum approximation of CT Fourier transform.</figcaption>
+</figure>
+</div>
+<p>In the case of the CTFT, if the signal <span class="math inline">\(x(t)\)</span> is non-zero only over some interval <span class="math inline">\((t_1, t_2)\)</span>, then <span class="math display">\[\mathcal{F}\{ x(t) \} = \int\limits_{t_1}^{t_2} x(t) e^{-j\omega t} \; dt \approx \sum_{n = 0}^{N-1} \frac{t_2-t_1}{N} x\left(t_1 + n\frac{t_2-t_1}{N}\right) e^{-j\omega \left(t_1 + n\frac{t_2-t_1}{N}\right)}\]</span> for large <span class="math inline">\(N\)</span>.<br>
+If we define the time sample spacing as <span class="math inline">\(T = \frac{t_2-t_1}{N}\)</span>, then <span class="math display">\[X(j\omega) \approx \sum_{n = 0}^{N-1} T \, x\left(t_1 + nT\right) e^{-j\omega \left(t_1 + nT\right)}\]</span></p>
+<p>Note <span class="math inline">\(x\left(t_1 + nT\right)\)</span> corresponds to <em>samples</em> of <span class="math inline">\(x(t)\)</span> starting at <span class="math inline">\(t_1\)</span> with sampling interval <span class="math inline">\(T\)</span>. This information is equivalent to the triad <span class="math inline">\(t_1, T, x[n]\)</span>, where <span class="math inline">\(x[n]\)</span> is a finite length sequence of numbers, i.e.&nbsp;a DT signal where <span class="math inline">\(x[n] = 0\)</span> for <span class="math inline">\(n &lt; 0\)</span> and <span class="math inline">\(n \geq N\)</span>. Thus,</p>
+<p><span class="math display">\[x\left(t_1 + nT\right) = x[n]\]</span></p>
+<p>Substituting into our approximation <span class="math display">\[X(j\omega) \approx \sum_{n = 0}^{N-1} T \, x\left(t_1 + nT\right) e^{-j\omega \left(t_1 + nT\right)} = T e^{-j\omega t_1} \sum_{n = 0}^{N-1} x[n] e^{-j\omega n T}\]</span></p>
+<p>Now, consider a sampling of the frequency axis <span class="math inline">\(\omega = \frac{2\pi}{NT} k\)</span>. Then <span class="math display">\[\omega n T = \frac{2\pi}{N T} k n T = \frac{2\pi}{N}k n\]</span> and <span class="math display">\[X\left(j\frac{2\pi}{NT} k\right) = T e^{-j\omega t_1} \underbrace{\sum_{n = 0}^{N-1} x[n]  e^{-j \frac{2\pi}{N}k n}}_{\text{DFT}} = T e^{-j\omega t_1} \, X[k]\]</span></p>
+<p>Thus we see the DFT corresponds to the Fourier transform of a sampled CT signal over a limited time-interval, at samples of the frequency axis.</p>
+<p>Similarly, in the case of the Inverse CTFT, if the signal <span class="math inline">\(X(j\omega)\)</span> is non-zero only over some interval <span class="math inline">\((\omega_1, \omega_2)\)</span>, then <span class="math display">\[\begin{aligned}
+  \mathcal{F}^{-1}\{ X(j\omega) \} &amp;= \frac{1}{2\pi} \int\limits_{\omega_1}^{\omega_2} X(j\omega) e^{j\omega t} \; dt\\ &amp;\approx \frac{1}{2\pi} \sum_{k = 0}^{M-1} \frac{\omega_2-\omega_1}{M} X\left(\omega_1 + k\frac{\omega_2-\omega_1}{M}\right) e^{j \left(\omega_1 + k\frac{\omega_2-\omega_1}{M}\right)t}
+\end{aligned}\]</span> for large <span class="math inline">\(M\)</span>. If we define the frequency sample spacing as <span class="math inline">\(W = \frac{\omega_2-\omega_1}{M}\)</span>, then <span class="math display">\[x(t) \approx \sum_{m = 0}^{M-1} \frac{W}{2\pi}  \, X\left(\omega_1 + kW\right) e^{j\left(\omega_1 + kW\right)t}\]</span></p>
+<p>Note <span class="math inline">\(X\left(\omega_1 + mW\right)\)</span> corresponds to samples of <span class="math inline">\(X(j\omega)\)</span> starting a <span class="math inline">\(\omega_1\)</span> with sampling interval <span class="math inline">\(W\)</span>. This information is equivalent to the triad <span class="math inline">\(\omega_1\)</span>, <span class="math inline">\(W\)</span>, <span class="math inline">\(X[k]\)</span>, where <span class="math inline">\(X[k]\)</span> is a finite length sequence of numbers where <span class="math display">\[X\left(\omega_1 + mW\right) = X[k]\]</span> Substituting <span class="math display">\[x(t) \approx \sum_{m = 0}^{M-1} \frac{W}{2\pi}  \, X\left(\omega_1 + kW\right) e^{j\left(\omega_1 + kW\right)t} = \frac{W}{2\pi} e^{j\omega_1} \sum_{m = 0}^{M-1}  X[k] e^{j kWt}\]</span></p>
+<p>Consider the sampling of the time axis in the derivation of the DFT, <span class="math inline">\(t = nT\)</span>. Let <span class="math inline">\(\omega_1 = 0\)</span> and <span class="math inline">\(\omega_2 = \frac{2\pi}{T}\)</span> and <span class="math inline">\(M = N\)</span>. Then <span class="math display">\[kWt = kWnT = k \frac{2\pi}{NT} n T = \frac{2\pi}{N}kn\]</span> Since <span class="math inline">\(W = \frac{2\pi}{NT}\)</span> <span class="math display">\[x(nT) = \frac{1}{T} \underbrace{\frac{1}{N} \sum_{k = 0}^{N-1}  X[k] e^{j \frac{2\pi}{N}k n}}_{\text{Inverse DFT}} = \frac{1}{T} x[n]\]</span> Thus we see the IDFT corresponds to the Inverse Fourier transform of a sampled Fourier Transform over a limited bandwidth, at samples of the time axis.</p>
+<p>This gives us the DFT pair <span class="math display">\[X[k] = \text{DFT} \{ x[n] \} = \sum_{n = 0}^{N-1}  x[n] e^{-j \frac{2\pi}{N}k n}\]</span> <span class="math display">\[x[n] = \text{IDFT} \{ X[k] \} = \frac{1}{N} \sum_{k = 0}^{N-1}  X[k] e^{j \frac{2\pi}{N}k n}\]</span> Note the similarity to the DT Fourier Series when <span class="math inline">\(N_0 = 0\)</span> <span class="math display">\[x[n] = \sum\limits_{k = N_0}^{N_0 + N - 1} a_k e^{j\frac{2\pi}{N}kn} =  \sum\limits_{k = 0}^{N - 1} a_k e^{j\frac{2\pi}{N}kn}\]</span> <span class="math display">\[a_k = \frac{1}{N}\sum\limits_{n = N_0}^{N_0 + N - 1} x[n] e^{-j\frac{2\pi}{N}kn} =  \frac{1}{N}\sum\limits_{n = 0}^{N - 1} x[n] e^{-j\frac{2\pi}{N}kn}\]</span></p>
+</section>
+<section id="efficient-computation-of-dft-fft" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="efficient-computation-of-dft-fft"><span class="header-section-number">22.2</span> Efficient Computation of DFT (FFT)</h2>
+<p>Given the DFT pair and an input signal, it is easy to compute the DFT. For example in C++ we can define a signal as an array of complex numbers</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;complex&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;vector&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">typedef</span> Signal <span class="bu">std::</span>vector<span class="op">&lt;</span><span class="bu">std::</span>complex<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;&gt;;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and implement the DFT in a straightforward translation of the expressions above:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>Signal dft<span class="op">(</span><span class="at">const</span> Signal <span class="op">&amp;</span> in<span class="op">){</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  Signal out <span class="op">=</span> in<span class="op">;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">const</span> <span class="dt">int</span> N <span class="op">=</span> in<span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> k <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> k <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>k<span class="op">){</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    out<span class="op">[</span>k<span class="op">]</span> <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span><span class="op">(</span><span class="dt">int</span> n <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> n <span class="op">&lt;</span> N<span class="op">;</span> <span class="op">++</span>n<span class="op">){</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      out<span class="op">[</span>k<span class="op">]</span> <span class="op">+=</span> in<span class="op">[</span>n<span class="op">]*</span>exp<span class="op">(-</span>j<span class="op">*</span><span class="fl">2.</span><span class="op">*</span>PI<span class="op">*</span><span class="dt">double</span><span class="op">(</span>k<span class="op">)*</span><span class="dt">double</span><span class="op">(</span>n<span class="op">)/</span><span class="dt">double</span><span class="op">(</span>N<span class="op">));</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Because of the nested for loops the number of multiplies and adds required to compute the DFT is proportional to the number of samples in the signal, squared. However, by expanding the complex exponential we see <span class="math display">\[\begin{aligned}
+  X[k] &amp;= \sum_{n = 0}^{N-1}  x[n] e^{-j \frac{2\pi}{N}k n}\\
+  &amp;= \sum_{n = 0}^{N-1}  x[n] \left\{ \cos\left( -\frac{2\pi}{N}k n\right) + j \sin\left(-\frac{2\pi}{N}k n \right)\right\}\\
+  &amp;= \sum_{n = 0}^{N-1}  x[n] \left\{ \cos\left( \frac{2\pi}{N}k n\right) - j \sin\left(\frac{2\pi}{N}k n \right)\right\}
+\end{aligned}\]</span> Which can be compactly written as <span class="math display">\[X = \mathcal{W} x\]</span> where <span class="math inline">\(x \in \mathbb{C}^N\)</span> is the sampled signal treated as a complex-valued vector, and <span class="math inline">\(\mathcal{W} \in \mathbb{C}^{N\times N}\)</span> is a complex-valued matrix with entries <span class="math display">\[\mathcal{W}_{k\,n} = \cos\left( \frac{2\pi}{N}k n\right) - j \sin\left(\frac{2\pi}{N}k n \right) = \left( e^{-j\frac{2\pi}{N}}\right)^{kn}\]</span></p>
+<p>Similarly for the inverse DFT <span class="math display">\[\begin{aligned}
+  x[n] &amp;= \sum_{k = 0}^{N-1}  X[k] e^{j \frac{2\pi}{N}k n}\\
+  &amp;= \sum_{k = 0}^{N-1}  X[k] \left\{ \cos\left( \frac{2\pi}{N}k n\right) + j \sin\left(\frac{2\pi}{N}k n \right)\right\}
+\end{aligned}\]</span> Which can be compactly written as <span class="math display">\[x = \frac{1}{N} \mathcal{W}^{*} X\]</span></p>
+<p>This implies <span class="math inline">\(\frac{1}{N}\mathcal{W}\mathcal{W}^* = I\)</span> and that <span class="math inline">\(\mathcal{W}\)</span> is orthogonal.</p>
+<p>The Fast Fourier Transform algorithm computes the DFT/IDFT in <span class="math inline">\(O(N\log_2 N)\)</span> multiply/adds. The most common algorithm for implemeting the FFT is called the Cooley–Tukey radix-2 algorithm. This algorithm can be implemented using C++ as:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>    Signal fft<span class="op">(</span><span class="at">const</span> Signal <span class="op">&amp;</span> in<span class="op">){</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>      Signal out<span class="op">;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="bu">std::</span>size_t n <span class="op">=</span> in<span class="op">.</span>size<span class="op">();</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">double</span> logn <span class="op">=</span> log2<span class="op">(</span>n<span class="op">);</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">unsigned</span> <span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> <span class="op">++</span>i<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> rev <span class="op">=</span> bitReverse<span class="op">(</span>i<span class="op">,</span> logn<span class="op">);</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        out<span class="op">[</span>i<span class="op">]</span> <span class="op">=</span> in<span class="op">[</span>rev<span class="op">];</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>      <span class="co">// make sure logn is positive integer &gt; 1</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="bu">std::</span>size_t temp <span class="op">=</span> <span class="kw">static_cast</span><span class="op">&lt;</span><span class="bu">std::</span>size_t<span class="op">&gt;(</span>logn<span class="op">);</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>      <span class="ot">assert</span><span class="op">(</span><span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span>temp<span class="op">)</span> <span class="op">==</span> logn<span class="op">);</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span><span class="op">(</span><span class="bu">std::</span>size_t s <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> s <span class="op">&lt;=</span> logn<span class="op">;</span> <span class="op">++</span>s<span class="op">){</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>complex<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> w<span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">0</span><span class="op">);</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> m <span class="op">=</span> <span class="dv">1</span> <span class="op">&lt;&lt;</span> s<span class="op">;</span> <span class="co">// 2 power s</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">int</span> m2 <span class="op">=</span> m <span class="op">&gt;&gt;</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// m2 = m/2 -1</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">std::</span>complex<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> wm <span class="op">=</span> exp<span class="op">(-</span>PI<span class="op">*</span>j<span class="op">/</span><span class="kw">static_cast</span><span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;(</span>m2<span class="op">));</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span><span class="op">(</span><span class="bu">std::</span>size_t j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> m2<span class="op">;</span> <span class="op">++</span>j<span class="op">){</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span><span class="op">(</span><span class="bu">std::</span>size_t k <span class="op">=</span> j<span class="op">;</span> k <span class="op">&lt;</span> n<span class="op">;</span> k<span class="op">+=</span>m<span class="op">){</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            <span class="bu">std::</span>complex<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> t <span class="op">=</span> w<span class="op">*</span>out<span class="op">[</span>k<span class="op">+</span>m2<span class="op">];</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            <span class="bu">std::</span>complex<span class="op">&lt;</span><span class="dt">double</span><span class="op">&gt;</span> u <span class="op">=</span> out<span class="op">[</span>k<span class="op">];</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>            out<span class="op">[</span>k<span class="op">]</span> <span class="op">=</span> u <span class="op">+</span> t<span class="op">;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>            out<span class="op">[</span>k<span class="op">+</span>m2<span class="op">]</span> <span class="op">=</span> u <span class="op">-</span> t<span class="op">;</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>          <span class="op">}</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>          w <span class="op">=</span> w<span class="op">*</span>wm<span class="op">;</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> out<span class="op">;</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>where the function <code>bitReverse</code> reverses the bitwise representation of the index argument</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode cpp code-with-copy"><code class="sourceCode cpp"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>    <span class="dt">unsigned</span> <span class="dt">int</span> bitReverse<span class="op">(</span><span class="dt">unsigned</span> <span class="dt">int</span> x<span class="op">,</span> <span class="dt">int</span> log2n<span class="op">){</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>      <span class="dt">int</span> n <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>      <span class="cf">for</span> <span class="op">(</span><span class="dt">int</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> log2n<span class="op">;</span> i<span class="op">++){</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        n <span class="op">&lt;&lt;=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        n <span class="op">|=</span> <span class="op">(</span>x <span class="op">&amp;</span> <span class="dv">1</span><span class="op">);</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>        x <span class="op">&gt;&gt;=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>     <span class="cf">return</span> n<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="dftfft-in-matlab" class="level2" data-number="22.3">
+<h2 data-number="22.3" class="anchored" data-anchor-id="dftfft-in-matlab"><span class="header-section-number">22.3</span> DFT/FFT in Matlab</h2>
+<p>In Matlab (and other languages/platforms) you can use the Fast Fourier Transform to compute the DFT. For example:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode octave code-with-copy"><code class="sourceCode octave"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>    <span class="op">&gt;&gt;</span> T <span class="op">=</span> <span class="fl">0.001</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">&gt;&gt;</span> t <span class="op">=</span> <span class="fl">0</span><span class="op">:</span>T<span class="op">:</span><span class="fl">100</span><span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">&gt;&gt;</span> x <span class="op">=</span> <span class="fu">cos</span>(<span class="fl">2</span><span class="op">*</span><span class="bu">pi</span><span class="op">*</span>t)<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">&gt;&gt;</span> X <span class="op">=</span> <span class="fu">fft</span>(x)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">&gt;&gt;</span> <span class="fu">plot</span>(<span class="fu">abs</span>(X))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To give a plot consistent with the CTFT of <span class="math inline">\(\cos(2\pi t)[u(t)-u(t-100)]\)</span></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode octave code-with-copy"><code class="sourceCode octave"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>    <span class="op">&gt;&gt;</span> w <span class="op">=</span> (<span class="op">-</span><span class="bu">pi</span><span class="op">/</span><span class="fl">0.001</span>)<span class="op">:</span>(<span class="fl">2</span><span class="op">*</span><span class="bu">pi</span><span class="op">/</span><span class="fl">100</span>)<span class="op">:</span>(<span class="bu">pi</span><span class="op">/</span><span class="fl">0.001</span>)<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">&gt;&gt;</span> <span class="fu">stem</span>(w<span class="op">,</span> T<span class="op">*</span><span class="fu">fftshift</span>(<span class="fu">abs</span>(X)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode octave code-with-copy"><code class="sourceCode octave"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>    <span class="op">&gt;&gt;</span> <span class="fu">stem</span>(w<span class="op">,</span> T<span class="op">*</span><span class="fu">fftshift</span>(<span class="fu">angle</span>(X)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="summary-of-fourier-transforms" class="level2" data-number="22.4">
+<h2 data-number="22.4" class="anchored" data-anchor-id="summary-of-fourier-transforms"><span class="header-section-number">22.4</span> Summary of Fourier Transforms</h2>
+<ul>
+<li><p>Discrete-time Fourier Series: periodic DT signal <span class="math inline">\(x[n] \mapsto a_k\)</span> periodic discrete frequencies</p></li>
+<li><p>Discrete-time Fourier Transform: aperiodic DT signal of indefinite length <span class="math inline">\(x[n] \mapsto X(e^{j\omega})\)</span> periodic continuous frequencies</p></li>
+<li><p>Continuous-time Fourier Series: periodic CT signal <span class="math inline">\(x(t) \mapsto a_k\)</span> discrete frequencies of indefinite length</p></li>
+<li><p>Continuous-time Fourier Transform: aperiodic CT signal of indefinite length <span class="math inline">\(x(t) \mapsto X(j\omega)\)</span> continuous frequencies</p></li>
+</ul>
+<p>And now we have the DFT</p>
+<ul>
+<li>Discrete Fourier Transform: aperiodic DT signal of finite length <span class="math inline">\(x[n] \mapsto X[k]\)</span> periodic discrete frequencies</li>
+</ul>
+</section>
+<section id="applications-of-the-dft" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="applications-of-the-dft"><span class="header-section-number">22.5</span> Applications of the DFT</h2>
+<p>Our discussion of the DFT raises some important questions:</p>
+<ul>
+<li><p>For what values of sampling interval <span class="math inline">\(T\)</span> does this hold?</p></li>
+<li><p>What are the effects of time and frequency sampling on <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(X(j\omega)\)</span>?</p></li>
+<li><p>What if <span class="math inline">\(x(t)\)</span> or <span class="math inline">\(X(j\omega)\)</span> is non-zero outside the interval?</p></li>
+</ul>
+<p>These will be answered in the last two lectures. It also admits some important applications:</p>
+<ul>
+<li><p>Numerical computation of Fourier transform of physical signals</p></li>
+<li><p>Simulation or approximation of stable CT systems</p></li>
+<li><p>Implementation of CT systems using DT systems</p></li>
+</ul>
+<p>As an example application, suppose you have a physical signal, say an audio signal from a microphone. How would you estimate its Fourier Transform? Sample <span class="math inline">\(x(t)\)</span> at a frequency of <span class="math inline">\(\frac{2\pi}{T}\)</span> for <span class="math inline">\(NT\)</span> seconds. <span class="math display">\[x[n] = x(nT)\]</span> <span class="math display">\[X[k] = \text{DFT}\left\{ x[n] \right\}\]</span> <span class="math display">\[X\left(j\frac{2\pi}{NT} k\right) = T X[k]\]</span> Note, in practice this requires multiplication by a windowing function to get good results unless there is silence on either side of the audio.</p>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p>Consider a CT signal <span class="math inline">\(x(t) = \cos(2\pi t)\left[u(t) - u(t-100)\right]\)</span> sampled at a frequency of <span class="math inline">\(\frac{2\pi}{0.001}\)</span> for <span class="math inline">\(NT = 100\)</span> seconds to obtain <span class="math inline">\(x[n]\)</span>. Given the DFT of <span class="math inline">\(x[n]\)</span>, <span class="math inline">\(X[k]\)</span>, what values of <span class="math inline">\(k\)</span> correspond to <span class="math inline">\(\omega = \pm 2\pi\)</span>?</p>
+<p><span class="math display">\[\omega = 2\pi = \frac{2\pi}{NT} k \implies k = 100\]</span></p>
+<p><span class="math display">\[\omega = - 2\pi = \frac{2\pi}{NT} k \implies k = -100\]</span> However <span class="math inline">\(k \in (0, N-1)\)</span> where <span class="math inline">\(N= 100000\)</span>. Thus <span class="math inline">\(k = -100 = N - 100 = 99900\)</span>. Note, the Matlab command <code>fftshift</code> does this unwrapping for you.</p>
+</div>
+</div>
+<p>As another application, suppose you have a CT frequency response, <span class="math inline">\(H(j\omega)\)</span>, for example a CT filter. How could you simulate the response to a physical signal, such as an audio signal from a microphone? Again, sample <span class="math inline">\(x(t)\)</span> at a frequency of <span class="math inline">\(\frac{2\pi}{T}\)</span> for <span class="math inline">\(NT\)</span> seconds. <span class="math display">\[x[n] = x(nT)\]</span> <span class="math display">\[X[k] = \text{DFT}\left\{ x[n] \right\}\]</span> Using the convolution property <span class="math display">\[Y[k] = H\left(j\frac{2\pi}{NT} k\right) X[k]\]</span> <span class="math display">\[y(nT) = \frac{1}{T} \text{IDFT}\left\{ Y[k] \right\}\]</span></p>
+<p>As a final application example we consider the case of filtering. DT implementations of CT systems have a number of benefits over CT implementations. The previous application hints at a method to implement a CT system using a DFT. We sample <span class="math inline">\(x(t)\)</span> at a frequency of <span class="math inline">\(\frac{2\pi}{T}\)</span> for <span class="math inline">\(NT\)</span> seconds into a buffer, called a <em>frame</em>. <span class="math display">\[x[n] = x(nT)\]</span> <span class="math display">\[X[k] = \text{DFT}\left\{ x[n] \right\}\]</span> <span class="math display">\[Y[k] = H\left(e^{j\frac{2\pi}{NT} k}\right) X[k]\]</span> <span class="math display">\[y(t) \approx y(nT) = \frac{1}{T} \text{IDFT}\left\{ Y[k] \right\}\]</span> This last step is called <em>reconstruction</em>. Note this can be done in real time using three frames, one being sampled, one being processing, and one being reconstructed.</p>
+<p>Note the DT filter in the previous application adds a two frame delay. This delay can be removed using an FIR or IIR filter implementation, as we saw in lecture 25. We can sample <span class="math inline">\(x(t)\)</span> at a frequency of <span class="math inline">\(\frac{2\pi}{T}\)</span> continuously into a <em>ring buffer</em>. <span class="math display">\[x[n] = x(nT)\]</span> Compute <span class="math inline">\(y[n]\)</span> using a delay difference equation, e.g.&nbsp;for second order <span class="math display">\[y[n] = a_1 y[n-2] + a_2 y[n-1] + a_3 x[n-2] + a_4 x[n-1] + a_5 x[n]\]</span> Reconstruct the current output <span class="math display">\[y(t) \approx y(nT) = y[n]\]</span></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
