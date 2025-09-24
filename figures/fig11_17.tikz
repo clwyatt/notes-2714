@@ -1,0 +1,43 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing,decorations.markings}
+\tikzstyle{block} = [draw, fill=gray!20, rectangle]
+\tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+\usepackage{pgfplots}
+ \pgfplotsset{compat=1.13}
+ \usepackage{transparent}
+
+\begin{document}
+  \tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+      minimum height=2em, minimum width=2em]
+  \begin{tikzpicture}[auto]
+    \node [input, name=input] at (0,0) {};
+    \node [left of=input] {$x[n]$};
+    \node [sum] at (2,0) (sum1) {$\Sigma$};
+    \node [block] at (4,-1) (block1) {$D$};
+    \node [block] at (4,-3) (block2) {$D$};
+    \node [shape=coordinate, name=conn1] at (4,-2) {};
+    \node [shape=coordinate, name=conn2] at (4,-4) {};
+    \node [sum] at (2,-2) (sum2) {$\Sigma$};
+    \node [shape=coordinate, name=conn] at (4,0) {};
+    \node [shape=coordinate] at (5,0) (output) {};
+    \node [right of=output] {$y[n]$};
+    
+    \draw [->] (input) -- (sum1);
+    \draw (sum1) -- (conn);
+    \draw [->] (conn) -- (output);
+    \draw [->] (conn) -- (block1);
+    \draw (block1) -- (conn1);
+    \draw [->] (conn1) -- node {$-a$} (sum2);
+    \draw [->] (conn1) -- (block2);
+    \draw (block2) -- (conn2);
+    \draw [->] (conn2) -| node {$-b$} (sum2);
+    \draw [->] (sum2) -- (sum1);
+  \end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,35 @@
+\documentclass{standalone}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,arrows,decorations.pathreplacing,decorations.markings}
+\tikzstyle{block} = [draw, fill=gray!20, rectangle]
+\tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+\usepackage{pgfplots}
+ \pgfplotsset{compat=1.13}
+ \usepackage{transparent}
+
+\begin{document}
+  \tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+      minimum height=2em, minimum width=2em]
+  \begin{tikzpicture}[auto]
+    \node [input, name=input] at (0,0) {};
+    \node [left of=input] {$x[n]$};
+    \node[block, right of=input, node distance=5em] (block1) {$E$};
+    \node [sum, right of=block1, node distance=5em] (sum) {$\Sigma$};
+    \node[block] at (5,-1) (block2) {$E$};
+    \node [shape=coordinate, name=conn] at (6,0) {};
+    \node[shape=coordinate] at (7,0) (output) {};
+    \node [right of=output] {$y[n]$};
+    
+    \draw [->] (input) -- node {$\frac{1}{a}$} (block1);
+    \draw [->] (block1) -- (sum);
+    \draw (sum) -- (conn);
+    \draw [->] (conn) -- (output);
+    \draw [->] (conn) |- (block2);
+    \draw [->] (block2) -| node {$-\frac{1}{a}$} (sum);
+  \end{tikzpicture}
+\end{document}
