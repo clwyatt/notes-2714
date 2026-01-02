@@ -1,16 +1,79 @@
 \chapter{Deeper Dives into Particular Topics}
 
-This is an introductory course and so ommits many interesting and enlightening aspects of the mathematics involved. Some students need or want more details, which is what this appendix attempts to provide.
+This is an introductory course and so ommits many interesting and enlightening aspects of the mathematics involved. Some students need or want more details, which is what this appendix attempts to provide a glimpse. 
 
-References:
+Some relevant sources:
 
 \begin{itemize}
 \item Fourier Analysis General Functions, by M.J. LightHill
+\item G. Temple, "The Theory of Generalized Functions", Proceedings of the Royal Society of London. Series A, Mathematical and Physical Sciences , Feb. 22, 1955, Vol. 228, No. 1173 (Feb. 22, 1955), pp. 175-190
 \end{itemize}
 
-\section{Energy Signals and $L^2(\mathbb{R})$ Functions}
+\section{The Step and Impulse Function: Generalized Functions and Distributions}
 
-\section{The Impulse Function and Distributions}
+Recall from calculus the definition of a continuous function in one independent variable $t\in\mathbb{R}$, say $f(t)$, is one for which the limit from the left and right are the same for all values of the domain.
+
+\[
+lim_{t\rightarrow t_0^-} f(t) = lim_{t\rightarrow t_0^+} f(t) = f_0 \quad \forall t\in\mathbb{R}
+\]
+
+Recall also the notion of a derivative of continuous functions:
+
+and repeated derivatives:
+
+Define $C^n$ functions.
+
+However not all continuous functions have derivatives to arbitrary degree. In this class the most salient example is that of the ramp function
+
+\[
+r(t) = \left\{ \begin{array}{cc}
+  0 & t \leq 0\\
+  t & t \geq 0
+\end{array}
+\right.
+\]
+
+It is continuous at all points including zero, yet in classical calculus it does not have even a first derivative, since the left derivative at $0^-$ is zero and the right derivative at $0^+$ is one. That is it is a $C^0$ function.
+
+In signals and systems though the ramp and related functions are very useful since they model a wide variety of real world phenomena simply, for example a switch, and form the basis of convolution. However to use them we need for them to have derivatives (and integrals) since a derivative is a linear operator, and thus a linear system. Thus we need an extension of calculus in which all continuous functions can be differentiated any number of times.
+
+As seen in lecture 2 we define the generalized derivatives of the ramp to obtain the step function
+
+\[
+u(t) = \left\{ \begin{array}{cc}
+  0 & t < 0\\
+  \text{undefined} & t = 0\\
+  1 & t > 0
+\end{array}
+\right.
+\]
+
+and the second generalized derivative of the ramp to get the all important impulse function
+
+\[
+\delta(t) = \left\{ \begin{array}{cc}
+  0 & t \neq 0\\
+  \infty & t = 0
+\end{array}
+\right.
+\]
+
+These definitions, along with some theorems like the sifting property are enough to proceed with the course material, however they leave a lot to be desired in terms of rigor. Interestingly the historical development of the theory is similar with a heuristic, practical, engineering approach preceding the rigorous mathematical treatment.
+
+\subsection{Generalized Functions}
+
+Some notation, denote the ordinary derivative of a ordinary $C^\infty$ function $\phi$ as $\phi^\prime$ and the generalized derivative of a generalized function $f$ as $Df$. 
+
+A generalized function is one in which the function does not necessarily have a numerical value for every point in its domain, yet still has a derivative. We desire such functions and the generalized derivative to obey the usual rules of differentiation however. For example the chain rule
+
+\[
+D\left(f\circ \phi\right) = 
+\]
+
+
+
+
+\section{Energy Signals and $L^2(\mathbb{R})$ Functions}
 
 
 
