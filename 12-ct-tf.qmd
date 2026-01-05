@@ -2,9 +2,7 @@
 title: "Eigenfunctions of CT Systems"
 ---
 
-## Eigenfunctions of CT systems
-
-To summarize the course so far given an input signal $x(t)$ and a LTI system described (equivalently) by a linear, constant coefficient differential equation, impulse response, or a block diagram, we can determine the output using convolution. This is referred to as _time-domain_ analysis.
+To summarize the course so far for CT analysis, given an input signal $x(t)$ and a LTI system described (equivalently) by a linear, constant coefficient differential equation, impulse response, or a block diagram, we can determine the output using convolution. This is referred to as _time-domain_ analysis.
 
 The advantages of this approach are that the analysis is straightforward (if cumbersome) and it applies to all LTI systems, stable or otherwise. Time-domain representations of signals are also intuitive given their direct application in physical systems.
 
