@@ -192,9 +192,9 @@ TLO 8:  CT convolution (LG §2.4 through §2.6 )
 
 TLO 9:  DT convolution (LG §9.5)
 
-TLO 10: CT block diagrams (LG ?)
+TLO 10: CT block diagrams (LG §6.5)
 
-TLO 11: DT block diagrams (LG ?)
+TLO 11: DT block diagrams (LG §8.5)
 
 TLO 12: Eigenfunctions of CT systems (LG §6.1)
 
@@ -210,11 +210,11 @@ TLO 17: DT Fourier Transform (LG §10.2 though §10.4)
 
 TLO 18: CT Frequency Response (LG §4.4)
 
-TLO 19: DT Frequency Response (LG §10.5 )
+TLO 19: DT Frequency Response (LG §10.5 and §12.1 through §12.2)
 
 TLO 20: Frequency Selective Filters in CT (LG §4.5)
 
-TLO 21: Frequency Selective Filters in DT (LG ?)
+TLO 21: Frequency Selective Filters in DT (LG §12.3)
 
 TLO 22: The Discrete Fourier Transform (LG §10.6)
 
