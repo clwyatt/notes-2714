@@ -70,6 +70,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -298,8 +327,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#eigenfunctions-of-ct-systems" id="toc-eigenfunctions-of-ct-systems" class="nav-link active" data-scroll-target="#eigenfunctions-of-ct-systems"><span class="header-section-number">12.1</span> Eigenfunctions of CT systems</a></li>
+  <li><a href="#the-response-of-lti-systems-to-complex-exponentials" id="toc-the-response-of-lti-systems-to-complex-exponentials" class="nav-link" data-scroll-target="#the-response-of-lti-systems-to-complex-exponentials"><span class="header-section-number">12.2</span> The Response of LTI Systems to Complex Exponentials</a>
+  <ul class="collapse">
+  <li><a href="#eigenfunction-est-and-transfer-function-hs" id="toc-eigenfunction-est-and-transfer-function-hs" class="nav-link" data-scroll-target="#eigenfunction-est-and-transfer-function-hs"><span class="header-section-number">12.2.1</span> Eigenfunction <span class="math inline">\(e^{st}\)</span> and Transfer Function <span class="math inline">\(H(s)\)</span></a></li>
+  <li><a href="#decomposition-of-signals-using-complex-exponentials" id="toc-decomposition-of-signals-using-complex-exponentials" class="nav-link" data-scroll-target="#decomposition-of-signals-using-complex-exponentials"><span class="header-section-number">12.2.2</span> Decomposition of signals using complex exponentials</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -323,9 +363,116 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>TODO</p>
+<section id="eigenfunctions-of-ct-systems" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="eigenfunctions-of-ct-systems"><span class="header-section-number">12.1</span> Eigenfunctions of CT systems</h2>
+<p>To summarize the course so far given an input signal <span class="math inline">\(x(t)\)</span> and a LTI system described (equivalently) by a linear, constant coefficient differential equation, impulse response, or a block diagram, we can determine the output using convolution. This is referred to as <em>time-domain</em> analysis.</p>
+<p>The advantages of this approach are that the analysis is straightforward (if cumbersome) and it applies to all LTI systems, stable or otherwise. Time-domain representations of signals are also intuitive given their direct application in physical systems.</p>
+<p>There are also some disadvantages. First, time-domain analysis does not scale well to larger systems since analysis with block diagram decompositions requires convolution, and in the case of the feedback motif dealing with inverse systems or de-convolution. Second, it is difficult to design an impulse responses for a given purpose. Finally implementing a system directly from an impulse response is not intuitive.</p>
+<p>We can borrow a technique from mathematics to overcome these disadvantages by transforming the domain of the representations to one in which the operation of convolution becomes one of multiplication. This approach, called generally <em>frequency domain</em> analysis has a number of advantages and will be our focus for the remainder of the course.</p>
+</section>
+<section id="the-response-of-lti-systems-to-complex-exponentials" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="the-response-of-lti-systems-to-complex-exponentials"><span class="header-section-number">12.2</span> The Response of LTI Systems to Complex Exponentials</h2>
+<p>Recall convolution can be viewed as a decomposition of a signal into an infinite sum of <span class="math inline">\(\delta\)</span> functions plus the linearity property. <span class="math display">\[
+x(t) = \int\limits_{-\infty}^{\infty} x(\tau)\delta(t-\tau) \; d\tau \;\longrightarrow\; y(t) = \int\limits_{-\infty}^{\infty} x(\tau)h(t-\tau) \; d\tau
+\]</span></p>
+<p>We now consider a different decomposition based on the complex exponential, <span class="math inline">\(e^{st}\)</span> for <span class="math inline">\(s \in \mathbb{C}\)</span>, rather than <span class="math inline">\(\delta\)</span> functions. As we will see this decomposition simplifies convolution, turning it into multiplication.</p>
+<section id="eigenfunction-est-and-transfer-function-hs" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="eigenfunction-est-and-transfer-function-hs"><span class="header-section-number">12.2.1</span> Eigenfunction <span class="math inline">\(e^{st}\)</span> and Transfer Function <span class="math inline">\(H(s)\)</span></h3>
+Let <span class="math inline">\(x(t) = e^{st}\)</span> for <span class="math inline">\(s\in \mathbb{C}\)</span>, then <span class="math inline">\(y(t) = h(t) * x(t) = x(t) * h(t)\)</span> and by the definition of convolution
+<span class="math display">\[\begin{aligned}
+  y(t) &amp; = \int\limits_{-\infty}^{\infty}h(\tau)x(t-\tau)\; d\tau\\
+  &amp;= \int\limits_{-\infty}^{\infty}h(\tau)e^{s(t-\tau)}\; d\tau = \int\limits_{-\infty}^{\infty}h(\tau)e^{st}e^{-s\tau}\; d\tau\\
+  &amp;= e^{st} \int\limits_{-\infty}^{\infty}h(\tau)e^{-s\tau}\; d\tau\\
+  &amp;= e^{st}H(s)
+\end{aligned}\]</span>
+<p>where <span class="math inline">\(H(s) = \int\limits_{-\infty}^{\infty}h(\tau)e^{-s\tau}\; d\tau\)</span> is the <em>Laplace Transform</em> of the impulse response, <span class="math inline">\(h(t)\)</span>. <span class="math inline">\(H(s)\)</span> is called the <em>transfer function</em> or <em>Eigenvalue</em> of the system and <span class="math inline">\(e^{st}\)</span> is the <em>Eigenfunction</em> for CT LTI systems and is defined for values of <span class="math inline">\(s\)</span> in the <em>region-of-convergence</em> (ROC).</p>
+<p>Similar to the impulse function, the complex exponential is a special signal because it’s response is easy to determine. It is just the same signal scaled by a multiplicative factor as illustrated below:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig12_1.svg" class="img-fluid figure-img" alt="see caption"></p>
+<figcaption>Illustration of the response of a CT LTI system to the Eigenfunction.</figcaption>
+</figure>
+</div>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+Suppose <span class="math inline">\(H(s) = \frac{1}{s+1}\)</span> for ROC <span class="math inline">\(\text{Re}(s) &gt; -1\)</span> and <span class="math inline">\(x(t) = e^{(-4+j2\pi)t}\)</span>. Then the output is
+<span class="math display">\[\begin{aligned}
+  y(t) &amp;= H(-4+j2\pi)e^{(-4+j2\pi)t}\\
+  &amp;= \frac{1}{-4+j2\pi+1}e^{(-4+j2\pi)t}\\
+  &amp;= \frac{1}{-3+j2\pi}e^{(-4+j2\pi)t} \; ,
+\end{aligned}\]</span>
+<p>another complex exponential.</p>
+</div>
+</div>
+<p>Given <span class="math inline">\(H(s)\)</span> and inputs that are sums of complex exponentials, the output is easy to determine.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig12_2.svg" class="img-fluid figure-img" alt="see caption"></p>
+<figcaption>Illustration of the response of a CT LTI system to a linear combination of Eigenfunctions.</figcaption>
+</figure>
+</div>
+<p>In some cases the sums are countably infinite while in others the uncountably infinite so that the sums become integrals.</p>
+<div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
+<p>Consider the CT system with impulse response response <span class="math display">\[
+  h(t) = e^{-5t}u(t)
+  \]</span> Determine the Eigenvalues that corresponds to the input <span class="math inline">\(x(t) = \cos(t)\)</span> and the output <span class="math inline">\(y(t)\)</span>.\</p>
+Solution: We note the cosine can be decomposed into two complex exponentials as <span class="math display">\[
+  \cos(t) = \frac{1}{2}e^{jt} + \frac{1}{2}e^{-jt}
+  \]</span> Thus in terms of the general decomposition there are two terms with complex constants <span class="math inline">\(s_1 = 0+j\)</span> and <span class="math inline">\(s_2 = 0-j\)</span> and real constants <span class="math inline">\(a_1 = a_2 = \frac{1}{2}\)</span>. <span class="math display">\[
+   x(t) = \sum_i a_i e^{s_it} = a_1 e^{s_1t} + a_2 e^{s_2t} = \frac{1}{2}e^{jt} + \frac{1}{2}e^{-jt} = \cos(t)
+\]</span> Then the output is given by <span class="math display">\[
+   y(t) = \sum_i H(s_i) a_i e^{s_it} = H(s_1) a_1 e^{s_1t} + H(s_2) a_2 e^{s_2t} = H(j) \frac{1}{2}e^{jt} + H(-j)\frac{1}{2}e^{-jt}
+   \]</span> which requires we find the Eigenvalues <span class="math inline">\(H(j)\)</span> and <span class="math inline">\(H(-j)\)</span>. To do so we use the Laplace integral <span class="math display">\[
+   H(j) = \int\limits_{-\infty}^{\infty}h(\tau)e^{-j\tau}\; d\tau = \int\limits_{0}^{\infty} e^{-5\tau} \, e^{-j\tau}\; d\tau = \int\limits_{0}^{\infty} e^{-(j+5)\tau}\; d\tau = \frac{-1}{j+5} e^{-(j+5)\tau} \Big|_{0}^{\infty} = \frac{1}{j+5}  
+   \]</span> Similarly <span class="math display">\[
+   H(-j) = \int\limits_{-\infty}^{\infty}h(\tau)e^{j\tau}\; d\tau = \int\limits_{0}^{\infty} e^{-5\tau} \, e^{j\tau}\; d\tau = \int\limits_{0}^{\infty} e^{-(-j+5)\tau}\; d\tau = \frac{-1}{-j+5} e^{-(j+5)\tau} \Big|_{0}^{\infty} = \frac{1}{-j+5}  
+   \]</span> Substituting back into the output equation gives
+<span class="math display">\[\begin{aligned}
+     y(t) &amp;= H(j) \frac{1}{2}e^{jt} + H(-j)\frac{1}{2}e^{-jt}\\
+     &amp;=  \frac{1}{j+5} \frac{1}{2}e^{jt} + \frac{1}{-j+5} \frac{1}{2}e^{-jt}
+   \end{aligned}\]</span>
+We can simplify this expression using the polar form of the Eigenvalues
+<span class="math display">\[\begin{aligned}
+     y(t) &amp;= \frac{1}{j+5} \frac{1}{2}e^{jt} + \frac{1}{-j+5} \frac{1}{2}e^{-jt}\\
+     &amp;= Re^{j\theta} \frac{1}{2}e^{jt} + Re^{-j\theta} \frac{1}{2}e^{-jt}\\
+     &amp;= R \frac{1}{2}e^{jt + j\theta} + R \frac{1}{2}e^{-jt -j\theta}\\
+     &amp;= R\cos(t + \theta)
+   \end{aligned}\]</span>
+<p>where <span class="math display">\[
+   R = \left|\frac{1}{j+5}\right| = \frac{1}{\sqrt{26}} \mbox{ and } \theta = \angle{\frac{1}{j+5}} = -\arctan \frac{1}{5}
+   \]</span> Note for this system, given a sinusoidal input, the output is a scaled and phase shifted sinusoid at the same frequency, where the scaling factor and phase shift is system dependent. It is illustrative to compare this analysis to the time-domain analysis of the same impulse response and input using convolution.</p>
+</div>
+</div>
+</section>
+<section id="decomposition-of-signals-using-complex-exponentials" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="decomposition-of-signals-using-complex-exponentials"><span class="header-section-number">12.2.2</span> Decomposition of signals using complex exponentials</h3>
+<p>In this course we consider the cases of stable CT systems. Recall a stable system is one in which a bounded input leads to a bounded output, or equivalently the impulse response is absolutely integrable. We will consider two decompositions of the input:</p>
+<ul>
+<li>Fourier Series: When <span class="math inline">\(x(t)\)</span> is periodic with fundamental frequency <span class="math inline">\(\omega_0\)</span>, <span class="math inline">\(\Re{(s)} = 0\)</span> so that <span class="math inline">\(s = jk\omega_0\)</span>, and the decomposition is a countably infinite sum. This gives the input-output relationship <span class="math display">\[
+  x(t) = \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t} \; \longrightarrow\; y(t) = \sum\limits_{k = -\infty}^{\infty} H(j k\omega_0)\, a_k \, e^{j k\omega_0 t}
+  \]</span> where <span class="math inline">\(H(j k\omega_0)\)</span> are the Eigenvalues, also called the <em>frequency response</em>.</li>
+<li>Inverse Fourier Transform: When <span class="math inline">\(x(t)\)</span> is a-periodic, <span class="math inline">\(\Re{(s)} = 0\)</span> so that <span class="math inline">\(s = j\omega\)</span>, and the decomposition is an uncountably infinite sum (real integral over <span class="math inline">\(\omega\)</span>). This gives the input-output relationship <span class="math display">\[
+  x(t) = \frac{1}{2\pi}\int\limits_{-\infty}^{\infty} X(\omega) \, e^{j \omega t}\; d\omega \;\longrightarrow\; y(t) = \frac{1}{2\pi}\int\limits_{-\infty}^{\infty} H(\omega) X(\omega) \, e^{j \omega t}\; d\omega
+  \]</span> where <span class="math inline">\(H(j \omega)\)</span> are the Eigenvalues, again called the <em>frequency response</em>.</li>
+</ul>
+<p>Other courses (e.g.&nbsp;ECE 3704) look at the general case of unstable systems and <span class="math inline">\(s \in \mathbb{C}\)</span> with decompositions:</p>
+<ul>
+<li>One-Sided Laplace Transform: <span class="math inline">\(x(t)\)</span> is causal and the decomposition is an uncountably infinite sum (complex integral)</li>
+<li>Two-Sided (Bilateral) Laplace Transform: <span class="math inline">\(x(t)\)</span> is non-causal and the decomposition is an uncountably infinite sum (complex integral). This is the most general case for CT LTI systems.</li>
+</ul>
+<p>While the Laplace decompositions require complex integration, they can be understood and computed using algebra and a table of forward transforms, which only require integration of a complex function of a real variable <span class="math inline">\(t\)</span> (this is the general approach taken in upper level courses). However, this is outside the scope of this course because of time limitations.</p>
+<p>Instead, we will be spending the next few weeks going through the CT Fourier decompositions in some detail. You will also learn how to find the CT frequency response for a stable system, and see how to use both for analysis.</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
