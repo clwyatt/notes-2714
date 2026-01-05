@@ -332,11 +332,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#eigenfunctions-of-ct-systems" id="toc-eigenfunctions-of-ct-systems" class="nav-link active" data-scroll-target="#eigenfunctions-of-ct-systems"><span class="header-section-number">12.1</span> Eigenfunctions of CT systems</a></li>
-  <li><a href="#the-response-of-lti-systems-to-complex-exponentials" id="toc-the-response-of-lti-systems-to-complex-exponentials" class="nav-link" data-scroll-target="#the-response-of-lti-systems-to-complex-exponentials"><span class="header-section-number">12.2</span> The Response of LTI Systems to Complex Exponentials</a>
+  <li><a href="#the-response-of-lti-systems-to-complex-exponentials" id="toc-the-response-of-lti-systems-to-complex-exponentials" class="nav-link active" data-scroll-target="#the-response-of-lti-systems-to-complex-exponentials"><span class="header-section-number">12.1</span> The Response of LTI Systems to Complex Exponentials</a>
   <ul class="collapse">
-  <li><a href="#eigenfunction-est-and-transfer-function-hs" id="toc-eigenfunction-est-and-transfer-function-hs" class="nav-link" data-scroll-target="#eigenfunction-est-and-transfer-function-hs"><span class="header-section-number">12.2.1</span> Eigenfunction <span class="math inline">\(e^{st}\)</span> and Transfer Function <span class="math inline">\(H(s)\)</span></a></li>
-  <li><a href="#decomposition-of-signals-using-complex-exponentials" id="toc-decomposition-of-signals-using-complex-exponentials" class="nav-link" data-scroll-target="#decomposition-of-signals-using-complex-exponentials"><span class="header-section-number">12.2.2</span> Decomposition of signals using complex exponentials</a></li>
+  <li><a href="#eigenfunction-est-and-transfer-function-hs" id="toc-eigenfunction-est-and-transfer-function-hs" class="nav-link" data-scroll-target="#eigenfunction-est-and-transfer-function-hs"><span class="header-section-number">12.1.1</span> Eigenfunction <span class="math inline">\(e^{st}\)</span> and Transfer Function <span class="math inline">\(H(s)\)</span></a></li>
+  <li><a href="#decomposition-of-signals-using-complex-exponentials" id="toc-decomposition-of-signals-using-complex-exponentials" class="nav-link" data-scroll-target="#decomposition-of-signals-using-complex-exponentials"><span class="header-section-number">12.1.2</span> Decomposition of signals using complex exponentials</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -363,21 +362,18 @@ window.Quarto = {
 </header>
 
 
-<section id="eigenfunctions-of-ct-systems" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="eigenfunctions-of-ct-systems"><span class="header-section-number">12.1</span> Eigenfunctions of CT systems</h2>
-<p>To summarize the course so far given an input signal <span class="math inline">\(x(t)\)</span> and a LTI system described (equivalently) by a linear, constant coefficient differential equation, impulse response, or a block diagram, we can determine the output using convolution. This is referred to as <em>time-domain</em> analysis.</p>
+<p>To summarize the course so far for CT analysis, given an input signal <span class="math inline">\(x(t)\)</span> and a LTI system described (equivalently) by a linear, constant coefficient differential equation, impulse response, or a block diagram, we can determine the output using convolution. This is referred to as <em>time-domain</em> analysis.</p>
 <p>The advantages of this approach are that the analysis is straightforward (if cumbersome) and it applies to all LTI systems, stable or otherwise. Time-domain representations of signals are also intuitive given their direct application in physical systems.</p>
 <p>There are also some disadvantages. First, time-domain analysis does not scale well to larger systems since analysis with block diagram decompositions requires convolution, and in the case of the feedback motif dealing with inverse systems or de-convolution. Second, it is difficult to design an impulse responses for a given purpose. Finally implementing a system directly from an impulse response is not intuitive.</p>
 <p>We can borrow a technique from mathematics to overcome these disadvantages by transforming the domain of the representations to one in which the operation of convolution becomes one of multiplication. This approach, called generally <em>frequency domain</em> analysis has a number of advantages and will be our focus for the remainder of the course.</p>
-</section>
-<section id="the-response-of-lti-systems-to-complex-exponentials" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="the-response-of-lti-systems-to-complex-exponentials"><span class="header-section-number">12.2</span> The Response of LTI Systems to Complex Exponentials</h2>
+<section id="the-response-of-lti-systems-to-complex-exponentials" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="the-response-of-lti-systems-to-complex-exponentials"><span class="header-section-number">12.1</span> The Response of LTI Systems to Complex Exponentials</h2>
 <p>Recall convolution can be viewed as a decomposition of a signal into an infinite sum of <span class="math inline">\(\delta\)</span> functions plus the linearity property. <span class="math display">\[
 x(t) = \int\limits_{-\infty}^{\infty} x(\tau)\delta(t-\tau) \; d\tau \;\longrightarrow\; y(t) = \int\limits_{-\infty}^{\infty} x(\tau)h(t-\tau) \; d\tau
 \]</span></p>
 <p>We now consider a different decomposition based on the complex exponential, <span class="math inline">\(e^{st}\)</span> for <span class="math inline">\(s \in \mathbb{C}\)</span>, rather than <span class="math inline">\(\delta\)</span> functions. As we will see this decomposition simplifies convolution, turning it into multiplication.</p>
-<section id="eigenfunction-est-and-transfer-function-hs" class="level3" data-number="12.2.1">
-<h3 data-number="12.2.1" class="anchored" data-anchor-id="eigenfunction-est-and-transfer-function-hs"><span class="header-section-number">12.2.1</span> Eigenfunction <span class="math inline">\(e^{st}\)</span> and Transfer Function <span class="math inline">\(H(s)\)</span></h3>
+<section id="eigenfunction-est-and-transfer-function-hs" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="eigenfunction-est-and-transfer-function-hs"><span class="header-section-number">12.1.1</span> Eigenfunction <span class="math inline">\(e^{st}\)</span> and Transfer Function <span class="math inline">\(H(s)\)</span></h3>
 Let <span class="math inline">\(x(t) = e^{st}\)</span> for <span class="math inline">\(s\in \mathbb{C}\)</span>, then <span class="math inline">\(y(t) = h(t) * x(t) = x(t) * h(t)\)</span> and by the definition of convolution
 <span class="math display">\[\begin{aligned}
   y(t) &amp; = \int\limits_{-\infty}^{\infty}h(\tau)x(t-\tau)\; d\tau\\
@@ -451,8 +447,8 @@ We can simplify this expression using the polar form of the Eigenvalues
 </div>
 </div>
 </section>
-<section id="decomposition-of-signals-using-complex-exponentials" class="level3" data-number="12.2.2">
-<h3 data-number="12.2.2" class="anchored" data-anchor-id="decomposition-of-signals-using-complex-exponentials"><span class="header-section-number">12.2.2</span> Decomposition of signals using complex exponentials</h3>
+<section id="decomposition-of-signals-using-complex-exponentials" class="level3" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="decomposition-of-signals-using-complex-exponentials"><span class="header-section-number">12.1.2</span> Decomposition of signals using complex exponentials</h3>
 <p>In this course we consider the cases of stable CT systems. Recall a stable system is one in which a bounded input leads to a bounded output, or equivalently the impulse response is absolutely integrable. We will consider two decompositions of the input:</p>
 <ul>
 <li>Fourier Series: When <span class="math inline">\(x(t)\)</span> is periodic with fundamental frequency <span class="math inline">\(\omega_0\)</span>, <span class="math inline">\(\Re{(s)} = 0\)</span> so that <span class="math inline">\(s = jk\omega_0\)</span>, and the decomposition is a countably infinite sum. This gives the input-output relationship <span class="math display">\[
