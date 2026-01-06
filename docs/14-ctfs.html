@@ -397,8 +397,9 @@ window.Quarto = {
 </header>
 
 
-<p>Recall the complex exponential <span class="math inline">\(e^{st}\)</span> for <span class="math inline">\(s\in\mathbb{C}\)</span> is the Eigenfunction of CT LTI systems. If we can decompose an input into a (possibly infinite) sum of such signals, we can easily determine the output using the superposition principle. In this section we consider the decomposition when the input is periodic, called the CT <em>Fourier Series</em> (CTFS).</p>
-<p>Recall a signal <span class="math inline">\(x(t)\)</span> is periodic, with fundamental frequency <span class="math inline">\(\omega_0 = \frac{2\pi}{T_0}\)</span> rad/sec or <span class="math inline">\(f_0 = \frac{1}{T_0}\)</span> Hertz, if <span class="math inline">\(x(t) = x(t+kT_0)\)</span> for integer multiple <span class="math inline">\(k\)</span> and fundamental period <span class="math inline">\(T_0\in \mathbb{R}\)</span>. As we shall see, in this case the complex exponent of the Eigenfunction becomes <span class="math inline">\(s_k = jk\omega_0\)</span>, and the decomposition is a countably infinite sum. This gives the input-output relationship for a stable LTI system as <span class="math display">\[x(t) = \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t} \; \longrightarrow\; y(t) = \sum\limits_{k = -\infty}^{\infty} H(j k\omega_0)\, a_k \, e^{j k\omega_0 t}\]</span> where <span class="math inline">\(H(j k\omega_0)\)</span> are the Eigenvalues or frequency response. We now turn to determining under what circumstances the decomposition exists and how to find the coefficients <span class="math inline">\(a_k\)</span>.</p>
+<p>Recall the complex exponential <span class="math inline">\(e^{st}\)</span> for <span class="math inline">\(s\in\mathbb{C}\)</span> is the Eigenfunction of CT LTI systems. If we can decompose an input into a (possibly infinite) sum of such signals, we can easily determine the output using the superposition principle. This is the practical significance of Fourier methods. In the following, it can be confusing as to why we are rewriting the same function in a different way, but the effort pays off since, as we will see, it simplifies analysis significantly and gives us intuition about how LTI systems work.</p>
+<p>In this section we consider the decomposition when the input is periodic, called the CT <em>Fourier Series</em> (CTFS).</p>
+<p>Recall a signal <span class="math inline">\(x(t)\)</span> is periodic, with fundamental frequency <span class="math inline">\(\omega_0 = \frac{2\pi}{T_0}\)</span> rad/sec or <span class="math inline">\(f_0 = \frac{1}{T_0}\)</span> Hertz, if <span class="math inline">\(x(t) = x(t+kT_0)\)</span> for integer multiple <span class="math inline">\(k\)</span> and fundamental period <span class="math inline">\(T_0\in \mathbb{R}\)</span>. As we shall see, in this case the complex exponent of the Eigenfunction becomes <span class="math inline">\(s_k = jk\omega_0\)</span>, a complex sinusoid with frequencies that are harmonics of the fundamental frequency. The decomposition is a countably infinite sum. This gives the input-output relationship for a stable LTI system as <span class="math display">\[x(t) = \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t} \; \longrightarrow\; y(t) = \sum\limits_{k = -\infty}^{\infty} H(j k\omega_0)\, a_k \, e^{j k\omega_0 t}\]</span> where <span class="math inline">\(H(j k\omega_0)\)</span> are the Eigenvalues or frequency response. We now turn to determining under what circumstances the decomposition exists and how to find the coefficients <span class="math inline">\(a_k\)</span>.</p>
 <section id="synthesis-and-analysis-equation" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="synthesis-and-analysis-equation"><span class="header-section-number">14.1</span> Synthesis and Analysis Equation</h2>
 <p>Suppose we can approximate (we will revisit shortly when this approximation is exact) the periodic function <span class="math inline">\(x(t)\)</span> by the sum <span class="math display">\[\boxed{x(t) \approx \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t}\;.}\]</span> This is called the <em>synthesis equation</em> of the CT Fourier series.</p>
@@ -511,12 +512,13 @@ Figure&nbsp;14.1: Amplitude and phase spectrum plot for the example. For a detai
 <h3 data-number="14.4.3" class="anchored" data-anchor-id="fourier-series-of-a-square-wave."><span class="header-section-number">14.4.3</span> Fourier series of a square wave.</h3>
 </section>
 <div class="example-container">
-<p>Consider the square wave signal of amplitude <span class="math inline">\(A &gt; 0\)</span> <span class="math display">\[x(t) = \sum\limits_{m= -\infty}^{\infty} \left\{ \begin{array}{lc}
+<p>Consider the square wave signal of amplitude <span class="math inline">\(A &gt; 0\)</span> and period <span class="math inline">\(T_0 &gt; 0\)</span>:</p>
+<p><span class="math display">\[x(t) = \sum\limits_{m= -\infty}^{\infty} \left\{ \begin{array}{lc}
     -A &amp; \tfrac{T_0}{2} &lt; t-mT_0 &lt; 0\\[0.5em]
     A &amp; 0 &lt; t - mT_0 &lt; \tfrac{T_0}{2}
   \end{array}
   \right.\]</span> shown below</p>
-<div id="fig-14-example2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="See the caption." data-fig-align="center">
+<div id="fig-14-example2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="See the caption.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-14-example2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figures/fig14_2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="See the caption.">
@@ -526,6 +528,10 @@ Figure&nbsp;14.2: Plot of a square wave signal. For a detailed description, refe
 </figcaption>
 </figure>
 </div>
+<p>This can be approximated in the mean-square sense by the Fourier series</p>
+<p><span class="math display">\[
+x(t) \approx \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t}
+\]</span></p>
 <p>The coefficients are given by</p>
 <span class="math display">\[\begin{aligned}
     a_k &amp;= \frac{1}{T_0} \int\limits_{T_0} x(t)e^{-jk\omega_0 t} \; dt\\
@@ -551,11 +557,52 @@ Figure&nbsp;14.2: Plot of a square wave signal. For a detailed description, refe
     \pi &amp; k &lt; 0 \mbox{ and even}\\
     -\pi &amp; k &gt; 0 \mbox{ and even}\\
     \frac{\pi}{2} &amp; k &lt; 0 \mbox{ and odd}\\
-    -\frac{\pi}{2} &amp; k &gt; 0 \mbox{ and odd}\end{array}\right.\]</span> This is plotted below for <span class="math inline">\(A = 1\)</span>.</p>
-<p>TODO</p>
-<p>We can plot the truncated approximation for increasing number of terms N, the squared error, and the total error.</p>
-<p>TODO</p>
-<p>Note as <span class="math inline">\(N\)</span> increases the approximation gets closer to the square wave, except at the discontinuities. This is called <em>Gibbs Ringing</em>. As <span class="math inline">\(N \rightarrow \infty\)</span> the mean-square error goes to zero, so the CTFS approximation to the square wave converges in the mean-square sense.</p>
+    -\frac{\pi}{2} &amp; k &gt; 0 \mbox{ and odd}\end{array}\right.\]</span> This is plotted below for <span class="math inline">\(A = 1\)</span> and <span class="math inline">\(T_0 = 1\)</span> (<span class="math inline">\(\omega_0 = 2\pi\)</span>).</p>
+<div id="cell-fig-14-example2" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-14-example2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Two stacked stem plots: the top shows the amplitude spectrum of a(k); the bottom shows the phase spectrum.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-14-example2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="14-ctfs_files/figure-html/fig-14-example2-output-1.png" alt="Two stacked stem plots: the top shows the amplitude spectrum of a(k); the bottom shows the phase spectrum." width="663" height="470" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-14-example2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.3: Amplitude and phase spectrum plot for the example.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>To see the connection to convergence, we can plot the truncated series as a function of time over one period for increasing number of terms (<span class="math inline">\(2N+1\)</span> terms) in the approximation,</p>
+<p><span class="math display">\[
+x(t) \approx \sum\limits_{k = -N}^{N} a_k \, e^{j 2\pi k t}
+\]</span> as well as the squared error over one period, and the compute the total error.</p>
+<p>For example when <span class="math inline">\(N=1\)</span></p>
+<p><span class="math display">\[
+x(t) \approx \sum\limits_{k = -1}^{1} a_k \, e^{j 2\pi k t} = a_{-1} \, e^{-j 2\pi t} + a_0 + a_{1} \, e^{j 2\pi t}
+\]</span></p>
+<p>Substituting for the coefficients we see this is a sin function.</p>
+<p><span class="math display">\[
+x(t) \approx \frac{-2}{j\pi} \, e^{- j 2\pi t} + \frac{2}{j\pi} \, e^{j 2\pi t} = \frac{4}{\pi}\sin(2\pi t)
+\]</span></p>
+<p>If <span class="math inline">\(N = 2\)</span> then because <span class="math inline">\(a_{-2} = a_2 = 0\)</span> the approximation is the same. When <span class="math inline">\(N=3\)</span> we get an additional sin at the second harmonic scaled by <span class="math inline">\(k^{-1} = \frac{1}{3}\)</span></p>
+<p><span class="math display">\[
+x(t) \approx \sum\limits_{k = -3}^{3} a_k \, e^{j 2\pi k t} =  \frac{4}{\pi}\sin(2\pi t) + \frac{4}{3\pi}\sin(6\pi t)
+\]</span></p>
+<div id="cell-fig-14-example3" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display">
+<div id="fig-14-example3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="See Caption.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-14-example3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="14-ctfs_files/figure-html/fig-14-example3-output-1.png" alt="See Caption." width="676" height="470" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-14-example3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14.4: Truncated Fourier series plot for increasing number of terms, with square error, and total error. Blue is the original function, orange is the approximation.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Note as <span class="math inline">\(N\)</span> increases the approximation gets closer to the square wave (squared error gets closer to zero), except at the discontinuities. At the discontinuities the square error is bounded by one and gets narrower as <span class="math inline">\(N\)</span> increases, but never disappears entirely. This phenomena is called <em>Gibbs Ringing</em>. However, as <span class="math inline">\(N \rightarrow \infty\)</span> the total mean-square error goes to zero, so the CTFS approximation to the square wave converges in the mean-square sense.</p>
 </div>
 </div>
 </section>
@@ -563,7 +610,7 @@ Figure&nbsp;14.2: Plot of a square wave signal. For a detailed description, refe
 <h2 data-number="14.5" class="anchored" data-anchor-id="properties-of-the-ct-fourier-series"><span class="header-section-number">14.5</span> Properties of the CT Fourier Series</h2>
 <p>Let <span class="math inline">\(a_k\)</span> and <span class="math inline">\(b_k\)</span> be the CTFS coefficients for the periodic signals <span class="math inline">\(x(t)\)</span> and <span class="math inline">\(y(t)\)</span> respectively.</p>
 <ul>
-<li><p><strong>Linearity</strong>. The coefficients of the signal <span class="math display">\[z(t) = Ax(t) + By(t) \mbox{ for constants } A,B\]</span> are <span class="math inline">\(Aa_k + Bb_k\)</span></p></li>
+<li><p><strong>Linearity</strong>. The coefficients of the signal <span class="math display">\[z(t) = Ax(t) + By(t) \mbox{ for constants } A,B\]</span> are <span class="math inline">\(Aa_k + Bb_k\)</span>. This forms the basis of analysis using the Fourier series and the system Eigenvalues.</p></li>
 <li><p><strong>Time Shifting</strong>. The coefficients of <span class="math display">\[z(t) = x(t-t_0) \mbox{ are } e^{-jk\omega_0 t_0}a_k\]</span> that is it adds a phase shift.</p></li>
 <li><p><strong>Time reversal</strong>. The coefficients of <span class="math display">\[z(t) = x(-t) \mbox{ are } a_{-k}\]</span> that is the sequence reverses.</p></li>
 <li><p><strong>Time Scaling</strong>. Let <span class="math inline">\(T_0\)</span> and <span class="math inline">\(\omega_0\)</span> be the fundamental period and frequency of a periodic <span class="math inline">\(x(t)\)</span>. The signal <span class="math display">\[z(t) = x(\alpha t) \mbox{ for } \alpha &gt; 0\]</span> is periodic with period <span class="math inline">\(\frac{T_0}{\alpha}\)</span> and fundamental frequency <span class="math inline">\(\alpha\omega_0\)</span>. The coefficients of <span class="math inline">\(z(t)\)</span> are the same as <span class="math inline">\(x(t)\)</span>.</p></li>
