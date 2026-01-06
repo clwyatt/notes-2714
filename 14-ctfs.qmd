@@ -5,7 +5,9 @@ title: "CT Fourier Series"
 Recall the complex exponential $e^{st}$ for $s\in\mathbb{C}$ is the
 Eigenfunction of CT LTI systems. If we can decompose an input into a
 (possibly infinite) sum of such signals, we can easily determine the
-output using the superposition principle. In this section we consider
+output using the superposition principle. This is the practical significance of Fourier methods. In the following, it can be confusing as to why we are rewriting the same function in a different way, but the effort pays off since, as we will see, it simplifies analysis significantly and gives us intuition about how LTI systems work.
+
+In this section we consider
 the decomposition when the input is periodic, called the CT *Fourier
 Series* (CTFS).
 
@@ -13,7 +15,7 @@ Recall a signal $x(t)$ is periodic, with fundamental frequency
 $\omega_0 = \frac{2\pi}{T_0}$ rad/sec or $f_0 = \frac{1}{T_0}$ Hertz, if
 $x(t) = x(t+kT_0)$ for integer multiple $k$ and fundamental period
 $T_0\in \mathbb{R}$. As we shall see, in this case the complex exponent
-of the Eigenfunction becomes $s_k = jk\omega_0$, and the decomposition
+of the Eigenfunction becomes $s_k = jk\omega_0$, a complex sinusoid with frequencies that are harmonics of the fundamental frequency. The decomposition
 is a countably infinite sum. This gives the input-output relationship
 for a stable LTI system as
 $$x(t) = \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t} \; \longrightarrow\; y(t) = \sum\limits_{k = -\infty}^{\infty} H(j k\omega_0)\, a_k \, e^{j k\omega_0 t}$$
@@ -128,9 +130,6 @@ import matplotlib.pyplot as plt
 
 # Define k
 k = np.arange(-10, 11)
-
-# Directly compute a(k) with conditional logic:
-# Use np.where to handle k=0 in one pass
 a = np.where(k == 0,
              1/3,                         # value when k = 0
              2 / (np.pi**2 * k**2))        # value otherwise
@@ -138,6 +137,7 @@ a = np.where(k == 0,
 # Plot amplitude spectrum
 plt.subplot(2, 1, 1)
 plt.stem(k, np.abs(a))
+plt.xticks(k)
 plt.xlabel('k')
 plt.ylabel('|a(k)|')
 plt.title('Amplitude Spectrum')
@@ -145,6 +145,7 @@ plt.title('Amplitude Spectrum')
 # Plot phase spectrum
 plt.subplot(2, 1, 2)
 plt.stem(k, np.angle(a))
+plt.xticks(k)
 plt.xlabel('k')
 plt.ylabel('Angle a(k)')
 plt.title('Phase Spectrum')
@@ -264,7 +265,8 @@ Series is an exact representation.
 ### Fourier series of a square wave.
 ::::
 ::::{.example-container}
-Consider the square wave signal of amplitude $A > 0$
+Consider the square wave signal of amplitude $A > 0$ and period $T_0 > 0$:
+
 $$x(t) = \sum\limits_{m= -\infty}^{\infty} \left\{ \begin{array}{lc}
     -A & \tfrac{T_0}{2} < t-mT_0 < 0\\[0.5em]
     A & 0 < t - mT_0 < \tfrac{T_0}{2}
@@ -273,6 +275,11 @@ $$x(t) = \sum\limits_{m= -\infty}^{\infty} \left\{ \begin{array}{lc}
 
 ![Plot of a square wave signal. For a detailed description, refer to the [Appendix](image-descriptions.qmd#sec-14-2).](figures/fig14_2){fig-align="center" fig-alt="See the caption." #fig-14-example2}
 
+This can be approximated in the mean-square sense by the Fourier series
+
+$$
+x(t) \approx \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t}
+$$
 
 The coefficients are given by 
 
@@ -308,18 +315,153 @@ The phase spectrum is given by $$\angle a_k = \left\{ \begin{array}{lc}
     -\pi & k > 0 \mbox{ and even}\\
     \frac{\pi}{2} & k < 0 \mbox{ and odd}\\
     -\frac{\pi}{2} & k > 0 \mbox{ and odd}\end{array}\right.$$ This is
-plotted below for $A = 1$.
+plotted below for $A = 1$ and $T_0 = 1$ ($\omega_0 = 2\pi$).
 
-TODO
+```{python}
+#| label: fig-14-example2
+#| fig-cap: "Amplitude and phase spectrum plot for the example."
+#| fig-alt: "Two stacked stem plots: the top shows the amplitude spectrum of a(k); the bottom shows the phase spectrum."
+#| warning: false
+#| echo: false
 
-We can plot the truncated approximation for increasing number of terms
-N, the squared error, and the total error.
+import numpy as np
+import matplotlib.pyplot as plt
 
-TODO
+# Define k
+k = np.arange(-10, 11)
+a = np.where(k % 2 == 0,
+             0,                         # value when k is even
+             2 / (1j * np.pi * k))      # value when k is odd
 
-Note as $N$ increases the approximation gets closer to the square wave,
-except at the discontinuities. This is called *Gibbs Ringing*. As
-$N \rightarrow \infty$ the mean-square error goes to zero, so the CTFS
+# Plot amplitude spectrum
+plt.subplot(2, 1, 1)
+plt.stem(k, np.abs(a))
+plt.xticks(k)
+plt.xlabel('k')
+plt.ylabel('|a(k)|')
+plt.title('Amplitude Spectrum')
+
+# Plot phase spectrum
+plt.subplot(2, 1, 2)
+plt.stem(k, np.angle(a))
+plt.xticks(k)
+plt.xlabel('k')
+plt.ylabel('Angle a(k)')
+plt.title('Phase Spectrum')
+
+plt.tight_layout()
+plt.show()
+```
+
+To see the connection to convergence, we can plot the truncated series as a function of time over one period for increasing number of terms ($2N+1$ terms) in the approximation,
+
+$$
+x(t) \approx \sum\limits_{k = -N}^{N} a_k \, e^{j 2\pi k t}
+$$
+as well as the squared error over one period, and the compute the total error.
+
+For example when $N=1$
+
+$$
+x(t) \approx \sum\limits_{k = -1}^{1} a_k \, e^{j 2\pi k t} = a_{-1} \, e^{-j 2\pi t} + a_0 + a_{1} \, e^{j 2\pi t} 
+$$
+
+Substituting for the coefficients we see this is a sin function.
+
+$$
+x(t) \approx \frac{-2}{j\pi} \, e^{- j 2\pi t} + \frac{2}{j\pi} \, e^{j 2\pi t} = \frac{4}{\pi}\sin(2\pi t)
+$$
+
+If $N = 2$ then because $a_{-2} = a_2 = 0$ the approximation is the same. When $N=3$ we get an additional sin at the second harmonic scaled by $k^{-1} = \frac{1}{3}$
+
+$$
+x(t) \approx \sum\limits_{k = -3}^{3} a_k \, e^{j 2\pi k t} =  \frac{4}{\pi}\sin(2\pi t) + \frac{4}{3\pi}\sin(6\pi t)
+$$
+
+```{python}
+#| label: fig-14-example3
+#| fig-cap: "Truncated Fourier series plot for increasing number of terms, with square error, and total error. Blue is the original function, orange is the approximation."
+#| fig-alt: "See Caption."
+#| warning: false
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+    
+# Define k
+k = np.arange(-10, 11)
+a = np.where(k % 2 == 0,
+             0,                         # value when k is even
+             2 / (1j * np.pi * k))      # value when k is odd
+
+# define time points
+t = np.arange(0, 1, step=0.001)
+
+ftrue = np.where(t < 0.5, 1, -1)
+
+# Plot approximation for 1 term
+fapprox = (4/np.pi)*np.sin(2*np.pi*t)
+ferr = ftrue-fapprox
+totalerr = np.sum(ferr*ferr)
+
+plt.subplot(3, 2, 1)
+plt.plot(t, ftrue)
+plt.plot(t, fapprox)
+plt.xlim(0, 1)
+plt.xlabel('t')
+plt.title('Approximation when N=1')
+
+plt.subplot(3, 2, 2)
+plt.plot(t, ferr*ferr)
+plt.xlim(0, 1)
+plt.xlabel('t')
+plt.title(f"Square error when N=1 (total = {totalerr:.2f})")
+
+
+# Plot approximation for 2 terms
+fapprox = (4/np.pi)*np.sin(2*np.pi*t) + (4/(3*np.pi))*np.sin(6*np.pi*t)
+ferr = ftrue-fapprox
+totalerr = np.sum(ferr*ferr)
+
+plt.subplot(3, 2, 3)
+plt.plot(t, ftrue)
+plt.plot(t, fapprox)
+plt.xlim(0, 1)
+plt.xlabel('t')
+plt.title('Approximation when N=3')
+
+plt.subplot(3, 2, 4)
+plt.plot(t, ferr*ferr)
+plt.xlim(0, 1)
+plt.xlabel('t')
+plt.title(f"Square error when N=3 (total = {totalerr:.2f})")
+
+# Plot approximation for 3 terms
+fapprox = (4/np.pi)*np.sin(2*np.pi*t) + (4/(3*np.pi))*np.sin(6*np.pi*t) + + (4/(5*np.pi))*np.sin(10*np.pi*t)
+ferr = ftrue-fapprox
+totalerr = np.sum(ferr*ferr)
+
+plt.subplot(3, 2, 5)
+plt.plot(t, ftrue)
+plt.plot(t, fapprox)
+plt.xlim(0, 1)
+plt.xlabel('t')
+plt.title('Approximation when N=5')
+
+plt.subplot(3, 2, 6)
+plt.plot(t, ferr*ferr)
+plt.xlim(0, 1)
+plt.xlabel('t')
+plt.title(f"Square error when N=5 (total = {totalerr:.2f})")
+
+plt.tight_layout()
+plt.show()
+```
+
+Note as $N$ increases the approximation gets closer to the square wave (squared error gets closer to zero),
+except at the discontinuities. At the discontinuities the square error is bounded by one and gets narrower as $N$ increases, but never disappears entirely. This phenomena is called *Gibbs Ringing*. However, as
+$N \rightarrow \infty$ the total mean-square error goes to zero, so the CTFS
 approximation to the square wave converges in the mean-square sense.
 
 ::::
@@ -331,7 +473,7 @@ Let $a_k$ and $b_k$ be the CTFS coefficients for the periodic signals
 $x(t)$ and $y(t)$ respectively.
 
 - **Linearity**. The coefficients of the signal
-  $$z(t) = Ax(t) + By(t) \mbox{ for constants } A,B$$ are $Aa_k + Bb_k$
+  $$z(t) = Ax(t) + By(t) \mbox{ for constants } A,B$$ are $Aa_k + Bb_k$. This forms the basis of analysis using the Fourier series and the system Eigenvalues.
 
 - **Time Shifting**. The coefficients of
   $$z(t) = x(t-t_0) \mbox{ are } e^{-jk\omega_0 t_0}a_k$$ that is it
