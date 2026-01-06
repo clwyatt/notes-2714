@@ -111,7 +111,31 @@ $\%$ operator. For example,
 $$x[n] = \gamma^{n \% N} \mbox{ for any } \gamma \in \mathbb{C}$$ is
 periodic in $N$, e.g. $x[n] = \left(\frac{1}{2}\right)^{n \% 4}$
 
-TODO graphics/dtfs_example1
+```{python}
+#| label: fig-15-example1
+#| fig-cap: "Plot of the periodic DT signal in the example."
+#| fig-alt: "See Caption."
+#| warning: false
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+gamma = 0.5
+n = np.arange(-5, 6)
+x = gamma**(n % 4)
+
+plt.stem(n, x)
+plt.xticks(n)
+plt.xlim(-5,5)
+plt.xlabel('n')
+plt.ylabel('x[n]')
+plt.title('Periodic DT Signal')
+plt.gca().set_aspect(2)
+plt.grid()
+plt.tight_layout()
+plt.show()
+```
 
 The synthesis equation is given by
 $$x[n] = \sum\limits_{k = N_0}^{N_0 + N-1} a_k e^{jk\omega_0n}$$ Where
@@ -148,7 +172,40 @@ h9 = title('Phase Spectrum');
 
 Giving the amplitude and phase spectrum plot
 
-TODO graphics/dtfs_example1.png
+```{python}
+#| label: fig-15-example2
+#| fig-cap: "Magnitude and phase spectrum for the example."
+#| fig-alt: "See Caption."
+#| warning: false
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+gamma = 0.5
+N = 4
+k = np.arange(-10, 11)
+a = (1-(gamma*np.exp(-1j*2*np.pi*k/N))**N)/(N*(1-gamma*np.exp(-1j*2*np.pi*k/N)))
+
+plt.subplot(2, 1, 1)
+plt.stem(k, np.abs(a))
+plt.xticks(k)
+plt.xlim(-10,10)
+plt.xlabel('k')
+plt.ylabel('$|a_k|$')
+plt.title('Amplitude Spectrum')
+
+plt.subplot(2, 1, 2)
+plt.stem(k, np.angle(a))
+plt.xticks(k)
+plt.xlim(-10,10)
+plt.xlabel('k')
+plt.ylabel('Angle $a_k$ (rad)')
+plt.title('Phase Spectrum')
+
+plt.tight_layout()
+plt.show()
+```
 
 ::::
 :::

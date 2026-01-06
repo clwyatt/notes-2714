@@ -65,7 +65,7 @@ together.
 
 :::{.example}
 ::::{.example-header}
-### Example of the Fourier series.
+### Example of the Fourier series. {.unnumbered}
 ::::
 ::::{.example-container}
 Consider the signal $$x_p(t) = \left\{ \begin{array}{lc}
@@ -225,7 +225,7 @@ signals of interest, the conditions hold.
 
 :::{.example}
 ::::{.example-header}
-### Fourier series of the impulse train.
+### Fourier series of the impulse train. {.unnumbered}
 ::::
 ::::{.example-container}
 Consider the *impulse train* signal defined as
@@ -241,7 +241,7 @@ $$a_k = \frac{1}{T_0} \int\limits_{T_0} x(t)e^{-jk\omega_0 t} \; dt =  \frac{1}{
 
 :::{.example}
 ::::{.example-header}
-### Fourier series of a sinusoid.
+### Fourier series of a sinusoid. {.unnumbered}
 ::::
 ::::{.example-container}
 Consider the signal $x(t) = \cos(\omega t)$. We can write this as the
@@ -262,7 +262,7 @@ Series is an exact representation.
 
 :::{.example}
 ::::{.example-header}
-### Fourier series of a square wave.
+### Fourier series of a square wave. {.unnumbered}
 ::::
 ::::{.example-container}
 Consider the square wave signal of amplitude $A > 0$ and period $T_0 > 0$:
@@ -396,14 +396,15 @@ a = np.where(k % 2 == 0,
              2 / (1j * np.pi * k))      # value when k is odd
 
 # define time points
-t = np.arange(0, 1, step=0.001)
+dt = 0.001
+t = np.arange(0, 1, step=dt)
 
 ftrue = np.where(t < 0.5, 1, -1)
 
 # Plot approximation for 1 term
 fapprox = (4/np.pi)*np.sin(2*np.pi*t)
 ferr = ftrue-fapprox
-totalerr = np.sum(ferr*ferr)
+totalerr = dt*np.sum(ferr*ferr)
 
 plt.subplot(3, 2, 1)
 plt.plot(t, ftrue)
@@ -422,7 +423,7 @@ plt.title(f"Square error when N=1 (total = {totalerr:.2f})")
 # Plot approximation for 2 terms
 fapprox = (4/np.pi)*np.sin(2*np.pi*t) + (4/(3*np.pi))*np.sin(6*np.pi*t)
 ferr = ftrue-fapprox
-totalerr = np.sum(ferr*ferr)
+totalerr = dt*np.sum(ferr*ferr)
 
 plt.subplot(3, 2, 3)
 plt.plot(t, ftrue)
@@ -440,7 +441,7 @@ plt.title(f"Square error when N=3 (total = {totalerr:.2f})")
 # Plot approximation for 3 terms
 fapprox = (4/np.pi)*np.sin(2*np.pi*t) + (4/(3*np.pi))*np.sin(6*np.pi*t) + + (4/(5*np.pi))*np.sin(10*np.pi*t)
 ferr = ftrue-fapprox
-totalerr = np.sum(ferr*ferr)
+totalerr = dt*np.sum(ferr*ferr)
 
 plt.subplot(3, 2, 5)
 plt.plot(t, ftrue)
