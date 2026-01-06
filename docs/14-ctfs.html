@@ -405,8 +405,8 @@ window.Quarto = {
 <p>Suppose we can approximate (we will revisit shortly when this approximation is exact) the periodic function <span class="math inline">\(x(t)\)</span> by the sum <span class="math display">\[\boxed{x(t) \approx \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t}\;.}\]</span> This is called the <em>synthesis equation</em> of the CT Fourier series.</p>
 <p>Assuming equivalence, let us multiply both sides by the function <span class="math inline">\(e^{-jn\omega_0 t}\)</span>, <span class="math display">\[x(t)e^{-jn\omega_0 t} = \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t}e^{-jn\omega_0 t}\]</span> and integrate over one period <span class="math display">\[\int\limits_{0}^{T_0} x(t)e^{-jn\omega_0 t} \; dt = \int\limits_{0}^{T_0} \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t}e^{-jn\omega_0 t} \; dt\]</span> Exchanging the order of integration and summation in the right-hand expression gives <span class="math display">\[\int\limits_{0}^{T_0} x(t)e^{-jn\omega_0 t} \; dt = \sum\limits_{k = -\infty}^{\infty} a_k \left[ \int\limits_{0}^{T_0} \, e^{j k\omega_0 t}e^{-jn\omega_0 t} \; dt\right]\]</span> The bracketed term can be rewritten as <span class="math display">\[\int\limits_{0}^{T_0} \, e^{j k\omega_0 t}e^{-jn\omega_0 t} \; dt = \int\limits_{0}^{T_0} \, e^{j (k-n)\omega_0 t} \; dt = \int\limits_{0}^{T_0} \cos((k-n)\omega_0 t) \; dt + j \int\limits_{0}^{T_0} \sin((k-n)\omega_0 t) \; dt\]</span> We now note that for <span class="math inline">\(k\neq n\)</span> the integrals of the real and imaginary parts are zero <span class="math display">\[\int\limits_{0}^{T_0} \cos((k-n)\omega_0 t) \; dt = \frac{1}{(k-n)\omega_0}\sin((k-n)\omega_0 t) \Big|_{0}^{T_0} = \frac{1}{(k-n)\omega_0}\sin((k-n)2\pi) - \frac{1}{(k-n)\omega_0}\sin(0) = 0\]</span> <span class="math display">\[\int\limits_{0}^{T_0} \sin((k-n)\omega_0 t) \; dt = -\frac{1}{(k-n)\omega_0}\cos((k-n)\omega_0 t) \Big|_{0}^{T_0} = -\frac{1}{(k-n)\omega_0}\cos((k-n)2\pi) + \frac{1}{(k-n)\omega_0}\cos(0) = 0\]</span> When <span class="math inline">\(k=n\)</span> <span class="math display">\[\int\limits_{0}^{T_0} e^{j (k-n)\omega_0 t} \; dt = \int\limits_{0}^{T_0} \; dt = T_0\]</span> Thus the bracketed term above is <span class="math display">\[\int\limits_{0}^{T_0} \, e^{j k\omega_0 t}e^{-jn\omega_0 t} \; dt = T_0\, \delta[k-n]\]</span> and the right-hand side is <span class="math display">\[\sum\limits_{k = -\infty}^{\infty} a_k \left[ \int\limits_{0}^{T_0} \, e^{j k\omega_0 t}e^{-jn\omega_0 t} \; dt\right] = \sum\limits_{k = -\infty}^{\infty} a_k  T_0\, \delta[k-n] = T_0 \,a_n\]</span> Thus we obtain the <em>analysis equation</em> of the CT Fourier series: <span class="math display">\[\boxed{a_n = \frac{1}{T_0} \int\limits_{0}^{T_0} x(t)e^{-jn\omega_0 t} \; dt}\]</span> where the integration can be over any interval of length <span class="math inline">\(T_0\)</span> that is equal to the period, and the symbol for the subscript (integer <span class="math inline">\(n\)</span>) is arbitrary. The CT Fourier Series coefficients are also called the <em>spectrum</em> of the signal. In general the <span class="math inline">\(a_k\)</span> are complex. The function of <span class="math inline">\(k\)</span>, <span class="math inline">\(|a_k|\)</span> is called the <em>amplitude spectrum</em>. The function of <span class="math inline">\(k\)</span>, <span class="math inline">\(\angle a_k\)</span> is called the <em>phase spectrum</em>. When plotting the coefficients it is common to plot the amplitude and phase spectrum together.</p>
 <div class="example">
-<section id="example-of-the-fourier-series." class="level3 example-header" data-number="14.1.1">
-<h3 data-number="14.1.1" class="anchored" data-anchor-id="example-of-the-fourier-series."><span class="header-section-number">14.1.1</span> Example of the Fourier series.</h3>
+<section id="example-of-the-fourier-series." class="level3 unnumbered example-header">
+<h3 class="unnumbered anchored" data-anchor-id="example-of-the-fourier-series.">Example of the Fourier series.</h3>
 </section>
 <div class="example-container">
 <p>Consider the signal <span class="math display">\[x_p(t) = \left\{ \begin{array}{lc}
@@ -487,16 +487,16 @@ Figure&nbsp;14.1: Amplitude and phase spectrum plot for the example. For a detai
 <section id="examples-of-the-fourier-series" class="level2" data-number="14.4">
 <h2 data-number="14.4" class="anchored" data-anchor-id="examples-of-the-fourier-series"><span class="header-section-number">14.4</span> Examples of the Fourier Series</h2>
 <div class="example">
-<section id="fourier-series-of-the-impulse-train." class="level3 example-header" data-number="14.4.1">
-<h3 data-number="14.4.1" class="anchored" data-anchor-id="fourier-series-of-the-impulse-train."><span class="header-section-number">14.4.1</span> Fourier series of the impulse train.</h3>
+<section id="fourier-series-of-the-impulse-train." class="level3 unnumbered example-header">
+<h3 class="unnumbered anchored" data-anchor-id="fourier-series-of-the-impulse-train.">Fourier series of the impulse train.</h3>
 </section>
 <div class="example-container">
 <p>Consider the <em>impulse train</em> signal defined as <span class="math display">\[x(t) = \sum\limits_{m = -\infty}^{\infty} \delta(t-mT_0)\]</span> which we be important later when we discuss sampling CT signals. Do the Dirichlet conditions hold? Yes. It has one discontinuity, one maximum, and one minimum per period. It is also bounded since <span class="math display">\[\int_{T_0} |\delta(t)| \;dt = 1 \mbox{ by definition.}\]</span> The spectrum for the impulse train is given by <span class="math display">\[a_k = \frac{1}{T_0} \int\limits_{T_0} x(t)e^{-jk\omega_0 t} \; dt =  \frac{1}{T_0} \int\limits_{-\frac{T_0}{2}}^{\frac{T_0}{2}} \delta(t)e^{-jk\omega_0 t} \; dt = \frac{1}{T_0}\]</span></p>
 </div>
 </div>
 <div class="example">
-<section id="fourier-series-of-a-sinusoid." class="level3 example-header" data-number="14.4.2">
-<h3 data-number="14.4.2" class="anchored" data-anchor-id="fourier-series-of-a-sinusoid."><span class="header-section-number">14.4.2</span> Fourier series of a sinusoid.</h3>
+<section id="fourier-series-of-a-sinusoid." class="level3 unnumbered example-header">
+<h3 class="unnumbered anchored" data-anchor-id="fourier-series-of-a-sinusoid.">Fourier series of a sinusoid.</h3>
 </section>
 <div class="example-container">
 <p>Consider the signal <span class="math inline">\(x(t) = \cos(\omega t)\)</span>. We can write this as the sum of two complex exponentials using Euler’s formula <span class="math display">\[x(t) = \frac{1}{2}e^{j\omega t} + \frac{1}{2}e^{-j\omega t}\]</span> Comparing this to the synthesis equation <span class="math display">\[x(t) = \sum\limits_{k = -\infty}^{\infty} a_k \, e^{j k\omega_0 t} = \cdots + a_{-2} \, e^{j (-2)\omega_0 t} + a_{-1} \, e^{j (-1)\omega_0 t} + a_0 + a_{1} \, e^{j (1)\omega_0 t} + a_{2} \, e^{j (2)\omega_0 t} + \cdots\]</span> we note that if <span class="math inline">\(\omega_0 = \omega\)</span> and <span class="math display">\[a_k = \left\{ \begin{array}{lc}
@@ -508,8 +508,8 @@ Figure&nbsp;14.1: Amplitude and phase spectrum plot for the example. For a detai
 </div>
 </div>
 <div class="example">
-<section id="fourier-series-of-a-square-wave." class="level3 example-header" data-number="14.4.3">
-<h3 data-number="14.4.3" class="anchored" data-anchor-id="fourier-series-of-a-square-wave."><span class="header-section-number">14.4.3</span> Fourier series of a square wave.</h3>
+<section id="fourier-series-of-a-square-wave." class="level3 unnumbered example-header">
+<h3 class="unnumbered anchored" data-anchor-id="fourier-series-of-a-square-wave.">Fourier series of a square wave.</h3>
 </section>
 <div class="example-container">
 <p>Consider the square wave signal of amplitude <span class="math inline">\(A &gt; 0\)</span> and period <span class="math inline">\(T_0 &gt; 0\)</span>:</p>
@@ -518,7 +518,7 @@ Figure&nbsp;14.1: Amplitude and phase spectrum plot for the example. For a detai
     A &amp; 0 &lt; t - mT_0 &lt; \tfrac{T_0}{2}
   \end{array}
   \right.\]</span> shown below</p>
-<div id="fig-14-example2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="See the caption.">
+<div id="fig-14-example2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="See the caption." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-14-example2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="figures/fig14_2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="See the caption.">
@@ -593,7 +593,7 @@ x(t) \approx \sum\limits_{k = -3}^{3} a_k \, e^{j 2\pi k t} =  \frac{4}{\pi}\sin
 <div id="fig-14-example3" class="quarto-float quarto-figure quarto-figure-center anchored" alt="See Caption.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-14-example3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="14-ctfs_files/figure-html/fig-14-example3-output-1.png" alt="See Caption." width="676" height="470" class="figure-img">
+<img src="14-ctfs_files/figure-html/fig-14-example3-output-1.png" alt="See Caption." width="666" height="470" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-14-example3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;14.4: Truncated Fourier series plot for increasing number of terms, with square error, and total error. Blue is the original function, orange is the approximation.

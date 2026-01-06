@@ -435,7 +435,20 @@ window.Quarto = {
 </div>
 <div class="example-container">
 <p>A simple way to construct a DT periodic signal is to use the modulus <span class="math inline">\(\%\)</span> operator. For example, <span class="math display">\[x[n] = \gamma^{n \% N} \mbox{ for any } \gamma \in \mathbb{C}\]</span> is periodic in <span class="math inline">\(N\)</span>, e.g.&nbsp;<span class="math inline">\(x[n] = \left(\frac{1}{2}\right)^{n \% 4}\)</span></p>
-<p>TODO graphics/dtfs_example1</p>
+<div id="cell-fig-15-example1" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-15-example1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="See Caption.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-15-example1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="15-dtfs_files/figure-html/fig-15-example1-output-1.png" alt="See Caption." width="662" height="210" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-example1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.1: Plot of the periodic DT signal in the example.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>The synthesis equation is given by <span class="math display">\[x[n] = \sum\limits_{k = N_0}^{N_0 + N-1} a_k e^{jk\omega_0n}\]</span> Where the coefficients are found using the analysis equation. Let <span class="math inline">\(N_0 = 0\)</span> arbitrarily, then</p>
 <span class="math display">\[\begin{aligned}
     a_k &amp;= \frac{1}{N} \sum\limits_{n = 0}^{N-1} x[n]e^{-j\frac{2\pi}{N} k n }\\
@@ -461,7 +474,20 @@ window.Quarto = {
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="va">h8</span> <span class="op">=</span> <span class="va">ylabel</span>(<span class="ss">'Angle a(k)'</span>)<span class="op">;</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="va">h9</span> <span class="op">=</span> <span class="va">title</span>(<span class="ss">'Phase Spectrum'</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Giving the amplitude and phase spectrum plot</p>
-<p>TODO graphics/dtfs_example1.png</p>
+<div id="cell-fig-15-example2" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display">
+<div id="fig-15-example2" class="quarto-float quarto-figure quarto-figure-center anchored" alt="See Caption.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-15-example2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="15-dtfs_files/figure-html/fig-15-example2-output-1.png" alt="See Caption." width="669" height="470" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-15-example2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.2: Magnitude and phase spectrum for the example.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="example">
