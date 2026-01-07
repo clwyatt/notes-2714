@@ -411,7 +411,12 @@ window.Quarto = {
 <section id="using-the-eigenvalues-transfer-function" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="using-the-eigenvalues-transfer-function">Using the Eigenvalues / Transfer Function</h3>
 <p>Recall if we apply the Eigenfunction <span class="math inline">\(e^{st}\)</span> for the complex frequency <span class="math inline">\(s \in \mathbb{C}\)</span> as the input to a LTI system, the output is the Eigenfunction scaled by the Eigenvalue (transfer function) <span class="math inline">\(H(s)\)</span> for values of <span class="math inline">\(s\)</span> in the region of convergence, where <span class="math display">\[H(s) = \int\limits_{-\infty}^{\infty} h(t) e^{-st}\; dt \; .\]</span> is the bilateral Laplace transform of the impulse response.</p>
-<p>TODO 18-ct-tf.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig18_1.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Illustration of the Transfer Function for an CT LTI system.</figcaption>
+</figure>
+</div>
 <p>If a system is stable, then the region of convergence includes the imaginary axis <span class="math inline">\(s = j\omega\)</span>. In that case, evaluating the Eigenvalues on the imaginary axis <span class="math inline">\(s = j\omega\)</span> gives the CT frequency response <span class="math inline">\(H(j\omega)\)</span>. This converts from a function of a complex variable, <span class="math inline">\(s\)</span>, to one of a real variable <span class="math inline">\(\omega\)</span>.</p>
 <div class="example">
 <div class="example-header">
@@ -472,7 +477,12 @@ Solution: If the system is stable, the Fourier transform of the impulse response
 <section id="ctfr-acting-on-sinusoids" class="level2" data-number="18.3">
 <h2 data-number="18.3" class="anchored" data-anchor-id="ctfr-acting-on-sinusoids"><span class="header-section-number">18.3</span> CTFR acting on sinusoids</h2>
 <p>The advantage of the magnitude and phase representation of the frequency response, is the ease with which we can find the output due to a sinusoidal input. If we apply a sinusoidal input <span class="math inline">\(x(t) = A e^{j\omega t}\)</span>, the output is a the same sinusoid scaled by the frequency response <span class="math inline">\(y(t) = H(j\omega) A e^{j\omega t}\)</span>.</p>
-<p>TODO 18-ct-fr.pdf)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig18_2.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Illustration of the Frequency Response for a <strong>stable</strong> CT LTI system.</figcaption>
+</figure>
+</div>
 <p>Now using the magnitude and phase representation <span class="math display">\[y(t) = H(j\omega) A e^{j\omega t} = |H(j\omega)|e^{\angle H(j\omega)} A e^{j\omega t} = A |H(j\omega)| e^{j\omega t + \angle H(j\omega)}\]</span> Thus we can interpret the frequency response as telling us how the input sinsusoids are scaled in magnitude and phase shifted as they pass through the system.</p>
 <p>By the linearity property this extends to real sinusoidal inputs since <span class="math display">\[\begin{aligned}
   x(t) &amp;\longrightarrow y(t)\\
@@ -525,8 +535,21 @@ Solution: If the system is stable, the Fourier transform of the impulse response
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">set</span>( <span class="va">hTitle</span>                    <span class="op">,</span> <span class="op">...</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>         <span class="ss">'FontSize'</span>   <span class="op">,</span> <span class="fl">14</span>          <span class="op">,</span> <span class="op">...</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>         <span class="ss">'FontWeight'</span> <span class="op">,</span> <span class="ss">'bold'</span>      )<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This gives the following plot</p>
-<p>TODO lecture20_1.png</p>
+<p>This gives something similar to the following plot</p>
+<div id="cell-fig-18-example1" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-18-example1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="See Caption.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-18-example1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="18-ct-fr_files/figure-html/fig-18-example1-output-1.png" alt="See Caption." width="660" height="325" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-18-example1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18.1: Magnitude and phase spectrum for the example.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 <p>To read a Bode plot to see the behavior of the system at a given frequency, one need only read the values off the plot and convert from dB to a unit-less gain. A common mistake is to not realize the horizontal axis is logarithmic.</p>
