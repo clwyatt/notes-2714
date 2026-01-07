@@ -388,8 +388,8 @@ window.Quarto = {
 <section id="examples-of-the-ct-fourier-transform" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="examples-of-the-ct-fourier-transform"><span class="header-section-number">16.2</span> Examples of the CT Fourier Transform</h2>
 <div class="example">
-<section id="fourier-transform-of-the-impulse." class="level3 example-header" data-number="16.2.1">
-<h3 data-number="16.2.1" class="anchored" data-anchor-id="fourier-transform-of-the-impulse."><span class="header-section-number">16.2.1</span> Fourier Transform of the impulse.</h3>
+<section id="fourier-transform-of-the-impulse." class="level3 unnumbered example-header">
+<h3 class="unnumbered anchored" data-anchor-id="fourier-transform-of-the-impulse.">Fourier Transform of the impulse.</h3>
 </section>
 <div class="example-container">
 Consider the signal <span class="math inline">\(x(t) = \delta(t)\)</span>. The Fourier transform is
@@ -403,8 +403,8 @@ Consider the signal <span class="math inline">\(x(t) = \delta(t)\)</span>. The F
 </div>
 </div>
 <div class="example">
-<section id="fourier-transform-of-the-causal-real-exponential." class="level3 example-header" data-number="16.2.2">
-<h3 data-number="16.2.2" class="anchored" data-anchor-id="fourier-transform-of-the-causal-real-exponential."><span class="header-section-number">16.2.2</span> Fourier transform of the causal real exponential.</h3>
+<section id="fourier-transform-of-the-causal-real-exponential." class="level3 unnumbered example-header">
+<h3 class="unnumbered anchored" data-anchor-id="fourier-transform-of-the-causal-real-exponential.">Fourier transform of the causal real exponential.</h3>
 </section>
 <div class="example-container">
 Consider the signal <span class="math inline">\(x(t) = e^{at}u(t)\)</span> for <span class="math inline">\(a\in \mathbb{R}\)</span>. The Fourier transform is
@@ -420,12 +420,25 @@ Consider the signal <span class="math inline">\(x(t) = e^{at}u(t)\)</span> for <
 <p><span class="math display">\[X(\omega) = \frac{-1}{a-j\omega } = \frac{1}{j\omega-a} \mbox{ for } a &lt; 0\;.\]</span></p>
 <p>Note when <span class="math inline">\(a &lt; 0\)</span>, <span class="math inline">\(x(t)\)</span> is an energy signal. A sufficient, but not necessary condition for the Fourier transform to exist is that the signal be an energy signal.</p>
 <p>For this example, let’s examine the spectrum, noting <span class="math display">\[|X(\omega)| = \frac{1}{(a^2 + \omega^2)^\frac{1}{2}} \hspace{2em}\mbox{and}\hspace{2em} \angle X(\omega) = -\arctan\left( \frac{\omega}{-a}\right)\]</span> plotted below for <span class="math inline">\(a = -1\)</span>.</p>
-<p>TODO</p>
+<div id="cell-fig-16-example1" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-16-example1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="See Caption.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-16-example1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="16-ctft_files/figure-html/fig-16-example1-output-1.png" alt="See Caption." width="670" height="470" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-16-example1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16.1: Magnitude and phase spectrum for the example.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="example">
-<section id="fourier-transform-of-a-complex-sinusoid." class="level3 example-header" data-number="16.2.3">
-<h3 data-number="16.2.3" class="anchored" data-anchor-id="fourier-transform-of-a-complex-sinusoid."><span class="header-section-number">16.2.3</span> Fourier transform of a complex sinusoid.</h3>
+<section id="fourier-transform-of-a-complex-sinusoid." class="level3 unnumbered example-header">
+<h3 class="unnumbered anchored" data-anchor-id="fourier-transform-of-a-complex-sinusoid.">Fourier transform of a complex sinusoid.</h3>
 </section>
 <div class="example-container">
 <p>Consider the signal <span class="math inline">\(x(t) = e^{j\omega_0 t}\)</span> for <span class="math inline">\(\omega_0\in \mathbb{R}\)</span>. The Fourier transform is</p>
@@ -452,8 +465,8 @@ Consider the signal <span class="math inline">\(x(t) = e^{at}u(t)\)</span> for <
 </div>
 </div>
 <div class="example">
-<section id="fourier-transform-of-a-real-sinusoid." class="level3 example-header" data-number="16.2.4">
-<h3 data-number="16.2.4" class="anchored" data-anchor-id="fourier-transform-of-a-real-sinusoid."><span class="header-section-number">16.2.4</span> Fourier transform of a real sinusoid.</h3>
+<section id="fourier-transform-of-a-real-sinusoid." class="level3 unnumbered example-header">
+<h3 class="unnumbered anchored" data-anchor-id="fourier-transform-of-a-real-sinusoid.">Fourier transform of a real sinusoid.</h3>
 </section>
 <div class="example-container">
 <p>Consider the signal <span class="math inline">\(x(t) = \cos(\omega_0 t)\)</span> for <span class="math inline">\(\omega_0\in \mathbb{R}\)</span>. The Fourier transform can be found using the result in the previous example by noting</p>
@@ -469,8 +482,8 @@ Consider the signal <span class="math inline">\(x(t) = e^{at}u(t)\)</span> for <
 </div>
 </div>
 <div class="example">
-<section id="inverse-fourier-transform-of-a-band-limited-signal." class="level3 example-header" data-number="16.2.5">
-<h3 data-number="16.2.5" class="anchored" data-anchor-id="inverse-fourier-transform-of-a-band-limited-signal."><span class="header-section-number">16.2.5</span> Inverse Fourier transform of a band-limited signal.</h3>
+<section id="inverse-fourier-transform-of-a-band-limited-signal." class="level3 unnumbered example-header">
+<h3 class="unnumbered anchored" data-anchor-id="inverse-fourier-transform-of-a-band-limited-signal.">Inverse Fourier transform of a band-limited signal.</h3>
 </section>
 <div class="example-container">
 <p>Consider the signal <span class="math display">\[X(\omega) = \begin{cases}
@@ -496,7 +509,7 @@ Consider the signal <span class="math inline">\(x(t) = e^{at}u(t)\)</span> for <
 <h2 data-number="16.3" class="anchored" data-anchor-id="existence-of-the-ct-fourier-transform"><span class="header-section-number">16.3</span> Existence of the CT Fourier Transform</h2>
 <p>The example of the real exponential above showed that for the Fourier transform to exist, the Fourier (analysis) integral must exist. Similar to the Fourier series some mild conditions, called the Dirichlet conditions, are a sufficient prerequisite for the Fourier transform of a signal <span class="math inline">\(x(t)\)</span> to exist:</p>
 <ul>
-<li><p><span class="math inline">\(x(t)\)</span> is absolutely integrable <span class="math display">\[x(t) = \int\limits_{-\infty}^{\infty} |x(t)|\; dt &lt; \infty\]</span></p></li>
+<li><p><span class="math inline">\(x(t)\)</span> is absolutely integrable <span class="math display">\[\int\limits_{-\infty}^{\infty} |x(t)|\; dt &lt; \infty\]</span></p></li>
 <li><p><span class="math inline">\(x(t)\)</span> has a finite number of minima and maxima over any finite interval</p></li>
 <li><p><span class="math inline">\(x(t)\)</span> has a finite number of finite-valued discontinuities over any finite interval</p></li>
 </ul>
@@ -504,7 +517,7 @@ Consider the signal <span class="math inline">\(x(t) = e^{at}u(t)\)</span> for <
 </section>
 <section id="properties-of-the-ct-fourier-transform" class="level2" data-number="16.4">
 <h2 data-number="16.4" class="anchored" data-anchor-id="properties-of-the-ct-fourier-transform"><span class="header-section-number">16.4</span> Properties of the CT Fourier Transform</h2>
-<p>There are several useful properties of the CT Fourier Transform that, when combined with a table of transforms (see Table 4.2, page 329 of OW), allow us to take the Fourier transform of wide array of signals, and one, the convolution property, that allows us to determine the output of a system in the frequency domain easily. We state these here without proof in rough order of usefulness. See the course text for detailed derivations.</p>
+<p>There are several useful properties of the CT Fourier Transform that, when combined with a table of transforms (see <a href="26-formulas-tables.html#tbl-ctft" class="quarto-xref">Table&nbsp;<span>A.1</span></a> and Table 4.1 of LG), allow us to take the Fourier transform of wide array of signals, and one, the convolution property, that allows us to determine the output of a system in the frequency domain easily. We state these here without proof in rough order of usefulness. See the course text for detailed derivations.</p>
 <p>We use the notation <span class="math inline">\(x(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X(\omega)\)</span> to indicate the signals are related by a Fourier Transform pair.</p>
 <ul>
 <li><p><strong>Linearity:</strong> if <span class="math inline">\(x_1(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_1(\omega)\)</span> and <span class="math inline">\(x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(\omega)\)</span> then <span class="math display">\[ax_1(t) + bx_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} aX_1(\omega) + bX_2(\omega)\]</span></p></li>
