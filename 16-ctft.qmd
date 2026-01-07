@@ -73,7 +73,7 @@ and phase spectrum.
 
 :::{.example}
 ::::{.example-header}
-### Fourier Transform of the impulse.
+### Fourier Transform of the impulse. {.unnumbered}
 ::::
 ::::{.example-container}
 
@@ -91,7 +91,7 @@ Consider the signal $x(t) = \delta(t)$. The Fourier transform is
 
 :::{.example}
 ::::{.example-header}
-### Fourier transform of the causal real exponential.
+### Fourier transform of the causal real exponential.  {.unnumbered}
 ::::
 ::::{.example-container}
 Consider the signal $x(t) = e^{at}u(t)$ for $a\in \mathbb{R}$. The
@@ -120,7 +120,37 @@ For this example, let's examine the spectrum, noting
 $$|X(\omega)| = \frac{1}{(a^2 + \omega^2)^\frac{1}{2}} \hspace{2em}\mbox{and}\hspace{2em} \angle X(\omega) = -\arctan\left( \frac{\omega}{-a}\right)$$
 plotted below for $a = -1$.
 
-TODO
+```{python}
+#| label: fig-16-example1
+#| fig-cap: "Magnitude and phase spectrum for the example."
+#| fig-alt: "See Caption."
+#| warning: false
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+w = np.arange(-20, 20, step=0.01)
+a = -1
+X = 1/(1j*w-a)
+
+plt.subplot(2, 1, 1)
+plt.plot(w, np.abs(X))
+plt.xlim(-20,20)
+plt.xlabel('$\omega$')
+plt.ylabel('$|X(\omega|$')
+plt.title('Amplitude Spectrum')
+
+plt.subplot(2, 1, 2)
+plt.plot(w, np.angle(X))
+plt.xlim(-20,20)
+plt.xlabel('$\omega$')
+plt.ylabel('Angle $X(\omega)$ (rad)')
+plt.title('Phase Spectrum')
+
+plt.tight_layout()
+plt.show()
+```
 
 ::::
 :::
@@ -128,7 +158,7 @@ TODO
 
 :::{.example}
 ::::{.example-header}
-### Fourier transform of a complex sinusoid.
+### Fourier transform of a complex sinusoid.  {.unnumbered}
 ::::
 ::::{.example-container}
 Consider the signal $x(t) = e^{j\omega_0 t}$ for
@@ -168,7 +198,7 @@ which implies $A = 2\pi$.
 
 :::{.example}
 ::::{.example-header}
-### Fourier transform of a real sinusoid.
+### Fourier transform of a real sinusoid.  {.unnumbered}
 ::::
 ::::{.example-container}
 Consider the signal $x(t) = \cos(\omega_0 t)$ for
@@ -190,7 +220,7 @@ This example highlights that the cosine signal is composed of exactly two freque
 
 :::{.example}
 ::::{.example-header}
-### Inverse Fourier transform of a band-limited signal.
+### Inverse Fourier transform of a band-limited signal.  {.unnumbered}
 ::::
 ::::{.example-container}
 Consider the signal $$X(\omega) = \begin{cases}
@@ -223,7 +253,7 @@ conditions, are a sufficient prerequisite for the Fourier transform of a
 signal $x(t)$ to exist:
 
 - $x(t)$ is absolutely integrable
-  $$x(t) = \int\limits_{-\infty}^{\infty} |x(t)|\; dt < \infty$$
+  $$\int\limits_{-\infty}^{\infty} |x(t)|\; dt < \infty$$
 
 - $x(t)$ has a finite number of minima and maxima over any finite
   interval
@@ -238,8 +268,7 @@ functions in the transform, as in the cosine example above.
 ## Properties of the CT Fourier Transform
 
 There are several useful properties of the CT Fourier Transform that,
-when combined with a table of transforms (see Table 4.2, page 329 of
-OW), allow us to take the Fourier transform of wide array of signals,
+when combined with a table of transforms (see @tbl-ctft and Table 4.1 of LG), allow us to take the Fourier transform of wide array of signals,
 and one, the convolution property, that allows us to determine the
 output of a system in the frequency domain easily. We state these here
 without proof in rough order of usefulness. See the course text for
