@@ -535,8 +535,39 @@ Solution: If the system is stable, the Fourier transform of the impulse response
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">set</span>( <span class="va">hTitle</span>                    <span class="op">,</span> <span class="op">...</span></span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>         <span class="ss">'FontSize'</span>   <span class="op">,</span> <span class="fl">14</span>          <span class="op">,</span> <span class="op">...</span></span>
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>         <span class="ss">'FontWeight'</span> <span class="op">,</span> <span class="ss">'bold'</span>      )<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>This gives something similar to the following plot</p>
+<p>You can also do this in python. Either should give something similar to the following plot (this is the Python result).</p>
 <div id="cell-fig-18-example1" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">10000</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> <span class="dv">20000</span><span class="op">/</span>((<span class="ot">1j</span><span class="op">*</span>w)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="ot">300j</span><span class="op">*</span>w <span class="op">+</span> <span class="dv">20000</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>plt.semilogx(w, <span class="dv">20</span><span class="op">*</span>np.log10(np.<span class="bu">abs</span>(H)))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.yticks([<span class="dv">0</span>, <span class="op">-</span><span class="dv">20</span>, <span class="op">-</span><span class="dv">40</span>, <span class="op">-</span><span class="dv">60</span>, <span class="op">-</span><span class="dv">80</span>, <span class="op">-</span><span class="dv">100</span>])</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">1</span>,<span class="dv">10000</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">80</span>,<span class="dv">0</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$</span><span class="er">\</span><span class="st">omega$ (rad/s)'</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$|X(</span><span class="er">\</span><span class="st">omega)| dB$'</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Magnitude spectrum for the example frequency response.'</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.subplot(<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">3</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.semilogx(w, np.angle(H))</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.yticks([<span class="dv">0</span>, <span class="op">-</span>np.pi<span class="op">/</span><span class="dv">2</span>, <span class="op">-</span>np.pi])</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">1</span>,<span class="dv">10000</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">3.15</span>,<span class="dv">0</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$</span><span class="er">\</span><span class="st">omega$ (rad/s)'</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$ Angle X(</span><span class="er">\</span><span class="st">omega) (rad)$'</span>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Phase spectrum for the example frequency response.'</span>)</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output cell-output-display">
 <div id="fig-18-example1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="See Caption.">
 <figure class="quarto-float quarto-float-fig figure">
