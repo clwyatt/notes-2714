@@ -260,14 +260,14 @@ compute the magnitude and phase yourself.
          'FontWeight' , 'bold'      );
 ```
 
-This gives something similar to the following plot
+You can also do this in python. Either should give something similar to the following plot (this is the Python result).
 
 ```{python}
 #| label: fig-18-example1
 #| fig-cap: "Magnitude and phase spectrum for the example."
 #| fig-alt: "See Caption."
 #| warning: false
-#| echo: false
+#| echo: true
 
 import numpy as np
 import matplotlib.pyplot as plt
