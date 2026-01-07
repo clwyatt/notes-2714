@@ -367,14 +367,24 @@ window.Quarto = {
 <section id="analysis-and-synthesis-equations" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="analysis-and-synthesis-equations"><span class="header-section-number">17.1</span> Analysis and Synthesis Equations</h2>
 <p>Consider the Fourier series of <span class="math inline">\(x[n]\)</span>, a periodically extended finite-length DT signal <span class="math inline">\(\tilde{x}[n]\)</span>, e.g.</p>
-<p>TODO graphics/dt-derivation.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig17_1.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Example of a finite-length DT signal and its periodic extension.</figcaption>
+</figure>
+</div>
 <p>where <span class="math inline">\(\tilde{x}[n]\)</span> is zero outside the range <span class="math inline">\([N_1,N_2]\)</span>. Since <span class="math inline">\(x[n] = \tilde{x}[n]\)</span> over the interval <span class="math inline">\(-N_1\)</span> to <span class="math inline">\(N_2\)</span> <span class="math display">\[a_k = \frac{1}{N}\sum\limits_{n = -N_1}^{N_2} \tilde{x}[n] e^{-j\frac{2\pi}{N}kn} = \frac{1}{N}\sum\limits_{n = -\infty}^{\infty} x[n] e^{-j\frac{2\pi}{N}kn}\]</span> Define the function <span class="math inline">\(X\left(e^{j\omega}\right) = \sum\limits_{n = -\infty}^{\infty} x[n] e^{-j\omega n}\)</span>, then <span class="math display">\[a_k = \frac{1}{N} X\left(e^{jk\omega_0}\right)\]</span> are samples of <span class="math inline">\(X\left(e^{j\omega}\right)\)</span> at locations that are multiples of <span class="math inline">\(\omega_0 = \frac{2\pi}{N}\)</span>. Substituting back into the synthesis equation <span class="math display">\[\tilde{x}[n] = \sum\limits_{k = -N_1}^{N_2} a_k e^{j\frac{2\pi}{N}kn} = \sum\limits_{k = -N_1}^{N_2} \frac{1}{N} X\left(e^{jk\omega_0}\right) e^{jk\omega_0 n}\]</span> Now note that <span class="math inline">\(N = \frac{2\pi}{\omega_0}\)</span> so that <span class="math display">\[\tilde{x}[n] = \frac{1}{2\pi} \sum\limits_{k = -N_1}^{N_2} X\left(e^{jk\omega_0}\right) e^{jk\omega_0 n} \; \omega_0\]</span> Now let <span class="math inline">\(N \rightarrow \infty\)</span>.</p>
 <span class="math display">\[\begin{aligned}
   \lim_{N\rightarrow \infty} \tilde{x}[n] &amp;= \lim_{N\rightarrow \infty} \frac{1}{2\pi} \sum\limits_{k = -N_1}^{N_2} X\left(e^{jk\omega_0}\right) e^{jk\omega_0 n} \; \omega_0\\
   x[n] &amp;= \frac{1}{2\pi} \int_{2\pi} X\left(e^{j\omega}\right) e^{j\omega n} \; d\omega
 \end{aligned}\]</span>
 <p>This is shown graphically in the figure below. As <span class="math inline">\(N\)</span> approaches infinity the sampling of the unit circle becomes infinite, and the summation approaches an integral.</p>
-<p>TODO graphics/dt-fourier-limit.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig17_2.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Illustration of the limit process leading the the inverse DT Fourier Transform.</figcaption>
+</figure>
+</div>
 <p>This gives the <em>DT Fourier Transform Pair</em>. The Analysis Equation or Forward Transform is: <span class="math display">\[X\left(e^{j\omega}\right) = \sum\limits_{n = -\infty}^{\infty} x[n] e^{-j\omega n}\]</span> Note <span class="math inline">\(X\left(e^{j\omega}\right)\)</span> must be a periodic function with period <span class="math inline">\(2\pi\)</span>. The Synthesis Equation or Inverse Transform is: <span class="math display">\[x[n] = \frac{1}{2\pi} \int_{2\pi} X\left(e^{j\omega}\right) e^{j\omega n} \; d\omega\]</span> where the integral is over any <span class="math inline">\(2\pi\)</span> period of <span class="math inline">\(X\)</span>.</p>
 <div class="example">
 <div class="example-header">
@@ -405,9 +415,20 @@ window.Quarto = {
 \end{aligned}\]</span>
 <p>Using the geometric series <span class="math inline">\(\sum\limits_{n = 0}^{\infty} z^n = \frac{1}{1-z}\)</span> for <span class="math inline">\(|z| &lt; 1\)</span> gives: <span class="math display">\[X\left(e^{j\omega}\right) = \sum\limits_{n = 0}^{\infty} \left( \gamma e^{-j\omega} \right)^n = \frac{1}{1-\gamma e^{-j\omega}} = \frac{e^{j\omega}}{e^{j\omega} - \gamma}\]</span> If <span class="math inline">\(\mid\gamma e^{-j\omega}\mid &lt; 1\)</span> or equivalently <span class="math inline">\(\mid \gamma \mid &lt; 1\)</span>.</p>
 <p><span class="math display">\[\left( \gamma \right)^n\; u[n] \; \stackrel{\mathcal{F}}{\longrightarrow} \; \frac{1}{1-\gamma e^{-j\omega}}\]</span> Below is a plot of the original signal and the magnitude and phase spectrum when <span class="math inline">\(\gamma = \tfrac{1}{2}\)</span>.</p>
-<p>TODO graphics/dtft-example1-x.pdf</p>
-<p>TODO graphics/dtft-example1-Xmag.pdf</p>
-<p>TODO graphics/dtft-example1-Xarg.pdf</p>
+<div id="cell-fig-17-example1" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display">
+<div id="fig-17-example1" class="quarto-float quarto-figure quarto-figure-center anchored" alt="See Caption.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-17-example1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="17-dtft_files/figure-html/fig-17-example1-output-1.png" alt="See Caption." width="661" height="477" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-17-example1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17.1: Magnitude and phase spectrum for the example.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="example">
@@ -437,7 +458,12 @@ window.Quarto = {
 </div>
 <div class="example-container">
 <p>Let <span class="math display">\[X\left(e^{j\omega}\right) = \sum\limits_{k = -\infty}^{\infty} \delta(\omega-\omega_0 -2\pi k)\]</span> for <span class="math inline">\(-\pi &lt; \omega_0 &lt; \pi\)</span></p>
-<p>TODO graphics/dtft-periodic-ex.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig17_3.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Plot of the impulse train in the DT Fourier domain.</figcaption>
+</figure>
+</div>
 <span class="math display">\[\begin{aligned}
     x[n] &amp;= \frac{1}{2\pi} \int_{2\pi} X\left(e^{j\omega}\right) e^{j\omega n} \; d\omega\\
     &amp;= \frac{1}{2\pi} \int\limits_{-\pi}^{\pi} \delta(\omega-\omega_0)e^{j\omega n} \; d\omega\\
@@ -472,7 +498,12 @@ window.Quarto = {
   \end{array}
 \right.\]</span></p></li>
 </ul>
-<p>TODO graphics/dt=transform-property-expand.pdf)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig17_4.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Illustration of expansion of a DT signal by a factor of two via insertion of zeros.</figcaption>
+</figure>
+</div>
 <ul>
 <li><p>Frequency Differentiation Property Let <span class="math display">\[x[n] \; \stackrel{\mathcal{F}}{\longleftrightarrow} \; X\left(e^{j\omega}\right)\]</span> then <span class="math display">\[n\, x[n] \; \stackrel{\mathcal{F}}{\longleftrightarrow} \; j \frac{d}{d\omega} X\left(e^{j\omega}\right)\]</span> Example:</p>
 <span class="math display">\[\begin{aligned}
@@ -497,7 +528,12 @@ window.Quarto = {
 <h2 data-number="17.4" class="anchored" data-anchor-id="dt-fourier-transform-of-a-periodic-signal"><span class="header-section-number">17.4</span> DT Fourier Transform of a Periodic Signal</h2>
 <p>The DTFS allows us to write any periodic function with period <span class="math inline">\(N\)</span> as <span class="math display">\[x[n] = \sum\limits_{k = N_0}^{N_0 + N -1} a_k e^{j\frac{2\pi}{N}kn}\]</span> taking the DT Fourier Transform <span class="math display">\[X\left(e^{j\omega}\right) = \sum\limits_{k = N_0}^{N_0 + N -1} a_k \mathcal{F}\left\{e^{j\frac{2\pi}{N}kn}\right\}\]</span> Using the previously derived transform shows, similar to CT, the DT Fourier Transform of a periodic signal is <span class="math display">\[X\left(e^{j\omega}\right) = \sum\limits_{k = -\infty}^{\infty} 2\pi a_k \delta\left(\omega - \frac{2\pi k}{N}\right)\]</span></p>
 <p>Example <span class="math display">\[x[n] = \cos\left(\frac{2\pi}{10} n\right) = \frac{1}{2}e^{j\frac{2\pi}{10} n} + \frac{1}{2}e^{-j\frac{2\pi}{10} n}\]</span> Using the previous transform <span class="math display">\[X\left(e^{j\omega}\right) =  \sum\limits_{k = -\infty}^{\infty} \pi \delta\left(\omega - \frac{2\pi}{10} -2\pi k\right) + \pi \delta\left(\omega + \frac{2\pi}{10} -2\pi k\right)\]</span> Which looks like</p>
-<p>TODO graphics/dtft-periodic-ex2</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig17_5.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Illustration of the Fourier spectrum of a DT periodic signal.</figcaption>
+</figure>
+</div>
 
 
 </section>
