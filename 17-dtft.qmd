@@ -28,7 +28,7 @@ functions of the independent variable $\omega$.
 Consider the Fourier series of $x[n]$, a periodically extended
 finite-length DT signal $\tilde{x}[n]$, e.g.
 
-TODO graphics/dt-derivation.pdf
+![Example of a finite-length DT signal and its periodic extension.](figures/fig17_1){fig-align="center" fig-alt="See the caption."}
 
 where $\tilde{x}[n]$ is zero outside the range $[N_1,N_2]$. Since
 $x[n] = \tilde{x}[n]$ over the interval $-N_1$ to $N_2$
@@ -53,7 +53,7 @@ This is shown graphically in the figure below. As $N$
 approaches infinity the sampling of the unit circle becomes infinite,
 and the summation approaches an integral.
 
-TODO graphics/dt-fourier-limit.pdf
+![Illustration of the limit process leading the the inverse DT Fourier Transform.](figures/fig17_2){fig-align="center" fig-alt="See the caption."}
 
 This gives the *DT Fourier Transform Pair*. The Analysis Equation or
 Forward Transform is:
@@ -105,11 +105,51 @@ $$\left( \gamma \right)^n\; u[n] \; \stackrel{\mathcal{F}}{\longrightarrow} \; \
 Below is a plot of the original signal and the magnitude and phase
 spectrum when $\gamma = \tfrac{1}{2}$.
 
-TODO graphics/dtft-example1-x.pdf
+```{python}
+#| label: fig-17-example1
+#| fig-cap: "Magnitude and phase spectrum for the example."
+#| fig-alt: "See Caption."
+#| warning: false
+#| echo: false
 
-TODO graphics/dtft-example1-Xmag.pdf
+import numpy as np
+import matplotlib.pyplot as plt
 
-TODO graphics/dtft-example1-Xarg.pdf
+gamma = 0.5
+n = np.arange(-6, 7)
+x = np.where(n >= 0, gamma**n, 0)
+
+w = np.arange(-10, 10, step=0.001)
+X = 1/(1-gamma*np.exp(-1j*w))
+
+plt.subplot(3,1,1)
+plt.stem(n, x)
+plt.gca().set_aspect(2)
+plt.xticks(n)
+plt.xlim(-6,6)
+plt.xlabel('n')
+plt.ylabel('$x[n]$')
+plt.title('Plot of the signal in the example.')
+
+plt.subplot(3,1,2)
+plt.plot(w, np.abs(X))
+plt.grid()
+plt.xlim(-10,10)
+plt.xlabel('$\omega$')
+plt.ylabel('$|X(e^{j\omega})|$')
+plt.title('Magnitude spectrum for the example.')
+
+plt.subplot(3,1,3)
+plt.plot(w, np.angle(X))
+plt.grid()
+plt.xlim(-10,10)
+plt.xlabel('$\omega$')
+plt.ylabel('$ Angle X(e^{j\omega}) (rad)$')
+plt.title('Phase spectrum for the example.')
+
+plt.tight_layout()
+plt.show()
+```
 
 ::::
 :::
@@ -149,7 +189,7 @@ Let
 $$X\left(e^{j\omega}\right) = \sum\limits_{k = -\infty}^{\infty} \delta(\omega-\omega_0 -2\pi k)$$
 for $-\pi < \omega_0 < \pi$
 
-TODO graphics/dtft-periodic-ex.pdf
+![Plot of the impulse train in the DT Fourier domain.](figures/fig17_3){fig-align="center" fig-alt="See the caption."}
 
 \begin{aligned}
     x[n] &= \frac{1}{2\pi} \int_{2\pi} X\left(e^{j\omega}\right) e^{j\omega n} \; d\omega\\
@@ -244,7 +284,7 @@ $$X\left(e^{j(\omega + 2\pi k)}\right) =  X\left(e^{j\omega}\right) \;\text{for}
     \end{array}
   \right.$$
 
- TODO graphics/dt=transform-property-expand.pdf)
+![Illustration of expansion of a DT signal by a factor of two via insertion of zeros.](figures/fig17_4){fig-align="center" fig-alt="See the caption."}
 
 - Frequency Differentiation Property Let
   $$x[n] \; \stackrel{\mathcal{F}}{\longleftrightarrow} \; X\left(e^{j\omega}\right)$$
@@ -307,7 +347,7 @@ Using the previous transform
 $$X\left(e^{j\omega}\right) =  \sum\limits_{k = -\infty}^{\infty} \pi \delta\left(\omega - \frac{2\pi}{10} -2\pi k\right) + \pi \delta\left(\omega + \frac{2\pi}{10} -2\pi k\right)$$
 Which looks like
 
-TODO graphics/dtft-periodic-ex2
+![Illustration of the Fourier spectrum of a DT periodic signal.](figures/fig17_5){fig-align="center" fig-alt="See the caption."}
 
 
 
