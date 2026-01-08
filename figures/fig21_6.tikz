@@ -1,0 +1,46 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+  \tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+      minimum height=2em, minimum width=2em]
+  \begin{tikzpicture}[auto]
+    \node [input, name=input] at (-2,0) {};
+    \node [left of=input] {$x[n]$};
+    \node [shape=coordinate, name=conn0] at (0,0) {};
+    \node [sum] at (2,0) (sum1) {$\Sigma$};
+    \node [block] at (4,-1) (block1) {$D$};
+    \node [block] at (4,-3) (block2) {$D$};
+    \node [block] at (0,-1) (block3) {$D$};
+    \node [block] at (0,-3) (block4) {$D$};
+    \node [shape=coordinate, name=conn1] at (4,-2) {};
+    \node [shape=coordinate, name=conn2] at (4,-4) {};
+    \node [sum] at (2,-2) (sum2) {$\Sigma$};
+    \node [sum] at (2,-4) (sum3) {$\Sigma$};
+    \node [shape=coordinate, name=conn] at (4,0) {};
+    \node [shape=coordinate] at (5,0) (output) {};
+    \node [right of=output] {$y[n]$};
+    \node at (3,-3.7) {$-\frac{c_3}{c_1}$};
+    \node at (3,-1.7) {$-\frac{c_2}{c_1}$};
+    \node at (1,-1.7) {$\frac{d_2}{c_1}$};
+    \node at (1,-3.7) {$\frac{d_3}{c_1}$};
+    \node at (1,0.3) {$\frac{d_1}{c_1}$};
+    
+    \draw (input) -- (conn0);
+    \draw [->] (conn0) -- (sum1);
+    \draw [->] (conn0) -- (block3);
+    \draw [->] (block3) -- (block4);
+    \draw [->] (block3) |- (sum2);
+    \draw [->] (block4) |- (sum3);
+    \draw (sum1) -- (conn);
+    \draw [->] (conn) -- (output);
+    \draw [->] (conn) -- (block1);
+    \draw (block1) -- (conn1);
+    \draw [->] (conn1) -- (sum2);
+    \draw [->] (conn1) -- (block2);
+    \draw [->] (block2) |- (sum3);
+    \draw [->] (sum3) -- (sum2);
+    \draw [->] (sum2) -- (sum1);
+  \end{tikzpicture}  
+\end{document}
