@@ -62,7 +62,7 @@ $$H(j\omega) = \left\{ \begin{array}{lc}
 \end{array}
 \right.$$ with magnitude and phase plot
 
-TODO lowpass-ideal.pdf
+![Illustration of the ideal lowpass filter frequency response.](figures/fig20_1){fig-align="center" fig-alt="See the caption."}
 
 The range of frequencies below $|\omega_c|$ are called the pass-band.
 The range of frequencies above $|\omega_c|$ are called the stop-band.
@@ -75,7 +75,7 @@ $$H(j\omega) = \left\{ \begin{array}{lc}
 \end{array}
 \right.$$ with magnitude and phase plot
 
-TODO highpass-ideal.pdf
+![Illustration of the ideal highpass filter frequency response.](figures/fig20_2){fig-align="center" fig-alt="See the caption."}
 
 The range of frequencies above $|\omega_c|$ are called the pass-band.
 The range of frequencies below $|\omega_c|$ are called the stop-band.
@@ -91,7 +91,7 @@ $$H(j\omega) = \left\{ \begin{array}{lc}
 *bandwidth*. The frequencies outside this range are in the stop-band.
 The magnitude and phase plot looks like
 
-TODO bandpass-ideal.pdf
+![Illustration of the ideal bandpass filter frequency response.](figures/fig20_3){fig-align="center" fig-alt="See the caption."}
 
 Finally, notch or bandstop filters remove frequency content inside a
 band of frequencies (the stop band) defined by the center frequency
@@ -103,7 +103,7 @@ $$H(j\omega) = \left\{ \begin{array}{lc}
 \end{array}
 \right.$$ with magnitude and phase plot
 
-TODO bandstop-ideal.pdf
+![Illustration of the ideal bandstop filter frequency response.](figures/fig20_4){fig-align="center" fig-alt="See the caption."}
 
 Often the bandstop filter has a very narrow bandwidth, thus it
 \"notches\" out a frequency component of the input signal. A related filter with many notches at multiple frequencies (often harmonics) is called a *comb* filter.
@@ -114,7 +114,7 @@ Ideal CT filters cannot be implemented in practice because they are
 non-causal and thus physically impossible. To see why consider the
 impulse response of the ideal low-pass filter:
 
-$$h(t) = \mathcal{F}^{-1} \left\{ H(j\omega) \right\} = \frac{1}{2\pi} \int\limits_{\-\omega_c}^{\omega_c} e^{j\omega t} \; d\omega = \frac{1}{\pi t}\sin(\omega_c t)$$
+$$h(t) = \mathcal{F}^{-1} \left\{ H(j\omega) \right\} = \frac{1}{2\pi} \int\limits_{-\omega_c}^{\omega_c} e^{j\omega t} \; d\omega = \frac{1}{\pi t}\sin(\omega_c t)$$
 which has nonzero values for $t < 0$, and thus corresponds to a
 non-casual system. Ideal filters also have zero phase which cannot be
 achieved in practice.
@@ -165,31 +165,24 @@ equations, block diagrams, and as frequency responses. We now see how
 they can describe simple filters and serve as building blocks for
 higher-order filters.
 
-::::::: example
+:::{.example}
+::::{.example-header}
+Example of a first-order lowpass filter
+::::
+::::{.example-container}
+
 Consider a low-pass filter with the desired characteristics of having a
 pass-band of -3dB at 1kHz, and a stop-band of -20dB at 10kHz. Suppose
 this is implemented as a first-order \"Butterworth\" filter, which can
 be realized by an RC circuit.
 
-:::: center
-::: circuitikz
-(5,2.5) node\[op amp, yscale=-1\] (opamp1) (0,3) to\[R,l=$R$,o-\]
-(opamp1.+) (3,0) to\[C, l=$C$\] (3,3) (0,0) to\[short,o-o\] (7,0) (0,3)
-to\[open, v=$x(t)$\] (0,0) (7.5,2.5) to\[open, v=$y(t)$\] (7.5,0)
-(opamp1.-) \|- (5,1) -\| (opamp1.out) (opamp1.out) to\[short,-o\]
-(7,2.5);
-:::
-::::
+![First order lowpass filter circuit.](figures/fig20_5){fig-align="center" fig-alt="See the caption."}
 
 where $R=99.2k\Omega$ and $C=1.6$nF. This is equivalent to the
 differential equation $$\frac{dy}{dt}(t) + a y(t) = a x(t)$$ where
 $a=\frac{1}{RC}$, or the block diagram
 
-::: center
-= \[draw, fill=gray!20, rectangle, minimum height=2em, minimum
-width=2em\] = \[draw, fill=gray!20, circle, node distance=1cm\] =
-\[coordinate\] = \[coordinate\] = \[pin edge=to-,thin,black\]
-:::
+![First order lowpass filter as a block diagram.](figures/fig20_6){fig-align="center" fig-alt="See the caption."}
 
 This system has the impulse response $$h(t) = ae^{-at}u(t)$$ and the
 frequency response $$H(j\omega) = \frac{a}{j\omega + a}$$ If we plot the
@@ -197,30 +190,63 @@ frequency response as a Bode plot, we see the DC gain is 0dB, and the
 response passes through -3dB and -20dB at the expected frequencies
 $2\pi*1000 \approx 6.3\times 10^3$ rad/s and
 $2\pi*10000 \approx 6.3\times 10^4$ rad/s. Thus the transition bandwidth
-is 9kHz.
+is 9kHz, assuming a stop-band gain of -20 dB.
 
-::: center
-![image](graphics/lecture24_1.png)
+```{python}
+#| label: fig-20-example1
+#| fig-cap: "Magnitude and phase spectrum for the first-order lowpass filter."
+#| fig-alt: "See Caption."
+#| warning: false
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+w = np.arange(1, 10**6, step=100)
+
+R = 99.2e3;
+C = 1.6e-9;
+a = 1/(R*C);
+
+H = a/(1j*w + a)
+
+plt.subplot(3,1,2)
+plt.semilogx(w, 20*np.log10(np.abs(H)))
+plt.yticks([0, -10, -20, -30, -40])
+plt.xlim(1,10**6)
+plt.ylim(-40,5)
+plt.grid()
+plt.xlabel('$\omega$ (rad/s)')
+plt.ylabel('$|X(\omega)| dB$')
+plt.title('Magnitude spectrum for the filter frequency response.')
+
+plt.subplot(3,1,3)
+plt.semilogx(w, np.angle(H))
+plt.yticks([0, -np.pi/4, -np.pi/2])
+plt.xlim(1,10**6)
+plt.ylim(-1.6,0)
+plt.grid()
+plt.xlabel('$\omega$ (rad/s)')
+plt.ylabel('$ Angle X(\omega) (rad)$')
+plt.title('Phase spectrum for the filter frequency response.')
+
+plt.tight_layout()
+plt.show()
+```
+::::
 :::
-:::::::
 
-::::::: example
+:::{.example}
+::::{.example-header}
+Example of a second-order lowpass filter
+::::
+::::{.example-container}
 Suppose we wish to sharpen the transition band for the previous example
 so that has a pass-band of -3dB at 1kHz, and a narrower stop-band of
 -20dB at 5kHz. This requires a second-order filter, and can be realized
 by a circuit called the Sallen-Key.
 
-:::: center
-::: circuitikz
-(7,3.5) node\[op amp\] (opamp1) (0,4) to\[R,l=$R_1$,o-\] (2,4) (2,4)
-to\[short\] (2,5) (2,5) to\[C,l=$C_1$\] (8.2,5) (8.2,5) to\[short\]
-(opamp1.out) (2,4) to\[R, l=$R_2$\] (4,4) (4,4) to\[C, l=$C_2$\] (4,0)
-(0,0) to\[short,o-o\] (12,0) (4,4) to\[short\] (opamp1.-) (opamp1.+)
-to\[short\] (5.8,1.75) (5.8,1.75) to\[short\] (8.2,1.75) (opamp1.out)
-to\[short\] (8.2,1.75) (opamp1.out) to\[short, -o\] (12,3.5) (0,4)
-to\[open, v=$x(t)$\] (0,0) (12,3.5) to\[open, v=$y(t)$\] (12,0);
-:::
-::::
+![Second order lowpass filter circuit.](figures/fig20_7){fig-align="center" fig-alt="See the caption."}
 
 where $R_1=74.2k\Omega$, $R_2=91.3M\Omega$, $C_1=1.6$nF and $C_2=160$pF.
 This is equivalent to the differential equation
@@ -229,11 +255,7 @@ where
 $$\alpha = \frac{R_1+R_2}{2R_1 R_2 C_1} \;\text{ and }\; \omega_0^2 = \frac{1}{R_1 R_2 C_1 C_2}$$
 or the block diagram
 
-::: center
-= \[draw, fill=gray!20, rectangle, minimum height=2em, minimum
-width=2em\] = \[draw, fill=gray!20, circle, node distance=1cm\] =
-\[coordinate\] = \[coordinate\] = \[pin edge=to-,thin,black\]
-:::
+![Second order lowpass filter as a block diagram.](figures/fig20_8){fig-align="center" fig-alt="See the caption."}
 
 This system has the frequency response
 $$H(j\omega) = \frac{\omega_0^2}{\omega_0^2-\omega^2 + j2\alpha\omega}$$
@@ -246,29 +268,71 @@ $2\pi*5000 \approx 3.14\times 10^4$ rad/s the response passes through
 about -28dB. Thus this circuit has a transition bandwidth even narrower
 than that designed (it is slightly better).
 
-::: center
-![image](graphics/lecture24_2.png)
-:::
+```{python}
+#| label: fig-20-example2
+#| fig-cap: "Magnitude and phase spectrum for the second-order lowpass filter."
+#| fig-alt: "See Caption."
+#| warning: false
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+w = np.arange(1, 10**6, step=100)
+
+R1 = 74.2e3
+R2 = 1.33e6
+C1 = 1.6e-9
+C2 = 160e-12
+
+a = (R1+R2)/(R1*R2*C1)
+b = 1/(R1*R2*C1*C2)
+
+H = b/((1j*w)**2 + a*1j*w + b)
+
+plt.subplot(2,1,1)
+plt.semilogx(w, 20*np.log10(np.abs(H)))
+plt.yticks([0, -20, -40, -60, -80])
+plt.xlim(1,10**6)
+plt.ylim(-90,5)
+plt.grid()
+plt.xlabel('$\omega$ (rad/s)')
+plt.ylabel('$|X(\omega)| dB$')
+plt.title('Magnitude spectrum for the filter frequency response.')
+
+plt.subplot(2,1,2)
+plt.semilogx(w, np.angle(H))
+plt.yticks([0, -np.pi/2, -np.pi])
+plt.xlim(1,10**6)
+plt.ylim(-3.2,0)
+plt.grid()
+plt.xlabel('$\omega$ (rad/s)')
+plt.ylabel('$ Angle X(\omega) (rad)$')
+plt.title('Phase spectrum for the filter frequency response.')
+
+plt.tight_layout()
+plt.show()
+```
 
 Note the price we pay for this decreased transition bandwidth is a
-larger phase shift (and two more components).
-:::::::
+larger phase shift (and two more circuit components).
+::::
+:::
 
 ## Higher-Order Filters
 
 We can continue to increase the steepness of the passband to stop-band
-transitions by increasing the order of the filter. This is typically
+transitions by increasing the order of the filter. This is often
 accomplished using a serial connection of systems, called *stages* in
 filter parlance, where each stage is a first-order or second-order
-system.
+system, although there are other approaches.
 
 Recall in a series connection of systems the overall impulse response is
 the convolution of the individual responses. If we assume each stage is
 stable then, by the convolution property, the overall frequency response
 is given by the product of their individual frequency responses.
 
-::: center
-:::
+![Higher order filter as a series connection of filters shown as a block diagram.](figures/fig20_9){fig-align="center" fig-alt="See the caption."}
 
 $$H(j\omega) = \frac{Y(j\omega)}{X(j\omega)} = H_1(j\omega)\cdot H_2(j\omega)$$
 
@@ -280,80 +344,3 @@ stages. Note this requires in the circuit that the stages be impedance
 isolated, thus the use of the opamps at the end of CT filters. Again the
 price we pay for increasing the order of the filter and decreasing the
 transition frequency is increased phase shift in the signal.
-
-Matlab code for plotting the first-order example Bode plot:
-
-    R = 99.2e3;
-    C = 1.6e-9;
-    a = 1/(R*C);
-
-    H = tf([a],[1,a]);
-    [mag,ph,w] = bode(H);
-
-    % Create a nice bode plot 
-    hFig = figure();
-    hold on;
-
-    subplot(2,1,1);
-    hm = semilogx(w,20*log10(squeeze(mag)));
-    grid on;
-    hTitle  = title ('Frequency Response - first order');
-    hYLabel1 = ylabel('Magnitude (dB)');
-    set(gca, 'FontSize', 14, 'YTick', -60:10:20, ...
-        'Box', 'off', 'LineWidth', 2);
-
-    subplot(2,1,2);
-    hp = semilogx(w,squeeze(ph*(pi/180)));
-    grid on;
-    hYLabel2 = ylabel('Phase (radians)');
-    hXLabel = xlabel('Frequency (rad/s)');
-    set(gca, 'FontSize', 14, 'Box', 'off', 'LineWidth', 2);
-
-    set(hm, 'linewidth', 2);
-    set(hp, 'linewidth', 2);
-    set([hXLabel, hYLabel1, hYLabel2]  , ...
-         'FontSize'   , 14          );
-    set( hTitle                    , ...
-         'FontSize'   , 14          , ...
-         'FontWeight' , 'bold'      );
-
-Matlab code for plotting the second-order example Bode plot:
-
-    R1 = 74.2e3;
-    R2 = 1.33e6;
-    C1 = 1.6e-9;
-    C2 = 160e-12;
-
-    a = (R1+R2)/(R1*R2*C1);
-    b = 1/(R1*R2*C1*C2);
-
-    H = tf([b],[1,a,b]);
-    [mag,ph,w] = bode(H);
-
-    % Create a nice bode plot 
-    hFig = figure();
-    hold on;
-
-    subplot(2,1,1);
-    hm = semilogx(w,20*log10(squeeze(mag)));
-    grid on;
-    hTitle  = title ('Frequency Response - second order');
-    hYLabel1 = ylabel('Magnitude (dB)');
-    set(gca, 'FontSize', 14, 'YTick', -90:10:20, ...
-        'Box', 'off', 'LineWidth', 2);
-
-    subplot(2,1,2);
-    hp = semilogx(w,squeeze(ph*(pi/180)));
-    grid on;
-    hYLabel2 = ylabel('Phase (radians)');
-    hXLabel = xlabel('Frequency (rad/s)');
-    set(gca, 'FontSize', 14, 'Box', 'off', 'LineWidth', 2);
-
-    set(hm, 'linewidth', 2);
-    set(hp, 'linewidth', 2);
-
-    set([hXLabel, hYLabel1, hYLabel2]  , ...
-         'FontSize'   , 14          );
-    set( hTitle                    , ...
-         'FontSize'   , 14          , ...
-         'FontWeight' , 'bold'      );

@@ -1,0 +1,39 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+    \tikzstyle{block} = [draw, fill=gray!20, rectangle, 
+      minimum height=2em, minimum width=2em]
+    \tikzstyle{sum} = [draw, fill=gray!20, circle, node distance=1cm]
+    \tikzstyle{input} = [coordinate]
+    \tikzstyle{output} = [coordinate]
+    \tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
+    
+    \begin{tikzpicture}[auto]
+      \node [input, name=input] at (0,0) {};
+      \node [sum, right of=input,node distance=2cm] (sum) {$\Sigma$};
+      \node [sum, below of=sum,node distance=2cm] (sum2) {$\Sigma$};
+      \node[block] at (4,-1) (block3) {$\int$};
+      \node[block] at (4,-3) (block4) {$\int$};
+      
+      \node [shape=coordinate, name=conn1] at (4,0) {};
+      \node [shape=coordinate, name=conn2] at (4,-2) {};
+      \node [shape=coordinate, name=conn3] at (4,-4) {};
+      \node [shape=coordinate, name=conn4] at (2,-4) {};
+      \node [output, right of=conn3] (output) {};
+
+      \draw [->] (input) -- node {$\omega_0^2$} (sum);
+      \draw (sum) -- (conn1);
+      \draw [->] (conn1) -- (block3);
+      \draw (block3) -- (conn2);
+      \draw [->] (conn2) -- (block4);
+      \draw [->] (conn2) -- node {$2\alpha$} (sum2);
+      \draw (block4) -- (conn3);
+      \draw (conn3) -- node {$\omega_0^2$} (conn4);
+      \draw [->] (conn3) -| (sum2);
+      \draw [->] (sum2) -- node[pos=0.95] {$-$} (sum);
+      \draw [->] (conn3) -- node[pos=1] {$y(t)$} (output);
+      \node at (-0.5,0) {$x(t)$};
+    \end{tikzpicture}
+\end{document}
