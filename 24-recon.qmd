@@ -28,7 +28,7 @@ convolution of the weighted impulse train with a pulse
 $p(t) = u(t) - u(t-T)$ whose width is the sample time, called the
 interpolation function. $$y(t) = p(t)*x_p(t)$$ This is illustrated below
 
-TODO zero-order-hold-interp
+![Illustration of a sample-and-hold operation, converting a DT signal to a CT signal.](figures/fig24_1){fig-align="center" fig-alt="See the caption."}
 
 The zero-order hold is not a very accurate representation of a
 band-limited signal. So, what interpolation function is optimal?
@@ -44,7 +44,7 @@ we will preserve the central portion of the Fourier spectrum that
 corresponds to the original signal, and chop off the images. For this
 reason the reconstruction filter is also called an anti-imaging filter.
 
-TODO bandlimitedreconstructed1.pdf
+![Illustration of reconstruction in the frequency domain as low-pass filtering of the weighted impulse train.](figures/fig24_2){fig-align="center" fig-alt="See the caption."}
 
 Recall filtering is multiplication the frequency domain and convolution
 in the time domain, so the optimal interpolation function corresponds to
@@ -75,7 +75,7 @@ CMOS 3.3v logic).
 If this port is connected to a resistor network consisting of resistor
 values $R$ and $2R$ as follows
 
-TODO resistor-ladder.pdf
+![Resistor ladder circuit..](figures/fig24_3){fig-align="center" fig-alt="See the caption."}
 
 then depending on the bit pattern at the output port $V$, the output of
 the buffer op-amp will be $$V_o = V_{ref}\frac{V}{2^N}$$
@@ -89,7 +89,7 @@ The zero-order hold is followed by the reconstruction (anti-imaging)
 filter which low-pass filters the output and smooths-out the jumps from
 value to value.
 
-TODO sinc-interp.pdf
+![Illustration of the reconstruction filter as smoothing the output of the sample-and-hold output.](figures/fig24_4){fig-align="center" fig-alt="See the caption."}
 
 In general the reconstruction filter is of a similar, or identical form
 to the anti-aliasing filter.
