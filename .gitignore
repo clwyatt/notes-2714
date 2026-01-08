@@ -17,3 +17,5 @@ figures/*.svg
 
 /.quarto/
 /*_files/
+
+/.ipynb_checkpoints/
