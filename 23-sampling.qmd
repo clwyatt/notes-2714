@@ -48,9 +48,7 @@ Since $y(t)$ is non-zero only at the locations of the delta functions,
 we can treat $y(nT_0) = x_2(nT_0)$ as the DT signal $x_2[n]$. This is
 illustrated below
 
-
-TODO samplinf_timedomain.pdf
-
+![Illustration of sampling a CT signal by multiplication with the impulse train.](figures/fig23_1){fig-align="center" fig-alt="See the caption."}
 
 Equivalently in the frequency domain the modulation theorem gives
 $$y(t) = x_1(t) \cdot x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{2\pi} X_1(j\omega) * X_2(j\omega) = Y(j\omega)$$
@@ -73,25 +71,19 @@ $x_2(t)  \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(j\omega)$ is
 outside the band $-2\pi B < \omega < 2\pi B$. This is shown
 schematically as the magnitude spectrum below:
 
-
-TODO bandlimited.pdf
-
+![A bandlimited signal to be sampled, shown in the frequency domain.](figures/fig23_2){fig-align="center" fig-alt="See the caption."}
 
 After sampling ($y(t) = x_1(t)\cdot x_2(t)$) and assuming
 $\omega_0 > 4\pi B$ the spectrum of the sampled signal is:
 
-
-TODO bandlimitedsampled1.pdf
-
+![A bandlimited signal sampled above the Nyquist rate, shown in the frequency domain.](figures/fig23_3){fig-align="center" fig-alt="See the caption."}
 
 If instead $\omega_0 < 4\pi B$ the images overlap and we get *aliasing*,
 where high frequency content gets added to the lower frequency content.
 This is shown below with the lighter lines showing the images and the
 heavier line showing their sum.
 
-
-TODO bandlimitedsampled2.pdf
-
+![A bandlimited signal sampled below the Nyquest rate, shown in the frequency domain.](figures/fig23_4){fig-align="center" fig-alt="See the caption."}
 
 As we will see next time, to reconstruct the signal $x_2[n]$ back to
 $x_2(t)$ we need to ensure that $\omega_0 > 4\pi B$ rad/s or
@@ -99,7 +91,11 @@ equivalently $f_0 > 2 B$ Hz, which requires the sample time
 $T_0 < \tfrac{1}{2B}$ seconds. This is called the *Nyquist* sample
 rate/frequency.
 
-::: example
+:::{.example}
+::::{.example-header}
+Example
+::::
+::::{.example-container}
 Consider a signal representing a musical chord (an additive mixture of
 three notes)
 $$x(t) = \sin(2\pi\cdot (261) t) + \sin(2\pi\cdot (329) t) + \sin(2\pi\cdot (392) t)$$
@@ -113,6 +109,7 @@ reconstructed, the signal now has an additional 3 tones mixed in at
 audible frequencies, but do not correspond to (Western) musical notes,
 i.e.
 $$x(t) = \sin(2\pi\cdot (108) t) + \sin(2\pi\cdot (171) t) + \sin(2\pi\cdot (239) t) + \sin(2\pi\cdot (261) t) + \sin(2\pi\cdot (329) t) + \sin(2\pi\cdot (392) t)$$
+::::
 :::
 
 ## Practical Sampling
@@ -129,7 +126,7 @@ approximately band-limited before sampling.
 Sampling is typically accomplished using a circuit called a
 *sample-and-hold*, schematically illustrated below.
 
-TODO smaple_hold.pdf
+![Block diagram of a sample and hold circuit, part of an analog-to-digital converter.](figures/fig23_5){fig-align="center" fig-alt="See the caption."}
 
 The CT signal is applied to the input of the first op-amp buffer. The
 output of this first buffer is switched into a charging capacitor for
@@ -147,7 +144,7 @@ To quantize the signal after the sample-and-hold into $N$ bits, several
 strategies can be used. One popular approach is called *successive
 approximation*, illustrated below
 
-TODO sar.pdf
+![Block Diagram of a quantizer using a counter to perform successive approximation.](figures/fig23_6){fig-align="center" fig-alt="See the caption."}
 
 The current quantized digital value is held in a counter connected to a
 clock signal. The direction of the counter (up or down) is controlled by
@@ -176,7 +173,7 @@ adjusted as needed. Alternatively the gain that defines the stop-band
 can be relaxed. This gives a desired frequency response magnitude that
 looks like the following.
 
-TODO antialias.pdf
+![Illustration of the desired frequency response of an anti-aliasing filter.](figures/fig23_7){fig-align="center" fig-alt="See the caption."}
 
 The bold dotted line shows the maximum frequency response of the first
 image.
