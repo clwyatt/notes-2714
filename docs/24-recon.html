@@ -368,10 +368,20 @@ window.Quarto = {
 <h2 data-number="24.1" class="anchored" data-anchor-id="reconstruction-theory"><span class="header-section-number">24.1</span> Reconstruction Theory</h2>
 <p>Given a DT signal <span class="math inline">\(x[n]\)</span> and a sample spacing <span class="math inline">\(T\)</span>, we can define a corresponding CT signal as <span class="math display">\[x_p(t) = \sum\limits_{n = -\infty}^{\infty} x[n] \, \delta(t-nT)\]</span> the impulse train with each impulse weighted by the DT signal.</p>
 <p>CT signal reconstruction can be viewed from two different (but equivalent) perspectives. In the time domain perspective, the CT signal <span class="math inline">\(x(t)\)</span> corresponding to a DT signal <span class="math inline">\(x[n]\)</span> can be viewed as <em>interpolation</em>, where the values of the CT signal are equal to the DT signal at intervals of the sample time, i.e.&nbsp;<span class="math inline">\(x(nT) = x[n]\)</span>, and in between the value of <span class="math inline">\(x(t)\)</span> is interpolated. If the interpolation is of zero-order, the value at <span class="math inline">\(x(nT)\)</span> is held constant until <span class="math inline">\(x(nT+T)\)</span>. This is called a <em>zero-order hold</em>, and can mathematically modeled as convolution of the weighted impulse train with a pulse <span class="math inline">\(p(t) = u(t) - u(t-T)\)</span> whose width is the sample time, called the interpolation function. <span class="math display">\[y(t) = p(t)*x_p(t)\]</span> This is illustrated below</p>
-<p>TODO zero-order-hold-interp</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig24_1.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Illustration of a sample-and-hold operation, converting a DT signal to a CT signal.</figcaption>
+</figure>
+</div>
 <p>The zero-order hold is not a very accurate representation of a band-limited signal. So, what interpolation function is optimal?</p>
 <p>To answer this question we can turn to the alternative perspective on reconstruction, that of the frequency domain. Recall the sampled signal <span class="math inline">\(x(nT)\)</span> in the frequency domain can be viewed as the summation of the Fourier transform of <span class="math inline">\(x(t)\)</span>, <span class="math inline">\(X(j\omega)\)</span>, and periodic replicas or images centered at multiples of the sampling frequency. If we assume the original signal was band-limited and sampled appropriately (using the Nyquist criteria), then if we ideal low-pass filter the sampled signal we will preserve the central portion of the Fourier spectrum that corresponds to the original signal, and chop off the images. For this reason the reconstruction filter is also called an anti-imaging filter.</p>
-<p>TODO bandlimitedreconstructed1.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig24_2.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Illustration of reconstruction in the frequency domain as low-pass filtering of the weighted impulse train.</figcaption>
+</figure>
+</div>
 <p>Recall filtering is multiplication the frequency domain and convolution in the time domain, so the optimal interpolation function corresponds to the impulse response of the ideal low-pass filter with cutoff frequency <span class="math inline">\(\omega_c = 2\pi B\)</span>, a sinc function.</p>
 <p><span class="math display">\[h(t) = \mathcal{F}^{-1} \left\{ H(j\omega) \right\} = \frac{1}{2\pi} \int\limits_{-\omega_c}^{\omega_c} e^{j\omega t} \; d\omega = \frac{1}{\pi t}\sin(\omega_c t)\]</span></p>
 <p>Thus the ideal ideal interpolation function is the sinc function, and reconstruction is low-pass filtering of the weighted impulse train <span class="math inline">\(x_p(t)\)</span> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
@@ -383,14 +393,24 @@ window.Quarto = {
 <h3 data-number="24.2.1" class="anchored" data-anchor-id="zero-order-hold-using-an-r-2r-ladder"><span class="header-section-number">24.2.1</span> Zero-order hold using an R-2R ladder</h3>
 <p>A zero-order hold DAC can be implemented by a circuit called a resistor ladder. Consider a digital output with <span class="math inline">\(N\)</span> bits and a reference voltage <span class="math inline">\(V_{ref}\)</span> (for example an 8-bit output port on a micro-controller using CMOS 3.3v logic).</p>
 <p>If this port is connected to a resistor network consisting of resistor values <span class="math inline">\(R\)</span> and <span class="math inline">\(2R\)</span> as follows</p>
-<p>TODO resistor-ladder.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig24_3.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Resistor ladder circuit..</figcaption>
+</figure>
+</div>
 <p>then depending on the bit pattern at the output port <span class="math inline">\(V\)</span>, the output of the buffer op-amp will be <span class="math display">\[V_o = V_{ref}\frac{V}{2^N}\]</span></p>
 <p>If the port value is changed every sample time <span class="math inline">\(T\)</span>, then the resister ladder and buffer op-amp combine to implement a zero-order hold circuit.</p>
 </section>
 <section id="reconstructionanti-imaging-filter" class="level3" data-number="24.2.2">
 <h3 data-number="24.2.2" class="anchored" data-anchor-id="reconstructionanti-imaging-filter"><span class="header-section-number">24.2.2</span> Reconstruction(anti-imaging) filter</h3>
 <p>The zero-order hold is followed by the reconstruction (anti-imaging) filter which low-pass filters the output and smooths-out the jumps from value to value.</p>
-<p>TODO sinc-interp.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig24_4.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Illustration of the reconstruction filter as smoothing the output of the sample-and-hold output.</figcaption>
+</figure>
+</div>
 <p>In general the reconstruction filter is of a similar, or identical form to the anti-aliasing filter.</p>
 
 

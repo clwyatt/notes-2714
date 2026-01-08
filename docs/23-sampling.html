@@ -375,7 +375,12 @@ X_1(j\omega) &amp;= \int\limits_{-\infty}^{\infty} \sum\limits_{n=-\infty}^{\inf
 &amp;= \frac{1}{T_0} \sum\limits_{n=-\infty}^{\infty} \int\limits_{-\infty}^{\infty} e^{j\tfrac{2\pi}{T_0}nt}e^{j\omega t}\; dt\\
 &amp;= \frac{2\pi}{T_0} \sum\limits_{n=-\infty}^{\infty} \delta(\omega - \omega_0 n)
 \end{aligned}\]</span> also an impulse train in the frequency domain. Now suppose we have another signal <span class="math inline">\(x_2(t)\)</span> and we multiply <span class="math inline">\(x_1(t)\)</span> and <span class="math inline">\(x_2(t)\)</span> to get a signal <span class="math inline">\(y(t)\)</span>. <span class="math display">\[y(t) = x_1(t) \cdot x_2(t) = \sum\limits_{n=-\infty}^{\infty} x_2(t) \delta(t-nT_0) = \sum\limits_{n=-\infty}^{\infty} x_2(nT_0) \delta(t-nT_0)\]</span> Since <span class="math inline">\(y(t)\)</span> is non-zero only at the locations of the delta functions, we can treat <span class="math inline">\(y(nT_0) = x_2(nT_0)\)</span> as the DT signal <span class="math inline">\(x_2[n]\)</span>. This is illustrated below</p>
-<p>TODO samplinf_timedomain.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig23_1.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Illustration of sampling a CT signal by multiplication with the impulse train.</figcaption>
+</figure>
+</div>
 <p>Equivalently in the frequency domain the modulation theorem gives <span class="math display">\[y(t) = x_1(t) \cdot x_2(t) \stackrel{\mathcal{F}}{\longleftrightarrow} \frac{1}{2\pi} X_1(j\omega) * X_2(j\omega) = Y(j\omega)\]</span> Lets do the convolution <span class="math display">\[\begin{aligned}
   Y(j\omega) &amp;= \frac{1}{2\pi} X_1(j\omega) * X_2(j\omega)\\
   &amp;=  \frac{1}{2\pi} \left[  \frac{2\pi}{T_0} \sum\limits_{n=-\infty}^{\infty} \delta(\omega - \omega_0 n) \right] * X_2(j\omega)\\
@@ -383,14 +388,34 @@ X_1(j\omega) &amp;= \int\limits_{-\infty}^{\infty} \sum\limits_{n=-\infty}^{\inf
   &amp;= \frac{1}{T_0} \sum\limits_{n=-\infty}^{\infty} X_2(j(\omega - n\omega_0))
 \end{aligned}\]</span> Thus the sampling process in the frequency domain causes periodic replication of the Fourier transform of the signal being sampled, <span class="math inline">\(x_2(t)\)</span>, which are sometimes called <em>images</em>. This signal <span class="math inline">\(Y(j\omega)\)</span> is periodic in <span class="math inline">\(\omega_0 = \tfrac{2\pi}{T_0}\)</span> <em>radians per second</em> and corresponds to the DT Fourier Transform of <span class="math inline">\(x_2[n]  \stackrel{\mathcal{F}}{\longleftrightarrow} X_2\left(e^{j\omega}\right)\)</span>, which is periodic in <span class="math inline">\(2\pi\)</span> <em>radians per sample time</em>.</p>
 <p>To help us visualize this, suppose that the signal <span class="math inline">\(x_2(t)  \stackrel{\mathcal{F}}{\longleftrightarrow} X_2(j\omega)\)</span> is <em>band-limited</em> to <span class="math inline">\(B\)</span> Hz, that is <span class="math inline">\(X_2(j\omega) = 0\)</span> for all frequencies outside the band <span class="math inline">\(-2\pi B &lt; \omega &lt; 2\pi B\)</span>. This is shown schematically as the magnitude spectrum below:</p>
-<p>TODO bandlimited.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig23_2.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>A bandlimited signal to be sampled, shown in the frequency domain.</figcaption>
+</figure>
+</div>
 <p>After sampling (<span class="math inline">\(y(t) = x_1(t)\cdot x_2(t)\)</span>) and assuming <span class="math inline">\(\omega_0 &gt; 4\pi B\)</span> the spectrum of the sampled signal is:</p>
-<p>TODO bandlimitedsampled1.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig23_3.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>A bandlimited signal sampled above the Nyquist rate, shown in the frequency domain.</figcaption>
+</figure>
+</div>
 <p>If instead <span class="math inline">\(\omega_0 &lt; 4\pi B\)</span> the images overlap and we get <em>aliasing</em>, where high frequency content gets added to the lower frequency content. This is shown below with the lighter lines showing the images and the heavier line showing their sum.</p>
-<p>TODO bandlimitedsampled2.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig23_4.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>A bandlimited signal sampled below the Nyquest rate, shown in the frequency domain.</figcaption>
+</figure>
+</div>
 <p>As we will see next time, to reconstruct the signal <span class="math inline">\(x_2[n]\)</span> back to <span class="math inline">\(x_2(t)\)</span> we need to ensure that <span class="math inline">\(\omega_0 &gt; 4\pi B\)</span> rad/s or equivalently <span class="math inline">\(f_0 &gt; 2 B\)</span> Hz, which requires the sample time <span class="math inline">\(T_0 &lt; \tfrac{1}{2B}\)</span> seconds. This is called the <em>Nyquist</em> sample rate/frequency.</p>
 <div class="example">
+<div class="example-header">
+<p>Example</p>
+</div>
+<div class="example-container">
 <p>Consider a signal representing a musical chord (an additive mixture of three notes) <span class="math display">\[x(t) = \sin(2\pi\cdot (261) t) + \sin(2\pi\cdot (329) t) + \sin(2\pi\cdot (392) t)\]</span> Suppose it is sampled at a frequency of <span class="math inline">\(f_0 = 1\)</span> kHz. Then there is no aliasing into the frequency range <span class="math inline">\((0, 500)\)</span> Hz. After reconstruction <span class="math inline">\(x(t)\)</span> would be unmodified. Suppose instead it is sampled at <span class="math inline">\(f_0 = 500\)</span> Hz. Then the signal component at <span class="math inline">\(261\)</span> Hz aliases to <span class="math inline">\(239 = 500-261\)</span> Hz, the signal component at <span class="math inline">\(329\)</span> Hz aliases to <span class="math inline">\(171 = 500-329\)</span> Hz, and the signal component at <span class="math inline">\(392\)</span> Hz aliases to <span class="math inline">\(108 = 500-392\)</span> Hz. When reconstructed, the signal now has an additional 3 tones mixed in at audible frequencies, but do not correspond to (Western) musical notes, i.e. <span class="math display">\[x(t) = \sin(2\pi\cdot (108) t) + \sin(2\pi\cdot (171) t) + \sin(2\pi\cdot (239) t) + \sin(2\pi\cdot (261) t) + \sin(2\pi\cdot (329) t) + \sin(2\pi\cdot (392) t)\]</span></p>
+</div>
 </div>
 </section>
 <section id="practical-sampling" class="level2" data-number="23.2">
@@ -399,19 +424,34 @@ X_1(j\omega) &amp;= \int\limits_{-\infty}^{\infty} \sum\limits_{n=-\infty}^{\inf
 <section id="sample-and-hold" class="level3" data-number="23.2.1">
 <h3 data-number="23.2.1" class="anchored" data-anchor-id="sample-and-hold"><span class="header-section-number">23.2.1</span> Sample and Hold</h3>
 <p>Sampling is typically accomplished using a circuit called a <em>sample-and-hold</em>, schematically illustrated below.</p>
-<p>TODO smaple_hold.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig23_5.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Block diagram of a sample and hold circuit, part of an analog-to-digital converter.</figcaption>
+</figure>
+</div>
 <p>The CT signal is applied to the input of the first op-amp buffer. The output of this first buffer is switched into a charging capacitor for the <em>sample time</em>, then disconnected (high impedance) at regular intervals for the <em>hold time</em>, typically using a MOSFET switch. The effect is the capacitor is charged to the current value of <span class="math inline">\(x(t)\)</span> during the sample-time, which it maintains during the hold-time, the value of which is bufered by the second op-amp. This can be mathematically modeled as a pulse train with a width equal to the sample time rather than as an impulse train.</p>
 </section>
 <section id="quantization" class="level3" data-number="23.2.2">
 <h3 data-number="23.2.2" class="anchored" data-anchor-id="quantization"><span class="header-section-number">23.2.2</span> Quantization</h3>
 <p>To quantize the signal after the sample-and-hold into <span class="math inline">\(N\)</span> bits, several strategies can be used. One popular approach is called <em>successive approximation</em>, illustrated below</p>
-<p>TODO sar.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig23_6.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Block Diagram of a quantizer using a counter to perform successive approximation.</figcaption>
+</figure>
+</div>
 <p>The current quantized digital value is held in a counter connected to a clock signal. The direction of the counter (up or down) is controlled by a comparator connected to the output of the sample and hold and the current counter output and a digital-to-analog converter (DAC, usually a resistor ladder) that converts it back to an analog value. If the DAC value is less than the held value, the counter counts up, if the DAC value is greater than the held value the counter counts down. In this fashion the counter output tracks the held value after a settling time required for convergence, at which point the counter value is clocked into a register for storage.</p>
 </section>
 <section id="anti-aliasing" class="level3" data-number="23.2.3">
 <h3 data-number="23.2.3" class="anchored" data-anchor-id="anti-aliasing"><span class="header-section-number">23.2.3</span> Anti-aliasing</h3>
 <p>Before the sample and hold we need to include a filter to limit the bandwidth. This can be accomplished by a CT low-pass filter called an <em>anti-aliasing</em> filter whose cutoff frequency in the ideal case is <span class="math inline">\(\omega_c = 2\pi B\)</span>. As we saw in lecture 24 ideal filters cannot be implemented, thus we specify the anti-aliasing filter as a pass-band gain/frequency and a stop-band gain/frequency. Since the transition band is non-zero for a practical filter, this means we have to either lower the pass-band relative to the ideal or increase the sample rate. In the best case, the filter should have a stop-band frequency at half the sampling frequency with the order of the filter and pass-band frequency adjusted as needed. Alternatively the gain that defines the stop-band can be relaxed. This gives a desired frequency response magnitude that looks like the following.</p>
-<p>TODO antialias.pdf</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/fig23_7.svg" class="img-fluid figure-img" alt="See the caption."></p>
+<figcaption>Illustration of the desired frequency response of an anti-aliasing filter.</figcaption>
+</figure>
+</div>
 <p>The bold dotted line shows the maximum frequency response of the first image.</p>
 
 
