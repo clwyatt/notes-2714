@@ -15,6 +15,7 @@ This work is licensed under a Creative Commons Attribution 4.0 International Lic
 
 This book is continually updated as new content becomes available and errata corrected.
 
+* January 2026: Conversion of all Chapters to accessible html complete.
 * August 2025: Conversion of Chapter 6 complete.
 * July 2025: Conversion of Chapters 2-5 complete.
 * June 2025: Conversion of Chapter 1 complete.
