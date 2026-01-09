@@ -43,6 +43,7 @@ book:
     - 23-sampling.qmd
     - 24-recon.qmd
   appendices:
+    - 25-prereqs.qmd
     - 26-formulas-tables.qmd
     - image-descriptions.qmd
     - references.qmd

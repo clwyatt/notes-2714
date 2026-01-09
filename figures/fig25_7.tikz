@@ -1,0 +1,11 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+  \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
+    \draw
+    (0,0) to[L,l=$L$,v=$v_L$,i=$i_L$] (4,0);
+  \end{circuitikz}
+
+\end{document}

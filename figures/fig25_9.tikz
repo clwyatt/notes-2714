@@ -1,0 +1,13 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+    \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
+      \draw
+      (0,2) to[V,l=$v(t)$] (0,0)
+      (0,2) to[R,l=$R$, i=$i(t)$] (3,2)
+      (3,2) to[C,l=$C$, v=$v_c(t)$] (3,0)
+      (0,0) to[short] (3,0);
+  \end{circuitikz}
+\end{document}

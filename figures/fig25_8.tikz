@@ -1,0 +1,16 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+  \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
+    \draw
+    (0,0) node[op amp] (op1) {}
+    (-2,0.5) to[short,i=$i_-$,o-] (op1.-)
+    (-2,-0.5) to[short,i=$i_+$,o-] (op1.+)
+    (op1.out) to[short,i=$i_o$,-o] (2,0)
+    (-2.5,0.5) node {$v_-$}
+    (-2.5,-0.5) node {$v_+$}
+    (2.5,0) node {$v_o$};
+  \end{circuitikz}
+\end{document}

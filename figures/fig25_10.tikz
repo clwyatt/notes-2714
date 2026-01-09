@@ -1,0 +1,18 @@
+\documentclass{standalone}
+
+\input{preamble}
+
+\begin{document}
+    \begin{circuitikz}[american voltages,scale=0.8, every node/.style={transform shape}]
+      \draw
+      (5.5,2.5) node[op amp] (op1) {}
+      (0,2) to[V,l=$v(t)$] (0,0)
+      (0,2) to[R,l=$R$, i=$i(t)$] (3,2)
+      (3,2) to[C,l=$C$, v=$v_c(t)$] (3,0)
+      (3,2) to[short] (op1.+)
+      (op1.out) to (6.7,4) to (4.3,4) to (op1.-)
+      (op1.out) to[short, -o] (7,2.5)
+      (0,0) to[short, -o] (7,0)
+      (7,2.5) to[open, v=$y(t)$] (7,0);
+  \end{circuitikz}
+\end{document}
