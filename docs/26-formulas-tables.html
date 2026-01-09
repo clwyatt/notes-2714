@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Appendix A — Useful Mathematical Definitions and Tables – Supplementary Notes for ECE 2714: Signals and Systems</title>
+<title>Appendix B — Useful Mathematical Definitions and Tables – Supplementary Notes for ECE 2714: Signals and Systems</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,7 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./image-descriptions.html" rel="next">
-<link href="./24-recon.html" rel="prev">
+<link href="./25-prereqs.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -125,7 +125,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./26-formulas-tables.html">Appendices</a></li><li class="breadcrumb-item"><a href="./26-formulas-tables.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Mathematical Definitions and Tables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./25-prereqs.html">Appendices</a></li><li class="breadcrumb-item"><a href="./26-formulas-tables.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Useful Mathematical Definitions and Tables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -304,14 +304,20 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./25-prereqs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Prerequisite Review</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./26-formulas-tables.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Mathematical Definitions and Tables</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Useful Mathematical Definitions and Tables</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./image-descriptions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Detailed Image Descriptions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Detailed Image Descriptions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -332,20 +338,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#definition-of-modulus-for-integers" id="toc-definition-of-modulus-for-integers" class="nav-link active" data-scroll-target="#definition-of-modulus-for-integers"><span class="header-section-number">A.1</span> Definition of modulus for integers</a></li>
-  <li><a href="#table:ctconv" id="toc-table:ctconv" class="nav-link" data-scroll-target="#table\:ctconv"><span class="header-section-number">A.2</span> Table of Representative Convolution Integrals</a></li>
-  <li><a href="#table:dtconv" id="toc-table:dtconv" class="nav-link" data-scroll-target="#table\:dtconv"><span class="header-section-number">A.3</span> Table of Representative Convolution Sums</a></li>
-  <li><a href="#table:ctft" id="toc-table:ctft" class="nav-link" data-scroll-target="#table\:ctft"><span class="header-section-number">A.4</span> Table of Representative CT Fourier Transform Pairs</a></li>
-  <li><a href="#table:dtft" id="toc-table:dtft" class="nav-link" data-scroll-target="#table\:dtft"><span class="header-section-number">A.5</span> Table of Representative DT Fourier Transform Pairs</a></li>
+  <li><a href="#definition-of-modulus-for-integers" id="toc-definition-of-modulus-for-integers" class="nav-link active" data-scroll-target="#definition-of-modulus-for-integers"><span class="header-section-number">B.1</span> Definition of modulus for integers</a></li>
+  <li><a href="#table:ctconv" id="toc-table:ctconv" class="nav-link" data-scroll-target="#table\:ctconv"><span class="header-section-number">B.2</span> Table of Representative Convolution Integrals</a></li>
+  <li><a href="#table:dtconv" id="toc-table:dtconv" class="nav-link" data-scroll-target="#table\:dtconv"><span class="header-section-number">B.3</span> Table of Representative Convolution Sums</a></li>
+  <li><a href="#table:ctft" id="toc-table:ctft" class="nav-link" data-scroll-target="#table\:ctft"><span class="header-section-number">B.4</span> Table of Representative CT Fourier Transform Pairs</a></li>
+  <li><a href="#table:dtft" id="toc-table:dtft" class="nav-link" data-scroll-target="#table\:dtft"><span class="header-section-number">B.5</span> Table of Representative DT Fourier Transform Pairs</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./26-formulas-tables.html">Appendices</a></li><li class="breadcrumb-item"><a href="./26-formulas-tables.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Useful Mathematical Definitions and Tables</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./25-prereqs.html">Appendices</a></li><li class="breadcrumb-item"><a href="./26-formulas-tables.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Useful Mathematical Definitions and Tables</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Appendix A — Useful Mathematical Definitions and Tables</h1>
+<h1 class="title">Appendix B — Useful Mathematical Definitions and Tables</h1>
 </div>
 
 
@@ -362,16 +368,16 @@ window.Quarto = {
 </header>
 
 
-<section id="definition-of-modulus-for-integers" class="level2" data-number="A.1">
-<h2 data-number="A.1" class="anchored" data-anchor-id="definition-of-modulus-for-integers"><span class="header-section-number">A.1</span> Definition of modulus for integers</h2>
+<section id="definition-of-modulus-for-integers" class="level2" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="definition-of-modulus-for-integers"><span class="header-section-number">B.1</span> Definition of modulus for integers</h2>
 <p>Let <span class="math inline">\(n\in\mathbb{Z}\)</span> and <span class="math inline">\(N \in \mathbb{N}\)</span>. The mod operator <span class="math display">\[n \% N = \left\{ \begin{array}{cc}
   \text{remainder}\left(\frac{n}{N}\right) &amp; n \geq 0\\
   N - \text{remainder}\left(\frac{|n|}{N}\right) &amp; n &lt; 0
   \end{array}
 \right.\]</span> where <span class="math inline">\(\text{remainder}\)</span> is the remainder after dividing <span class="math inline">\(n\)</span> by <span class="math inline">\(N\)</span>.</p>
 </section>
-<section id="table:ctconv" class="level2" data-number="A.2">
-<h2 data-number="A.2" class="anchored" data-anchor-id="table:ctconv"><span class="header-section-number">A.2</span> Table of Representative Convolution Integrals</h2>
+<section id="table:ctconv" class="level2" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="table:ctconv"><span class="header-section-number">B.2</span> Table of Representative Convolution Integrals</h2>
 <table class="caption-top table">
 <caption>CT Convolution Table</caption>
 <thead>
@@ -420,8 +426,8 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="table:dtconv" class="level2" data-number="A.3">
-<h2 data-number="A.3" class="anchored" data-anchor-id="table:dtconv"><span class="header-section-number">A.3</span> Table of Representative Convolution Sums</h2>
+<section id="table:dtconv" class="level2" data-number="B.3">
+<h2 data-number="B.3" class="anchored" data-anchor-id="table:dtconv"><span class="header-section-number">B.3</span> Table of Representative Convolution Sums</h2>
 <table class="caption-top table">
 <caption>DT Convolution Table</caption>
 <thead>
@@ -470,12 +476,12 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="table:ctft" class="level2" data-number="A.4">
-<h2 data-number="A.4" class="anchored" data-anchor-id="table:ctft"><span class="header-section-number">A.4</span> Table of Representative CT Fourier Transform Pairs</h2>
+<section id="table:ctft" class="level2" data-number="B.4">
+<h2 data-number="B.4" class="anchored" data-anchor-id="table:ctft"><span class="header-section-number">B.4</span> Table of Representative CT Fourier Transform Pairs</h2>
 <div id="tbl-ctft" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ctft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;A.1: CT Fourier Transform Table
+Table&nbsp;B.1: CT Fourier Transform Table
 </figcaption>
 <div aria-describedby="tbl-ctft-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -564,8 +570,8 @@ Table&nbsp;A.1: CT Fourier Transform Table
 </figure>
 </div>
 </section>
-<section id="table:dtft" class="level2" data-number="A.5">
-<h2 data-number="A.5" class="anchored" data-anchor-id="table:dtft"><span class="header-section-number">A.5</span> Table of Representative DT Fourier Transform Pairs</h2>
+<section id="table:dtft" class="level2" data-number="B.5">
+<h2 data-number="B.5" class="anchored" data-anchor-id="table:dtft"><span class="header-section-number">B.5</span> Table of Representative DT Fourier Transform Pairs</h2>
 <table class="caption-top table">
 <caption>DT Fourier Transform Table</caption>
 <thead>
@@ -1039,13 +1045,13 @@ Table&nbsp;A.1: CT Fourier Transform Table
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./24-recon.html" class="pagination-link" aria-label="Reconstructing CT Signals">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Reconstructing CT Signals</span></span>
+      <a href="./25-prereqs.html" class="pagination-link" aria-label="Prerequisite Review">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Prerequisite Review</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./image-descriptions.html" class="pagination-link" aria-label="Detailed Image Descriptions">
-        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Detailed Image Descriptions</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Detailed Image Descriptions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
